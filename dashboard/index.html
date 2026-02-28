@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Gen Dashboard | Studio W230</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #dc2626;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: var(--bg-card);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem 2rem;
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .stats {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .leads-table {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .leads-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 120px;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.05);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        
+        .lead-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 120px;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            align-items: center;
+            transition: background 0.2s;
+        }
+        
+        .lead-row:hover {
+            background: rgba(255,255,255,0.03);
+        }
+        
+        .lead-name {
+            font-weight: 600;
+        }
+        
+        .lead-type {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-discovered {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--info);
+        }
+        
+        .status-generated {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+        
+        .status-deployed {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--success);
+        }
+        
+        .status-contacted {
+            background: rgba(220, 38, 38, 0.2);
+            color: var(--accent);
+        }
+        
+        .rating {
+            color: #fbbf24;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .btn-icon:hover {
+            background: var(--accent);
+        }
+        
+        .preview-link {
+            color: var(--info);
+            text-decoration: none;
+        }
+        
+        .preview-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow: auto;
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 1024px) {
+            .leads-header, .lead-row {
+                grid-template-columns: 2fr 1fr 1fr 100px;
+            }
+            
+            .leads-header > :nth-child(4),
+            .leads-header > :nth-child(5),
+            .lead-row > :nth-child(4),
+            .lead-row > :nth-child(5) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Lead<span>Gen</span> Dashboard</div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="total-leads">10</div>
+                    <div class="stat-label">Total Leads</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="generated">0</div>
+                    <div class="stat-label">Generated</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="deployed">1</div>
+                    <div class="stat-label">Deployed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="contacted">0</div>
+                    <div class="stat-label">Contacted</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All Leads</button>
+            <button class="filter-btn" data-filter="discovered">Discovered</button>
+            <button class="filter-btn" data-filter="generated">Generated</button>
+            <button class="filter-btn" data-filter="deployed">Deployed</button>
+            <button class="filter-btn" data-filter="contacted">Contacted</button>
+        </div>
+
+        <div class="leads-table">
+            <div class="leads-header">
+                <div>Business</div>
+                <div>Type</div>
+                <div>Rating</div>
+                <div>Location</div>
+                <div>Status</div>
+                <div>Preview</div>
+                <div>Actions</div>
+            </div>
+            <div id="leads-body">
+                <!-- Leads will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Lead</h3>
+                <button class="btn-icon" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Business Name</label>
+                    <input type="text" id="edit-name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="edit-email">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" id="edit-phone">
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea id="edit-notes" rows="3"></textarea>
+                </div>
+                <button class="btn-primary" onclick="saveLead()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lead data
+        const leads = [
+            {
+                id: 1,
+                name: "Richmond Plumbing Solutions",
+                type: "Plumber",
+                rating: 4.6,
+                reviews: 28,
+                location: "Richmond",
+                status: "discovered",
+                previewUrl: "",
+                email: "",
+                phone: "(03) 9429 1156"
+            },
+            {
+                id: 2,
+                name: "Fitzroy Electrical Services",
+                type: "Electrician",
+                rating: 4.8,
+                reviews: 42,
+                location: "Fitzroy",
+                status: "discovered",
+                previewUrl: "",
+                email: "",
+                phone: "(03) 9419 8765"
+            },
+            {
+                id: 3,
+                name: "Brunswick Cafe & Roastery",
+                type: "Cafe",
+                rating: 4.5,
+                reviews: 67,
+                location: "Brunswick",
+                status: "discovered",
+                previewUrl: "",
+                email: "",
+                phone: "(03) 9380 2245"
+            },
+            {
+                id: 4,
+                name: "Collingwood Auto Care",
+                type: "Mechanic",
+                rating: 4.3,
+                reviews: 19,
+                location: "Collingwood",
+                status: "discovered",
+                previewUrl: "",
+                email: "",
+                phone: "(03) 9417 3398"
+            },
+            {
+                id: 5,
+                name: "Carlton Dental Care",
+                type: "Dentist",
+                rating: 4.9,
+                reviews: 53,
+                location: "Carlton",
+                status: "discovered",
+                previewUrl: "",
+                email: "",
+                phone: "(03) 9347 5612"
+            },
+            {
+                id: 6,
+                name: "South Yarra Landscaping",
+                type: "Landscaper",
+                rating: 4.4,
+                reviews: 31,
+                location: "South Yarra",
+                status: "discovered",
+                previewUrl: "",
+                email: "",
+                phone: "(03) 9826 8843"
+            },
+            {
+                id: 7,
+                name: "St Kilda Massage Therapy",
+                type: "Massage",
+                rating: 4.7,
+                reviews: 45,
+                location: "St Kilda",
+                status: "discovered",
+                previewUrl: "",
+                email: "",
+                phone: "(03) 9534 7789"
+            },
+            {
+                id: 8,
+                name: "Northcote Hair Studio",
+                type: "Hair Salon",
+                rating: 4.5,
+                reviews: 38,
+                location: "Northcote",
+                status: "discovered",
+                previewUrl: "",
+                email: "",
+                phone: "(03) 9482 1154"
+            },
+            {
+                id: 9,
+                name: "Prahran Cleaning Services",
+                type: "Cleaning",
+                rating: 4.2,
+                reviews: 24,
+                location: "Prahran",
+                status: "discovered",
+                previewUrl: "",
+                email: "",
+                phone: "(03) 9510 2234"
+            },
+            {
+                id: 10,
+                name: "Footscray Auto Electrics",
+                type: "Auto Electrician",
+                rating: 4.6,
+                reviews: 29,
+                location: "Footscray",
+                status: "discovered",
+                previewUrl: "",
+                email: "",
+                phone: "(03) 9689 4456"
+            }
+        ];
+
+        // Add the sample site that's already deployed
+        leads[0].status = "deployed";
+        leads[0].previewUrl = "https://mustbesimo.github.io/pages/joes-plumbing-co/";
+
+        let currentFilter = "all";
+        let editingId = null;
+
+        function renderLeads() {
+            const tbody = document.getElementById("leads-body");
+            tbody.innerHTML = "";
+
+            const filtered = currentFilter === "all" 
+                ? leads 
+                : leads.filter(l => l.status === currentFilter);
+
+            filtered.forEach(lead => {
+                const row = document.createElement("div");
+                row.className = "lead-row";
+                row.innerHTML = `
+                    <div>
+                        <div class="lead-name">${lead.name}</div>
+                        <div class="lead-type">${lead.reviews} reviews</div>
+                    </div>
+                    <div>${lead.type}</div>
+                    <div class="rating">⭐ ${lead.rating}</div>
+                    <div>${lead.location}</div>
+                    <div>
+                        <span class="status status-${lead.status}">${lead.status}</span>
+                    </div>
+                    <div>
+                        ${lead.previewUrl 
+                            ? `<a href="${lead.previewUrl}" target="_blank" class="preview-link">View Site →</a>`
+                            : "—"
+                        }
+                    </div>
+                    <div class="actions">
+                        <button class="btn-icon" onclick="editLead(${lead.id})" title="Edit">✏️</button>
+                        <button class="btn-icon" onclick="generateSite(${lead.id})" title="Generate">🎨</button>
+                        <button class="btn-icon" onclick="sendEmail(${lead.id})" title="Send Email">📧</button>
+                    </div>
+                `;
+                tbody.appendChild(row);
+            });
+
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById("total-leads").textContent = leads.length;
+            document.getElementById("generated").textContent = leads.filter(l => l.status === "generated" || l.status === "deployed" || l.status === "contacted").length;
+            document.getElementById("deployed").textContent = leads.filter(l => l.status === "deployed" || l.status === "contacted").length;
+            document.getElementById("contacted").textContent = leads.filter(l => l.status === "contacted").length;
+        }
+
+        // Filter buttons
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentFilter = btn.dataset.filter;
+                renderLeads();
+            });
+        });
+
+        function editLead(id) {
+            const lead = leads.find(l => l.id === id);
+            if (!lead) return;
+            
+            editingId = id;
+            document.getElementById("edit-name").value = lead.name;
+            document.getElementById("edit-email").value = lead.email;
+            document.getElementById("edit-phone").value = lead.phone;
+            document.getElementById("edit-notes").value = "";
+            document.getElementById("edit-modal").classList.add("active");
+        }
+
+        function closeModal() {
+            document.getElementById("edit-modal").classList.remove("active");
+            editingId = null;
+        }
+
+        function saveLead() {
+            if (!editingId) return;
+            
+            const lead = leads.find(l => l.id === editingId);
+            if (lead) {
+                lead.name = document.getElementById("edit-name").value;
+                lead.email = document.getElementById("edit-email").value;
+                lead.phone = document.getElementById("edit-phone").value;
+            }
+            
+            closeModal();
+            renderLeads();
+        }
+
+        function generateSite(id) {
+            const lead = leads.find(l => l.id === id);
+            if (lead) {
+                lead.status = "generated";
+                renderLeads();
+                alert(`Generating website for ${lead.name}...`);
+            }
+        }
+
+        function sendEmail(id) {
+            const lead = leads.find(l => l.id === id);
+            if (lead) {
+                lead.status = "contacted";
+                renderLeads();
+                alert(`Email template ready for ${lead.name}`);
+            }
+        }
+
+        // Initial render
+        renderLeads();
+    </script>
+</body>
+</html>

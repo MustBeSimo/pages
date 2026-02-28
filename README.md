@@ -1,14 +1,26 @@
-# Business Website Previews
+# Melbourne Business Websites
 
-Professional website previews for Melbourne businesses.
+AI-generated websites for Melbourne small businesses.
 
-## Live Previews
+## Live Sites
 
-| Business | Type | Location | Preview |
-|----------|------|----------|---------|
-| Joe's Plumbing Co | Plumber | Richmond, VIC | [View Site →](https://mustbesimo.github.io/pages/joes-plumbing-co/) |
+| Business | URL | Status |
+|----------|-----|--------|
+| Dashboard | https://mustbesimo.github.io/pages/ | 🟢 Live |
+| Joe's Plumbing Co | https://mustbesimo.github.io/pages/joes-plumbing-co/ | 🟢 Live |
+| Fitzroy Electrical | https://mustbesimo.github.io/pages/fitzroy-electrical/ | 🟢 Live |
 
----
+## Project
 
-*Websites crafted by Simone Leonelli*  
-*Studio W230 — Design & Digital*
+Part of [T0014 - Melbourne Business Outreach](https://github.com/MustBeSimo/kneptune-bot-experiments/tree/master/T0014-melbourne-business)
+
+## Structure
+
+```
+docs/
+├── index.html              # Dashboard
+├── joes-plumbing-co/       # Plumber website
+└── fitzroy-electrical/     # Electrician website
+```
+
+GitHub Pages serves from `/docs` folder.

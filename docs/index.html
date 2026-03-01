@@ -8,20 +8,27 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #e5e5e5; line-height: 1.6; }
-        .container { max-width: 800px; margin: 0 auto; padding: 48px 24px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 48px 24px; }
         header { border-bottom: 1px solid #1f1f1f; padding-bottom: 32px; margin-bottom: 32px; }
         h1 { font-size: 24px; font-weight: 700; color: #fff; }
         .tagline { color: #f59e0b; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
         .meta { color: #525252; font-size: 14px; margin-top: 8px; }
+        .stats { display: flex; gap: 32px; margin: 24px 0; }
+        .stat { text-align: center; }
+        .stat-value { font-size: 32px; font-weight: 700; color: #f59e0b; }
+        .stat-label { font-size: 12px; color: #525252; text-transform: uppercase; }
         h2 { font-size: 16px; font-weight: 600; color: #fff; margin: 32px 0 16px; }
-        .sites { display: grid; gap: 16px; }
-        .site { background: #141414; padding: 24px; border-left: 4px solid #f59e0b; }
-        .site-name { font-weight: 600; color: #fff; }
-        .site-type { color: #9ca3af; font-size: 14px; margin-top: 4px; }
-        .site-link { display: inline-block; color: #f59e0b; text-decoration: none; margin-top: 12px; font-size: 14px; }
-        .site-link:hover { text-decoration: underline; }
-        .status { display: inline-block; background: #14532d; color: #4ade80; padding: 4px 12px; font-size: 12px; margin-top: 12px; }
+        .sites { display: grid; gap: 12px; }
+        .site { background: #141414; padding: 20px; border-left: 4px solid #f59e0b; display: flex; justify-content: space-between; align-items: center; }
+        .site-info { flex: 1; }
+        .site-name { font-weight: 600; color: #fff; font-size: 15px; }
+        .site-type { color: #9ca3af; font-size: 13px; margin-top: 2px; }
+        .site-meta { color: #525252; font-size: 12px; margin-top: 4px; }
+        .site-link { color: #f59e0b; text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 16px; border: 1px solid #f59e0b; }
+        .site-link:hover { background: #f59e0b; color: #0a0a0a; }
+        .status { display: inline-block; background: #14532d; color: #4ade80; padding: 4px 12px; font-size: 11px; margin-left: 12px; }
         footer { border-top: 1px solid #1f1f1f; margin-top: 48px; padding-top: 24px; color: #525252; font-size: 12px; }
+        .section-title { color: #9ca3af; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 24px 0 12px; }
     </style>
 </head>
 <body>
@@ -29,28 +36,126 @@
         <header>
             <p class="tagline">T0014</p>
             <h1>Melbourne Business Outreach</h1>
-            <p class="meta">Studio W230 · Lead generation via AI-built websites</p>
+            <p class="meta">Studio W230 · AI-built websites for local businesses</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">10</div>
+                    <div class="stat-label">Live Sites</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Ready to Send</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Contacted</div>
+                </div>
+            </div>
         </header>
 
-        <h2>Live Sites</h2>
+        <p class="section-title">Fitness & Wellness</p>
         <div class="sites">
             <div class="site">
-                <div class="site-name">Joe's Plumbing Co</div>
-                <div class="site-type">Plumber · Fitzroy, VIC</div>
-                <a href="joes-plumbing-co/" class="site-link">View site →</a>
-                <div class="status">Live</div>
+                <div class="site-info">
+                    <div class="site-name">Studio 404 Personal Training <span class="status">Live</span></div>
+                    <div class="site-type">Personal Training · Fitzroy</div>
+                    <div class="site-meta">5.0★ · 10 reviews · Copper theme</div>
+                </div>
+                <a href="studio-404-fitness/" class="site-link">View →</a>
             </div>
             
             <div class="site">
-                <div class="site-name">Fitzroy Electrical</div>
-                <div class="site-type">Electrician · Fitzroy, VIC</div>
-                <a href="fitzroy-electrical/" class="site-link">View site →</a>
-                <div class="status">Live</div>
+                <div class="site-info">
+                    <div class="site-name">Fitmum_abs Gym Studio <span class="status">Live</span></div>
+                    <div class="site-type">Gym for Mums · Richmond</div>
+                    <div class="site-meta">5.0★ · 24 reviews · Copper theme</div>
+                </div>
+                <a href="fitmum-abs-gym/" class="site-link">View →</a>
+            </div>
+            
+            <div class="site">
+                <div class="site-info">
+                    <div class="site-name">Burn Boxing and Fitness <span class="status">Live</span></div>
+                    <div class="site-type">Boxing · Melbourne</div>
+                    <div class="site-meta">4.8★ · 33 reviews · Amber theme</div>
+                </div>
+                <a href="burn-boxing-fitness/" class="site-link">View →</a>
+            </div>
+            
+            <div class="site">
+                <div class="site-info">
+                    <div class="site-name">HiVibe Fitness <span class="status">Live</span></div>
+                    <div class="site-type">Wellness · Fitzroy</div>
+                    <div class="site-meta">5.0★ · 10 reviews · Copper theme</div>
+                </div>
+                <a href="hivibe-fitness/" class="site-link">View →</a>
+            </div>
+            
+            <div class="site">
+                <div class="site-info">
+                    <div class="site-name">Ucebox Fitness <span class="status">Live</span></div>
+                    <div class="site-type">Functional Training · Richmond</div>
+                    <div class="site-meta">5.0★ · 12 reviews · Amber theme</div>
+                </div>
+                <a href="ucebox-fitness/" class="site-link">View →</a>
+            </div>
+        </div>
+
+        <p class="section-title">Retail</p>
+        <div class="sites">
+            <div class="site">
+                <div class="site-info">
+                    <div class="site-name">Lashkara Collections <span class="status">Live</span></div>
+                    <div class="site-type">Women's Fashion · Melbourne</div>
+                    <div class="site-meta">3.5★ · 30 reviews · Copper theme</div>
+                </div>
+                <a href="lashkara-collections/" class="site-link">View →</a>
+            </div>
+            
+            <div class="site">
+                <div class="site-info">
+                    <div class="site-name">Cowboys Cash & Carry <span class="status">Live</span></div>
+                    <div class="site-type">Workwear · Melbourne</div>
+                    <div class="site-meta">4.5★ · 49 reviews · Amber theme</div>
+                </div>
+                <a href="cowboys-cash-carry/" class="site-link">View →</a>
+            </div>
+            
+            <div class="site">
+                <div class="site-info">
+                    <div class="site-name">Brandella Uniforms <span class="status">Live</span></div>
+                    <div class="site-type">Uniforms · Melbourne</div>
+                    <div class="site-meta">4.5★ · 6 reviews · Copper theme</div>
+                </div>
+                <a href="brandella-uniforms/" class="site-link">View →</a>
+            </div>
+        </div>
+
+        <p class="section-title">Trades (Demo)</p>
+        <div class="sites">
+            <div class="site">
+                <div class="site-info">
+                    <div class="site-name">Joe's Plumbing Co <span class="status">Live</span></div>
+                    <div class="site-type">Plumber · Fitzroy</div>
+                    <div class="site-meta">Copper theme · Demo site</div>
+                </div>
+                <a href="joes-plumbing-co/" class="site-link">View →</a>
+            </div>
+            
+            <div class="site">
+                <div class="site-info">
+                    <div class="site-name">Fitzroy Electrical <span class="status">Live</span></div>
+                    <div class="site-type">Electrician · Fitzroy</div>
+                    <div class="site-meta">Amber theme · Demo site</div>
+                </div>
+                <a href="fitzroy-electrical/" class="site-link">View →</a>
             </div>
         </div>
 
         <footer>
-            <p>Project files: github.com/MustBeSimo/kneptune-bot-experiments/T0014Melbourne_Business</p>
+            <p>Project: github.com/MustBeSimo/kneptune-bot-experiments/T0014Melbourne_Business</p>
+            <p>Last updated: 2026-03-01 · 10 sites live</p>
         </footer>
     </div>
 </body>

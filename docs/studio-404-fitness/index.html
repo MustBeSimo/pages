@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio 404 Personal Training | Fitzroy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --color-off-white: #FAFAF7;
+            --color-near-black: #1C1C1E;
+            --color-copper: #B87333;
+            --color-copper-dark: #9A6B2A;
+            --color-copper-light: #D4A574;
+            --font-headline: 'Barlow Condensed', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-off-white);
+            color: var(--color-near-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: var(--font-headline);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 0.95;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            line-height: 1.1;
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+        }
+
+        p {
+            font-size: clamp(0.9375rem, 2vw, 1rem);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: clamp(1rem, 3vw, 1.5rem) clamp(1.25rem, 5vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(250, 250, 247, 0.95), transparent);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: var(--font-headline);
+            font-weight: 700;
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--color-near-black);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .logo span {
+            color: var(--color-copper);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 140%;
+            background: linear-gradient(135deg, 
+                rgba(184, 115, 51, 0.08) 0%, 
+                rgba(250, 250, 247, 0.95) 50%,
+                rgba(184, 115, 51, 0.05) 100%);
+            z-index: -1;
+            will-change: transform;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(184, 115, 51, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(184, 115, 51, 0.1) 0%, transparent 40%);
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: clamp(6rem, 15vh, 10rem) clamp(1.25rem, 5vw, 3rem) clamp(4rem, 10vh, 6rem);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-copper);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s var(--transition-smooth) 0.2s forwards;
+        }
+
+        .hero h1 {
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s var(--transition-smooth) 0.4s forwards;
+        }
+
+        .hero-subtitle {
+            max-width: 600px;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: rgba(28, 28, 30, 0.75);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s var(--transition-smooth) 0.6s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background-color: var(--color-copper);
+            color: var(--color-off-white);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 2px;
+            transition: all 0.3s var(--transition-smooth);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s var(--transition-smooth) 0.8s forwards;
+            min-height: 48px;
+            min-width: 48px;
+        }
+
+        .hero-cta:hover {
+            background-color: var(--color-copper-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(184, 115, 51, 0.35);
+        }
+
+        .hero-cta svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s var(--transition-smooth);
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(1.5rem, 4vw, 3rem);
+            margin-top: clamp(3rem, 8vh, 5rem);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(28, 28, 30, 0.1);
+        }
+
+        .trust-item {
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeInUp 0.6s var(--transition-smooth) forwards;
+        }
+
+        .trust-item:nth-child(1) { animation-delay: 1s; }
+        .trust-item:nth-child(2) { animation-delay: 1.15s; }
+        .trust-item:nth-child(3) { animation-delay: 1.3s; }
+        .trust-item:nth-child(4) { animation-delay: 1.45s; }
+
+        .trust-item-value {
+            font-family: var(--font-headline);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            color: var(--color-near-black);
+            line-height: 1;
+        }
+
+        .trust-item-label {
+            font-size: clamp(0.75rem, 1.5vw, 0.8125rem);
+            color: rgba(28, 28, 30, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.25rem;
+        }
+
+        .stars {
+            color: var(--color-copper);
+            letter-spacing: 0.1em;
+        }
+
+        /* Copper Stripe Separator */
+        .copper-stripe {
+            position: relative;
+            height: 4px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .copper-stripe-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, 
+                var(--color-copper-light) 0%, 
+                var(--color-copper) 50%, 
+                var(--color-copper-dark) 100%);
+            transition: width 1.2s var(--transition-smooth);
+        }
+
+        .copper-stripe-line.animate {
+            width: 100%;
+        }
+
+        /* Services Section */
+        .services {
+            padding: clamp(4rem, 10vh, 6rem) clamp(1.25rem, 5vw, 3rem);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-header {
+            margin-bottom: clamp(2.5rem, 6vh, 4rem);
+        }
+
+        .services-header h2 {
+            margin-bottom: 0.75rem;
+        }
+
+        .services-header p {
+            max-width: 600px;
+            color: rgba(28, 28, 30, 0.7);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+        }
+
+        .service-card {
+            background: white;
+            padding: clamp(1.75rem, 4vw, 2.5rem);
+            border-radius: 2px;
+            border: 1px solid rgba(28, 28, 30, 0.08);
+            transition: all 0.4s var(--transition-smooth);
+            opacity: 0;
+            transform: translateX(-40px);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .service-card:nth-child(1).visible { transition-delay: 0ms; }
+        .service-card:nth-child(2).visible { transition-delay: 100ms; }
+        .service-card:nth-child(3).visible { transition-delay: 200ms; }
+        .service-card:nth-child(4).visible { transition-delay: 300ms; }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(28, 28, 30, 0.08);
+            border-color: rgba(184, 115, 51, 0.2);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.25rem;
+            color: var(--color-copper);
+        }
+
+        .service-card h3 {
+            margin-bottom: 0.75rem;
+            color: var(--color-near-black);
+        }
+
+        .service-card p {
+            color: rgba(28, 28, 30, 0.7);
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        /* About Section */
+        .about {
+            padding: clamp(4rem, 10vh, 6rem) clamp(1.25rem, 5vw, 3rem);
+            background-color: rgba(184, 115, 51, 0.03);
+        }
+
+        .about-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .about-text h2 {
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: rgba(28, 28, 30, 0.75);
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .about-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.875rem;
+            font-size: clamp(0.9375rem, 2vw, 1rem);
+        }
+
+        .about-features li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-copper);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .about-visual {
+            position: relative;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, 
+                rgba(184, 115, 51, 0.1) 0%, 
+                rgba(184, 115, 51, 0.05) 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            right: 1rem;
+            bottom: 1rem;
+            border: 1px solid rgba(184, 115, 51, 0.2);
+            border-radius: 2px;
+        }
+
+        .about-visual-text {
+            font-family: var(--font-headline);
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 700;
+            color: rgba(184, 115, 51, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: clamp(4rem, 12vh, 8rem) clamp(1.25rem, 5vw, 3rem);
+            text-align: center;
+            background: linear-gradient(to bottom, 
+                var(--color-off-white) 0%, 
+                rgba(184, 115, 51, 0.05) 50%, 
+                var(--color-off-white) 100%);
+        }
+
+        .cta-section h2 {
+            max-width: 700px;
+            margin: 0 auto 1.25rem;
+        }
+
+        .cta-section p {
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            color: rgba(28, 28, 30, 0.7);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.125rem 2.5rem;
+            background-color: var(--color-copper);
+            color: var(--color-off-white);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: clamp(0.9375rem, 2vw, 1rem);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 2px;
+            transition: all 0.3s var(--transition-smooth);
+            min-height: 56px;
+            min-width: 180px;
+            justify-content: center;
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-copper-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(184, 115, 51, 0.4);
+        }
+
+        .cta-phone {
+            display: block;
+            margin-top: 1.5rem;
+            font-family: var(--font-body);
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            color: rgba(28, 28, 30, 0.6);
+        }
+
+        .cta-phone strong {
+            color: var(--color-copper);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            padding: clamp(2.5rem, 6vh, 4rem) clamp(1.25rem, 5vw, 3rem);
+            background-color: var(--color-near-black);
+            color: var(--color-off-white);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(2rem, 5vw, 3rem);
+        }
+
+        @media (min-width: 600px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand .logo {
+            color: var(--color-off-white);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            color: rgba(250, 250, 247, 0.6);
+            font-size: 0.9375rem;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            color: var(--color-copper);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(250, 250, 247, 0.6);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.3s var(--transition-smooth);
+            display: inline-block;
+            min-height: 32px;
+            line-height: 32px;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-off-white);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: clamp(2rem, 5vh, 3rem) auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(250, 250, 247, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 600px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .footer-bottom p {
+            font-size: 0.8125rem;
+            color: rgba(250, 250, 247, 0.4);
+        }
+
+        /* Mobile Sticky CTA */
+        .mobile-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background-color: var(--color-off-white);
+            padding: 0.75rem 1.25rem;
+            box-shadow: 0 -4px 20px rgba(28, 28, 30, 0.1);
+            display: flex;
+            justify-content: center;
+            transform: translateY(100%);
+            transition: transform 0.4s var(--transition-smooth);
+        }
+
+        .mobile-cta.visible {
+            transform: translateY(0);
+        }
+
+        .mobile-cta a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 400px;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--color-copper);
+            color: var(--color-off-white);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 2px;
+            min-height: 48px;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .mobile-cta a:hover {
+            background-color: var(--color-copper-dark);
+        }
+
+        .mobile-cta a svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (min-width: 769px) {
+            .mobile-cta {
+                display: none;
+            }
+            
+            body {
+                padding-bottom: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: 80px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .hero-bg {
+                transform: none !important;
+            }
+            
+            .service-card {
+                opacity: 1;
+                transform: none;
+            }
+            
+            .copper-stripe-line {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Studio <span>404</span></div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-content">
+            <p class="hero-tagline">Boutique Personal Training • Fitzroy</p>
+            <h1>Personal training that fits your Fitzroy terrace.</h1>
+            <p class="hero-subtitle">Premium fitness coaching designed for busy professionals who value craftsmanship, consistency, and results that last.</p>
+            <a href="#contact" class="hero-cta">
+                Start Your Journey
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+            
+            <div class="trust-bar">
+                <div class="trust-item">
+                    <div class="trust-item-value stars">★★★★★</div>
+                    <div class="trust-item-label">5.0 Rating</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-item-value">10+</div>
+                    <div class="trust-item-label">Happy Clients</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-item-value">Fitzroy</div>
+                    <div class="trust-item-label">Melbourne</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-item-value">1:1</div>
+                    <div class="trust-item-label">Personalised</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="copper-stripe">
+        <div class="copper-stripe-line" id="copperStripe"></div>
+    </div>
+
+    <section class="services" id="services">
+        <div class="services-header">
+            <h2>What We Offer</h2>
+            <p>Tailored fitness solutions built around your lifestyle, your goals, and your schedule.</p>
+        </div>
+        
+        <div class="services-grid">
+            <article class="service-card">
+                <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 12h36M6 24h36M6 36h36"/>
+                    <circle cx="14" cy="12" r="2"/>
+                    <circle cx="24" cy="24" r="2"/>
+                    <circle cx="34" cy="36" r="2"/>
+                </svg>
+                <h3>Personal Training</h3>
+                <p>One-on-one sessions tailored to your specific goals. Whether you're building strength, improving mobility, or training for an event, we create a program that evolves with you.</p>
+            </article>
+            
+            <article class="service-card">
+                <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v2"/>
+                    <path d="M19 21h10v10H19z"/>
+                    <circle cx="24" cy="14" r="3"/>
+                    <path d="M12 31h-2a4 4 0 0 1-4-4v-2a4 4 0 0 1 4-4h2"/>
+                    <path d="M36 31h2a4 4 0 0 0 4-4v-2a4 4 0 0 0-4-4h-2"/>
+                </svg>
+                <h3>Group Sessions</h3>
+                <p>Small group training that combines personal attention with the energy of training alongside others. Maximum 6 participants per session for quality coaching.</p>
+            </article>
+            
+            <article class="service-card">
+                <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M24 4v40"/>
+                    <path d="M4 24h40"/>
+                    <circle cx="24" cy="24" r="8"/>
+                    <path d="M12 12l8 8"/>
+                    <path d="M36 12l-8 8"/>
+                    <path d="M12 36l8-8"/>
+                    <path d="M36 36l-8-8"/>
+                </svg>
+                <h3>Nutrition Coaching</h3>
+                <p>Practical nutrition guidance that complements your training. No fad diets—just sustainable habits that fuel your performance and fit your lifestyle.</p>
+            </article>
+            
+            <article class="service-card">
+                <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="8" y="8" width="32" height="32" rx="4"/>
+                    <path d="M8 16h32"/>
+                    <path d="M16 8v-4"/>
+                    <path d="M32 8v-4"/>
+                    <circle cx="24" cy="28" r="6"/>
+                </svg>
+                <h3>Program Design</h3>
+                <p>Custom training programs for self-guided workouts. Perfect for those who travel frequently or prefer to train independently with expert-designed structure.</p>
+            </article>
+        </div>
+    </section>
+
+    <div class="copper-stripe">
+        <div class="copper-stripe-line" id="copperStripe2"></div>
+    </div>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Why Studio 404?</h2>
+                <p>We're not a gym. We're a private training studio in the heart of Fitzroy, built for people who want thoughtful, personalised fitness coaching without the crowds.</p>
+                <p>Every session is crafted around you—your body, your goals, your schedule. We believe in building strength that serves your life, not the other way around.</p>
+                <ul class="about-features">
+                    <li>Private studio environment</li>
+                    <li>Flexible scheduling for professionals</li>
+                    <li>Evidence-based training methods</li>
+                    <li>Holistic approach to health</li>
+                </ul>
+            </div>
+            <div class="about-visual">
+                <span class="about-visual-text">404</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <h2>Ready to start?</h2>
+        <p>Book a complimentary consultation to discuss your goals and see if we're the right fit.</p>
+        <a href="tel:[PLACEHOLDER]" class="cta-button">Book Consultation</a>
+        <p class="cta-phone">Or call <strong>[PLACEHOLDER]</strong></p>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">Studio <span>404</span></div>
+                <p>Boutique personal training in Fitzroy, Melbourne. Crafted for professionals who value quality and consistency.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Personal Training</a></li>
+                    <li><a href="#services">Group Sessions</a></li>
+                    <li><a href="#services">Nutrition Coaching</a></li>
+                    <li><a href="#services">Program Design</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#contact">Book Consultation</a></li>
+                    <li><a href="tel:[PLACEHOLDER]">[PLACEHOLDER]</a></li>
+                    <li><a href="#">Fitzroy, Melbourne</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Studio 404 Personal Training. All rights reserved.</p>
+            <p>Crafted in Fitzroy</p>
+        </div>
+    </footer>
+
+    <div class="mobile-cta" id="mobileCta">
+        <a href="tel:[PLACEHOLDER]">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Call Now
+        </a>
+    </div>
+
+    <script>
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Hero parallax - background at 40% scroll speed
+        if (!prefersReducedMotion) {
+            const heroBg = document.getElementById('heroBg');
+            let ticking = false;
+
+            function updateParallax() {
+                const scrollY = window.scrollY;
+                const heroHeight = document.querySelector('.hero').offsetHeight;
+                
+                if (scrollY < heroHeight) {
+                    heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
+                }
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }, { passive: true });
+        }
+
+        // Copper stripe draw animation on scroll
+        function initCopperStripeAnimation() {
+            const stripes = document.querySelectorAll('.copper-stripe-line');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5,
+                rootMargin: '0px 0px -10% 0px'
+            });
+
+            stripes.forEach(stripe => observer.observe(stripe));
+        }
+
+        // Services slide-in animation
+        function initServicesAnimation() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2,
+                rootMargin: '0px 0px -5% 0px'
+            });
+
+            serviceCards.forEach(card => observer.observe(card));
+        }
+
+        // Mobile sticky CTA visibility
+        function initMobileCta() {
+            const mobileCta = document.getElementById('mobileCta');
+            const hero = document.querySelector('.hero');
+            let heroHeight = hero.offsetHeight;
+
+            function checkScroll() {
+                const scrollY = window.scrollY;
+                if (scrollY > heroHeight * 0.5) {
+                    mobileCta.classList.add('visible');
+                } else {
+                    mobileCta.classList.remove('visible');
+                }
+            }
+
+            window.addEventListener('scroll', checkScroll, { passive: true });
+            window.addEventListener('resize', () => {
+                heroHeight = hero.offsetHeight;
+            });
+            
+            // Initial check
+            checkScroll();
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerOffset = 80;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Initialize all animations
+        document.addEventListener('DOMContentLoaded', () => {
+            initCopperStripeAnimation();
+            initServicesAnimation();
+            initMobileCta();
+        });
+    </script>
+</body>
+</html>

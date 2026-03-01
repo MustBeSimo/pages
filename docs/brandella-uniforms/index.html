@@ -179,7 +179,9 @@
 
         /* Hero Section */
         .hero {
-            background: var(--navy);
+            background-image: url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
             color: var(--white);
             padding: 8rem 1.5rem 4rem;
             position: relative;
@@ -190,10 +192,10 @@
             content: '';
             position: absolute;
             top: 0;
+            left: 0;
             right: 0;
             bottom: 0;
-            width: 50%;
-            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 100%);
+            background: rgba(30, 58, 95, 0.75);
             pointer-events: none;
         }
 

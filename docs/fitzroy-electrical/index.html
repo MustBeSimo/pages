@@ -3,72 +3,529 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commercial Electrician Fitzroy | Fitzroy Electrical</title>
-    <meta name="description" content="Commercial electrical fit-outs, safety checks & repairs. Fitzroy, Collingwood, Abbotsford. [PLACEHOLDER: Real phone number needed]">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Fitzroy Electrical | Commercial & Residential Electricians</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #e5e5e5; line-height: 1.6; }
-        .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-        header { background: #0a0a0a; border-bottom: 1px solid #1f1f1f; padding: 48px 0; }
-        .tagline { color: #f59e0b; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
-        h1 { color: #fff; font-size: 32px; font-weight: 700; line-height: 1.2; }
-        h1 span { color: #f59e0b; }
-        .subhead { color: #9ca3af; margin-top: 16px; font-size: 16px; }
-        .cta { display: inline-block; background: #f59e0b; color: #0a0a0a; padding: 16px 32px; text-decoration: none; font-weight: 600; margin-top: 24px; }
-        section { padding: 48px 0; }
-        h2 { font-size: 20px; margin-bottom: 24px; color: #fff; }
-        .services { display: grid; gap: 16px; }
-        .service { background: #141414; padding: 24px; border-left: 4px solid #f59e0b; }
-        .service h3 { font-size: 16px; margin-bottom: 8px; color: #fff; }
-        .service p { color: #9ca3af; font-size: 14px; }
-        .area { background: #141414; }
-        .area h2 { color: #f59e0b; }
-        footer { background: #000; color: #525252; padding: 24px 0; font-size: 12px; }
-        .placeholder { background: #451a03; color: #fbbf24; padding: 12px 16px; font-size: 13px; margin: 24px 0; }
+        /* CSS Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --near-black: #111111;
+            --dark-charcoal: #1A1A1A;
+            --charged-amber: #F5A623;
+            --amber-dim: rgba(245, 166, 35, 0.3);
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--near-black);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Live Wire Line - Top of page */
+        .live-wire-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--charged-amber);
+            z-index: 1000;
+            animation: drawWire 800ms ease-out forwards;
+        }
+
+        @keyframes drawWire {
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 5vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+            background: linear-gradient(to bottom, var(--near-black) 0%, transparent 100%);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--charged-amber);
+        }
+
+        .nav-contact {
+            font-family: 'DM Mono', monospace;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 200ms ease;
+        }
+
+        .nav-contact:hover {
+            color: var(--charged-amber);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 5vw 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .hero-label {
+            font-family: 'DM Mono', monospace;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            color: var(--charged-amber);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: flickIn 400ms ease-out 200ms forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            will-change: transform;
+        }
+
+        .hero-subtext {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            opacity: 0;
+            animation: flickIn 400ms ease-out 400ms forwards;
+        }
+
+        @keyframes flickIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 5vw;
+            background-color: var(--dark-charcoal);
+            position: relative;
+        }
+
+        .services-header {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+
+        .services-label {
+            font-family: 'DM Mono', monospace;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            color: var(--charged-amber);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .services h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: -0.02em;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: var(--near-black);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: transform 300ms ease-out;
+        }
+
+        .service-card.visible {
+            animation: serviceFlickIn 400ms ease-out forwards;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 0;
+            background-color: var(--charged-amber);
+            transition: height 300ms ease-out 80ms;
+        }
+
+        .service-card.visible::before {
+            animation: borderSlideIn 300ms ease-out 80ms forwards;
+        }
+
+        @keyframes serviceFlickIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes borderSlideIn {
+            to {
+                height: 100%;
+            }
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: clamp(0.9375rem, 1.5vw, 1rem);
+            line-height: 1.7;
+        }
+
+        /* Contact CTA Section */
+        .contact {
+            padding: 6rem 5vw;
+            text-align: center;
+            background-color: var(--near-black);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .contact p {
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            display: inline-block;
+            font-family: 'DM Mono', monospace;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--near-black);
+            background-color: var(--charged-amber);
+            padding: 1.25rem 3rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            min-height: 48px;
+            min-width: 48px;
+            transition: transform 200ms ease, box-shadow 200ms ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 166, 35, 0.3);
+            animation: flicker 120ms ease-in-out;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            25% { opacity: 0.6; }
+            50% { opacity: 1; }
+            75% { opacity: 0.6; }
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5vw;
+            background-color: var(--dark-charcoal);
+            text-align: center;
+        }
+
+        footer p {
+            font-family: 'DM Mono', monospace;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            color: var(--text-secondary);
+        }
+
+        /* Mobile Sticky CTA */
+        .mobile-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background-color: var(--near-black);
+            border-top: 3px solid var(--charged-amber);
+            z-index: 998;
+        }
+
+        .mobile-cta a {
+            display: block;
+            width: 100%;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+            color: var(--near-black);
+            background-color: var(--charged-amber);
+            padding: 1rem;
+            text-decoration: none;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-cta {
+                display: block;
+            }
+
+            footer {
+                padding-bottom: 5rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .services {
+                padding: 4rem 1.5rem;
+            }
+
+            .contact {
+                padding: 4rem 1.5rem;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .live-wire-top {
+                width: 100%;
+            }
+
+            .hero-label,
+            .hero-subtext,
+            .service-card {
+                opacity: 1;
+                transform: none;
+            }
+
+            .service-card::before {
+                height: 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <p class="tagline">Fitzroy Electrical</p>
-            <h1>Electrical work that <span>doesn't hold up your build.</span></h1>
-            <p class="subhead">Commercial fit-outs, safety checks, repairs. Fitzroy, Collingwood, Abbotsford.</p>
-            <div class="placeholder">[PLACEHOLDER: Real phone number required before sending]</div>
-        </div>
-    </header>
+    <!-- Live Wire Line -->
+    <div class="live-wire-top"></div>
 
-    <section>
-        <div class="container">
-            <h2>What we do</h2>
-            <div class="services">
-                <div class="service">
-                    <h3>Commercial fit-outs</h3>
-                    <p>Cafes, offices, retail. Full electrical from rough-in to fit-off.</p>
-                </div>
-                <div class="service">
-                    <h3>Safety checks & compliance</h3>
-                    <p>Electrical safety certificates. Exit light testing. Tagging.</p>
-                </div>
-                <div class="service">
-                    <h3>Repairs & maintenance</h3>
-                    <p>Fast response for urgent issues. Scheduled maintenance plans.</p>
-                </div>
-            </div>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Fitzroy<span>.</span></a>
+        <a href="tel:PLACEHOLDER" class="nav-contact">[PLACEHOLDER]</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-label">Licensed Electricians · Fitzroy</p>
+            <h1 id="hero-headline">Electrical work that doesn't hold up your build.</h1>
+            <p class="hero-subtext">Commercial and residential electrical services for builders, architects, and homeowners who need work done right the first time. On time. On budget. No surprises.</p>
         </div>
     </section>
 
-    <section class="area">
-        <div class="container">
-            <h2>Local to Fitzroy</h2>
-            <p>Based in Fitzroy. We work on the old warehouses, new builds, and everything between. Know the area, know the inspectors.</p>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-header">
+            <p class="services-label">What We Do</p>
+            <h2>Services</h2>
+        </div>
+        <div class="services-grid">
+            <article class="service-card" data-delay="0">
+                <h3>Commercial fit-outs</h3>
+                <p>Complete electrical fit-outs for retail, office, and industrial spaces. We work with builders and project managers to deliver on schedule.</p>
+            </article>
+            <article class="service-card" data-delay="60">
+                <h3>Safety checks & compliance</h3>
+                <p>Electrical safety inspections, compliance certificates, and regulatory reporting. Keep your property safe and your documentation current.</p>
+            </article>
+            <article class="service-card" data-delay="120">
+                <h3>Repairs & maintenance</h3>
+                <p>From emergency repairs to scheduled maintenance programs. Fast response times and lasting solutions for any electrical issue.</p>
+            </article>
         </div>
     </section>
 
+    <!-- Contact CTA Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>Ready to get started?</h2>
+            <p>Call us to discuss your project. We'll give you a straight answer and a fair quote.</p>
+            <a href="tel:PLACEHOLDER" class="cta-button">Call Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>Fitzroy Electrical · Fitzroy, Melbourne · [PLACEHOLDER: Real contact]</p>
-        </div>
+        <p>&copy; 2026 Fitzroy Electrical. All rights reserved.</p>
     </footer>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-cta">
+        <a href="tel:PLACEHOLDER">Call Now</a>
+    </div>
+
+    <script>
+        // Hero Parallax - H1 moves upward at 20% scroll speed
+        (function() {
+            const headline = document.getElementById('hero-headline');
+            let ticking = false;
+            let scrollTimeout;
+
+            function updateParallax() {
+                const scrollY = window.scrollY;
+                const translateY = scrollY * 0.2;
+                headline.style.transform = `translateY(-${translateY}px)`;
+                ticking = false;
+            }
+
+            function onScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+
+                // Settle animation on scroll stop
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    headline.style.transition = 'transform 300ms ease-out';
+                    const scrollY = window.scrollY;
+                    const translateY = scrollY * 0.2;
+                    headline.style.transform = `translateY(-${translateY}px)`;
+                    setTimeout(() => {
+                        headline.style.transition = '';
+                    }, 300);
+                }, 150);
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+        })();
+
+        // Services - flick in from left with stagger
+        (function() {
+            const cards = document.querySelectorAll('.service-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const card = entry.target;
+                        const delay = parseInt(card.dataset.delay) || 0;
+                        
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, delay);
+                        
+                        observer.unobserve(card);
+                    }
+                });
+            }, {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            cards.forEach(card => observer.observe(card));
+        })();
+    </script>
 </body>
 </html>

@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Brandella Uniforms — Australian-owned school and corporate uniform manufacturer in Preston, Melbourne. 80+ years of quality manufacturing for schools, corporations, and government.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23B87333'/><text x='50' y='72' font-size='56' text-anchor='middle' fill='%23FAFAF7' font-family='sans-serif' font-weight='700'>B</text></svg>">
-    <title>Brandella Uniforms | Preston, Melbourne</title>
+    <meta name="description" content="Brandella Uniforms — Australian uniform manufacturer in Preston, Melbourne. 80+ years of quality corporate, school, and healthcare uniforms.">
+    <title>Brandella Uniforms | Corporate, School & Healthcare Uniforms | Melbourne</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --off-white: #FAFAF7;
-            --near-black: #1C1C1E;
-            --copper: #B87333;
-            --copper-dark: #9A6B2A;
-            --copper-light: #D4915A;
+            --navy: #1e3a5f;
+            --navy-dark: #152a45;
+            --navy-light: #2a4a73;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --gray-light: #e9ecef;
+            --gray: #6c757d;
+            --gray-dark: #495057;
+            --accent: #c9a227;
         }
 
         * {
@@ -29,37 +32,11 @@
         }
 
         body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: var(--off-white);
-            color: var(--near-black);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--navy);
             line-height: 1.6;
             overflow-x: hidden;
-        }
-
-        /* Typography */
-        h1, h2, h3 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            line-height: 0.95;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            line-height: 1;
-        }
-
-        h3 {
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
-        }
-
-        p {
-            font-size: clamp(1rem, 2vw, 1.125rem);
         }
 
         /* Header */
@@ -69,26 +46,75 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(250, 250, 247, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(28, 28, 30, 0.1);
-            padding: 1rem 1.5rem;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-light);
+            padding: 0;
+        }
+
+        .header-top {
+            background: var(--navy);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.875rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 700;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: var(--near-black);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .header-top a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
         }
 
-        .logo span {
-            color: var(--copper);
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-desktop {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-desktop a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            transition: color 0.2s;
+        }
+
+        .nav-desktop a:hover {
+            color: var(--navy-light);
+        }
+
+        .header-cta {
+            display: none;
+            background: var(--navy);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.625rem 1.25rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .header-cta:hover {
+            background: var(--navy-dark);
         }
 
         .menu-toggle {
@@ -102,14 +128,13 @@
             padding: 8px;
             min-height: 48px;
             min-width: 48px;
-            z-index: 1001;
         }
 
         .menu-toggle span {
             display: block;
             width: 24px;
             height: 2px;
-            background: var(--near-black);
+            background: var(--navy);
             transition: all 0.3s ease;
         }
 
@@ -125,174 +150,136 @@
             transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        .nav-links {
+        .nav-mobile {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(250, 250, 247, 0.98);
+            background: var(--white);
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
-            z-index: 1000;
+            gap: 1.5rem;
+            z-index: 999;
+            padding-top: 80px;
         }
 
-        .nav-links.active {
+        .nav-mobile.active {
             display: flex;
         }
 
-        .nav-links a {
-            color: var(--near-black);
+        .nav-mobile a {
+            color: var(--navy);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 1.25rem;
-            transition: color 0.3s ease;
-            padding: 0.75rem 1rem;
-        }
-
-        .nav-links a:hover {
-            color: var(--copper);
         }
 
         /* Hero Section */
         .hero {
+            background: var(--navy);
+            color: var(--white);
+            padding: 8rem 1.5rem 4rem;
             position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow: hidden;
-            padding: 6rem 1.5rem 4rem;
         }
 
-        .hero-bg {
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
-            left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, var(--off-white) 0%, #f0ede8 100%);
-            z-index: -2;
-        }
-
-        .hero-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(184, 115, 51, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(184, 115, 51, 0.05) 0%, transparent 40%);
-            z-index: -1;
+            width: 50%;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 100%);
+            pointer-events: none;
         }
 
         .hero-content {
-            text-align: center;
-            max-width: 900px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
             z-index: 1;
         }
 
-        .hero-tagline {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-            font-size: clamp(0.875rem, 2vw, 1rem);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--copper);
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .hero h1 {
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease 0.2s forwards;
-        }
-
-        .hero h1 span {
-            color: var(--copper);
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.125rem, 3vw, 1.5rem);
-            color: rgba(28, 28, 30, 0.75);
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease 0.4s forwards;
-        }
-
-        .hero-cta {
+        .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--copper);
-            color: var(--off-white);
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .hero-cta-primary {
+            background: var(--white);
+            color: var(--navy);
             text-decoration: none;
             padding: 1rem 2rem;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
             border-radius: 4px;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease 0.6s forwards;
-            min-height: 48px;
-            min-width: 48px;
+            text-align: center;
+            transition: all 0.2s;
         }
 
-        .hero-cta:hover {
-            background: var(--copper-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(184, 115, 51, 0.3);
+        .hero-cta-primary:hover {
+            background: var(--off-white);
+            transform: translateY(-2px);
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-cta-secondary {
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            font-weight: 500;
+            font-size: 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.2s;
         }
 
-        /* Copper Line Separator */
-        .copper-line-container {
-            position: relative;
-            height: 8px;
-            overflow: hidden;
-        }
-
-        .copper-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0;
-            background: linear-gradient(90deg, var(--copper) 0%, var(--copper-light) 50%, var(--copper) 100%);
-            transition: width 1.5s ease-out;
-        }
-
-        .copper-line.drawn {
-            width: 100%;
+        .hero-cta-secondary:hover {
+            background: rgba(255,255,255,0.1);
         }
 
         /* Trust Bar */
         .trust-bar {
-            background: var(--near-black);
-            color: var(--off-white);
-            padding: 2.5rem 1.5rem;
+            background: var(--off-white);
+            border-bottom: 1px solid var(--gray-light);
+            padding: 2rem 1.5rem;
         }
 
         .trust-items {
@@ -305,36 +292,26 @@
 
         .trust-item {
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
         }
-
-        .trust-item.visible {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .trust-item:nth-child(1).visible { animation-delay: 0ms; }
-        .trust-item:nth-child(2).visible { animation-delay: 150ms; }
-        .trust-item:nth-child(3).visible { animation-delay: 300ms; }
-        .trust-item:nth-child(4).visible { animation-delay: 450ms; }
 
         .trust-number {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
             font-weight: 700;
-            color: var(--copper);
+            color: var(--navy);
             display: block;
             line-height: 1;
         }
 
         .trust-label {
-            font-size: 0.875rem;
-            opacity: 0.8;
-            margin-top: 0.25rem;
+            font-size: 0.8125rem;
+            color: var(--gray);
+            margin-top: 0.375rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        /* Services Section */
-        .services {
+        /* Industries Section */
+        .industries {
             padding: 4rem 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -346,130 +323,156 @@
         }
 
         .section-header h2 {
-            margin-bottom: 1rem;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
         }
 
         .section-header p {
-            color: rgba(28, 28, 30, 0.7);
+            color: var(--gray);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .services-grid {
+        .industries-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
 
-        .service-card {
-            background: white;
-            padding: 2rem;
+        .industry-card {
+            background: var(--white);
+            border: 1px solid var(--gray-light);
             border-radius: 8px;
-            border-left: 4px solid var(--copper);
-            box-shadow: 0 4px 20px rgba(28, 28, 30, 0.06);
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.5s ease;
+            padding: 2rem;
+            transition: all 0.3s;
         }
 
-        .service-card.visible {
-            opacity: 1;
-            transform: translateX(0);
+        .industry-card:hover {
+            border-color: var(--navy);
+            box-shadow: 0 4px 20px rgba(30, 58, 95, 0.08);
         }
 
-        .service-card:nth-child(1).visible { transition-delay: 0ms; }
-        .service-card:nth-child(2).visible { transition-delay: 100ms; }
-        .service-card:nth-child(3).visible { transition-delay: 200ms; }
-        .service-card:nth-child(4).visible { transition-delay: 300ms; }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(28, 28, 30, 0.1);
-        }
-
-        .service-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--copper);
+        .industry-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--navy);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
-            color: white;
-            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
-        .service-card h3 {
+        .industry-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--white);
+        }
+
+        .industry-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--navy);
             margin-bottom: 0.75rem;
-            color: var(--near-black);
         }
 
-        .service-card p {
-            color: rgba(28, 28, 30, 0.7);
-            font-size: 0.95rem;
+        .industry-card p {
+            color: var(--gray);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
         }
 
-        /* About Section */
-        .about {
-            background: var(--near-black);
-            color: var(--off-white);
+        .industry-link {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .industry-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            background: var(--off-white);
             padding: 4rem 1.5rem;
         }
 
-        .about-content {
-            max-width: 800px;
+        .why-us-content {
+            max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
         }
 
-        .about h2 {
-            margin-bottom: 1.5rem;
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .about h2 span {
-            color: var(--copper);
+        .why-item {
+            display: flex;
+            gap: 1rem;
         }
 
-        .about p {
-            opacity: 0.85;
-            margin-bottom: 1rem;
-        }
-
-        .rating {
-            display: inline-flex;
+        .why-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--navy);
+            border-radius: 50%;
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(184, 115, 51, 0.2);
-            border-radius: 50px;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .stars {
-            color: var(--copper);
-            font-size: 1.25rem;
+        .why-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--white);
         }
 
-        .rating-text {
-            font-weight: 500;
+        .why-text h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.375rem;
+        }
+
+        .why-text p {
+            color: var(--gray);
+            font-size: 0.9375rem;
         }
 
         /* CTA Section */
         .cta-section {
+            background: var(--navy);
+            color: var(--white);
             padding: 4rem 1.5rem;
             text-align: center;
-            max-width: 800px;
+        }
+
+        .cta-content {
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .cta-section h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
         .cta-section p {
-            color: rgba(28, 28, 30, 0.7);
+            opacity: 0.9;
             margin-bottom: 2rem;
+            font-size: 1.0625rem;
         }
 
         .cta-button {
@@ -477,33 +480,38 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            background: var(--copper);
-            color: var(--off-white);
+            background: var(--white);
+            color: var(--navy);
             text-decoration: none;
-            padding: 1.25rem 2.5rem;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 700;
-            font-size: 1.125rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
             border-radius: 4px;
-            transition: all 0.3s ease;
-            min-height: 48px;
-            min-width: 48px;
+            transition: all 0.2s;
         }
 
         .cta-button:hover {
-            background: var(--copper-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(184, 115, 51, 0.35);
+            background: var(--off-white);
+            transform: translateY(-2px);
+        }
+
+        .cta-phone {
+            display: block;
+            margin-top: 1.5rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9375rem;
+        }
+
+        .cta-phone:hover {
+            color: var(--white);
         }
 
         /* Footer */
         footer {
-            background: var(--near-black);
-            color: var(--off-white);
-            padding: 3rem 1.5rem 2rem;
-            text-align: center;
+            background: var(--navy-dark);
+            color: var(--white);
+            padding: 3rem 1.5rem 1.5rem;
         }
 
         .footer-content {
@@ -511,266 +519,363 @@
             margin: 0 auto;
         }
 
-        .footer-logo {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 1.75rem;
-            font-weight: 700;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            font-size: 0.9375rem;
             margin-bottom: 1rem;
         }
 
-        .footer-logo span {
-            color: var(--copper);
+        .footer-rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
         }
 
-        .footer-info {
-            opacity: 0.7;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+        .footer-rating .stars {
+            color: var(--accent);
         }
 
-        .footer-info p {
+        .footer-contact h4,
+        .footer-hours h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-contact p,
+        .footer-hours p {
+            opacity: 0.8;
+            font-size: 0.9375rem;
             margin-bottom: 0.5rem;
         }
 
-        .footer-bottom {
-            border-top: 1px solid rgba(250, 250, 247, 0.1);
-            padding-top: 1.5rem;
-            font-size: 0.875rem;
-            opacity: 0.6;
+        .footer-contact a {
+            color: var(--white);
+            text-decoration: none;
         }
 
-        /* Mobile Sticky CTA */
-        .mobile-cta {
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        /* Sticky Mobile CTA */
+        .sticky-cta {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--copper);
+            background: var(--navy);
             padding: 1rem 1.5rem;
             display: flex;
             justify-content: center;
             z-index: 999;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
         }
 
-        .mobile-cta a {
-            color: var(--off-white);
-            text-decoration: none;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .sticky-cta a {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
-            min-height: 48px;
-            min-width: 48px;
+            background: var(--white);
+            color: var(--navy);
+            text-decoration: none;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 400px;
         }
 
-        /* Tablet and up */
+        /* Tablet */
         @media (min-width: 768px) {
+            .header-top {
+                padding: 0.5rem 2rem;
+            }
+
+            .header-main {
+                padding: 1rem 2rem;
+            }
+
+            .nav-desktop {
+                display: flex;
+            }
+
+            .header-cta {
+                display: inline-flex;
+            }
+
             .menu-toggle {
                 display: none;
             }
 
-            .nav-links {
-                display: flex;
-                position: static;
-                flex-direction: row;
-                background: none;
-                gap: 0.5rem;
+            .hero {
+                padding: 10rem 2rem 5rem;
             }
 
-            .nav-links a {
-                font-size: 0.95rem;
-                padding: 0.5rem 1rem;
+            .hero-cta-group {
+                flex-direction: row;
             }
 
             .trust-items {
                 grid-template-columns: repeat(4, 1fr);
             }
 
-            .services-grid {
+            .industries {
+                padding: 5rem 2rem;
+            }
+
+            .industries-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .why-us {
+                padding: 5rem 2rem;
+            }
+
+            .why-us-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-
-            .services {
-                padding: 5rem 2rem;
-            }
-
-            .about {
-                padding: 5rem 2rem;
             }
 
             .cta-section {
                 padding: 5rem 2rem;
             }
 
-            .mobile-cta {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+
+            .sticky-cta {
                 display: none;
             }
 
             footer {
-                padding-bottom: 2rem;
+                padding-bottom: 1.5rem;
             }
         }
 
         /* Desktop */
         @media (min-width: 1024px) {
-            header {
-                padding: 1.25rem 3rem;
-            }
-
             .hero {
-                padding: 8rem 3rem 5rem;
+                padding: 10rem 3rem 6rem;
             }
 
-            .services {
+            .industries {
                 padding: 6rem 3rem;
             }
 
-            .about {
+            .why-us {
                 padding: 6rem 3rem;
             }
 
             .cta-section {
                 padding: 6rem 3rem;
-            }
-        }
-
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-
-            .hero-tagline,
-            .hero h1,
-            .hero-subtitle,
-            .hero-cta,
-            .trust-item,
-            .service-card {
-                opacity: 1;
-                transform: none;
-            }
-
-            .copper-line {
-                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">Brandella<span>.</span></div>
-        <nav class="nav-links" id="navLinks">
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="header-top">
+            <span>Preston, Melbourne's Trusted Uniform Manufacturer</span>
+            <a href="tel:0394169416">(03) 9416 9416</a>
+        </div>
+        <div class="header-main">
+            <a href="#" class="logo">Brandella Uniforms</a>
+            <nav class="nav-desktop">
+                <a href="#industries">Industries</a>
+                <a href="#why-us">Why Us</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="tel:0394169416" class="header-cta">Get a Quote</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </header>
 
+    <nav class="nav-mobile" id="navMobile">
+        <a href="#industries">Industries</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:0394169416">Call (03) 9416 9416</a>
+    </nav>
+
     <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-pattern"></div>
         <div class="hero-content">
-            <p class="hero-tagline">Preston, Melbourne's Trusted Uniform Manufacturer</p>
-            <h1>Uniforms that <span>represent</span> your brand.</h1>
-            <p class="hero-subtitle">Australian-owned uniform manufacturer in Preston, Melbourne. 80+ years of quality manufacturing for schools, corporations, and government.</p>
-            <a href="#contact" class="hero-cta">Get a Quote →</a>
+            <div class="hero-badge">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                80+ Years of Quality Manufacturing
+            </div>
+            <h1>Professional uniforms that elevate your brand</h1>
+            <p class="hero-subtitle">Australian-made corporate, school, and healthcare uniforms from Preston, Melbourne. Trusted by businesses for over eight decades.</p>
+            <div class="hero-cta-group">
+                <a href="tel:0394169416" class="hero-cta-primary">Request a Quote</a>
+                <a href="#industries" class="hero-cta-secondary">Explore Industries</a>
+            </div>
         </div>
     </section>
-
-    <div class="copper-line-container">
-        <div class="copper-line" id="copperLine"></div>
-    </div>
 
     <section class="trust-bar">
         <div class="trust-items">
             <div class="trust-item">
                 <span class="trust-number">80+</span>
-                <span class="trust-label">Years Manufacturing</span>
-            </div>
-            <div class="trust-item">
-                <span class="trust-number" style="font-size: clamp(1.25rem, 3vw, 1.75rem);">Schools &amp; Government</span>
-                <span class="trust-label">Trusted Clients</span>
-            </div>
-            <div class="trust-item">
-                <span class="trust-number" style="font-size: clamp(1.25rem, 3vw, 1.75rem);">Made in Australia</span>
-                <span class="trust-label">Local Manufacturing</span>
+                <span class="trust-label">Years in Business</span>
             </div>
             <div class="trust-item">
                 <span class="trust-number">4.5★</span>
                 <span class="trust-label">Customer Rating</span>
             </div>
+            <div class="trust-item">
+                <span class="trust-number">Australian</span>
+                <span class="trust-label">Made & Owned</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-number">Preston</span>
+                <span class="trust-label">Melbourne Based</span>
+            </div>
         </div>
     </section>
 
-    <section class="services" id="services">
+    <section class="industries" id="industries">
         <div class="section-header">
-            <h2>Our Services</h2>
-            <p>Comprehensive uniform solutions tailored to your organization's unique needs and brand identity.</p>
+            <h2>Industries We Serve</h2>
+            <p>Specialized uniform solutions tailored to the unique requirements of your industry.</p>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">👔</div>
-                <h3>Corporate Uniforms</h3>
-                <p>Professional attire that reflects your company culture. From executive suits to branded workwear, we create cohesive looks for your entire team.</p>
+        <div class="industries-grid">
+            <div class="industry-card">
+                <div class="industry-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z"/></svg>
+                </div>
+                <h3>Corporate</h3>
+                <p>Professional business attire and branded workwear that reflects your company culture and values.</p>
+                <a href="tel:0394169416" class="industry-link">Get corporate quote →</a>
             </div>
-            <div class="service-card">
-                <div class="service-icon">🎓</div>
-                <h3>School Uniforms</h3>
-                <p>Durable, comfortable uniforms designed for active students. We supply complete school uniform programs with consistent quality and sizing.</p>
+            <div class="industry-card">
+                <div class="industry-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                </div>
+                <h3>School</h3>
+                <p>Durable, comfortable uniforms designed for active students. Complete school uniform programs available.</p>
+                <a href="tel:0394169416" class="industry-link">Get school quote →</a>
             </div>
-            <div class="service-card">
-                <div class="service-icon">✂️</div>
-                <h3>Custom Embroidery</h3>
-                <p>Premium embroidery and branding services to make your uniforms uniquely yours. Logos, names, and custom designs with precision stitching.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📦</div>
-                <h3>Bulk Orders</h3>
-                <p>Volume pricing and streamlined ordering for organizations of any size. Efficient fulfillment with consistent quality across every piece.</p>
+            <div class="industry-card">
+                <div class="industry-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4-4c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm3-6H8v2h9V9z"/></svg>
+                </div>
+                <h3>Healthcare</h3>
+                <p>Medical scrubs, lab coats, and healthcare uniforms designed for comfort, hygiene, and durability.</p>
+                <a href="tel:0394169416" class="industry-link">Get healthcare quote →</a>
             </div>
         </div>
     </section>
 
-    <section class="about" id="about">
-        <div class="about-content">
-            <h2>Trusted by <span>Australian</span> Businesses</h2>
-            <p>Brandella Uniforms has been manufacturing quality uniforms from Preston, Melbourne for over 80 years. We understand that your uniforms are more than just clothing—they're a representation of your brand, your values, and your commitment to excellence.</p>
-            <p>From initial consultation to final delivery, we work closely with you to ensure every detail meets your standards. Our local Preston, Melbourne team provides personalized service with the reliability you need.</p>
-            <div class="rating">
-                <span class="stars">★★★★☆</span>
-                <span class="rating-text">4.5 stars (6 reviews)</span>
+    <section class="why-us" id="why-us">
+        <div class="why-us-content">
+            <div class="section-header">
+                <h2>Why Choose Brandella</h2>
+                <p>Eight decades of experience manufacturing quality uniforms for Australian businesses.</p>
+            </div>
+            <div class="why-us-grid">
+                <div class="why-item">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <div class="why-text">
+                        <h3>Australian Made</h3>
+                        <p>Locally manufactured in Preston, Melbourne supporting Australian jobs and quality standards.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                    </div>
+                    <div class="why-text">
+                        <h3>Proven Quality</h3>
+                        <p>80+ years of experience delivering durable, professional uniforms that stand the test of time.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                    </div>
+                    <div class="why-text">
+                        <h3>Bulk Orders</h3>
+                        <p>Volume pricing and streamlined ordering for organizations of any size with consistent quality.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <div class="why-text">
+                        <h3>Personal Service</h3>
+                        <p>Local Melbourne team providing dedicated support from consultation to delivery.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="cta-section" id="contact">
-        <h2>Ready to elevate your brand?</h2>
-        <p>Contact us today for a free consultation and quote. Let's create uniforms that make your team proud.</p>
-        <a href="tel:0394169416" class="cta-button">Call (03) 9416 9416 →</a>
+        <div class="cta-content">
+            <h2>Ready to outfit your team?</h2>
+            <p>Contact us today for a free consultation and quote. Let's create uniforms that make your organization proud.</p>
+            <a href="tel:0394169416" class="cta-button">Call (03) 9416 9416</a>
+            <a href="https://maps.google.com/?q=264+Plenty+Rd,+Preston+VIC+3072" target="_blank" class="cta-phone">264 Plenty Rd, Preston VIC 3072</a>
+        </div>
     </section>
 
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">Brandella<span>.</span></div>
-            <div class="footer-info">
-                <p>264 Plenty Rd, Preston VIC 3072</p>
-                <p>Phone: <a href="tel:0394169416" style="color: var(--off-white); text-decoration: none;">(03) 9416 9416</a></p>
-                <p>Mon–Fri: 9:00 AM – 5:00 PM</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Brandella Uniforms</a>
+                    <p>Australian-made corporate, school, and healthcare uniforms. Proudly serving Melbourne businesses for over 80 years.</p>
+                    <div class="footer-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>4.5 (6 reviews)</span>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>264 Plenty Rd<br>Preston VIC 3072</p>
+                    <p><a href="tel:0394169416">(03) 9416 9416</a></p>
+                </div>
+                <div class="footer-hours">
+                    <h4>Hours</h4>
+                    <p>Monday – Friday<br>9:00 AM – 5:00 PM</p>
+                </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Brandella Uniforms. All rights reserved.</p>
@@ -778,93 +883,32 @@
         </div>
     </footer>
 
-    <div class="mobile-cta">
-        <a href="tel:0394169416">📞 Call (03) 9416 9416</a>
+    <div class="sticky-cta">
+        <a href="tel:0394169416">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Call (03) 9416 9416
+        </a>
     </div>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe trust items
-        document.querySelectorAll('.trust-item').forEach(item => {
-            observer.observe(item);
-        });
-
-        // Observe service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Copper line draw on scroll
-        const copperLine = document.getElementById('copperLine');
-        const lineObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('drawn');
-                }
-            });
-        }, { threshold: 0.5 });
-
-        lineObserver.observe(copperLine);
-
-        // Hero parallax effect (background at 40% scroll speed)
-        let ticking = false;
-        
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const heroPattern = document.querySelector('.hero-pattern');
-            if (heroPattern && scrolled < window.innerHeight) {
-                heroPattern.style.transform = `translateY(${scrolled * 0.4}px)`;
-            }
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        }, { passive: true });
-
-        // Trigger trust bar animation on page load with stagger
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.trust-item').forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add('visible');
-                }, index * 150);
-            });
-        });
-
-        // Mobile hamburger menu toggle
+        // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
+        const navMobile = document.getElementById('navMobile');
 
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
+            navMobile.classList.toggle('active');
         });
 
-        // Close mobile menu when a nav link is clicked
-        navLinks.querySelectorAll('a').forEach(link => {
+        // Close mobile menu on link click
+        navMobile.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
+                navMobile.classList.remove('active');
             });
         });
 
-        // Smooth scroll for navigation links
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();

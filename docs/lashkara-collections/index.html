@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lashkara Collections | South Asian Fashion — Craigieburn, Melbourne</title>
-    <meta name="description" content="Lashkara Collections — South Asian fashion in Craigieburn, Melbourne. Sarees, Salwaar Kameez, Lehengas, Punjabi Suits, jewellery, and more. Wholesale and retail.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23B87333'/><text x='50' y='72' font-size='56' text-anchor='middle' fill='%23FAFAF7' font-family='sans-serif' font-weight='700'>L</text></svg>">
+    <title>Lashkara Collections | Women's Fashion — Craigieburn, Melbourne</title>
+    <meta name="description" content="Lashkara Collections — Women's fashion in Craigieburn, Melbourne. Trendy styles, affordable prices. Visit our store or call 0437 098 747.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text x='50' y='68' font-size='48' text-anchor='middle' fill='%23fff' font-family='serif' font-weight='400'>L</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* CSS Reset & Base */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -18,12 +17,15 @@
         }
 
         :root {
-            --off-white: #FAFAF7;
-            --near-black: #1C1C1E;
-            --copper: #B87333;
-            --copper-dark: #9A6B2A;
-            --font-headline: 'Barlow Condensed', sans-serif;
-            --font-body: 'DM Sans', sans-serif;
+            --white: #ffffff;
+            --black: #000000;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-400: #a3a3a3;
+            --gray-600: #525252;
+            --gray-900: #171717;
+            --accent: #dc2626;
         }
 
         html {
@@ -31,37 +33,18 @@
         }
 
         body {
-            font-family: var(--font-body);
-            background-color: var(--off-white);
-            color: var(--near-black);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--gray-900);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Typography */
-        h1, h2, h3 {
-            font-family: var(--font-headline);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            line-height: 0.95;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            line-height: 1;
-        }
-
-        h3 {
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
-        }
-
-        p {
-            font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+        .font-display {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 400;
+            letter-spacing: -0.02em;
         }
 
         /* Header */
@@ -71,65 +54,139 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 1.5rem;
-            background: linear-gradient(to bottom, rgba(250,250,247,0.95) 0%, rgba(250,250,247,0.8) 100%);
-            backdrop-filter: blur(10px);
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .header-top {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            height: 56px;
+        }
+
+        .menu-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--gray-900);
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
         }
 
         .logo {
-            font-family: var(--font-headline);
-            font-weight: 700;
-            font-size: clamp(1.25rem, 3vw, 1.5rem);
-            color: var(--near-black);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            color: var(--gray-900);
+            text-decoration: none;
         }
 
-        .logo span {
-            color: var(--copper);
-        }
-
-        .header-nav {
+        .header-actions {
             display: flex;
             align-items: center;
+            gap: 0.5rem;
+        }
+
+        .icon-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-900);
+        }
+
+        .icon-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 999;
+            padding: 2rem 1.5rem;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu nav {
+            display: flex;
+            flex-direction: column;
             gap: 1.5rem;
         }
 
-        .header-nav a {
-            font-family: var(--font-body);
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--near-black);
+        .mobile-menu a {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--gray-900);
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            transition: color 0.2s ease;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-200);
         }
 
-        .header-nav a:hover {
-            color: var(--copper);
+        .mobile-menu .contact-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-200);
         }
 
-        .header-nav .nav-cta {
-            padding: 0.5rem 1.25rem;
-            background-color: var(--copper);
-            color: var(--off-white);
-            border-radius: 2px;
-            transition: background-color 0.2s ease;
+        .mobile-menu .contact-info p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-bottom: 0.5rem;
         }
 
-        .header-nav .nav-cta:hover {
-            background-color: var(--copper-dark);
-            color: var(--off-white);
-        }
-
-        @media (max-width: 480px) {
-            .header-nav a:not(.nav-cta) {
-                display: none;
-            }
+        .mobile-menu .contact-info a {
+            font-size: 1rem;
+            border: none;
+            padding: 0;
+            color: var(--gray-900);
+            font-weight: 500;
         }
 
         /* Hero Section */
@@ -137,525 +194,908 @@
             position: relative;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1rem;
+            padding-top: 56px;
+            background: linear-gradient(180deg, var(--gray-100) 0%, var(--white) 100%);
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 56px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 50%, #f0f0f0 100%);
+            display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
 
-        .hero-bg {
+        .hero-image::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 140%;
-            background: linear-gradient(135deg, var(--off-white) 0%, #f0ede8 50%, var(--off-white) 100%);
-            will-change: transform;
-            z-index: -2;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(220, 38, 38, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 40%);
         }
 
-        .hero-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 140%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(184,115,51,0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(184,115,51,0.05) 0%, transparent 40%);
-            will-change: transform;
-            z-index: -1;
-        }
-
-        .hero-content {
+        .hero-image-content {
             text-align: center;
             padding: 2rem;
-            max-width: 900px;
             z-index: 1;
         }
 
-        .hero-tagline {
-            font-family: var(--font-body);
-            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-            font-weight: 500;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--copper);
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.2s;
+        .hero-image-content .fashion-icon {
+            font-size: 8rem;
+            line-height: 1;
+            margin-bottom: 1rem;
+            opacity: 0.1;
         }
 
-        .hero h1 {
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.4s;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: rgba(28,28,30,0.7);
-            margin-bottom: 2.5rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.6s;
-        }
-
-        .hero-cta {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background-color: var(--copper);
-            color: var(--off-white);
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 0.9375rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            min-height: 48px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.8s;
-        }
-
-        .hero-cta:hover {
-            background-color: var(--copper-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(184,115,51,0.3);
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Copper Separator Line */
-        .copper-line {
-            width: 100%;
-            height: 4px;
-            background-color: var(--copper);
-            transform-origin: left;
-            transform: scaleX(0);
-            transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .copper-line.visible {
-            transform: scaleX(1);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .services-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .services-header h2 {
-            margin-bottom: 0.75rem;
-        }
-
-        .services-header p {
-            color: rgba(28,28,30,0.7);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 640px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .services-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .service-card {
-            background: white;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            background: var(--white);
             padding: 2rem 1.5rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 20px rgba(28,28,30,0.05);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateX(-40px);
+            margin: 0 -0.5rem -0.5rem;
         }
 
-        .service-card.visible {
-            opacity: 1;
-            transform: translateX(0);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(28,28,30,0.1);
-        }
-
-        .service-icon {
-            width: 48px;
-            height: 48px;
-            background-color: var(--copper);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            color: var(--off-white);
-            font-size: 1.25rem;
-        }
-
-        .service-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--near-black);
-        }
-
-        .service-card p {
-            color: rgba(28,28,30,0.7);
-            font-size: 0.9375rem;
-        }
-
-        /* Trust Bar */
-        .trust-bar {
-            background-color: var(--near-black);
-            padding: 3rem 1.5rem;
-        }
-
-        .trust-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            text-align: center;
-        }
-
-        @media (min-width: 640px) {
-            .trust-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .trust-item {
-            opacity: 0;
-            transform: translateY(15px);
-        }
-
-        .trust-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .trust-number {
-            font-family: var(--font-headline);
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            font-weight: 700;
-            color: var(--copper);
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .trust-label {
-            font-size: 0.8125rem;
-            color: rgba(250,250,247,0.7);
+        .hero-tag {
+            font-size: 0.6875rem;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 5rem 1.5rem;
-            text-align: center;
-            background: linear-gradient(to bottom, var(--off-white), #f5f3ef);
-        }
-
-        .cta-section h2 {
+            letter-spacing: 0.2em;
+            color: var(--gray-400);
             margin-bottom: 1rem;
         }
 
-        .cta-section p {
-            color: rgba(28,28,30,0.7);
-            margin-bottom: 2rem;
-            max-width: 450px;
-            margin-left: auto;
-            margin-right: auto;
+        .hero h1 {
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            font-weight: 400;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1.125rem 3rem;
-            background-color: var(--copper);
-            color: var(--off-white);
-            font-family: var(--font-body);
+        .hero p {
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            max-width: 400px;
+        }
+
+        .hero-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-location svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--gray-900);
+            color: var(--white);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hero-cta:hover {
+            background: var(--black);
+        }
+
+        /* Section Headers */
+        .section-header {
+            padding: 3rem 1rem 1.5rem;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-header a {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-600);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--gray-200);
+        }
+
+        .product-card {
+            background: var(--white);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .product-image {
+            aspect-ratio: 3/4;
+            background: var(--gray-100);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gray-100) 0%, #ebebeb 100%);
+        }
+
+        .product-image-placeholder svg {
+            width: 40%;
+            height: 40%;
+            opacity: 0.15;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            background: var(--accent);
+            color: var(--white);
+            font-size: 0.625rem;
             font-weight: 600;
-            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .product-info {
+            padding: 0.75rem;
+        }
+
+        .product-name {
+            font-size: 0.8125rem;
+            font-weight: 400;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-price {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--gray-900);
+        }
+
+        .product-price .original {
+            text-decoration: line-through;
+            color: var(--gray-400);
+            margin-left: 0.5rem;
+            font-weight: 400;
+        }
+
+        /* Collections Banner */
+        .collections-banner {
+            padding: 1rem;
+        }
+
+        .collection-large {
+            position: relative;
+            aspect-ratio: 4/5;
+            background: var(--gray-100);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .collection-large-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 50%, #e0e0e0 100%);
+        }
+
+        .collection-large-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .collection-large-content h3 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .collection-large-content p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .collection-btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            border: 1px solid var(--gray-900);
+            color: var(--gray-900);
+            font-size: 0.6875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            background: var(--white);
+            transition: all 0.2s ease;
+        }
+
+        .collection-btn:hover {
+            background: var(--gray-900);
+            color: var(--white);
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .collection-item {
+            aspect-ratio: 3/4;
+            background: var(--gray-100);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+        }
+
+        .collection-item-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6) 100%);
+        }
+
+        .collection-item h4 {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Store Info */
+        .store-info {
+            padding: 3rem 1rem;
+            background: var(--gray-50);
+            text-align: center;
+        }
+
+        .store-info h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stars {
+            display: flex;
+            gap: 0.125rem;
+        }
+
+        .stars svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--gray-900);
+        }
+
+        .stars svg.empty {
+            fill: var(--gray-200);
+        }
+
+        .rating-text {
+            font-size: 0.8125rem;
+            color: var(--gray-600);
+        }
+
+        .store-details {
+            max-width: 300px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .store-details p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .store-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 2rem;
+            background: var(--gray-900);
+            color: var(--white);
+            font-size: 0.8125rem;
+            font-weight: 500;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            min-height: 48px;
-            min-width: 180px;
-        }
-
-        .cta-button:hover {
-            background-color: var(--copper-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(184,115,51,0.3);
         }
 
         /* Footer */
         footer {
-            background-color: var(--near-black);
-            color: rgba(250,250,247,0.7);
-            padding: 3rem 1.5rem 2rem;
-            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--gray-900);
+            color: var(--white);
         }
 
         .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
+            text-align: center;
         }
 
         .footer-logo {
-            font-family: var(--font-headline);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--off-white);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             margin-bottom: 1rem;
         }
 
-        .footer-logo span {
-            color: var(--copper);
-        }
-
         .footer-info {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            line-height: 1.8;
             margin-bottom: 1.5rem;
-            font-size: 0.9375rem;
         }
 
-        .footer-info p {
-            margin-bottom: 0.5rem;
+        .footer-info a {
+            color: var(--white);
+            text-decoration: none;
         }
 
         .footer-bottom {
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(250,250,247,0.1);
-            font-size: 0.8125rem;
-            color: rgba(250,250,247,0.5);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.6875rem;
+            color: var(--gray-600);
         }
 
-        /* Mobile Sticky CTA */
-        .mobile-sticky-cta {
+        /* Sticky CTA */
+        .sticky-cta {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: var(--off-white);
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
             padding: 0.75rem 1rem;
-            box-shadow: 0 -4px 20px rgba(28,28,30,0.1);
-            z-index: 999;
-            display: flex;
-            justify-content: center;
+            z-index: 100;
             transform: translateY(100%);
             transition: transform 0.3s ease;
         }
 
-        .mobile-sticky-cta.visible {
+        .sticky-cta.visible {
             transform: translateY(0);
         }
 
-        .mobile-sticky-cta a {
+        .sticky-cta a {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
             width: 100%;
-            max-width: 400px;
-            padding: 0.875rem 1.5rem;
-            background-color: var(--copper);
-            color: var(--off-white);
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 0.9375rem;
-            text-decoration: none;
+            padding: 0.875rem;
+            background: var(--gray-900);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-radius: 2px;
-            min-height: 48px;
-            transition: all 0.3s ease;
+            letter-spacing: 0.1em;
+            text-decoration: none;
         }
 
-        .mobile-sticky-cta a:hover {
-            background-color: var(--copper-dark);
+        /* Tablet */
+        @media (min-width: 640px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .section-header {
+                padding: 4rem 1.5rem 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .collections-banner {
+                padding: 1.5rem;
+            }
+
+            .collection-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
-        /* Show mobile CTA only on small screens */
-        @media (min-width: 769px) {
-            .mobile-sticky-cta {
+        /* Desktop */
+        @media (min-width: 1024px) {
+            .header-top {
+                padding: 1rem 2rem;
+                height: 64px;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .menu-btn {
                 display: none;
             }
-            
-            body {
-                padding-bottom: 0;
+
+            .desktop-nav {
+                display: flex;
+                gap: 2rem;
+            }
+
+            .desktop-nav a {
+                font-size: 0.6875rem;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: var(--gray-900);
+                text-decoration: none;
+                padding: 0.5rem 0;
+                position: relative;
+            }
+
+            .desktop-nav a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background: var(--gray-900);
+                transition: width 0.2s ease;
+            }
+
+            .desktop-nav a:hover::after {
+                width: 100%;
+            }
+
+            .hero {
+                flex-direction: row;
+                padding: 0;
+                padding-top: 64px;
+            }
+
+            .hero-image {
+                position: relative;
+                top: 0;
+                width: 60%;
+            }
+
+            .hero-content {
+                width: 40%;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 4rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-cta {
+                width: auto;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .section-header {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 4rem 2rem 2rem;
+            }
+
+            .collections-banner {
+                max-width: 1400px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .collection-large {
+                aspect-ratio: auto;
+                height: 100%;
+                margin-bottom: 0;
+            }
+
+            .collection-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .collection-item {
+                aspect-ratio: auto;
+            }
+
+            .store-info {
+                padding: 5rem 2rem;
+            }
+
+            footer {
+                padding: 3rem 2rem;
+            }
+
+            .sticky-cta {
+                display: none;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1023px) {
+            .desktop-nav {
+                display: none;
+            }
+
             body {
-                padding-bottom: 80px;
+                padding-bottom: 70px;
             }
         }
 
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            
-            .hero-bg,
-            .hero-pattern {
-                transform: none !important;
-            }
-            
-            .copper-line {
-                transform: scaleX(1) !important;
-            }
-            
-            .service-card,
-            .trust-item {
-                opacity: 1 !important;
-                transform: none !important;
-            }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .product-card {
+            opacity: 0;
+        }
+
+        .product-card.visible {
+            animation: fadeIn 0.5s ease forwards;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">Lashkara <span>Collections</span></div>
-        <nav class="header-nav">
-            <a href="#services">Collections</a>
-            <a href="#contact">Contact</a>
-            <a href="tel:0437098747" class="nav-cta">Call Us</a>
-        </nav>
+        <div class="header-top">
+            <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="#" class="logo">Lashkara</a>
+            <nav class="desktop-nav">
+                <a href="#new">New Arrivals</a>
+                <a href="#trending">Trending</a>
+                <a href="#collections">Collections</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.3-4.3"/>
+                    </svg>
+                </button>
+                <button class="icon-btn" aria-label="Wishlist">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav>
+            <a href="#new">New Arrivals</a>
+            <a href="#trending">Trending</a>
+            <a href="#collections">Collections</a>
+            <a href="#contact">Visit Store</a>
+        </nav>
+        <div class="contact-info">
+            <p>Craigieburn, Melbourne</p>
+            <a href="tel:0437098747">0437 098 747</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-pattern"></div>
+        <div class="hero-image">
+            <div class="hero-image-content">
+                <svg viewBox="0 0 100 100" style="width: 120px; height: 120px; opacity: 0.08;">
+                    <path d="M50 10 C30 10 20 30 20 50 C20 75 35 90 50 90 C65 90 80 75 80 50 C80 30 70 10 50 10 Z" fill="currentColor"/>
+                    <path d="M35 35 Q50 25 65 35 Q65 55 50 65 Q35 55 35 35" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
         <div class="hero-content">
-            <p class="hero-tagline">Craigieburn, Melbourne</p>
-            <h1>Elegant South Asian fashion for every occasion.</h1>
-            <p class="hero-subtitle">Sarees, Lehengas, Salwaar Kameez, Punjabi Suits, jewellery and more. Wholesale and retail in Craigieburn, Melbourne.</p>
-            <a href="#services" class="hero-cta">Explore Collections</a>
+            <p class="hero-tag">New Season</p>
+            <h1 class="font-display">Effortless Style for Every Woman</h1>
+            <p>Discover the latest trends in women's fashion. From everyday essentials to statement pieces, find your perfect look at Lashkara Collections.</p>
+            <div class="hero-location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>Craigieburn, Melbourne</span>
+            </div>
+            <a href="#collections" class="hero-cta">Shop Now</a>
         </div>
     </section>
 
-    <!-- Copper Separator -->
-    <div class="copper-line" id="copperLine"></div>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="services-header">
-            <h2>Our Collections</h2>
-            <p>Traditional and contemporary South Asian fashion for every occasion</p>
+    <!-- New Arrivals -->
+    <section id="new">
+        <div class="section-header">
+            <h2>New Arrivals</h2>
+            <a href="#">View All</a>
         </div>
-        <div class="services-grid">
-            <div class="service-card" data-delay="0">
-                <div class="service-icon">&#9829;</div>
-                <h3>Sarees &amp; Lehengas</h3>
-                <p>Exquisite sarees and lehengas for weddings, festivals, and special celebrations.</p>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Floral Midi Dress</p>
+                    <p class="product-price">$89</p>
+                </div>
             </div>
-            <div class="service-card" data-delay="100">
-                <div class="service-icon">&#10022;</div>
-                <h3>Salwaar Kameez &amp; Punjabi Suits</h3>
-                <p>Elegant everyday and occasion wear. Anarkalis, straight suits, and Punjabi styles.</p>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Classic Blazer</p>
+                    <p class="product-price">$129</p>
+                </div>
             </div>
-            <div class="service-card" data-delay="200">
-                <div class="service-icon">&#9733;</div>
-                <h3>Menswear &amp; Kidswear</h3>
-                <p>Kurta sets, sherwanis, and festive outfits for the whole family.</p>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Silk Blouse</p>
+                    <p class="product-price">$69</p>
+                </div>
             </div>
-            <div class="service-card" data-delay="300">
-                <div class="service-icon">&#9830;</div>
-                <h3>Jewellery &amp; Accessories</h3>
-                <p>Bangles, Punjabi Jutti, costume jewellery, dupattas, and finishing touches.</p>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Wide Leg Trousers</p>
+                    <p class="product-price">$79</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Knit Cardigan</p>
+                    <p class="product-price">$95</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Pleated Skirt</p>
+                    <p class="product-price">$65</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Copper Separator -->
-    <div class="copper-line" id="copperLine2"></div>
-
-    <!-- Trust Bar -->
-    <section class="trust-bar">
-        <div class="trust-grid">
-            <div class="trust-item" data-trust-delay="0">
-                <span class="trust-number">30+</span>
-                <span class="trust-label">Customer Reviews</span>
+    <!-- Trending -->
+    <section id="trending">
+        <div class="section-header">
+            <h2>Trending Now</h2>
+            <a href="#">View All</a>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Linen Shirt Dress</p>
+                    <p class="product-price">$99</p>
+                </div>
             </div>
-            <div class="trust-item" data-trust-delay="150">
-                <span class="trust-number">4</span>
-                <span class="trust-label">Collections</span>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                    <span class="product-badge">Sale</span>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Tailored Trousers</p>
+                    <p class="product-price">$59 <span class="original">$89</span></p>
+                </div>
             </div>
-            <div class="trust-item" data-trust-delay="300">
-                <span class="trust-number">W&amp;R</span>
-                <span class="trust-label">Wholesale &amp; Retail</span>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Oversized Shirt</p>
+                    <p class="product-price">$75</p>
+                </div>
             </div>
-            <div class="trust-item" data-trust-delay="450">
-                <span class="trust-number">1</span>
-                <span class="trust-label">Craigieburn Store</span>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                    <span class="product-badge">Sale</span>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Wrap Dress</p>
+                    <p class="product-price">$69 <span class="original">$109</span></p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <h2>Visit Us Today</h2>
-        <p>Experience our collections in person at our Craigieburn, Melbourne store.</p>
-        <a href="tel:0437098747" class="cta-button">Call 0437 098 747</a>
+    <!-- Collections Banner -->
+    <section class="collections-banner" id="collections">
+        <div class="collection-large">
+            <div class="collection-large-bg"></div>
+            <div class="collection-large-content">
+                <h3 class="font-display">Spring Edit</h3>
+                <p>Fresh styles for the new season</p>
+                <a href="#" class="collection-btn">Shop Collection</a>
+            </div>
+        </div>
+        <div class="collection-grid">
+            <div class="collection-item">
+                <div class="collection-item-bg"></div>
+                <h4>Workwear</h4>
+            </div>
+            <div class="collection-item">
+                <div class="collection-item-bg"></div>
+                <h4>Weekend</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Info -->
+    <section class="store-info" id="contact">
+        <h2 class="font-display">Visit Our Store</h2>
+        <div class="rating">
+            <div class="stars">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" class="empty"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" class="empty"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="rating-text">3.5 · 30 reviews</span>
+        </div>
+        <div class="store-details">
+            <p>Shop 24, Old Craigieburn Plaza<br>10 Craigieburn Rd, Craigieburn VIC 3064</p>
+        </div>
+        <a href="tel:0437098747" class="store-phone">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Call 0437 098 747
+        </a>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">Lashkara <span>Collections</span></div>
+            <div class="footer-logo">Lashkara</div>
             <div class="footer-info">
-                <p>Shop 24, Old Craigieburn Plaza, 10 Craigieburn Rd, Craigieburn VIC 3064</p>
-                <p>Phone: <a href="tel:0437098747" style="color: var(--copper); text-decoration: none;">0437 098 747</a></p>
+                <p>Shop 24, Old Craigieburn Plaza<br>10 Craigieburn Rd, Craigieburn VIC 3064</p>
+                <p><a href="tel:0437098747">0437 098 747</a></p>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Lashkara Collections. All rights reserved.</p>
@@ -663,123 +1103,78 @@
         </div>
     </footer>
 
-    <!-- Mobile Sticky CTA -->
-    <div class="mobile-sticky-cta" id="mobileStickyCta">
+    <!-- Sticky CTA -->
+    <div class="sticky-cta" id="stickyCta">
         <a href="tel:0437098747">
-            <span>&#9742;</span> Call 0437 098 747
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Call Now
         </a>
     </div>
 
     <script>
-        // Check for reduced motion preference
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-        // Hero Parallax - background at 40% scroll speed
-        if (!prefersReducedMotion) {
-            const heroBg = document.querySelector('.hero-bg');
-            const heroPattern = document.querySelector('.hero-pattern');
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
 
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-                const heroHeight = document.querySelector('.hero').offsetHeight;
-                
-                if (scrollY < heroHeight) {
-                    const parallaxOffset = scrollY * 0.4;
-                    heroBg.style.transform = `translateY(${parallaxOffset}px)`;
-                    heroPattern.style.transform = `translateY(${parallaxOffset}px)`;
-                }
-            }, { passive: true });
-        }
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.2
-        };
-
-        // Copper line animation
-        const copperLines = document.querySelectorAll('.copper-line');
-        const copperObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    copperObserver.unobserve(entry.target);
-                }
+        // Close menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
             });
-        }, observerOptions);
+        });
 
-        copperLines.forEach(line => copperObserver.observe(line));
-
-        // Service cards - slide in from left with stagger
-        const serviceCards = document.querySelectorAll('.service-card');
-        const serviceObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const delay = parseInt(entry.target.dataset.delay) || 0;
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, delay);
-                    serviceObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        serviceCards.forEach(card => serviceObserver.observe(card));
-
-        // Trust bar - fade in sequentially on load
-        const trustItems = document.querySelectorAll('.trust-item');
-        
-        function animateTrustItems() {
-            trustItems.forEach(item => {
-                const delay = parseInt(item.dataset.trustDelay) || 0;
-                setTimeout(() => {
-                    item.classList.add('visible');
-                }, delay);
-            });
-        }
-
-        // Trigger trust bar animation when it comes into view
-        const trustBar = document.querySelector('.trust-bar');
-        const trustObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateTrustItems();
-                    trustObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        trustObserver.observe(trustBar);
-
-        // Mobile sticky CTA - show after scrolling past hero
-        const mobileStickyCta = document.getElementById('mobileStickyCta');
+        // Sticky CTA
+        const stickyCta = document.getElementById('stickyCta');
         const hero = document.querySelector('.hero');
 
-        function handleMobileCta() {
+        function handleStickyCta() {
             const heroBottom = hero.getBoundingClientRect().bottom;
             if (heroBottom < 0) {
-                mobileStickyCta.classList.add('visible');
+                stickyCta.classList.add('visible');
             } else {
-                mobileStickyCta.classList.remove('visible');
+                stickyCta.classList.remove('visible');
             }
         }
 
-        // Only enable mobile CTA on small screens
-        if (window.innerWidth <= 768) {
-            window.addEventListener('scroll', handleMobileCta, { passive: true });
-            handleMobileCta(); // Check initial state
-        }
+        window.addEventListener('scroll', handleStickyCta, { passive: true });
 
-        // Update on resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth <= 768) {
-                window.addEventListener('scroll', handleMobileCta, { passive: true });
-                handleMobileCta();
-            } else {
-                window.removeEventListener('scroll', handleMobileCta);
-                mobileStickyCta.classList.remove('visible');
-            }
+        // Product Card Animation
+        const productCards = document.querySelectorAll('.product-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 50);
+                    cardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        productCards.forEach(card => cardObserver.observe(card));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
         });
     </script>
 </body>

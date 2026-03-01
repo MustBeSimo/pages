@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burn Boxing and Fitness | Melbourne</title>
+    <meta name="description" content="Burn Boxing and Fitness — high-energy boxing workouts in Craigieburn, Melbourne. 4.8-star rated boxing classes, personal training, and strength conditioning.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%23F5A623'/><text x='50' y='72' font-size='56' text-anchor='middle' fill='%23111' font-family='sans-serif' font-weight='700'>B</text></svg>">
+    <title>Burn Boxing and Fitness | Craigieburn, Melbourne</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
@@ -572,6 +574,18 @@
                 display: none;
             }
 
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--dark-charcoal);
+                padding: 1rem;
+                border-bottom: 3px solid var(--charged-amber);
+            }
+
             .menu-toggle {
                 display: flex;
             }
@@ -651,7 +665,7 @@
                     <span class="stat-label">Reviews</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">Melbourne</span>
+                    <span class="stat-value">Craigieburn</span>
                     <span class="stat-label">Location</span>
                 </div>
             </div>
@@ -710,8 +724,8 @@
             <div class="section-label">Get In Touch</div>
             <h2>Ready to burn?</h2>
             <p>Take the first step toward your fitness goals. Contact us today to book your first session or learn more about our programs.</p>
-            <button class="contact-btn" id="contactBtn">Call Now</button>
-            <p class="phone-placeholder">[PLACEHOLDER: Phone number will be inserted here]</p>
+            <a href="tel:0383397979" class="contact-btn" id="contactBtn">Call Now</a>
+            <p class="phone-placeholder">(03) 8339 7979</p>
         </div>
     </section>
 
@@ -721,7 +735,7 @@
             <div class="footer-brand">Burn</div>
             <div class="footer-info">
                 <p>Burn Boxing and Fitness</p>
-                <p>Melbourne, Australia</p>
+                <p>Craigieburn, Melbourne</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -731,7 +745,7 @@
 
     <!-- Mobile Sticky CTA -->
     <div class="mobile-sticky-cta" id="mobileStickyCta">
-        <a href="#contact">Call Now</a>
+        <a href="tel:0383397979">Call Now</a>
     </div>
 
     <script>
@@ -846,6 +860,15 @@
                 }
             });
         });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>

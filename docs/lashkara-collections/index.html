@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lashkara Collections | Melbourne Fashion</title>
+    <title>Lashkara Collections | South Asian Fashion — Craigieburn, Melbourne</title>
+    <meta name="description" content="Lashkara Collections — South Asian fashion in Craigieburn, Melbourne. Sarees, Salwaar Kameez, Lehengas, Punjabi Suits, jewellery, and more. Wholesale and retail.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23B87333'/><text x='50' y='72' font-size='56' text-anchor='middle' fill='%23FAFAF7' font-family='sans-serif' font-weight='700'>L</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -88,6 +90,46 @@
 
         .logo span {
             color: var(--copper);
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .header-nav a {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--near-black);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s ease;
+        }
+
+        .header-nav a:hover {
+            color: var(--copper);
+        }
+
+        .header-nav .nav-cta {
+            padding: 0.5rem 1.25rem;
+            background-color: var(--copper);
+            color: var(--off-white);
+            border-radius: 2px;
+            transition: background-color 0.2s ease;
+        }
+
+        .header-nav .nav-cta:hover {
+            background-color: var(--copper-dark);
+            color: var(--off-white);
+        }
+
+        @media (max-width: 480px) {
+            .header-nav a:not(.nav-cta) {
+                display: none;
+            }
         }
 
         /* Hero Section */
@@ -523,6 +565,11 @@
     <!-- Header -->
     <header>
         <div class="logo">Lashkara <span>Collections</span></div>
+        <nav class="header-nav">
+            <a href="#services">Collections</a>
+            <a href="#contact">Contact</a>
+            <a href="tel:0437098747" class="nav-cta">Call Us</a>
+        </nav>
     </header>
 
     <!-- Hero Section -->
@@ -530,10 +577,10 @@
         <div class="hero-bg"></div>
         <div class="hero-pattern"></div>
         <div class="hero-content">
-            <p class="hero-tagline">Melbourne Fashion</p>
-            <h1>Collections that speak.</h1>
-            <p class="hero-subtitle">Curated styles for the fashion-conscious. Discover pieces that tell your story.</p>
-            <a href="#services" class="hero-cta">Explore Collection</a>
+            <p class="hero-tagline">Craigieburn, Melbourne</p>
+            <h1>Elegant South Asian fashion for every occasion.</h1>
+            <p class="hero-subtitle">Sarees, Lehengas, Salwaar Kameez, Punjabi Suits, jewellery and more. Wholesale and retail in Craigieburn, Melbourne.</p>
+            <a href="#services" class="hero-cta">Explore Collections</a>
         </div>
     </section>
 
@@ -543,29 +590,29 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="services-header">
-            <h2>What We Offer</h2>
-            <p>Thoughtfully curated collections for every occasion</p>
+            <h2>Our Collections</h2>
+            <p>Traditional and contemporary South Asian fashion for every occasion</p>
         </div>
         <div class="services-grid">
             <div class="service-card" data-delay="0">
                 <div class="service-icon">&#9829;</div>
-                <h3>Women's Fashion</h3>
-                <p>Elegant apparel designed for the modern woman who values style and comfort.</p>
+                <h3>Sarees &amp; Lehengas</h3>
+                <p>Exquisite sarees and lehengas for weddings, festivals, and special celebrations.</p>
             </div>
             <div class="service-card" data-delay="100">
                 <div class="service-icon">&#10022;</div>
-                <h3>Accessories</h3>
-                <p>Complete your look with our curated selection of bags, jewelry, and more.</p>
+                <h3>Salwaar Kameez &amp; Punjabi Suits</h3>
+                <p>Elegant everyday and occasion wear. Anarkalis, straight suits, and Punjabi styles.</p>
             </div>
             <div class="service-card" data-delay="200">
                 <div class="service-icon">&#9733;</div>
-                <h3>New Arrivals</h3>
-                <p>Stay ahead of trends with our constantly updated collection of fresh styles.</p>
+                <h3>Menswear &amp; Kidswear</h3>
+                <p>Kurta sets, sherwanis, and festive outfits for the whole family.</p>
             </div>
             <div class="service-card" data-delay="300">
                 <div class="service-icon">&#9830;</div>
-                <h3>Seasonal Collections</h3>
-                <p>Discover pieces perfect for every season, from summer brights to winter warmers.</p>
+                <h3>Jewellery &amp; Accessories</h3>
+                <p>Bangles, Punjabi Jutti, costume jewellery, dupattas, and finishing touches.</p>
             </div>
         </div>
     </section>
@@ -577,29 +624,29 @@
     <section class="trust-bar">
         <div class="trust-grid">
             <div class="trust-item" data-trust-delay="0">
-                <span class="trust-number">3.5</span>
-                <span class="trust-label">Star Rating</span>
+                <span class="trust-number">30+</span>
+                <span class="trust-label">Customer Reviews</span>
             </div>
             <div class="trust-item" data-trust-delay="150">
-                <span class="trust-number">30+</span>
-                <span class="trust-label">Happy Reviews</span>
-            </div>
-            <div class="trust-item" data-trust-delay="300">
                 <span class="trust-number">4</span>
                 <span class="trust-label">Collections</span>
             </div>
+            <div class="trust-item" data-trust-delay="300">
+                <span class="trust-number">W&amp;R</span>
+                <span class="trust-label">Wholesale &amp; Retail</span>
+            </div>
             <div class="trust-item" data-trust-delay="450">
                 <span class="trust-number">1</span>
-                <span class="trust-label">Melbourne Store</span>
+                <span class="trust-label">Craigieburn Store</span>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section" id="contact">
         <h2>Visit Us Today</h2>
-        <p>Experience our collections in person. Our Melbourne store is ready to welcome you.</p>
-        <a href="tel:[PLACEHOLDER]" class="cta-button">Call Now</a>
+        <p>Experience our collections in person at our Craigieburn, Melbourne store.</p>
+        <a href="tel:0437098747" class="cta-button">Call 0437 098 747</a>
     </section>
 
     <!-- Footer -->
@@ -607,8 +654,8 @@
         <div class="footer-content">
             <div class="footer-logo">Lashkara <span>Collections</span></div>
             <div class="footer-info">
-                <p>Melbourne, Australia</p>
-                <p>Phone: [PLACEHOLDER]</p>
+                <p>Shop 24, Old Craigieburn Plaza, 10 Craigieburn Rd, Craigieburn VIC 3064</p>
+                <p>Phone: <a href="tel:0437098747" style="color: var(--copper); text-decoration: none;">0437 098 747</a></p>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Lashkara Collections. All rights reserved.</p>
@@ -618,8 +665,8 @@
 
     <!-- Mobile Sticky CTA -->
     <div class="mobile-sticky-cta" id="mobileStickyCta">
-        <a href="tel:[PLACEHOLDER]">
-            <span>&#9742;</span> Call Now
+        <a href="tel:0437098747">
+            <span>&#9742;</span> Call 0437 098 747
         </a>
     </div>
 

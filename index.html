@@ -3,154 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melbourne Business Websites — Private Preview</title>
+    <title>Melbourne Business Websites</title>
     <style>
-        :root {
-            --bg: #0a0a0a;
-            --surface: #141414;
-            --border: #2a2a2a;
-            --text: #e5e5e5;
-            --text-muted: #888;
-            --accent: #ff3333;
-            --success: #22c55e;
-            --warning: #f59e0b;
-        }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background: #0a0a0a;
+            color: #e5e5e5;
             line-height: 1.6;
             padding: 2rem;
         }
-        
         .container { max-width: 1200px; margin: 0 auto; }
-        
-        header {
-            text-align: center;
-            padding: 3rem 0;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 3rem;
-        }
-        
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-        
+        header { text-align: center; padding: 3rem 0; border-bottom: 1px solid #2a2a2a; margin-bottom: 3rem; }
+        h1 { font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .subtitle { color: #888; }
         .private-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent);
+            display: inline-block;
+            background: #ff3333;
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 4px;
             font-size: 0.875rem;
-            font-weight: 500;
             margin-top: 1rem;
         }
-        
         .sites-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
         }
-        
         .site-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: #141414;
+            border: 1px solid #2a2a2a;
             border-radius: 8px;
             overflow: hidden;
-            transition: border-color 0.2s;
         }
-        
-        .site-card:hover {
-            border-color: var(--accent);
-        }
-        
-        .site-preview {
-            height: 160px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        .site-emoji {
+            height: 140px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
         }
-        
-        .site-info {
-            padding: 1.5rem;
-        }
-        
-        .site-info h3 {
-            font-size: 1.125rem;
-            margin-bottom: 0.25rem;
-        }
-        
-        .site-info .category {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-        
-        .site-url {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            background: var(--bg);
-            padding: 0.5rem;
-            border-radius: 4px;
-            font-family: monospace;
-            word-break: break-all;
-            margin-bottom: 1rem;
-        }
-        
-        .site-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
+        .site-info { padding: 1.25rem; }
+        .site-info h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+        .site-info .category { font-size: 0.875rem; color: #888; margin-bottom: 1rem; }
         .btn {
-            flex: 1;
+            display: block;
             padding: 0.625rem;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            text-decoration: none;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn-primary {
-            background: var(--accent);
+            background: #ff3333;
             color: white;
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-        
-        .btn-secondary:hover {
-            border-color: var(--text-muted);
-        }
-        
-        footer {
+            text-decoration: none;
+            border-radius: 4px;
             text-align: center;
-            padding: 3rem 0;
-            color: var(--text-muted);
             font-size: 0.875rem;
-            border-top: 1px solid var(--border);
-            margin-top: 3rem;
         }
     </style>
 </head>
@@ -158,159 +64,22 @@
     <div class="container">
         <header>
             <h1>Melbourne Business Websites</h1>
-            <p class="subtitle">AI-generated preview sites for local businesses</p>
-            <div class="private-badge">
-                🔒 Private — Not indexed
-            </div>
+            <p class="subtitle">AI-generated preview sites</p>
+            <div class="private-badge">🔒 Private Preview</div>
         </header>
         
         <div class="sites-grid">
-            <!-- Fitness -->
-            <div class="site-card">
-                <div class="site-preview">💪</div>
-                <div class="site-info">
-                    <h3>Studio 404</h3>
-                    <p class="category">Personal Training • Caulfield South</p>
-                    <div class="site-url">pages-one-xi.vercel.app/studio-404-fitness</div>
-                    <div class="site-actions">
-                        <a href="/studio-404-fitness/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('studio-404-fitness')">Copy</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="site-card">
-                <div class="site-preview">🤱</div>
-                <div class="site-info">
-                    <h3>Fitmum_abs</h3>
-                    <p class="category">Gym for Mums • Fraser Rise</p>
-                    <div class="site-url">pages-one-xi.vercel.app/fitmum-abs-gym</div>
-                    <div class="site-actions">
-                        <a href="/fitmum-abs-gym/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('fitmum-abs-gym')">Copy</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="site-card">
-                <div class="site-preview">🥊</div>
-                <div class="site-info">
-                    <h3>Burn Boxing</h3>
-                    <p class="category">Boxing • Craigieburn</p>
-                    <div class="site-url">pages-one-xi.vercel.app/burn-boxing-fitness</div>
-                    <div class="site-actions">
-                        <a href="/burn-boxing-fitness/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('burn-boxing-fitness')">Copy</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="site-card">
-                <div class="site-preview">🧘</div>
-                <div class="site-info">
-                    <h3>HiVibe Fitness</h3>
-                    <p class="category">Wellness • Melbourne</p>
-                    <div class="site-url">pages-one-xi.vercel.app/hivibe-fitness</div>
-                    <div class="site-actions">
-                        <a href="/hivibe-fitness/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('hivibe-fitness')">Copy</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="site-card">
-                <div class="site-preview">🏋️</div>
-                <div class="site-info">
-                    <h3>Ucebox Fitness</h3>
-                    <p class="category">Functional Training • Derrimut</p>
-                    <div class="site-url">pages-one-xi.vercel.app/ucebox-fitness</div>
-                    <div class="site-actions">
-                        <a href="/ucebox-fitness/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('ucebox-fitness')">Copy</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Retail -->
-            <div class="site-card">
-                <div class="site-preview">👗</div>
-                <div class="site-info">
-                    <h3>Lashkara Collections</h3>
-                    <p class="category">South Asian Fashion • Craigieburn</p>
-                    <div class="site-url">pages-one-xi.vercel.app/lashkara-collections</div>
-                    <div class="site-actions">
-                        <a href="/lashkara-collections/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('lashkara-collections')">Copy</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="site-card">
-                <div class="site-preview">👢</div>
-                <div class="site-info">
-                    <h3>Cowboys Cash & Carry</h3>
-                    <p class="category">Workwear • Thomastown</p>
-                    <div class="site-url">pages-one-xi.vercel.app/cowboys-cash-carry</div>
-                    <div class="site-actions">
-                        <a href="/cowboys-cash-carry/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('cowboys-cash-carry')">Copy</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="site-card">
-                <div class="site-preview">👔</div>
-                <div class="site-info">
-                    <h3>Brandella Uniforms</h3>
-                    <p class="category">Uniforms • Preston</p>
-                    <div class="site-url">pages-one-xi.vercel.app/brandella-uniforms</div>
-                    <div class="site-actions">
-                        <a href="/brandella-uniforms/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('brandella-uniforms')">Copy</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Trades -->
-            <div class="site-card">
-                <div class="site-preview">🔧</div>
-                <div class="site-info">
-                    <h3>Joe's Plumbing</h3>
-                    <p class="category">Plumber • Fitzroy</p>
-                    <div class="site-url">pages-one-xi.vercel.app/joes-plumbing-co</div>
-                    <div class="site-actions">
-                        <a href="/joes-plumbing-co/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('joes-plumbing-co')">Copy</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="site-card">
-                <div class="site-preview">⚡</div>
-                <div class="site-info">
-                    <h3>Fitzroy Electrical</h3>
-                    <p class="category">Electrician • Fitzroy</p>
-                    <div class="site-url">pages-one-xi.vercel.app/fitzroy-electrical</div>
-                    <div class="site-actions">
-                        <a href="/fitzroy-electrical/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('fitzroy-electrical')">Copy</button>
-                    </div>
-                </div>
-            </div>
+            <div class="site-card"><div class="site-emoji">💪</div><div class="site-info"><h3>Studio 404</h3><p class="category">Personal Training</p><a href="/studio-404-fitness/" class="btn">View Site</a></div></div>
+            <div class="site-card"><div class="site-emoji">🤱</div><div class="site-info"><h3>Fitmum_abs</h3><p class="category">Gym for Mums</p><a href="/fitmum-abs-gym/" class="btn">View Site</a></div></div>
+            <div class="site-card"><div class="site-emoji">🥊</div><div class="site-info"><h3>Burn Boxing</h3><p class="category">Boxing</p><a href="/burn-boxing-fitness/" class="btn">View Site</a></div></div>
+            <div class="site-card"><div class="site-emoji">🧘</div><div class="site-info"><h3>HiVibe Fitness</h3><p class="category">Wellness</p><a href="/hivibe-fitness/" class="btn">View Site</a></div></div>
+            <div class="site-card"><div class="site-emoji">🏋️</div><div class="site-info"><h3>Ucebox Fitness</h3><p class="category">Functional Training</p><a href="/ucebox-fitness/" class="btn">View Site</a></div></div>
+            <div class="site-card"><div class="site-emoji">👗</div><div class="site-info"><h3>Lashkara Collections</h3><p class="category">Fashion</p><a href="/lashkara-collections/" class="btn">View Site</a></div></div>
+            <div class="site-card"><div class="site-emoji">👢</div><div class="site-info"><h3>Cowboys Cash & Carry</h3><p class="category">Workwear</p><a href="/cowboys-cash-carry/" class="btn">View Site</a></div></div>
+            <div class="site-card"><div class="site-emoji">👔</div><div class="site-info"><h3>Brandella Uniforms</h3><p class="category">Uniforms</p><a href="/brandella-uniforms/" class="btn">View Site</a></div></div>
+            <div class="site-card"><div class="site-emoji">🔧</div><div class="site-info"><h3>Joe's Plumbing</h3><p class="category">Plumber</p><a href="/joes-plumbing-co/" class="btn">View Site</a></div></div>
+            <div class="site-card"><div class="site-emoji">⚡</div><div class="site-info"><h3>Fitzroy Electrical</h3><p class="category">Electrician</p><a href="/fitzroy-electrical/" class="btn">View Site</a></div></div>
         </div>
-        
-        <footer>
-            <p>Private preview sites for Melbourne businesses</p>
-            <p>Studio W230 · 2026</p>
-        </footer>
     </div>
-    
-    <script>
-        function copyUrl(slug) {
-            const url = `https://pages-one-xi.vercel.app/${slug}/`;
-            navigator.clipboard.writeText(url);
-            alert('Copied: ' + url);
-        }
-    </script>
 </body>
 </html>

@@ -1,15 +1,1147 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f59e0b'/%3E%3Ctext x='50' y='65' font-size='40' text-anchor='middle' fill='white'%3E👢%3C/text%3E%3C/svg%3E" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cowboys Cash & Carry | Thomastown</title>
-    <meta name="description" content="Workwear and safety gear in Thomastown." />
-    <script type="module" crossorigin src="/cowboys-cash-carry/assets/index-Rs5yru_x.js"></script>
-    <link rel="stylesheet" crossorigin href="/cowboys-cash-carry/assets/index-Cq_N9DW-.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cowboys Cash & Carry | Workwear & Casual Gear | Thomastown, Melbourne</title>
+    <meta name="description" content="Cowboys Cash & Carry - Quality workwear and casual clothing in Thomastown, Melbourne. Gear built to last. Phone: 0417 326 526">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%235D4E37'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='%23F4E4C1' font-family='serif' font-weight='700'>C</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Variables - Rugged Heritage Palette */
+        :root {
+            --tan: #C4A77D;
+            --tan-light: #E8DCC4;
+            --brown: #5D4E37;
+            --brown-dark: #3D3226;
+            --brown-darker: #2A2319;
+            --olive: #4A5D23;
+            --olive-dark: #2F3A16;
+            --cream: #F4E4C1;
+            --cream-dark: #D4C4A1;
+            --rust: #8B4513;
+            --charcoal: #1A1A1A;
+            --black: #0D0D0D;
+            --white: #F5F5F0;
+            --gray: #6B6B6B;
+            
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-headline: 'Oswald', sans-serif;
+            --font-body: 'Roboto Condensed', sans-serif;
+            
+            --tap-min: 48px;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--cream);
+            color: var(--brown-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Texture Overlay */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 10000;
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: var(--brown-darker);
+            color: var(--tan-light);
+            padding: 0.5rem 1.5rem;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .top-bar a {
+            color: var(--tan);
+            text-decoration: none;
+            transition: color 200ms;
+        }
+        
+        .top-bar a:hover {
+            color: var(--cream);
+        }
+        
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: var(--cream);
+            border-bottom: 3px solid var(--brown);
+            z-index: 999;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            color: var(--brown-dark);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .logo-badge {
+            width: 40px;
+            height: 40px;
+            background: var(--brown);
+            color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-headline);
+            font-size: 1.25rem;
+            font-weight: 700;
+            border-radius: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--brown-dark);
+            text-decoration: none;
+            font-family: var(--font-headline);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 200ms ease;
+            min-height: var(--tap-min);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--rust);
+            transition: width 200ms ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--rust);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: var(--brown);
+            border: none;
+            color: var(--cream);
+            font-size: 1.25rem;
+            cursor: pointer;
+            min-width: var(--tap-min);
+            min-height: var(--tap-min);
+            padding: 0 1rem;
+            font-family: var(--font-headline);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 1.5rem;
+            background-image: url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            color: var(--tan);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .hero-eyebrow::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--rust);
+        }
+        
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 400;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+        
+        .hero h1 span {
+            color: var(--tan);
+            display: block;
+        }
+        
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: var(--tan-light);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+        
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(196, 167, 125, 0.15);
+            padding: 0.75rem 1.25rem;
+            border: 1px solid rgba(196, 167, 125, 0.3);
+        }
+        
+        .hero-badge-icon {
+            font-size: 1.25rem;
+        }
+        
+        .hero-badge-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hero-badge-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            color: var(--tan);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .hero-badge-value {
+            font-family: var(--font-headline);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--cream);
+        }
+        
+        .stars {
+            color: var(--tan);
+            letter-spacing: 0.1em;
+        }
+        
+        /* Category Section */
+        .categories {
+            padding: 5rem 1.5rem;
+            background: var(--cream);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            color: var(--rust);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 400;
+            color: var(--brown-dark);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .category-card {
+            background: var(--white);
+            border: 2px solid var(--cream-dark);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 300ms ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--brown);
+            transform: scaleX(0);
+            transition: transform 300ms ease;
+        }
+        
+        .category-card:hover {
+            border-color: var(--brown);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(93, 78, 55, 0.15);
+        }
+        
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--tan-light);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            border-radius: 50%;
+        }
+        
+        .category-card h3 {
+            font-family: var(--font-headline);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--brown-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .category-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Heritage Section */
+        .heritage {
+            padding: 6rem 1.5rem;
+            background: var(--brown);
+            position: relative;
+        }
+        
+        .heritage::before {
+            content: 'EST.';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-display);
+            font-size: 20rem;
+            color: rgba(244, 228, 193, 0.03);
+            letter-spacing: 0.1em;
+            pointer-events: none;
+        }
+        
+        .heritage-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .heritage .section-eyebrow {
+            color: var(--tan);
+        }
+        
+        .heritage .section-title {
+            color: var(--cream);
+            margin-bottom: 2rem;
+        }
+        
+        .heritage-text {
+            font-family: var(--font-body);
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: var(--tan-light);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+        
+        .heritage-text strong {
+            color: var(--cream);
+            font-weight: 700;
+        }
+        
+        .heritage-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: var(--tan);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            color: var(--tan-light);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 0.5rem;
+        }
+        
+        /* Trust Section */
+        .trust {
+            padding: 5rem 1.5rem;
+            background: var(--white);
+            border-top: 1px solid var(--cream-dark);
+            border-bottom: 1px solid var(--cream-dark);
+        }
+        
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .trust-item {
+            text-align: center;
+        }
+        
+        .trust-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--tan-light);
+            margin: 0 auto 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid var(--tan);
+        }
+        
+        .trust-item h4 {
+            font-family: var(--font-headline);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--brown-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .trust-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 1.5rem;
+            background: var(--olive-dark);
+            position: relative;
+        }
+        
+        .contact::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+            pointer-events: none;
+        }
+        
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact .section-eyebrow {
+            color: var(--tan);
+        }
+        
+        .contact .section-title {
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-subtitle {
+            color: var(--tan-light);
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--cream);
+        }
+        
+        .contact-item-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(196, 167, 125, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            border: 1px solid var(--tan);
+        }
+        
+        .contact-item-text {
+            text-align: left;
+        }
+        
+        .contact-item-label {
+            font-size: 0.75rem;
+            color: var(--tan);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .contact-item-value {
+            font-family: var(--font-headline);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: var(--rust);
+            color: var(--cream);
+            font-family: var(--font-headline);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 1.25rem 3rem;
+            min-height: var(--tap-min);
+            transition: all 200ms ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 2px solid var(--rust);
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            color: var(--tan);
+            border-color: var(--tan);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--brown-darker);
+            color: var(--tan-light);
+            padding: 4rem 1.5rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .footer-tagline {
+            color: var(--tan);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+        
+        .footer h5 {
+            font-family: var(--font-headline);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--cream);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--tan-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 200ms;
+        }
+        
+        .footer-links a:hover {
+            color: var(--cream);
+        }
+        
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--brown);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        .footer-location {
+            font-size: 0.85rem;
+            color: var(--tan);
+        }
+        
+        /* Mobile Sticky CTA */
+        .mobile-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--cream);
+            border-top: 3px solid var(--rust);
+            padding: 1rem 1.5rem;
+            z-index: 998;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mobile-cta-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            background: var(--rust);
+            color: var(--cream);
+            font-family: var(--font-headline);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 1rem;
+            min-height: var(--tap-min);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .top-bar-content {
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                flex-direction: column;
+                padding: 1rem 1.5rem;
+                gap: 0;
+                border-bottom: 3px solid var(--brown);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--cream-dark);
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-toggle {
+                display: block;
+            }
+            
+            .hero {
+                min-height: 70vh;
+                padding: 3rem 1.5rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .heritage-stats {
+                gap: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 3rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .footer-tagline {
+                max-width: none;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .mobile-cta {
+                display: block;
+            }
+            
+            body {
+                padding-bottom: 80px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                gap: 1.5rem;
+            }
+            
+            .hero-meta {
+                gap: 1rem;
+            }
+            
+            .hero-badge {
+                padding: 0.6rem 1rem;
+            }
+        }
+        
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 400ms ease, transform 400ms ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Texture Overlay -->
+    <div class="texture-overlay"></div>
+    
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <span>Thomastown, Melbourne</span>
+            <a href="tel:0417326526">📞 0417 326 526</a>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-badge">C</span>
+                Cowboys
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰ MENU</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#categories">Products</a></li>
+                <li><a href="#heritage">Our Story</a></li>
+                <li><a href="#trust">Why Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-eyebrow">Thomastown's Workwear Specialists</span>
+            <h1>Gear That Works <span>As Hard As You Do</span></h1>
+            <p class="hero-subtitle">Quality workwear and casual clothing for working people who demand durability, value, and gear that lasts.</p>
+            <div class="hero-meta">
+                <div class="hero-badge">
+                    <span class="hero-badge-icon">⭐</span>
+                    <div class="hero-badge-text">
+                        <span class="hero-badge-label">Customer Rating</span>
+                        <span class="hero-badge-value"><span class="stars">★★★★★</span> 4.5/5</span>
+                    </div>
+                </div>
+                <div class="hero-badge">
+                    <span class="hero-badge-icon">👥</span>
+                    <div class="hero-badge-text">
+                        <span class="hero-badge-label">Reviews</span>
+                        <span class="hero-badge-value">49+ Happy Customers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-eyebrow">What We Stock</span>
+                <h2 class="section-title">Built For The Job</h2>
+            </div>
+            <div class="categories-grid">
+                <article class="category-card fade-in">
+                    <div class="category-icon">👷</div>
+                    <h3>Workwear</h3>
+                    <p>Hard-wearing work pants, shirts, and hi-vis gear. Built tough for tough conditions.</p>
+                </article>
+                <article class="category-card fade-in">
+                    <div class="category-icon">👕</div>
+                    <h3>Casual Wear</h3>
+                    <p>Quality casuals for after hours. Comfortable, durable, and styled right.</p>
+                </article>
+                <article class="category-card fade-in">
+                    <div class="category-icon">🥾</div>
+                    <h3>Work Boots</h3>
+                    <p>Safety boots, steel caps, and work footwear. Protection you can trust.</p>
+                </article>
+                <article class="category-card fade-in">
+                    <div class="category-icon">🧢</div>
+                    <h3>Accessories</h3>
+                    <p>Hats, belts, socks, and essentials. The finishing touches for your kit.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Heritage Section -->
+    <section class="heritage" id="heritage">
+        <div class="heritage-content">
+            <span class="section-eyebrow fade-in">Our Story</span>
+            <h2 class="section-title fade-in">No-Nonsense Gear,<br>Since Day One</h2>
+            <p class="heritage-text fade-in">
+                <strong>Cowboys Cash & Carry</strong> has been serving Thomastown's working community for years. We're not fancy — we're reliable. Fair prices on gear that works, from people who understand what a hard day's work means.
+            </p>
+            <div class="heritage-stats">
+                <div class="stat fade-in">
+                    <div class="stat-number">4.5★</div>
+                    <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat fade-in">
+                    <div class="stat-number">49+</div>
+                    <div class="stat-label">Reviews</div>
+                </div>
+                <div class="stat fade-in">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Commitment</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Trust Section -->
+    <section class="trust" id="trust">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item fade-in">
+                    <div class="trust-icon">💪</div>
+                    <h4>Quality First</h4>
+                    <p>We stock gear that lasts. No cheap knockoffs, no compromises.</p>
+                </div>
+                <div class="trust-item fade-in">
+                    <div class="trust-icon">💰</div>
+                    <h4>Fair Prices</h4>
+                    <p>Honest pricing on everything we sell. Value you can count on.</p>
+                </div>
+                <div class="trust-item fade-in">
+                    <div class="trust-icon">🤝</div>
+                    <h4>Local Service</h4>
+                    <p>Thomastown locals serving locals. We know what works here.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <span class="section-eyebrow fade-in">Get In Touch</span>
+            <h2 class="section-title fade-in">Ready To Gear Up?</h2>
+            <p class="contact-subtitle fade-in">Visit us in Thomastown or give us a call. We're here to help you find exactly what you need.</p>
+            <div class="contact-info fade-in">
+                <div class="contact-item">
+                    <div class="contact-item-icon">📞</div>
+                    <div class="contact-item-text">
+                        <div class="contact-item-label">Phone</div>
+                        <div class="contact-item-value">0417 326 526</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <div class="contact-item-text">
+                        <div class="contact-item-label">Location</div>
+                        <div class="contact-item-value">Thomastown, Melbourne</div>
+                    </div>
+                </div>
+            </div>
+            <a href="tel:0417326526" class="cta-button fade-in">
+                <span>📞</span>
+                <span>Call Now</span>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">COWBOYS</div>
+                <p class="footer-tagline">Quality workwear and casual gear for working people. No nonsense, just reliable gear at fair prices.</p>
+            </div>
+            <div>
+                <h5>Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="#categories">Products</a></li>
+                    <li><a href="#heritage">Our Story</a></li>
+                    <li><a href="#trust">Why Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Contact</h5>
+                <ul class="footer-links">
+                    <li><a href="tel:0417326526">0417 326 526</a></li>
+                    <li>Thomastown, Melbourne</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copyright">© 2025 Cowboys Cash & Carry. All rights reserved.</div>
+            <div class="footer-location">Thomastown, Melbourne • Est. Workwear Specialists</div>
+        </div>
+    </footer>
+    
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-cta">
+        <a href="tel:0417326526" class="mobile-cta-button">
+            <span>📞</span>
+            <span>Call Now</span>
+        </a>
+    </div>
+    
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile nav on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 80);
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        fadeElements.forEach(el => {
+            fadeObserver.observe(el);
+        });
+    </script>
+</body>
 </html>

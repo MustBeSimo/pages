@@ -1,45 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melbourne Business Websites</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e5e5e5; line-height: 1.6; padding: 2rem; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        header { text-align: center; padding: 3rem 0; border-bottom: 1px solid #2a2a2a; margin-bottom: 3rem; }
-        h1 { font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .subtitle { color: #888; }
-        .private-badge { display: inline-block; background: #ff3333; color: white; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.875rem; margin-top: 1rem; }
-        .sites-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-        .site-card { background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; overflow: hidden; }
-        .site-emoji { height: 140px; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
-        .site-info { padding: 1.25rem; }
-        .site-info h3 { font-size: 1rem; margin-bottom: 0.25rem; }
-        .site-info .category { font-size: 0.875rem; color: #888; margin-bottom: 1rem; }
-        .btn { display: block; padding: 0.625rem; background: #ff3333; color: white; text-decoration: none; border-radius: 4px; text-align: center; font-size: 0.875rem; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melbourne Business Websites</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>body{font-family:'Inter',sans-serif;}</style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Melbourne Business Websites</h1>
-            <p class="subtitle">AI-generated preview sites with React + Animations</p>
-            <div class="private-badge">🔒 Private Preview</div>
-        </header>
-        <div class="sites-grid">
-            <div class="site-card"><div class="site-emoji">💪</div><div class="site-info"><h3>Studio 404</h3><p class="category">Personal Training</p><a href="/studio-404-fitness/" class="btn">View Site</a></div></div>
-            <div class="site-card"><div class="site-emoji">🤱</div><div class="site-info"><h3>Fitmum_abs</h3><p class="category">Gym for Mums</p><a href="/fitmum-abs-gym/" class="btn">View Site</a></div></div>
-            <div class="site-card"><div class="site-emoji">🥊</div><div class="site-info"><h3>Burn Boxing</h3><p class="category">Boxing</p><a href="/burn-boxing-fitness/" class="btn">View Site</a></div></div>
-            <div class="site-card"><div class="site-emoji">🧘</div><div class="site-info"><h3>HiVibe Fitness</h3><p class="category">Wellness</p><a href="/hivibe-fitness/" class="btn">View Site</a></div></div>
-            <div class="site-card"><div class="site-emoji">🏋️</div><div class="site-info"><h3>Ucebox Fitness</h3><p class="category">Functional Training</p><a href="/ucebox-fitness/" class="btn">View Site</a></div></div>
-            <div class="site-card"><div class="site-emoji">👗</div><div class="site-info"><h3>Lashkara Collections</h3><p class="category">Fashion</p><a href="/lashkara-collections/" class="btn">View Site</a></div></div>
-            <div class="site-card"><div class="site-emoji">👢</div><div class="site-info"><h3>Cowboys Cash & Carry</h3><p class="category">Workwear</p><a href="/cowboys-cash-carry/" class="btn">View Site</a></div></div>
-            <div class="site-card"><div class="site-emoji">👔</div><div class="site-info"><h3>Brandella Uniforms</h3><p class="category">Uniforms</p><a href="/brandella-uniforms/" class="btn">View Site</a></div></div>
-            <div class="site-card"><div class="site-emoji">🔧</div><div class="site-info"><h3>Joe's Plumbing</h3><p class="category">Plumber</p><a href="/joes-plumbing-co/" class="btn">View Site</a></div></div>
-            <div class="site-card"><div class="site-emoji">⚡</div><div class="site-info"><h3>Fitzroy Electrical</h3><p class="category">Electrician</p><a href="/fitzroy-electrical/" class="btn">View Site</a></div></div>
+<body class="bg-gray-900 text-white">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { motion } = window.Motion;
+    
+    const sites = [
+      { emoji: '💪', name: 'Studio 404', category: 'Personal Training', url: '/studio-404-fitness/', color: 'from-orange-500 to-red-500' },
+      { emoji: '🤱', name: 'Fitmum_abs', category: 'Gym for Mums', url: '/fitmum-abs-gym/', color: 'from-rose-500 to-pink-500' },
+      { emoji: '🥊', name: 'Burn Boxing', category: 'Boxing', url: '/burn-boxing-fitness/', color: 'from-red-600 to-orange-500' },
+      { emoji: '🧘', name: 'HiVibe Fitness', category: 'Wellness', url: '/hivibe-fitness/', color: 'from-teal-500 to-emerald-500' },
+      { emoji: '🏋️', name: 'Ucebox Fitness', category: 'Functional Training', url: '/ucebox-fitness/', color: 'from-slate-500 to-slate-600' },
+      { emoji: '👗', name: 'Lashkara Collections', category: 'Fashion', url: '/lashkara-collections/', color: 'from-purple-600 to-pink-500' },
+      { emoji: '👢', name: 'Cowboys Cash & Carry', category: 'Workwear', url: '/cowboys-cash-carry/', color: 'from-amber-600 to-orange-500' },
+      { emoji: '👔', name: 'Brandella Uniforms', category: 'Uniforms', url: '/brandella-uniforms/', color: 'from-blue-600 to-indigo-500' },
+      { emoji: '🔧', name: "Joe's Plumbing", category: 'Plumber', url: '/joes-plumbing-co/', color: 'from-green-600 to-emerald-500' },
+      { emoji: '⚡', name: 'Fitzroy Electrical', category: 'Electrician', url: '/fitzroy-electrical/', color: 'from-yellow-500 to-amber-500' }
+    ];
+
+    const App = () => (
+      <div className="min-h-screen p-8">
+        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12 pt-8">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Melbourne Business Websites</h1>
+          <p className="text-gray-400 mb-4">AI-generated preview sites with React + Animations</p>
+          <div className="inline-block bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium">🔒 Private Preview</div>
+        </motion.div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          {sites.map((site, i) => (
+            <motion.div
+              key={site.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+              whileHover={{ scale: 1.02 }}
+              className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-gray-500 transition-colors"
+            >
+              <div className={`h-32 bg-gradient-to-br ${site.color} flex items-center justify-center text-5xl`}>
+                {site.emoji}
+              </div>
+              <div className="p-5">
+                <h3 className="font-semibold text-lg mb-1">{site.name}</h3>
+                <p className="text-gray-400 text-sm mb-4">{site.category}</p>
+                <a href={site.url} className={`block w-full py-2.5 text-center rounded-lg font-medium bg-gradient-to-r ${site.color} text-white hover:opacity-90 transition-opacity`}>
+                  View Site
+                </a>
+              </div>
+            </motion.div>
+          ))}
         </div>
-    </div>
+        
+        <footer className="text-center mt-16 pt-8 border-t border-gray-800 text-gray-500">
+          <p>Studio W230 · 2026</p>
+        </footer>
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
 </body>
 </html>

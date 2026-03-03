@@ -1,15 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23F4C2C2'/%3E%3Ctext x='50' y='68' font-size='48' text-anchor='middle' fill='%23FFF' font-family='Georgia'%3EF%3C/text%3E%3C/svg%3E" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fitmum_abs | Fraser Rise, Melbourne</title>
-    <meta name="description" content="Fitness for mums in Fraser Rise, Melbourne. 5-star rated gym with community classes, personal training, and postnatal fitness." />
-    <script type="module" crossorigin src="/fitmum-abs-gym/assets/index-D84cLChu.js"></script>
-    <link rel="stylesheet" crossorigin href="/fitmum-abs-gym/assets/index-Cx2AMXwy.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitmum_abs | Gym for Mums</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>body{font-family:'Inter',sans-serif;}</style>
+</head>
+<body class="bg-rose-50 text-gray-800">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    const { motion } = window.Motion;
+
+    const Countdown = () => {
+      const [time, setTime] = useState({h:47,m:59,s:59});
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setTime(prev => {
+            let {h,m,s} = prev; s--; if(s<0){s=59;m--} if(m<0){m=59;h--}
+            return {h,m,s};
+          });
+        }, 1000);
+        return () => clearInterval(timer);
+      }, []);
+      return (
+        <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-rose-500 to-pink-500 text-white py-2 px-4 flex justify-between items-center z-50">
+          <span className="text-sm font-medium">🔒 Private Preview — Expires in {String(time.h).padStart(2,'0')}:{String(time.m).padStart(2,'0')}:{String(time.s).padStart(2,'0')}</span>
+        </div>
+      );
+    };
+
+    const App = () => (
+      <div className="min-h-screen">
+        <Countdown />
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-20">
+          <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-100 via-pink-50 to-rose-200" />
+            <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="relative z-10 text-center px-4">
+              <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }} className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full mb-6 shadow-sm">
+                <span className="text-yellow-500">★★★★★</span>
+                <span className="text-sm text-gray-700">5.0 from 24 reviews · Richmond</span>
+              </motion.div>
+              
+              <motion.h1 initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }} className="text-5xl md:text-7xl font-bold mb-6 text-rose-600">
+                Fitmum_abs
+              </motion.h1>
+              
+              <motion.p initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="text-xl md:text-2xl text-gray-600 mb-4">Gym for Mums</motion.p>
+              
+              <motion.p initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="text-rose-500 text-lg mb-8">Strong community, 24 reviews</motion.p>
+              
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-gradient-to-r from-rose-500 to-pink-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg">
+                Book Free Session
+              </motion.button>
+            </motion.div>
+          </section>
+        </motion.div>
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
 </html>

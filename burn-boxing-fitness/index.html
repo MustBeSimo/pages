@@ -4,84 +4,255 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Burn Boxing & Fitness — Boxing Gym Craigieburn</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root { --red: #DC143C; --black: #0D0D0D; --grey: #1A1A1A; --white: #F5F5F5; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto Condensed', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; }
-        nav { position: fixed; top: 0; left: 0; right: 0; background: var(--black); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 3px solid var(--red); }
-        .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--red); letter-spacing: 2px; }
-        .nav-phone { color: var(--white); text-decoration: none; font-weight: 700; }
-        .hero { min-height: 90vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/boxing-gym.jpg') center/cover; display: flex; align-items: center; padding: 7rem 2rem 4rem; }
-        .hero-content { max-width: 1200px; margin: 0 auto; text-align: center; width: 100%; }
-        .hero-text h1 { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: var(--red); letter-spacing: 4px; margin-bottom: 0.5rem; }
-        .hero-subtitle { font-size: 1.5rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
-        .cta-button { display: inline-block; background: var(--red); color: white; padding: 1rem 3rem; text-decoration: none; font-weight: 700; font-size: 1.125rem; letter-spacing: 1px; }
-        .trust-bar { background: var(--grey); padding: 2rem; text-align: center; }
-        .trust-content { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
-        .trust-item .number { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--red); }
-        .trust-item .label { font-size: 0.875rem; color: #888; text-transform: uppercase; }
-        .classes { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
-        .classes h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; text-align: center; margin-bottom: 3rem; color: var(--red); letter-spacing: 2px; }
-        .class-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .class-card { background: var(--grey); padding: 2rem; border-left: 4px solid var(--red); }
-        .class-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--red); margin-bottom: 0.5rem; letter-spacing: 1px; }
-        .about { background: var(--red); padding: 5rem 2rem; text-align: center; }
-        .about h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; margin-bottom: 1rem; letter-spacing: 2px; }
-        .about p { font-size: 1.25rem; max-width: 600px; margin: 0 auto; }
-        .contact { padding: 5rem 2rem; text-align: center; }
-        .contact h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--red); margin-bottom: 1rem; letter-spacing: 2px; }
-        .contact-info { display: flex; justify-content: center; gap: 3rem; margin: 2rem 0; flex-wrap: wrap; }
-        .cta-secondary { display: inline-block; background: var(--red); color: white; padding: 1rem 3rem; text-decoration: none; font-weight: 700; }
-        footer { background: var(--grey); padding: 2rem; text-align: center; }
-        footer p { color: rgba(255,255,255,0.5); }
-        @media (max-width: 768px) { .hero-text h1 { font-size: 3rem; } }
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        red: '#DC143C',
+                        black: '#0D0D0D',
+                        grey: '#1A1A1A'
+                    },
+                    fontFamily: {
+                        display: ['Bebas Neue', 'sans-serif'],
+                        body: ['Roboto Condensed', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>body { font-family: 'Roboto Condensed', sans-serif; }
+        .glitch { position: relative; }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .glitch::before { animation: glitch-1 2s infinite; color: #DC143C; z-index: -1; }
+        .glitch::after { animation: glitch-2 2s infinite; color: #00FFFF; z-index: -2; }
+        @keyframes glitch-1 { 0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); } 20% { clip-path: inset(20% 0 30% 0); transform: translate(-2px, 2px); } 40% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); } }
+        @keyframes glitch-2 { 0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); } 20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); } 40% { clip-path: inset(10% 0 60% 0); transform: translate(-2px, 2px); } }
     </style>
 </head>
-<body>
-    <nav><div class="nav-logo">BURN BOXING</div><a href="tel:[PHONE]" class="nav-phone">[PHONE]</a></nav>
+<body class="bg-black text-white">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { motion, useScroll, useTransform, useSpring } = window.Motion;
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>TRAIN LIKE A FIGHTER</h1>
-                <p class="hero-subtitle">Boxing and fitness training in Craigieburn. All levels welcome. No experience needed.</p>
-                <a href="#contact" class="cta-button">START TRAINING</a>
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => {
+                window.addEventListener('scroll', () => setScrolled(window.scrollY > 50));
+                return () => window.removeEventListener('scroll', () => setScrolled(window.scrollY > 50));
+            }, []);
+            
+            return (
+                <motion.nav
+                    initial={{ y: -100 }}
+                    animate={{ y: 0 }}
+                    className={`fixed top-0 left-0 right-0 z-50 border-b-4 border-red transition-all duration-300 ${scrolled ? 'bg-black/95 py-3' : 'bg-transparent py-5'}`}
+                >
+                    <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                        <motion.div 
+                            whileHover={{ scale: 1.05 }}
+                            className="font-display text-3xl tracking-widest"
+                        >
+                            BURN <span className="text-red">BOXING</span>
+                        </motion.div>
+                        <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.1, color: '#DC143C' }} className="font-bold">[PHONE]</motion.a>
+                    </div>
+                </motion.nav>
+            );
+        };
+
+        const Hero = () => {
+            return (
+                <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+                    <div className="absolute inset-0 z-0">
+                        <img src="../images/boxing-gym.jpg" className="w-full h-full object-cover opacity-40" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    </div>
+                    
+                    <div className="relative z-10 text-center px-6">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, type: "spring" }}
+                        >
+                            <h1 className="font-display text-7xl md:text-9xl mb-4 glitch" data-text="TRAIN LIKE">TRAIN LIKE</h1>
+                            <motion.h1 
+                                initial={{ x: -100, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ delay: 0.3, duration: 0.6 }}
+                                className="font-display text-7xl md:text-9xl text-red mb-8"
+                            >
+                                A FIGHTER
+                            </motion.h1>
+                        </motion.div>
+                        
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.6 }}
+                            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto"
+                        >
+                            Boxing and fitness training in Craigieburn. All levels welcome.
+                        </motion.p>
+                        
+                        <motion.a
+                            href="#contact"
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.8 }}
+                            whileHover={{ scale: 1.1, boxShadow: "0 0 30px rgba(220,20,60,0.5)" }}
+                            whileTap={{ scale: 0.95 }}
+                            className="inline-block bg-red text-white px-12 py-5 text-xl font-bold tracking-wider"
+                        >
+                            START TRAINING
+                        </motion.a>
+                    </div>
+                </section>
+            );
+        };
+
+        const Stats = () => {
+            const stats = [
+                { num: "4.8", label: "Google Rating" },
+                { num: "33+", label: "Reviews" },
+                { num: "CRAIGIEBURN", label: "Location" }
+            ];
+            
+            return (
+                <section className="py-16 bg-grey">
+                    <div className="max-w-5xl mx-auto px-6">
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {stats.map((stat, i) => (
+                                <motion.div
+                                    key={stat.label}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.2 }}
+                                    whileHover={{ scale: 1.1, y: -5 }}
+                                    className="text-center"
+                                >
+                                    <motion.p 
+                                        className="font-display text-5xl text-red mb-2"
+                                        initial={{ scale: 0 }}
+                                        whileInView={{ scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: i * 0.2 + 0.3, type: "spring" }}
+                                    >
+                                        {stat.num}
+                                    </motion.p>
+                                    <p className="text-gray-400 tracking-widest text-sm">{stat.label}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Classes = () => {
+            const classes = [
+                { name: "BOXING", desc: "Learn technique, combinations, and bag work" },
+                { name: "HIIT", desc: "High-intensity intervals to build fitness" },
+                { name: "STRENGTH", desc: "Resistance training for power" }
+            ];
+            
+            return (
+                <section className="py-24 px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.h2
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="font-display text-6xl mb-16 text-center"
+                        >
+                            OUR <span className="text-red">CLASSES</span>
+                        </motion.h2>
+                        
+                        <div className="grid md:grid-cols-3 gap-6">
+                            {classes.map((cls, i) => (
+                                <motion.div
+                                    key={cls.name}
+                                    initial={{ opacity: 0, rotateY: -90 }}
+                                    whileInView={{ opacity: 1, rotateY: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.2, duration: 0.6 }}
+                                    whileHover={{ scale: 1.05, borderColor: '#DC143C' }}
+                                    className="bg-grey p-8 border-l-4 border-red cursor-pointer"
+                                >
+                                    <h3 className="font-display text-3xl text-red mb-4">{cls.name}</h3>
+                                    <p className="text-gray-400">{cls.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Contact = () => {
+            return (
+                <section id="contact" className="py-24 bg-red relative overflow-hidden">
+                    <motion.div
+                        animate={{ x: [0, 100, 0] }}
+                        transition={{ duration: 5, repeat: Infinity }}
+                        className="absolute top-10 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"
+                    />
+                    
+                    <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+                        <motion.h2
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            className="font-display text-6xl mb-8"
+                        >
+                            JOIN THE GYM
+                        </motion.h2>
+                        
+                        <motion.a
+                            href="tel:[PHONE]"
+                            whileHover={{ scale: 1.1, backgroundColor: '#000', color: '#fff' }}
+                            whileTap={{ scale: 0.95 }}
+                            className="inline-block bg-white text-red px-12 py-5 text-xl font-bold"
+                        >
+                            CALL NOW
+                        </motion.a>
+                        
+                        <p className="mt-8 text-white/80">[PHONE] · Craigieburn, Melbourne</p>
+                    </div>
+                </section>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-grey py-8 text-center">
+                <p className="text-gray-500">© 2026 Burn Boxing & Fitness · Craigieburn</p>
+            </footer>
+        );
+
+        const App = () => (
+            <div>
+                <Navbar />
+                <Hero />
+                <Stats />
+                <Classes />
+                <Contact />
+                <Footer />
             </div>
-        </div>
-    </section>
+        );
 
-    <div class="trust-bar">
-        <div class="trust-content">
-            <div class="trust-item"><div class="number">4.8★</div><div class="label">Google Rating</div></div>
-            <div class="trust-item"><div class="number">33+</div><div class="label">Reviews</div></div>
-            <div class="trust-item"><div class="number">Craigieburn</div><div class="label">Melbourne</div></div>
-        </div>
-    </div>
-
-    <section class="classes">
-        <h2>CLASSES</h2>
-        <div class="class-grid">
-            <div class="class-card"><h3>BOXING</h3><p>Learn technique, combinations, and bag work. Suitable for beginners.</p></div>
-            <div class="class-card"><h3>HIIT</h3><p>High-intensity intervals to build fitness and burn calories.</p></div>
-            <div class="class-card"><h3>STRENGTH</h3><p>Resistance training to build power and conditioning.</p></div>
-        </div>
-    </section>
-
-    <section class="about">
-        <h2>ABOUT BURN</h2>
-        <p>A boxing and fitness gym in Craigieburn built for people who want real results. No frills, hard work, supportive community.</p>
-    </section>
-
-    <section class="contact" id="contact">
-        <h2>JOIN THE GYM</h2>
-        <div class="contact-info">
-            <div><strong>[PHONE]</strong></div>
-            <div><strong>Craigieburn, Melbourne</strong></div>
-        </div>
-        <a href="tel:[PHONE]" class="cta-secondary">CALL NOW</a>
-    </section>
-
-    <footer><p>© 2026 Burn Boxing & Fitness · Craigieburn, Melbourne</p></footer>
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
 </body>
 </html>

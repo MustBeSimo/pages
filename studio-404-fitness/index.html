@@ -4,483 +4,272 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio 404 — Personal Training Caulfield South</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --copper: #B87333;
-            --copper-dark: #9A6B2A;
-            --dark: #1C1C1E;
-            --light: #FAFAF7;
-            --text-muted: #6B6B6B;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--dark);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
-        
-        .nav-logo {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            letter-spacing: 0.02em;
-        }
-        
-        .nav-logo span { color: var(--copper); }
-        
-        .nav-phone {
-            color: var(--copper-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-        
-        .nav-phone:hover { color: white; }
-        
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            background: var(--dark);
-            display: flex;
-            align-items: center;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--copper);
-        }
-        
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            width: 100%;
-        }
-        
-        .hero-text h1 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 4rem;
-            font-weight: 700;
-            color: white;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-        
-        .hero-text h1 span { color: var(--copper); }
-        
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 2rem;
-            max-width: 90%;
-        }
-        
-        .hero-image {
-            position: relative;
-            height: 500px;
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: var(--copper);
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.125rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            background: var(--copper-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(184,115,51,0.3);
-        }
-        
-        /* Trust Bar */
-        .trust-bar {
-            background: var(--light);
-            padding: 2rem;
-            border-top: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .trust-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-        
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-        
-        .trust-item strong {
-            color: var(--dark);
-            font-weight: 600;
-        }
-        
-        /* Services */
-        .services {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .services h2 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--dark);
-        }
-        
-        .services h2 span { color: var(--copper); }
-        
-        .service-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        
-        .service-item {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 1.5rem;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .service-number {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--copper);
-            line-height: 1;
-            opacity: 0.5;
-        }
-        
-        .service-content h3 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .service-content p {
-            color: var(--text-muted);
-            font-size: 1.125rem;
-        }
-        
-        /* Social Proof */
-        .social-proof {
-            background: var(--dark);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-        
-        .rating-display {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            background: rgba(255,255,255,0.05);
-            padding: 1.5rem 2rem;
-            border-radius: 4px;
-        }
-        
-        .stars {
-            color: #FFC107;
-            font-size: 1.5rem;
-            letter-spacing: 0.1em;
-        }
-        
-        .rating-text {
-            color: white;
-            font-size: 1.125rem;
-        }
-        
-        .rating-text strong {
-            color: var(--copper);
-            font-size: 1.5rem;
-        }
-        
-        /* About */
-        .about {
-            padding: 6rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .about h2 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .about h2 span { color: var(--copper); }
-        
-        .about p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-        
-        .about-location {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--copper);
-            font-weight: 500;
-            margin-top: 1rem;
-        }
-        
-        /* Contact */
-        .contact {
-            background: var(--dark);
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-        
-        .contact h2 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 3rem;
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .contact > p {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-        
-        .contact-details {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .contact-item {
-            text-align: center;
-        }
-        
-        .contact-item .label {
-            font-size: 0.875rem;
-            color: rgba(255,255,255,0.5);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-        
-        .contact-item .value {
-            font-size: 1.5rem;
-            color: white;
-            font-weight: 500;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        footer p {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.875rem;
-        }
-        
-        /* Mobile */
-        @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-image {
-                height: 300px;
-            }
-            
-            .service-item {
-                grid-template-columns: 60px 1fr;
-            }
-            
-            .service-number {
-                font-size: 2rem;
-            }
-            
-            .trust-content {
-                gap: 1.5rem;
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        copper: '#B87333',
+                        'copper-dark': '#9A6B2A',
+                        dark: '#1C1C1E',
+                        light: '#FAFAF7'
+                    },
+                    fontFamily: {
+                        heading: ['Barlow Condensed', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif']
+                    }
+                }
             }
         }
+    </script>
+    <style>body { font-family: 'DM Sans', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, #B87333 0%, #D4A574 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-logo">Studio <span>404</span></div>
-        <a href="tel:[PHONE]" class="nav-phone">[PHONE — insert number]</a>
-    </nav>
+<body class="bg-dark text-white">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { motion, useScroll, useTransform, AnimatePresence } = window.Motion;
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Personal Training That <span>Actually Works</span></h1>
-                <p class="hero-subtitle">One-on-one coaching in Caulfield South. No crowds, no guesswork, just results. Train in a private studio with someone who tracks your progress every session.</p>
-                <a href="#contact" class="cta-button">Book a Free Consultation</a>
-            </div>
-            <div class="hero-image">
-                <img src="images/studio-404-hero.jpg" alt="Personal training session at Studio 404">
-            </div>
-        </div>
-    </section>
+        const ScrollProgress = () => {
+            const { scrollYProgress } = useScroll();
+            const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+            return (
+                <motion.div
+                    className="fixed top-0 left-0 right-0 h-1 bg-copper z-50 origin-left"
+                    style={{ scaleX }}
+                />
+            );
+        };
 
-    <!-- Trust Bar -->
-    <div class="trust-bar">
-        <div class="trust-content">
-            <div class="trust-item">
-                <strong>5.0 ★</strong> Google Rating
-            </div>
-            <div class="trust-item">
-                <strong>10+ Reviews</strong> From Local Clients
-            </div>
-            <div class="trust-item">
-                <strong>Caulfield South</strong> Private Studio
-            </div>
-        </div>
-    </div>
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 50);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+            
+            return (
+                <motion.nav
+                    initial={{ y: -100 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-dark/95 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}
+                >
+                    <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                        <motion.div 
+                            whileHover={{ scale: 1.05 }}
+                            className="font-heading text-2xl font-bold"
+                        >
+                            Studio <span className="text-copper">404</span>
+                        </motion.div>
+                        <motion.a
+                            href="tel:[PHONE]"
+                            whileHover={{ scale: 1.05, color: '#B87333' }}
+                            className="text-sm text-gray-400 hover:text-copper transition-colors"
+                        >
+                            [PHONE]
+                        </motion.a>
+                    </div>
+                </motion.nav>
+            );
+        };
 
-    <!-- Services -->
-    <section class="services">
-        <h2>How We Train <span>You</span></h2>
-        <div class="service-list">
-            <div class="service-item">
-                <div class="service-number">01</div>
-                <div class="service-content">
-                    <h3>1-on-1 Personal Training</h3>
-                    <p>Custom workouts designed for your body, your goals, and your schedule. Every session is tracked, measured, and adjusted.</p>
-                </div>
-            </div>
-            <div class="service-item">
-                <div class="service-number">02</div>
-                <div class="service-content">
-                    <h3>Small Group Training</h3>
-                    <p>Train with 2-4 people. Same attention, lower cost, more motivation. Perfect for couples or friends with similar goals.</p>
-                </div>
-            </div>
-            <div class="service-item">
-                <div class="service-number">03</div>
-                <div class="service-content">
-                    <h3>Online Coaching</h3>
-                    <p>Programs, nutrition guidance, and weekly check-ins wherever you are. For those who travel or prefer training solo.</p>
-                </div>
-            </div>
-            <div class="service-item">
-                <div class="service-number">04</div>
-                <div class="service-content">
-                    <h3>Goal-Focused Blocks</h3>
-                    <p>8-week transformations for weddings, events, or finally hitting that milestone. Structured, accountable, results-driven.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        const Hero = () => {
+            return (
+                <section className="min-h-screen flex items-center relative overflow-hidden pt-20">
+                    <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark to-copper/10"></div>
+                    <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+                        <div className="order-2 md:order-1">
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                            >
+                                <p className="text-copper font-semibold tracking-widest text-sm mb-4">CAULFIELD SOUTH · 5.0★</p>
+                                <h1 className="font-heading text-5xl md:text-7xl font-bold leading-none mb-6">
+                                    Personal Training That<br/>
+                                    <span className="gradient-text">Actually Works</span>
+                                </h1>
+                                <p className="text-xl text-gray-400 mb-8 max-w-lg">
+                                    One-on-one coaching in Caulfield South. No crowds, no guesswork, just results.
+                                </p>
+                                <motion.a
+                                    href="#contact"
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="inline-block bg-copper text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg shadow-copper/25"
+                                >
+                                    Book a Free Consultation
+                                </motion.a>
+                            </motion.div>
+                        </div>
+                        
+                        <div className="order-1 md:order-2">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
+                                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                                transition={{ duration: 1, delay: 0.4 }}
+                                whileHover={{ scale: 1.02, rotateY: -5 }}
+                                className="relative"
+                            >
+                                <div className="absolute -inset-4 bg-copper/20 rounded-2xl blur-2xl"></div>
+                                <img 
+                                    src="../images/studio-404-hero.jpg" 
+                                    alt="Personal training"
+                                    className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                                />
+                                <motion.div
+                                    initial={{ opacity: 0, x: 20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 1, duration: 0.6 }}
+                                    className="absolute -bottom-6 -left-6 bg-white text-dark p-6 rounded-xl shadow-xl"
+                                >
+                                    <p className="font-heading text-4xl font-bold text-copper">10+</p>
+                                    <p className="text-sm text-gray-600">5-Star Reviews</p>
+                                </motion.div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
 
-    <!-- Social Proof -->
-    <section class="social-proof">
-        <div class="rating-display">
-            <span class="stars">★★★★★</span>
-            <span class="rating-text"><strong>5.0</strong> from 10+ Google reviews</span>
-        </div>
-    </section>
+        const Services = () => {
+            const services = [
+                { num: "01", title: "1-on-1 Personal Training", desc: "Custom workouts designed for your body, your goals, and your schedule." },
+                { num: "02", title: "Small Group Training", desc: "Train with 2-4 people. Same attention, lower cost, more motivation." },
+                { num: "03", title: "Online Coaching", desc: "Programs, nutrition guidance, and weekly check-ins wherever you are." },
+                { num: "04", title: "Goal-Focused Blocks", desc: "8-week transformations for weddings, events, or hitting that milestone." }
+            ];
 
-    <!-- About -->
-    <section class="about">
-        <h2>About <span>Studio 404</span></h2>
-        <p>We're not a big gym. We're a dedicated training space in Caulfield South where you get real results without the crowds, the waiting, or the guesswork.</p>
-        <p>Every client gets a program built for their body, their schedule, and their goals. We track everything — because what gets measured gets improved.</p>
-        <div class="about-location">
-            <span>📍</span> Caulfield South, Melbourne
-        </div>
-    </section>
+            return (
+                <section className="py-24 bg-light">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="font-heading text-4xl md:text-5xl font-bold text-dark mb-16"
+                        >
+                            How We Train <span className="text-copper">You</span>
+                        </motion.h2>
+                        
+                        <div className="space-y-6">
+                            {services.map((service, i) => (
+                                <motion.div
+                                    key={service.num}
+                                    initial={{ opacity: 0, x: -50 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.1 }}
+                                    whileHover={{ x: 20, backgroundColor: 'rgba(184,115,51,0.05)' }}
+                                    className="grid md:grid-cols-[100px_1fr] gap-6 p-6 rounded-xl transition-colors cursor-pointer border-l-4 border-transparent hover:border-copper"
+                                >
+                                    <span className="font-heading text-6xl font-bold text-copper/30">{service.num}</span>
+                                    <div>
+                                        <h3 className="font-heading text-2xl font-bold text-dark mb-2">{service.title}</h3>
+                                        <p className="text-gray-600 text-lg">{service.desc}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
 
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <h2>Ready to Start?</h2>
-        <p>Book a free consultation. No commitment, just a conversation about your goals.</p>
-        <div class="contact-details">
-            <div class="contact-item">
-                <div class="label">Call</div>
-                <div class="value">[PHONE]</div>
+        const About = () => {
+            return (
+                <section className="py-24 bg-dark relative overflow-hidden">
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
+                        className="absolute -right-64 -top-64 w-[600px] h-[600px] rounded-full border border-copper/10"
+                    />
+                    
+                    <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                        >
+                            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-8">
+                                About <span className="text-copper">Studio 404</span>
+                            </h2>
+                            <p className="text-xl text-gray-400 mb-6">
+                                We're not a big gym. We're a dedicated training space in Caulfield South where you get real results without the crowds, the waiting, or the guesswork.
+                            </p>
+                            <p className="text-xl text-gray-400">
+                                Every client gets a program built for their body, their schedule, and their goals.
+                            </p>
+                            <motion.div
+                                whileHover={{ scale: 1.1 }}
+                                className="inline-flex items-center gap-2 mt-8 text-copper"
+                            >
+                                <span>📍</span> Caulfield South, Melbourne
+                            </motion.div>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Contact = () => {
+            return (
+                <section id="contact" className="py-24 bg-copper">
+                    <div className="max-w-4xl mx-auto px-6 text-center">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <h2 className="font-heading text-5xl font-bold text-white mb-4">Ready to Start?</h2>
+                            <p className="text-xl text-white/80 mb-12">Book a free consultation. No commitment, just a conversation.</p>
+                            
+                            <motion.a
+                                href="tel:[PHONE]"
+                                whileHover={{ scale: 1.05, y: -5 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="inline-block bg-white text-copper px-10 py-5 rounded-xl font-bold text-xl shadow-2xl"
+                            >
+                                Call Now
+                            </motion.a>
+                            
+                            <p className="mt-8 text-white/60">[PHONE] · Caulfield South</p>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-dark py-8 text-center">
+                <p className="text-gray-500">© 2026 Studio 404 Personal Training · Caulfield South</p>
+            </footer>
+        );
+
+        const App = () => (
+            <div>
+                <ScrollProgress />
+                <Navbar />
+                <Hero />
+                <Services />
+                <About />
+                <Contact />
+                <Footer />
             </div>
-            <div class="contact-item">
-                <div class="label">Location</div>
-                <div class="value">Caulfield South</div>
-            </div>
-        </div>
-        <a href="tel:[PHONE]" class="cta-button">Call Now</a>
-    </section>
+        );
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Studio 404 Personal Training · Caulfield South, Melbourne</p>
-    </footer>
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
 </body>
 </html>

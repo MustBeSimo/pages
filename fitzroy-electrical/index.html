@@ -3,79 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitzroy Electrical — Electrician Fitzroy Melbourne</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <title>Fitzroy Electrical — Electrician Melbourne</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: '#F5A623',
+                        dark: '#111111',
+                        charcoal: '#1A1A1A'
+                    },
+                    fontFamily: {
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['DM Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root { --amber: #F5A623; --dark: #111111; --charcoal: #1A1A1A; --light: #B0B0B0; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: white; line-height: 1.6; }
-        nav { position: fixed; top: 0; left: 0; right: 0; background: var(--dark); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-top: 3px solid var(--amber); }
-        .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; }
-        .nav-phone { color: var(--amber); text-decoration: none; font-family: 'DM Mono', monospace; font-weight: 500; }
-        .hero { min-height: 85vh; background: var(--dark); display: flex; align-items: center; padding: 6rem 2rem 4rem; }
-        .hero-content { max-width: 900px; margin: 0 auto; width: 100%; }
-        .hero-text h1 { font-family: 'Space Grotesk', sans-serif; font-size: 5rem; font-weight: 700; line-height: 1; margin-bottom: 1.5rem; }
-        .hero-text h1 span { color: var(--amber); }
-        .hero-subtitle { font-size: 1.5rem; color: var(--light); margin-bottom: 2rem; max-width: 600px; }
-        .cta-button { display: inline-block; background: var(--amber); color: var(--dark); padding: 1rem 2rem; text-decoration: none; font-weight: 700; font-size: 1.125rem; }
-        .services { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
-        .services h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 3rem; }
-        .services h2 span { color: var(--amber); }
-        .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .service-item { padding: 1.5rem; border-left: 3px solid var(--amber); background: var(--charcoal); }
-        .service-item h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; margin-bottom: 0.5rem; }
-        .service-item p { color: var(--light); font-size: 0.95rem; }
-        .about { background: var(--charcoal); padding: 5rem 2rem; text-align: center; }
-        .about h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
-        .about h2 span { color: var(--amber); }
-        .about p { font-size: 1.125rem; color: var(--light); max-width: 600px; margin: 0 auto; }
-        .contact { padding: 5rem 2rem; text-align: center; }
-        .contact h2 { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; color: var(--amber); margin-bottom: 1rem; }
-        .contact > p { color: var(--light); font-size: 1.25rem; margin-bottom: 2rem; }
-        .contact-info { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        footer { background: var(--charcoal); padding: 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
-        footer p { color: rgba(255,255,255,0.4); font-size: 0.875rem; }
-        @media (max-width: 768px) { .hero-text h1 { font-size: 3rem; } .service-grid { grid-template-columns: 1fr; } }
+        body { font-family: 'Space Grotesk', sans-serif; }
+        .electric-border { position: relative; }
+        .electric-border::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            border: 2px solid transparent; border-image: linear-gradient(90deg, #F5A623, transparent, #F5A623) 1;
+            animation: electric-pulse 2s infinite;
+        }
+        @keyframes electric-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
     </style>
 </head>
-<body>
-    <nav><div class="nav-logo">Fitzroy Electrical</div><a href="tel:[PHONE]" class="nav-phone">[PHONE]</a></nav>
+<body class="bg-dark text-white">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { motion, useScroll, useTransform, AnimatePresence } = window.Motion;
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1><span>Bold</span> Electrical Work in Fitzroy</h1>
-                <p class="hero-subtitle">Commercial and residential electrical services for Melbourne's inner north. Licensed, insured, and on time.</p>
-                <a href="tel:[PHONE]" class="cta-button">Get a Quote</a>
+        // Electric line animation component
+        const ElectricLine = () => (
+            <svg className="absolute top-0 left-0 w-full h-2 overflow-visible" preserveAspectRatio="none">
+                <motion.path
+                    d="M0,1 Q250,-5 500,1 T1000,1 T1500,1 T2000,1"
+                    fill="none"
+                    stroke="#F5A623"
+                    strokeWidth="3"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 2, ease: "easeInOut" }}
+                />
+                <motion.circle
+                    r="4"
+                    fill="#F5A623"
+                    initial={{ offsetDistance: "0%" }}
+                    animate={{ offsetDistance: "100%" }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    style={{ offsetPath: "path('M0,1 Q250,-5 500,1 T1000,1 T1500,1 T2000,1')" }}
+                />
+            </svg>
+        );
+
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => {
+                window.addEventListener('scroll', () => setScrolled(window.scrollY > 50));
+            }, []);
+            
+            return (
+                <motion.nav
+                    initial={{ y: -100 }}
+                    animate={{ y: 0 }}
+                    className={`fixed top-0 left-0 right-0 z-50 border-t-4 border-amber transition-all ${scrolled ? 'bg-dark/95 py-4' : 'bg-transparent py-6'}`}
+                >
+                    <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                        <motion.div whileHover={{ scale: 1.05 }} className="font-display text-2xl font-bold">
+                            Fitzroy <span className="text-amber">Electrical</span>
+                        </motion.div>
+                        <motion.a 
+                            href="tel:[PHONE]" 
+                            whileHover={{ color: '#F5A623' }}
+                            className="font-mono text-amber"
+                        >
+                            [PHONE]
+                        </motion.a>
+                    </div>
+                </motion.nav>
+            );
+        };
+
+        const Hero = () => {
+            return (
+                <section className="min-h-screen flex items-center pt-24 pb-16 px-6 relative overflow-hidden">
+                    <ElectricLine />
+                    
+                    <div className="absolute inset-0">
+                        {[...Array(5)].map((_, i) => (
+                            <motion.div
+                                key={i}
+                                className="absolute w-1 bg-amber/20"
+                                style={{ 
+                                    left: `${20 + i * 15}%`,
+                                    height: '100%',
+                                    top: 0
+                                }}
+                                animate={{ 
+                                    opacity: [0.2, 0.5, 0.2],
+                                    scaleY: [1, 1.2, 1]
+                                }}
+                                transition={{ 
+                                    duration: 2 + i * 0.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                            />
+                        ))}
+                    </div>
+                    
+                    <div className="max-w-6xl mx-auto relative z-10">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1 }}
+                        >
+                            <motion.p
+                                initial={{ x: -50, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                className="font-mono text-amber mb-4"
+                            >
+                                // LICENSED ELECTRICIAN // FITZROY
+                            </motion.p>
+                            
+                            <motion.h1
+                                initial={{ y: 50, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                                className="font-display text-6xl md:text-8xl font-bold leading-none mb-6"
+                            >
+                                <span className="text-amber">BOLD</span><br/>
+                                ELECTRICAL<br/>
+                                WORK
+                            </motion.h1>
+                            
+                            <motion.p
+                                initial={{ y: 30, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.4 }}
+                                className="text-xl text-gray-400 mb-8 max-w-xl"
+                            >
+                                Commercial and residential electrical services for Melbourne's inner north.
+                            </motion.p>
+                            
+                            <motion.a
+                                href="#contact"
+                                initial={{ y: 30, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.6 }}
+                                whileHover={{ 
+                                    scale: 1.05, 
+                                    boxShadow: "0 0 40px rgba(245,166,35,0.4)",
+                                    backgroundColor: "#F5A623",
+                                    color: "#111"
+                                }}
+                                className="inline-block border-2 border-amber text-amber px-10 py-4 font-bold text-lg transition-colors"
+                            >
+                                GET A QUOTE
+                            </motion.a>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Services = () => {
+            const services = [
+                { title: "Commercial Fit-outs", desc: "Wiring for offices, retail, hospitality" },
+                { title: "Switchboard Upgrades", desc: "Modern safety switches and capacity" },
+                { title: "Lighting Design", desc: "LED upgrades, feature lighting" },
+                { title: "Emergency Repairs", desc: "Power outages and urgent issues" }
+            ];
+            
+            return (
+                <section className="py-24 px-6 bg-charcoal">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.h2
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            className="font-display text-5xl mb-16"
+                        >
+                            OUR <span className="text-amber">SERVICES</span>
+                        </motion.h2>
+                        
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {services.map((svc, i) => (
+                                <motion.div
+                                    key={svc.title}
+                                    initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.1 }}
+                                    whileHover={{ 
+                                        borderLeftWidth: "8px",
+                                        backgroundColor: "rgba(245,166,35,0.1)"
+                                    }}
+                                    className="p-6 border-l-4 border-amber bg-dark cursor-pointer transition-all"
+                                >
+                                    <h3 className="font-display text-2xl mb-2">{svc.title}</h3>
+                                    <p className="text-gray-400 font-mono">{svc.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Contact = () => {
+            return (
+                <section id="contact" className="py-24 px-6">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                        >
+                            <h2 className="font-display text-5xl text-amber mb-8">GET IN TOUCH</h2>
+                            
+                            <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                className="inline-block"
+                            >
+                                <a 
+                                    href="tel:[PHONE]"
+                                    className="inline-block bg-amber text-dark px-12 py-5 font-bold text-xl hover:shadow-lg hover:shadow-amber/30 transition-shadow"
+                                >
+                                    CALL NOW
+                                </a>
+                            </motion.div>
+                            
+                            <p className="mt-8 text-gray-500 font-mono">[PHONE] · Fitzroy, Melbourne</p>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-charcoal py-8 text-center border-t border-gray-800">
+                <p className="text-gray-600 font-mono text-sm">© 2026 Fitzroy Electrical · Fitzroy, Melbourne</p>
+            </footer>
+        );
+
+        const App = () => (
+            <div>
+                <Navbar />
+                <Hero />
+                <Services />
+                <Contact />
+                <Footer />
             </div>
-        </div>
-    </section>
+        );
 
-    <section class="services">
-        <h2>Our <span>Services</span></h2>
-        <div class="service-grid">
-            <div class="service-item"><h3>Commercial Fit-outs</h3><p>Wiring for offices, retail, and hospitality. Minimal disruption to your business.</p></div>
-            <div class="service-item"><h3>Switchboard Upgrades</h3><p>Modern safety switches and capacity upgrades for older properties.</p></div>
-            <div class="service-item"><h3>Lighting Design</h3><p>LED upgrades, feature lighting, and smart home integration.</p></div>
-            <div class="service-item"><h3>Emergency Repairs</h3><p>Power outages, faults, and urgent electrical issues. Fast response.</p></div>
-        </div>
-    </section>
-
-    <section class="about">
-        <h2>About <span>Fitzroy Electrical</span></h2>
-        <p>An electrical contractor based in Fitzroy, serving Melbourne's creative and commercial precincts. We understand the unique needs of heritage buildings, new developments, and everything in between.</p>
-    </section>
-
-    <section class="contact">
-        <h2>Get in Touch</h2>
-        <p>Call or message for a free quote on your electrical project.</p>
-        <div class="contact-info">
-            <div><strong>[PHONE]</strong></div>
-            <div><strong>Fitzroy, Melbourne</strong></div>
-        </div>
-        <a href="tel:[PHONE]" class="cta-button">Call Now</a>
-    </section>
-
-    <footer><p>© 2026 Fitzroy Electrical · Fitzroy, Melbourne</p></footer>
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
 </body>
 </html>

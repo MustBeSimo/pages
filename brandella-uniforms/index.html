@@ -3,462 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brandella Uniforms — Corporate & Business Uniforms Melbourne</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Brandella Uniforms — Corporate Uniforms Melbourne</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --navy: #1a1a2e;
-            --gold: #c9a227;
-            --cream: #faf9f6;
-            --text: #2d2d2d;
-            --text-light: #666;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--cream);
-            color: var(--text);
-            line-height: 1.6;
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--navy);
-            padding: 1.25rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
-        
-        .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-        }
-        
-        .nav-logo span { color: var(--gold); }
-        
-        .nav-phone {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-        
-        /* Hero */
-        .hero {
-            min-height: 90vh;
-            background: var(--navy);
-            display: flex;
-            align-items: center;
-            padding: 7rem 2rem 4rem;
-        }
-        
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            width: 100%;
-        }
-        
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: white;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero-text h1 span { color: var(--gold); }
-        
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 2rem;
-        }
-        
-        .hero-image {
-            height: 450px;
-            background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2e 100%);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--navy);
-            padding: 1rem 2rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            background: #b8941f;
-            transform: translateY(-2px);
-        }
-        
-        /* Trust Bar */
-        .trust-bar {
-            background: white;
-            padding: 3rem 2rem;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .trust-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            text-align: center;
-        }
-        
-        .trust-item {
-            padding: 1rem;
-        }
-        
-        .trust-item .number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--gold);
-        }
-        
-        .trust-item .label {
-            font-size: 0.875rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        
-        /* Industries */
-        .industries {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .industries h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .industries h2 span { color: var(--gold); }
-        
-        .industry-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .industry-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 4px;
-            border-left: 4px solid var(--gold);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .industry-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .industry-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-        
-        /* Why Section */
-        .why {
-            background: var(--navy);
-            padding: 5rem 2rem;
-            color: white;
-        }
-        
-        .why-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .why h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .why h2 span { color: var(--gold); }
-        
-        .why p {
-            font-size: 1.125rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Services */
-        .services {
-            padding: 5rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .services h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .service-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .service-item {
-            display: flex;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        
-        .service-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--gold);
-            font-weight: 700;
-            min-width: 50px;
-        }
-        
-        .service-content h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
-        }
-        
-        .service-content p {
-            color: var(--text-light);
-        }
-        
-        /* Contact */
-        .contact {
-            background: var(--navy);
-            padding: 5rem 2rem;
-            text-align: center;
-        }
-        
-        .contact h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .contact > p {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
-        }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .contact-item {
-            color: white;
-        }
-        
-        .contact-item .label {
-            font-size: 0.875rem;
-            color: rgba(255,255,255,0.5);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        
-        .contact-item .value {
-            font-size: 1.25rem;
-            font-weight: 500;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--navy);
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        footer p {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.875rem;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .trust-content {
-                grid-template-columns: 1fr;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { navy: '#1a1a2e', gold: '#c9a227', cream: '#faf9f6' },
+                    fontFamily: { serif: ['Playfair Display', 'serif'], sans: ['Inter', 'sans-serif'] }
+                }
             }
         }
-    </style>
+    </script>
 </head>
-<body>
-    <nav>
-        <div class="nav-logo">Brandella <span>Uniforms</span></div>
-        <a href="tel:[PHONE]" class="nav-phone">[PHONE — insert number]</a>
-    </nav>
+<body class="bg-cream">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { motion, AnimatePresence } = window.Motion;
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Professional Uniforms for <span>Melbourne Businesses</span></h1>
-                <p class="hero-subtitle">Corporate, healthcare, hospitality & school uniforms supplied across Melbourne. Quality fabrics, professional embroidery, reliable delivery.</p>
-                <a href="#contact" class="cta-button">Request a Quote</a>
-            </div>
-            <div class="hero-image">
-                <img src="images/brandella-hero.jpg" alt="Professional corporate uniforms">
-            </div>
-        </div>
-    </section>
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => {
+                window.addEventListener('scroll', () => setScrolled(window.scrollY > 50));
+            }, []);
+            
+            return (
+                <motion.nav
+                    initial={{ y: -100 }}
+                    animate={{ y: 0 }}
+                    className={`fixed top-0 left-0 right-0 z-50 transition-all ${scrolled ? 'bg-navy shadow-lg py-4' : 'bg-navy py-6'}`}
+                >
+                    <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+                        <motion.div whileHover={{ scale: 1.02 }} className="font-serif text-2xl text-white"
+                        >Brandella <span className="text-gold">Uniforms</span></motion.div>
+                        <motion.a href="tel:[PHONE]" whileHover={{ color: '#c9a227' }} className="text-gold font-medium">[PHONE]</motion.a>
+                    </div>
+                </motion.nav>
+            );
+        };
 
-    <div class="trust-bar">
-        <div class="trust-content">
-            <div class="trust-item">
-                <div class="number">4.5★</div>
-                <div class="label">Google Rating</div>
-            </div>
-            <div class="trust-item">
-                <div class="number">6+</div>
-                <div class="label">Reviews</div>
-            </div>
-            <div class="trust-item">
-                <div class="number">Preston</div>
-                <div class="label">Melbourne</div>
-            </div>
-        </div>
-    </div>
+        const Hero = () => {
+            return (
+                <section className="min-h-screen flex items-center bg-navy pt-24">
+                    <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8 }}
+                            >
+                                <p className="text-gold tracking-widest text-sm mb-4">PRESTON · 4.5★</p>
+                                
+                                <h1 className="font-serif text-5xl md:text-6xl text-white leading-tight mb-6"
+003eProfessional Uniforms for <span className="text-gold">Melbourne Businesses</span></h1>
+                                
+                                <p className="text-xl text-gray-400 mb-8">Corporate, healthcare, hospitality & school uniforms.</p>
+                                
+                                <motion.a
+                                    href="#contact"
+                                    whileHover={{ scale: 1.05, backgroundColor: '#b8941f' }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="inline-block bg-gold text-navy px-10 py-4 rounded font-semibold text-lg"
+                                >Request a Quote</motion.a>
+                            </motion.div>
+                        </div>
+                        
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            className="relative"
+                        >
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.5 }}
+                                className="absolute -inset-4 bg-gold/10 rounded-lg blur-xl"
+                            />
+                            <img src="../images/brandella-hero.jpg" className="relative rounded-lg shadow-2xl w-full h-[450px] object-cover" />
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
 
-    <section class="industries">
-        <h2>Industries We <span>Serve</span></h2>
-        <div class="industry-grid">
-            <div class="industry-card">
-                <h3>Corporate</h3>
-                <p>Suits, shirts, and professional attire with company branding and embroidery.</p>
-            </div>
-            <div class="industry-card">
-                <h3>Healthcare</h3>
-                <p>Scrubs, lab coats, and medical uniforms designed for comfort and durability.</p>
-            </div>
-            <div class="industry-card">
-                <h3>Hospitality</h3>
-                <p>Chef wear, front-of-house, and hotel staff uniforms.</p>
-            </div>
-            <div class="industry-card">
-                <h3>Education</h3>
-                <p>School uniforms, sports kits, and staff attire.</p>
-            </div>
-        </div>
-    </section>
+        const Industries = () => {
+            const industries = [
+                { name: "Corporate", desc: "Suits, shirts, professional attire" },
+                { name: "Healthcare", desc: "Scrubs, lab coats, medical uniforms" },
+                { name: "Hospitality", desc: "Chef wear, front-of-house" },
+                { name: "Education", desc: "School uniforms, sports kits" }
+            ];
+            
+            return (
+                <section className="py-24 px-6 bg-white">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-serif text-4xl text-center mb-16 text-navy"
+                        >Industries We <span className="text-gold">Serve</span></motion.h2>
+                        
+                        <div className="grid md:grid-cols-4 gap-6">
+                            {industries.map((ind, i) => (
+                                <motion.div
+                                    key={ind.name}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.1 }}
+                                    whileHover={{ y: -5, borderLeftColor: '#c9a227' }}
+                                    className="p-6 bg-cream border-l-4 border-navy transition-all"
+                                >
+                                    <h3 className="font-serif text-xl text-navy mb-2">{ind.name}</h3>
+                                    <p className="text-gray-600 text-sm">{ind.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
 
-    <section class="why">
-        <div class="why-content">
-            <h2>Why <span>Brandella?</span></h2>
-            <p>Based in Preston, we've been supplying quality uniforms to Melbourne businesses. We understand that your team's appearance reflects your brand — and we take that seriously.</p>
-            <p>From initial consultation to final delivery, we work with you to ensure every piece meets your standards.</p>
-        </div>
-    </section>
+        const Contact = () => (
+            <section id="contact" className="py-24 bg-navy text-center">
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                    <h2 className="font-serif text-4xl text-white mb-8">Get a <span className="text-gold">Quote</span></h2>
+                    
+                    <motion.a
+                        href="tel:[PHONE]"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="inline-block bg-gold text-navy px-12 py-5 rounded font-semibold text-lg"
+                    >Call Now</motion.a>
+                    
+                    <p className="mt-8 text-gray-400">[PHONE] · Preston, Melbourne</p>
+                </motion.div>
+            </section>
+        );
 
-    <section class="services">
-        <h2>Our Services</h2>
-        <div class="service-list">
-            <div class="service-item">
-                <div class="service-number">01</div>
-                <div class="service-content">
-                    <h3>Uniform Supply</h3>
-                    <p>Complete uniform packages for new and existing teams.</p>
-                </div>
+        const App = () => (
+            <div>
+                <Navbar />
+                <Hero />
+                <Industries />
+                <Contact />
             </div>
-            <div class="service-item">
-                <div class="service-number">02</div>
-                <div class="service-content">
-                    <h3>Logo Embroidery</h3>
-                    <p>Professional branding on all garments.</p>
-                </div>
-            </div>
-            <div class="service-item">
-                <div class="service-number">03</div>
-                <div class="service-content">
-                    <h3>Bulk Orders</h3>
-                    <p>Competitive pricing for large teams and organizations.</p>
-                </div>
-            </div>
-            <div class="service-item">
-                <div class="service-number">04</div>
-                <div class="service-content">
-                    <h3>Ongoing Supply</h3>
-                    <p>Replenishment programs for growing teams.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        );
 
-    <section class="contact" id="contact">
-        <h2>Get a Quote</h2>
-        <p>Tell us about your team and we'll send a custom quote within 24 hours.</p>
-        <div class="contact-info">
-            <div class="contact-item">
-                <div class="label">Phone</div>
-                <div class="value">[PHONE]</div>
-            </div>
-            <div class="contact-item">
-                <div class="label">Location</div>
-                <div class="value">Preston, Melbourne</div>
-            </div>
-        </div>
-        <a href="tel:[PHONE]" class="cta-button">Call Now</a>
-    </section>
-
-    <footer>
-        <p>© 2026 Brandella Uniforms · Preston, Melbourne</p>
-    </footer>
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
 </body>
 </html>

@@ -1,1 +1,81 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Fitzroy Electrical | Electrician</title><script src="https://unpkg.com/react@18/umd/react.production.min.js"></script><script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif;}</style></head><body class="bg-yellow-50 text-gray-800"><div id="root"></div><script type="text/babel">const{useState,useEffect}=React;const{motion}=window.Motion;const Countdown=()=>{const[time,setTime]=useState({h:47,m:59,s:59});useEffect(()=>{const timer=setInterval(()=>{setTime(prev=>{let{h,m,s}=prev;s--;if(s<0){s=59;m--}if(m<0){m=59;h--}return{h,m,s};});},1000);return()=>clearInterval(timer);},[]);return(<div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-yellow-500 to-amber-500 text-white py-2 px-4 flex justify-between items-center z-50"><span className="text-sm font-medium">🔒 Private Preview — Expires in {String(time.h).padStart(2,'0')}:{String(time.m).padStart(2,'0')}:{String(time.s).padStart(2,'0')}</span></div>);};const App=()=>(<div className="min-h-screen"><Countdown/><motion.div initial={{opacity:0}}animate={{opacity:1}}className="pt-20"><section className="relative min-h-screen flex items-center justify-center overflow-hidden"><div className="absolute inset-0 bg-gradient-to-br from-yellow-100 via-amber-50 to-yellow-200"/><motion.div initial={{y:50,opacity:0}}animate={{y:0,opacity:1}}transition={{duration:0.8}}className="relative z-10 text-center px-4"><motion.h1 initial={{y:20,opacity:0}}animate={{y:0,opacity:1}}transition={{delay:0.3}}className="text-5xl md:text-7xl font-bold mb-6 text-yellow-700">Fitzroy Electrical</motion.h1><motion.p initial={{y:20,opacity:0}}animate={{y:0,opacity:1}}transition={{delay:0.4}}className="text-xl md:text-2xl text-gray-600 mb-4">Electrician · Fitzroy</motion.p><motion.p initial={{y:20,opacity:0}}animate={{y:0,opacity:1}}transition={{delay:0.5}}className="text-yellow-600 text-lg mb-8">Reliable local electrician — Demo site</motion.p><motion.button whileHover={{scale:1.05}}whileTap={{scale:0.95}}className="bg-gradient-to-r from-yellow-500 to-amber-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg">Get Free Quote</motion.button></motion.div></section></motion.div></div>);ReactDOM.createRoot(document.getElementById('root')).render(<App/>);</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitzroy Electrical — Electrician Fitzroy Melbourne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --amber: #F5A623; --dark: #111111; --charcoal: #1A1A1A; --light: #B0B0B0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: white; line-height: 1.6; }
+        nav { position: fixed; top: 0; left: 0; right: 0; background: var(--dark); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-top: 3px solid var(--amber); }
+        .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; }
+        .nav-phone { color: var(--amber); text-decoration: none; font-family: 'DM Mono', monospace; font-weight: 500; }
+        .hero { min-height: 85vh; background: var(--dark); display: flex; align-items: center; padding: 6rem 2rem 4rem; }
+        .hero-content { max-width: 900px; margin: 0 auto; width: 100%; }
+        .hero-text h1 { font-family: 'Space Grotesk', sans-serif; font-size: 5rem; font-weight: 700; line-height: 1; margin-bottom: 1.5rem; }
+        .hero-text h1 span { color: var(--amber); }
+        .hero-subtitle { font-size: 1.5rem; color: var(--light); margin-bottom: 2rem; max-width: 600px; }
+        .cta-button { display: inline-block; background: var(--amber); color: var(--dark); padding: 1rem 2rem; text-decoration: none; font-weight: 700; font-size: 1.125rem; }
+        .services { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+        .services h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 3rem; }
+        .services h2 span { color: var(--amber); }
+        .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .service-item { padding: 1.5rem; border-left: 3px solid var(--amber); background: var(--charcoal); }
+        .service-item h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .service-item p { color: var(--light); font-size: 0.95rem; }
+        .about { background: var(--charcoal); padding: 5rem 2rem; text-align: center; }
+        .about h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .about h2 span { color: var(--amber); }
+        .about p { font-size: 1.125rem; color: var(--light); max-width: 600px; margin: 0 auto; }
+        .contact { padding: 5rem 2rem; text-align: center; }
+        .contact h2 { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; color: var(--amber); margin-bottom: 1rem; }
+        .contact > p { color: var(--light); font-size: 1.25rem; margin-bottom: 2rem; }
+        .contact-info { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        footer { background: var(--charcoal); padding: 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer p { color: rgba(255,255,255,0.4); font-size: 0.875rem; }
+        @media (max-width: 768px) { .hero-text h1 { font-size: 3rem; } .service-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav><div class="nav-logo">Fitzroy Electrical</div><a href="tel:[PHONE]" class="nav-phone">[PHONE]</a></nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1><span>Bold</span> Electrical Work in Fitzroy</h1>
+                <p class="hero-subtitle">Commercial and residential electrical services for Melbourne's inner north. Licensed, insured, and on time.</p>
+                <a href="tel:[PHONE]" class="cta-button">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <h2>Our <span>Services</span></h2>
+        <div class="service-grid">
+            <div class="service-item"><h3>Commercial Fit-outs</h3><p>Wiring for offices, retail, and hospitality. Minimal disruption to your business.</p></div>
+            <div class="service-item"><h3>Switchboard Upgrades</h3><p>Modern safety switches and capacity upgrades for older properties.</p></div>
+            <div class="service-item"><h3>Lighting Design</h3><p>LED upgrades, feature lighting, and smart home integration.</p></div>
+            <div class="service-item"><h3>Emergency Repairs</h3><p>Power outages, faults, and urgent electrical issues. Fast response.</p></div>
+        </div>
+    </section>
+
+    <section class="about">
+        <h2>About <span>Fitzroy Electrical</span></h2>
+        <p>An electrical contractor based in Fitzroy, serving Melbourne's creative and commercial precincts. We understand the unique needs of heritage buildings, new developments, and everything in between.</p>
+    </section>
+
+    <section class="contact">
+        <h2>Get in Touch</h2>
+        <p>Call or message for a free quote on your electrical project.</p>
+        <div class="contact-info">
+            <div><strong>[PHONE]</strong></div>
+            <div><strong>Fitzroy, Melbourne</strong></div>
+        </div>
+        <a href="tel:[PHONE]" class="cta-button">Call Now</a>
+    </section>
+
+    <footer><p>© 2026 Fitzroy Electrical · Fitzroy, Melbourne</p></footer>
+</body>
+</html>

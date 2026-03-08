@@ -1,1 +1,98 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Lashkara Collections | Fashion</title><script src="https://unpkg.com/react@18/umd/react.production.min.js"></script><script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif;}</style></head><body class="bg-purple-50 text-gray-800"><div id="root"></div><script type="text/babel">const{useState,useEffect}=React;const{motion}=window.Motion;const Countdown=()=>{const[time,setTime]=useState({h:47,m:59,s:59});useEffect(()=>{const timer=setInterval(()=>{setTime(prev=>{let{h,m,s}=prev;s--;if(s<0){s=59;m--}if(m<0){m=59;h--}return{h,m,s};});},1000);return()=>clearInterval(timer);},[]);return(<div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 px-4 flex justify-between items-center z-50"><span className="text-sm font-medium">🔒 Private Preview — Expires in {String(time.h).padStart(2,'0')}:{String(time.m).padStart(2,'0')}:{String(time.s).padStart(2,'0')}</span></div>);};const App=()=>(<div className="min-h-screen"><Countdown/><motion.div initial={{opacity:0}}animate={{opacity:1}}className="pt-20"><section className="relative min-h-screen flex items-center justify-center overflow-hidden"><div className="absolute inset-0 bg-gradient-to-br from-purple-100 via-pink-50 to-purple-200"/><motion.div initial={{y:50,opacity:0}}animate={{y:0,opacity:1}}transition={{duration:0.8}}className="relative z-10 text-center px-4"><motion.div initial={{scale:0.8,opacity:0}}animate={{scale:1,opacity:1}}transition={{delay:0.2}}className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full mb-6 shadow-sm"><span className="text-yellow-500">★★★★☆</span><span className="text-sm text-gray-700">3.5 from 30 reviews · Craigieburn</span></motion.div><motion.h1 initial={{y:20,opacity:0}}animate={{y:0,opacity:1}}transition={{delay:0.3}}className="text-5xl md:text-7xl font-bold mb-6 text-purple-700">Lashkara Collections</motion.h1><motion.p initial={{y:20,opacity:0}}animate={{y:0,opacity:1}}transition={{delay:0.4}}className="text-xl md:text-2xl text-gray-600 mb-4">South Asian Fashion</motion.p><motion.p initial={{y:20,opacity:0}}animate={{y:0,opacity:1}}transition={{delay:0.5}}className="text-purple-600 text-lg mb-8">30 reviews — Room to improve with better web presence</motion.p><motion.button whileHover={{scale:1.05}}whileTap={{scale:0.95}}className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg">Book Free Consultation</motion.button></motion.div></section></motion.div></div>);ReactDOM.createRoot(document.getElementById('root')).render(<App/>);</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lashkara Collections — South Asian Fashion Craigieburn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --burgundy: #722F37; --gold: #D4AF37; --cream: #FFF8E7; --dark: #2C1810; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--dark); line-height: 1.6; }
+        nav { position: fixed; top: 0; left: 0; right: 0; background: var(--burgundy); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+        .nav-phone { color: white; text-decoration: none; font-size: 0.875rem; }
+        .hero { min-height: 90vh; background: var(--burgundy); display: flex; align-items: center; padding: 7rem 2rem 4rem; }
+        .hero-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; width: 100%; }
+        .hero-text h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 700; color: var(--gold); line-height: 1.1; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.25rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
+        .hero-image { height: 500px; border-radius: 4px; overflow: hidden; }
+        .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+        .cta-button { display: inline-block; background: var(--gold); color: var(--burgundy); padding: 1rem 2rem; text-decoration: none; font-weight: 600; border-radius: 4px; }
+        .trust-bar { background: white; padding: 2rem; text-align: center; }
+        .trust-content { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+        .trust-item .number { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--burgundy); }
+        .trust-item .label { font-size: 0.875rem; color: #666; }
+        .collections { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .collections h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--burgundy); }
+        .collection-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .collection-card { background: white; padding: 2rem; border-radius: 4px; text-align: center; border-top: 3px solid var(--gold); }
+        .collection-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .about { background: var(--burgundy); padding: 5rem 2rem; color: white; text-align: center; }
+        .about h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--gold); }
+        .about p { font-size: 1.125rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 1rem; }
+        .contact { background: var(--gold); padding: 5rem 2rem; text-align: center; }
+        .contact h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--burgundy); margin-bottom: 1rem; }
+        .contact-info { display: flex; justify-content: center; gap: 3rem; margin: 2rem 0; flex-wrap: wrap; }
+        .contact-item .label { font-size: 0.875rem; text-transform: uppercase; }
+        .contact-item .value { font-size: 1.25rem; font-weight: 600; }
+        footer { background: var(--burgundy); padding: 2rem; text-align: center; }
+        footer p { color: rgba(255,255,255,0.6); font-size: 0.875rem; }
+        @media (max-width: 768px) { .hero-content { grid-template-columns: 1fr; } .hero-text h1 { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">Lashkara Collections</div>
+        <a href="tel:[PHONE]" class="nav-phone">[PHONE]</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>South Asian Fashion in Melbourne</h1>
+                <p class="hero-subtitle">Elegant traditional and contemporary wear for women. Suits, dresses, and accessories for every occasion.</p>
+                <a href="#contact" class="cta-button">Visit Craigieburn Store</a>
+            </div>
+            <div class="hero-image">
+                <img src="images/lashkara-hero.jpg" alt="South Asian fashion collection">
+            </div>
+        </div>
+    </section>
+
+    <div class="trust-bar">
+        <div class="trust-content">
+            <div class="trust-item"><div class="number">3.5★</div><div class="label">Google Rating</div></div>
+            <div class="trust-item"><div class="number">30+</div><div class="label">Reviews</div></div>
+            <div class="trust-item"><div class="number">Craigieburn</div><div class="label">Melbourne</div></div>
+        </div>
+    </div>
+
+    <section class="collections">
+        <h2>Our Collections</h2>
+        <div class="collection-grid">
+            <div class="collection-card"><h3>Salwar Suits</h3><p>Traditional and modern designs for everyday elegance.</p></div>
+            <div class="collection-card"><h3>Dresses</h3><p>Contemporary fusion wear for special occasions.</p></div>
+            <div class="collection-card"><h3>Accessories</h3><p>Jewelry, scarves, and finishing touches.</p></div>
+            <div class="collection-card"><h3>Seasonal</h3><p>Wedding, festival, and celebration collections.</p></div>
+        </div>
+    </section>
+
+    <section class="about">
+        <h2>About Lashkara</h2>
+        <p>Bringing South Asian fashion to Melbourne's northern suburbs. We curate pieces that blend traditional craftsmanship with contemporary style.</p>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Visit Us</h2>
+        <div class="contact-info">
+            <div class="contact-item"><div class="label">Phone</div><div class="value">[PHONE]</div></div>
+            <div class="contact-item"><div class="label">Location</div><div class="value">Craigieburn</div></div>
+        </div>
+        <a href="tel:[PHONE]" class="cta-button" style="background:var(--burgundy);color:white;">Call Now</a>
+    </section>
+
+    <footer><p>© 2026 Lashkara Collections · Craigieburn, Melbourne</p></footer>
+</body>
+</html>

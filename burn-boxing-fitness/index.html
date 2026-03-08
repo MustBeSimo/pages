@@ -1,71 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Burn Boxing | Boxing Fitness</title>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>body{font-family:'Inter',sans-serif;}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burn Boxing & Fitness — Boxing Gym Craigieburn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --red: #DC143C; --black: #0D0D0D; --grey: #1A1A1A; --white: #F5F5F5; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto Condensed', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; }
+        nav { position: fixed; top: 0; left: 0; right: 0; background: var(--black); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 3px solid var(--red); }
+        .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--red); letter-spacing: 2px; }
+        .nav-phone { color: var(--white); text-decoration: none; font-weight: 700; }
+        .hero { min-height: 90vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/boxing-gym.jpg') center/cover; display: flex; align-items: center; padding: 7rem 2rem 4rem; }
+        .hero-content { max-width: 1200px; margin: 0 auto; text-align: center; width: 100%; }
+        .hero-text h1 { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: var(--red); letter-spacing: 4px; margin-bottom: 0.5rem; }
+        .hero-subtitle { font-size: 1.5rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
+        .cta-button { display: inline-block; background: var(--red); color: white; padding: 1rem 3rem; text-decoration: none; font-weight: 700; font-size: 1.125rem; letter-spacing: 1px; }
+        .trust-bar { background: var(--grey); padding: 2rem; text-align: center; }
+        .trust-content { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+        .trust-item .number { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--red); }
+        .trust-item .label { font-size: 0.875rem; color: #888; text-transform: uppercase; }
+        .classes { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .classes h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; text-align: center; margin-bottom: 3rem; color: var(--red); letter-spacing: 2px; }
+        .class-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .class-card { background: var(--grey); padding: 2rem; border-left: 4px solid var(--red); }
+        .class-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--red); margin-bottom: 0.5rem; letter-spacing: 1px; }
+        .about { background: var(--red); padding: 5rem 2rem; text-align: center; }
+        .about h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; margin-bottom: 1rem; letter-spacing: 2px; }
+        .about p { font-size: 1.25rem; max-width: 600px; margin: 0 auto; }
+        .contact { padding: 5rem 2rem; text-align: center; }
+        .contact h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--red); margin-bottom: 1rem; letter-spacing: 2px; }
+        .contact-info { display: flex; justify-content: center; gap: 3rem; margin: 2rem 0; flex-wrap: wrap; }
+        .cta-secondary { display: inline-block; background: var(--red); color: white; padding: 1rem 3rem; text-decoration: none; font-weight: 700; }
+        footer { background: var(--grey); padding: 2rem; text-align: center; }
+        footer p { color: rgba(255,255,255,0.5); }
+        @media (max-width: 768px) { .hero-text h1 { font-size: 3rem; } }
+    </style>
 </head>
-<body class="bg-black text-white">
-  <div id="root"></div>
-  <script type="text/babel">
-    const { useState, useEffect } = React;
-    const { motion } = window.Motion;
+<body>
+    <nav><div class="nav-logo">BURN BOXING</div><a href="tel:[PHONE]" class="nav-phone">[PHONE]</a></nav>
 
-    const Countdown = () => {
-      const [time, setTime] = useState({h:47,m:59,s:59});
-      useEffect(() => {
-        const timer = setInterval(() => {
-          setTime(prev => {
-            let {h,m,s} = prev; s--; if(s<0){s=59;m--} if(m<0){m=59;h--}
-            return {h,m,s};
-          });
-        }, 1000);
-        return () => clearInterval(timer);
-      }, []);
-      return (
-        <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-red-600 to-orange-600 text-white py-2 px-4 flex justify-between items-center z-50">
-          <span className="text-sm font-medium">🔒 Private Preview — Expires in {String(time.h).padStart(2,'0')}:{String(time.m).padStart(2,'0')}:{String(time.s).padStart(2,'0')}</span>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>TRAIN LIKE A FIGHTER</h1>
+                <p class="hero-subtitle">Boxing and fitness training in Craigieburn. All levels welcome. No experience needed.</p>
+                <a href="#contact" class="cta-button">START TRAINING</a>
+            </div>
         </div>
-      );
-    };
+    </section>
 
-    const App = () => (
-      <div className="min-h-screen">
-        <Countdown />
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-20">
-          <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-red-900" />
-            <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="relative z-10 text-center px-4">
-              <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }} className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                <span className="text-yellow-400">★★★★★</span>
-                <span className="text-sm">4.8 from 33 reviews · Craigieburn</span>
-              </motion.div>
-              
-              <motion.h1 initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }} className="text-5xl md:text-7xl font-bold mb-6 text-red-500">
-                Burn Boxing
-              </motion.h1>
-              
-              <motion.p initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="text-xl md:text-2xl text-gray-300 mb-4">Boxing & Fitness</motion.p>
-              
-              <motion.p initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="text-red-400 text-lg mb-8">33 reviews — Most popular in area</motion.p>
-              
-              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-gradient-to-r from-red-600 to-orange-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg">
-                Book Free Class
-              </motion.button>
-            </motion.div>
-          </section>
-        </motion.div>
-      </div>
-    );
+    <div class="trust-bar">
+        <div class="trust-content">
+            <div class="trust-item"><div class="number">4.8★</div><div class="label">Google Rating</div></div>
+            <div class="trust-item"><div class="number">33+</div><div class="label">Reviews</div></div>
+            <div class="trust-item"><div class="number">Craigieburn</div><div class="label">Melbourne</div></div>
+        </div>
+    </div>
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-  </script>
+    <section class="classes">
+        <h2>CLASSES</h2>
+        <div class="class-grid">
+            <div class="class-card"><h3>BOXING</h3><p>Learn technique, combinations, and bag work. Suitable for beginners.</p></div>
+            <div class="class-card"><h3>HIIT</h3><p>High-intensity intervals to build fitness and burn calories.</p></div>
+            <div class="class-card"><h3>STRENGTH</h3><p>Resistance training to build power and conditioning.</p></div>
+        </div>
+    </section>
+
+    <section class="about">
+        <h2>ABOUT BURN</h2>
+        <p>A boxing and fitness gym in Craigieburn built for people who want real results. No frills, hard work, supportive community.</p>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>JOIN THE GYM</h2>
+        <div class="contact-info">
+            <div><strong>[PHONE]</strong></div>
+            <div><strong>Craigieburn, Melbourne</strong></div>
+        </div>
+        <a href="tel:[PHONE]" class="cta-secondary">CALL NOW</a>
+    </section>
+
+    <footer><p>© 2026 Burn Boxing & Fitness · Craigieburn, Melbourne</p></footer>
 </body>
 </html>

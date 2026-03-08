@@ -1,74 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Melbourne Business Websites</title>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>body{font-family:'Inter',sans-serif;}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melbourne Business Websites — Private Preview</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --border: #2a2a2a;
+            --text: #e5e5e5;
+            --text-muted: #888;
+            --accent: #ff3333;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+        }
+        
+        .private-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+        
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .site-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        
+        .site-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .site-preview {
+            height: 180px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .site-info {
+            padding: 1.5rem;
+        }
+        
+        .site-info h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .site-info .category {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        
+        .site-url {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: var(--bg);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            word-break: break-all;
+            margin-bottom: 1rem;
+        }
+        
+        .site-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 0.625rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #ff4444;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--text-muted);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .sites-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white">
-  <div id="root"></div>
-  <script type="text/babel">
-    const { motion } = window.Motion;
-    
-    const sites = [
-      { emoji: '💪', name: 'Studio 404', category: 'Personal Training', url: '/studio-404-fitness/', color: 'from-orange-500 to-red-500' },
-      { emoji: '🤱', name: 'Fitmum_abs', category: 'Gym for Mums', url: '/fitmum-abs-gym/', color: 'from-rose-500 to-pink-500' },
-      { emoji: '🥊', name: 'Burn Boxing', category: 'Boxing', url: '/burn-boxing-fitness/', color: 'from-red-600 to-orange-500' },
-      { emoji: '🧘', name: 'HiVibe Fitness', category: 'Wellness', url: '/hivibe-fitness/', color: 'from-teal-500 to-emerald-500' },
-      { emoji: '🏋️', name: 'Ucebox Fitness', category: 'Functional Training', url: '/ucebox-fitness/', color: 'from-slate-500 to-slate-600' },
-      { emoji: '👗', name: 'Lashkara Collections', category: 'Fashion', url: '/lashkara-collections/', color: 'from-purple-600 to-pink-500' },
-      { emoji: '👢', name: 'Cowboys Cash & Carry', category: 'Workwear', url: '/cowboys-cash-carry/', color: 'from-amber-600 to-orange-500' },
-      { emoji: '👔', name: 'Brandella Uniforms', category: 'Uniforms', url: '/brandella-uniforms/', color: 'from-blue-600 to-indigo-500' },
-      { emoji: '🔧', name: "Joe's Plumbing", category: 'Plumber', url: '/joes-plumbing-co/', color: 'from-green-600 to-emerald-500' },
-      { emoji: '⚡', name: 'Fitzroy Electrical', category: 'Electrician', url: '/fitzroy-electrical/', color: 'from-yellow-500 to-amber-500' }
-    ];
+<body>
+    <div class="container">
+        <header>
+            <h1>Melbourne Business Websites</h1>
+            <p class="subtitle">AI-generated preview sites for local businesses</p>
+            <div class="private-badge">🔒 Private — Not indexed</div>
+        </header>
 
-    const App = () => (
-      <div className="min-h-screen p-8">
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12 pt-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Melbourne Business Websites</h1>
-          <p className="text-gray-400 mb-4">AI-generated preview sites with React + Animations</p>
-          <div className="inline-block bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium">🔒 Private Preview</div>
-        </motion.div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {sites.map((site, i) => (
-            <motion.div
-              key={site.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-              whileHover={{ scale: 1.02 }}
-              className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-gray-500 transition-colors"
-            >
-              <div className={`h-32 bg-gradient-to-br ${site.color} flex items-center justify-center text-5xl`}>
-                {site.emoji}
-              </div>
-              <div className="p-5">
-                <h3 className="font-semibold text-lg mb-1">{site.name}</h3>
-                <p className="text-gray-400 text-sm mb-4">{site.category}</p>
-                <a href={site.url} className={`block w-full py-2.5 text-center rounded-lg font-medium bg-gradient-to-r ${site.color} text-white hover:opacity-90 transition-opacity`}>
-                  View Site
-                </a>
-              </div>
-            </motion.div>
-          ))}
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Sites</h3>
+                <div class="value">10</div>
+            </div>
+            <div class="stat-card">
+                <h3>Fitness</h3>
+                <div class="value" style="color: var(--success);">5</div>
+            </div>
+            <div class="stat-card">
+                <h3>Retail</h3>
+                <div class="value" style="color: var(--warning);">3</div>
+            </div>
+            <div class="stat-card">
+                <h3>Trades</h3>
+                <div class="value" style="color: var(--info);">2</div>
+            </div>
         </div>
-        
-        <footer className="text-center mt-16 pt-8 border-t border-gray-800 text-gray-500">
-          <p>Studio W230 · 2026</p>
-        </footer>
-      </div>
-    );
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-  </script>
+        <!-- Fitness -->
+        <h2 class="category-title">Fitness & Wellness (5)</h2>
+        <div class="sites-grid">
+            <div class="site-card">
+                <div class="site-preview">💪</div>
+                <div class="site-info">
+                    <h3>Studio 404</h3>
+                    <p class="category">Personal Training · Caulfield South · 5.0★</p>
+                    <div class="site-url">pages-one-xi.vercel.app/studio-404-fitness</div>
+                    <div class="site-actions">
+                        <a href="studio-404-fitness.html" class="btn btn-primary">View</a>
+                        <button class="btn btn-secondary" onclick="copyUrl('studio-404-fitness')">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <div class="site-preview">🤱</div>
+                <div class="site-info">
+                    <h3>Fitmum_abs</h3>
+                    <p class="category">Gym for Mums · Richmond · 5.0★</p>
+                    <div class="site-url">pages-one-xi.vercel.app/fitmum-abs-gym</div>
+                    <div class="site-actions">
+                        <a href="fitmum-abs-gym.html" class="btn btn-primary">View</a>
+                        <button class="btn btn-secondary" onclick="copyUrl('fitmum-abs-gym')">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <div class="site-preview">🥊</div>
+                <div class="site-info">
+                    <h3>Burn Boxing</h3>
+                    <p class="category">Boxing Gym · Craigieburn · 4.8★</p>
+                    <div class="site-url">pages-one-xi.vercel.app/burn-boxing-fitness</div>
+                    <div class="site-actions">
+                        <a href="burn-boxing-fitness.html" class="btn btn-primary">View</a>
+                        <button class="btn btn-secondary" onclick="copyUrl('burn-boxing-fitness')">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <div class="site-preview">🧘</div>
+                <div class="site-info">
+                    <h3>HiVibe Fitness</h3>
+                    <p class="category">Wellness Studio · Fitzroy · 5.0★</p>
+                    <div class="site-url">pages-one-xi.vercel.app/hivibe-fitness</div>
+                    <div class="site-actions">
+                        <a href="hivibe-fitness.html" class="btn btn-primary">View</a>
+                        <button class="btn btn-secondary" onclick="copyUrl('hivibe-fitness')">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <div class="site-preview">🏋️</div>
+                <div class="site-info">
+                    <h3>Ucebox Fitness</h3>
+                    <p class="category">Functional Training · Richmond · 5.0★</p>
+                    <div class="site-url">pages-one-xi.vercel.app/ucebox-fitness</div>
+                    <div class="site-actions">
+                        <a href="ucebox-fitness.html" class="btn btn-primary">View</a>
+                        <button class="btn btn-secondary" onclick="copyUrl('ucebox-fitness')">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Retail -->
+        <h2 class="category-title">Retail (3)</h2>
+        <div class="sites-grid">
+            <div class="site-card">
+                <div class="site-preview">👗</div>
+                <div class="site-info">
+                    <h3>Lashkara Collections</h3>
+                    <p class="category">South Asian Fashion · Craigieburn · 3.5★</p>
+                    <div class="site-url">pages-one-xi.vercel.app/lashkara-collections</div>
+                    <div class="site-actions">
+                        <a href="lashkara-collections.html" class="btn btn-primary">View</a>
+                        <button class="btn btn-secondary" onclick="copyUrl('lashkara-collections')">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <div class="site-preview">👢</div>
+                <div class="site-info">
+                    <h3>Cowboys Cash & Carry</h3>
+                    <p class="category">Workwear · Thomastown · 4.5★</p>
+                    <div class="site-url">pages-one-xi.vercel.app/cowboys-cash-carry</div>
+                    <div class="site-actions">
+                        <a href="cowboys-cash-carry.html" class="btn btn-primary">View</a>
+                        <button class="btn btn-secondary" onclick="copyUrl('cowboys-cash-carry')">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <div class="site-preview">👔</div>
+                <div class="site-info">
+                    <h3>Brandella Uniforms</h3>
+                    <p class="category">Corporate Uniforms · Preston · 4.5★</p>
+                    <div class="site-url">pages-one-xi.vercel.app/brandella-uniforms</div>
+                    <div class="site-actions">
+                        <a href="brandella-uniforms.html" class="btn btn-primary">View</a>
+                        <button class="btn btn-secondary" onclick="copyUrl('brandella-uniforms')">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trades -->
+        <h2 class="category-title">Trades (2)</h2>
+        <div class="sites-grid">
+            <div class="site-card">
+                <div class="site-preview">🔧</div>
+                <div class="site-info">
+                    <h3>Joe's Plumbing Co</h3>
+                    <p class="category">Plumber · Fitzroy · Demo</p>
+                    <div class="site-url">pages-one-xi.vercel.app/joes-plumbing-co</div>
+                    <div class="site-actions">
+                        <a href="joes-plumbing-co.html" class="btn btn-primary">View</a>
+                        <button class="btn btn-secondary" onclick="copyUrl('joes-plumbing-co')">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <div class="site-preview">⚡</div>
+                <div class="site-info">
+                    <h3>Fitzroy Electrical</h3>
+                    <p class="category">Electrician · Fitzroy · Demo</p>
+                    <div class="site-url">pages-one-xi.vercel.app/fitzroy-electrical</div>
+                    <div class="site-actions">
+                        <a href="fitzroy-electrical.html" class="btn btn-primary">View</a>
+                        <button class="btn btn-secondary" onclick="copyUrl('fitzroy-electrical')">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Private preview sites for Melbourne businesses</p>
+            <p>Studio W230 · 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyUrl(slug) {
+            const url = `https://pages-one-xi.vercel.app/${slug}/`;
+            navigator.clipboard.writeText(url);
+            const btn = event.target;
+            const original = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = original, 1500);
+        }
+    </script>
 </body>
 </html>

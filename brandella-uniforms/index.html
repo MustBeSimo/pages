@@ -1,1 +1,464 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Brandella Uniforms | B2B Uniforms</title><script src="https://unpkg.com/react@18/umd/react.production.min.js"></script><script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif;}</style></head><body class="bg-blue-50 text-gray-800"><div id="root"></div><script type="text/babel">const{useState,useEffect}=React;const{motion}=window.Motion;const Countdown=()=>{const[time,setTime]=useState({h:47,m:59,s:59});useEffect(()=>{const timer=setInterval(()=>{setTime(prev=>{let{h,m,s}=prev;s--;if(s<0){s=59;m--}if(m<0){m=59;h--}return{h,m,s};});},1000);return()=>clearInterval(timer);},[]);return(<div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 px-4 flex justify-between items-center z-50"><span className="text-sm font-medium">🔒 Private Preview — Expires in {String(time.h).padStart(2,'0')}:{String(time.m).padStart(2,'0')}:{String(time.s).padStart(2,'0')}</span></div>);};const App=()=>(<div className="min-h-screen"><Countdown/><motion.div initial={{opacity:0}}animate={{opacity:1}}className="pt-20"><section className="relative min-h-screen flex items-center justify-center overflow-hidden"><div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-indigo-50 to-blue-200"/><motion.div initial={{y:50,opacity:0}}animate={{y:0,opacity:1}}transition={{duration:0.8}}className="relative z-10 text-center px-4"><motion.div initial={{scale:0.8,opacity:0}}animate={{scale:1,opacity:1}}transition={{delay:0.2}}className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full mb-6 shadow-sm"><span className="text-yellow-500">★★★★☆</span><span className="text-sm text-gray-700">4.5 from 6 reviews · Preston</span></motion.div><motion.h1 initial={{y:20,opacity:0}}animate={{y:0,opacity:1}}transition={{delay:0.3}}className="text-5xl md:text-7xl font-bold mb-6 text-blue-700">Brandella Uniforms</motion.h1><motion.p initial={{y:20,opacity:0}}animate={{y:0,opacity:1}}transition={{delay:0.4}}className="text-xl md:text-2xl text-gray-600 mb-4">B2B Uniforms & Workwear</motion.p><motion.p initial={{y:20,opacity:0}}animate={{y:0,opacity:1}}transition={{delay:0.5}}className="text-blue-600 text-lg mb-8">B2B buyers expect a professional website</motion.p><motion.button whileHover={{scale:1.05}}whileTap={{scale:0.95}}className="bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg">Book Free Consultation</motion.button></motion.div></section></motion.div></div>);ReactDOM.createRoot(document.getElementById('root')).render(<App/>);</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandella Uniforms — Corporate & Business Uniforms Melbourne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a1a2e;
+            --gold: #c9a227;
+            --cream: #faf9f6;
+            --text: #2d2d2d;
+            --text-light: #666;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--navy);
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .nav-logo span { color: var(--gold); }
+        
+        .nav-phone {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            padding: 7rem 2rem 4rem;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-text h1 span { color: var(--gold); }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-image {
+            height: 450px;
+            background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2e 100%);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+        }
+        
+        /* Trust Bar */
+        .trust-bar {
+            background: white;
+            padding: 3rem 2rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .trust-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .trust-item {
+            padding: 1rem;
+        }
+        
+        .trust-item .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .trust-item .label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Industries */
+        .industries {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .industries h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .industries h2 span { color: var(--gold); }
+        
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .industry-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 4px;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .industry-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .industry-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        /* Why Section */
+        .why {
+            background: var(--navy);
+            padding: 5rem 2rem;
+            color: white;
+        }
+        
+        .why-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .why h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .why h2 span { color: var(--gold); }
+        
+        .why p {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Services */
+        .services {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .services h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .service-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .service-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .service-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            font-weight: 700;
+            min-width: 50px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .service-content p {
+            color: var(--text-light);
+        }
+        
+        /* Contact */
+        .contact {
+            background: var(--navy);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .contact > p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            color: white;
+        }
+        
+        .contact-item .label {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .contact-item .value {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--navy);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        footer p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .trust-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">Brandella <span>Uniforms</span></div>
+        <a href="tel:[PHONE]" class="nav-phone">[PHONE — insert number]</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Professional Uniforms for <span>Melbourne Businesses</span></h1>
+                <p class="hero-subtitle">Corporate, healthcare, hospitality & school uniforms supplied across Melbourne. Quality fabrics, professional embroidery, reliable delivery.</p>
+                <a href="#contact" class="cta-button">Request a Quote</a>
+            </div>
+            <div class="hero-image">
+                <img src="images/brandella-hero.jpg" alt="Professional corporate uniforms">
+            </div>
+        </div>
+    </section>
+
+    <div class="trust-bar">
+        <div class="trust-content">
+            <div class="trust-item">
+                <div class="number">4.5★</div>
+                <div class="label">Google Rating</div>
+            </div>
+            <div class="trust-item">
+                <div class="number">6+</div>
+                <div class="label">Reviews</div>
+            </div>
+            <div class="trust-item">
+                <div class="number">Preston</div>
+                <div class="label">Melbourne</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="industries">
+        <h2>Industries We <span>Serve</span></h2>
+        <div class="industry-grid">
+            <div class="industry-card">
+                <h3>Corporate</h3>
+                <p>Suits, shirts, and professional attire with company branding and embroidery.</p>
+            </div>
+            <div class="industry-card">
+                <h3>Healthcare</h3>
+                <p>Scrubs, lab coats, and medical uniforms designed for comfort and durability.</p>
+            </div>
+            <div class="industry-card">
+                <h3>Hospitality</h3>
+                <p>Chef wear, front-of-house, and hotel staff uniforms.</p>
+            </div>
+            <div class="industry-card">
+                <h3>Education</h3>
+                <p>School uniforms, sports kits, and staff attire.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="why">
+        <div class="why-content">
+            <h2>Why <span>Brandella?</span></h2>
+            <p>Based in Preston, we've been supplying quality uniforms to Melbourne businesses. We understand that your team's appearance reflects your brand — and we take that seriously.</p>
+            <p>From initial consultation to final delivery, we work with you to ensure every piece meets your standards.</p>
+        </div>
+    </section>
+
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="service-list">
+            <div class="service-item">
+                <div class="service-number">01</div>
+                <div class="service-content">
+                    <h3>Uniform Supply</h3>
+                    <p>Complete uniform packages for new and existing teams.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-number">02</div>
+                <div class="service-content">
+                    <h3>Logo Embroidery</h3>
+                    <p>Professional branding on all garments.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-number">03</div>
+                <div class="service-content">
+                    <h3>Bulk Orders</h3>
+                    <p>Competitive pricing for large teams and organizations.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-number">04</div>
+                <div class="service-content">
+                    <h3>Ongoing Supply</h3>
+                    <p>Replenishment programs for growing teams.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Get a Quote</h2>
+        <p>Tell us about your team and we'll send a custom quote within 24 hours.</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="label">Phone</div>
+                <div class="value">[PHONE]</div>
+            </div>
+            <div class="contact-item">
+                <div class="label">Location</div>
+                <div class="value">Preston, Melbourne</div>
+            </div>
+        </div>
+        <a href="tel:[PHONE]" class="cta-button">Call Now</a>
+    </section>
+
+    <footer>
+        <p>© 2026 Brandella Uniforms · Preston, Melbourne</p>
+    </footer>
+</body>
+</html>

@@ -14,27 +14,15 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        amber: '#F5A623',
-                        dark: '#111111',
-                        charcoal: '#1A1A1A'
-                    },
-                    fontFamily: {
-                        display: ['Space Grotesk', 'sans-serif'],
-                        mono: ['DM Mono', 'monospace']
-                    }
+                    colors: { amber: '#F5A623', dark: '#111111', charcoal: '#1A1A1A' },
+                    fontFamily: { display: ['Space Grotesk', 'sans-serif'], mono: ['DM Mono', 'monospace'] }
                 }
             }
         }
     </script>
-    <style>
-        body { font-family: 'Space Grotesk', sans-serif; }
+    <style>body { font-family: 'Space Grotesk', sans-serif; }
         .electric-border { position: relative; }
-        .electric-border::after {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            border: 2px solid transparent; border-image: linear-gradient(90deg, #F5A623, transparent, #F5A623) 1;
-            animation: electric-pulse 2s infinite;
-        }
+        .electric-border::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border: 2px solid transparent; border-image: linear-gradient(90deg, #F5A623, transparent, #F5A623) 1; animation: electric-pulse 2s infinite; }
         @keyframes electric-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
     </style>
 </head>
@@ -42,54 +30,24 @@
     <div id="root"></div>
     <script type="text/babel">
         const { useState, useEffect } = React;
-        const { motion, useScroll, useTransform, AnimatePresence } = window.Motion;
+        const { motion, AnimatePresence } = window.Motion;
 
-        // Electric line animation component
         const ElectricLine = () => (
             <svg className="absolute top-0 left-0 w-full h-2 overflow-visible" preserveAspectRatio="none">
-                <motion.path
-                    d="M0,1 Q250,-5 500,1 T1000,1 T1500,1 T2000,1"
-                    fill="none"
-                    stroke="#F5A623"
-                    strokeWidth="3"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{ duration: 2, ease: "easeInOut" }}
-                />
-                <motion.circle
-                    r="4"
-                    fill="#F5A623"
-                    initial={{ offsetDistance: "0%" }}
-                    animate={{ offsetDistance: "100%" }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                    style={{ offsetPath: "path('M0,1 Q250,-5 500,1 T1000,1 T1500,1 T2000,1')" }}
-                />
+                <motion.path d="M0,1 Q250,-5 500,1 T1000,1 T1500,1 T2000,1" fill="none" stroke="#F5A623" strokeWidth="3" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, ease: "easeInOut" }} />
+                <motion.circle r="4" fill="#F5A623" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} style={{ offsetPath: "path('M0,1 Q250,-5 500,1 T1000,1 T1500,1 T2000,1')" }} />
             </svg>
         );
 
         const Navbar = () => {
             const [scrolled, setScrolled] = useState(false);
-            useEffect(() => {
-                window.addEventListener('scroll', () => setScrolled(window.scrollY > 50));
-            }, []);
+            useEffect(() => { window.addEventListener('scroll', () => setScrolled(window.scrollY > 50)); }, []);
             
             return (
-                <motion.nav
-                    initial={{ y: -100 }}
-                    animate={{ y: 0 }}
-                    className={`fixed top-0 left-0 right-0 z-50 border-t-4 border-amber transition-all ${scrolled ? 'bg-dark/95 py-4' : 'bg-transparent py-6'}`}
-                >
+                <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} className={`fixed top-0 left-0 right-0 z-50 border-t-4 border-amber transition-all ${scrolled ? 'bg-dark/95 py-4' : 'bg-transparent py-6'}`}>
                     <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                        <motion.div whileHover={{ scale: 1.05 }} className="font-display text-2xl font-bold">
-                            Fitzroy <span className="text-amber">Electrical</span>
-                        </motion.div>
-                        <motion.a 
-                            href="tel:[PHONE]" 
-                            whileHover={{ color: '#F5A623' }}
-                            className="font-mono text-amber"
-                        >
-                            [PHONE]
-                        </motion.a>
+                        <motion.div whileHover={{ scale: 1.05 }} className="font-display text-2xl font-bold">Fitzroy <span className="text-amber">Electrical</span></motion.div>
+                        <motion.a href="tel:[PHONE]" whileHover={{ color: '#F5A623' }} className="font-mono text-amber">[PHONE]</motion.a>
                     </div>
                 </motion.nav>
             );
@@ -99,79 +57,19 @@
             return (
                 <section className="min-h-screen flex items-center pt-24 pb-16 px-6 relative overflow-hidden">
                     <ElectricLine />
-                    
                     <div className="absolute inset-0">
-                        {[...Array(5)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                className="absolute w-1 bg-amber/20"
-                                style={{ 
-                                    left: `${20 + i * 15}%`,
-                                    height: '100%',
-                                    top: 0
-                                }}
-                                animate={{ 
-                                    opacity: [0.2, 0.5, 0.2],
-                                    scaleY: [1, 1.2, 1]
-                                }}
-                                transition={{ 
-                                    duration: 2 + i * 0.5,
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                }}
-                            />
-                        ))}
+                        {[...Array(5)].map((_, i) => <motion.div key={i} className="absolute w-1 bg-amber/20" style={{ left: `${20 + i * 15}%`, height: '100%', top: 0 }} animate={{ opacity: [0.2, 0.5, 0.2], scaleY: [1, 1.2, 1] }} transition={{ duration: 2 + i * 0.5, repeat: Infinity, ease: "easeInOut" }} />)}
                     </div>
                     
                     <div className="max-w-6xl mx-auto relative z-10">
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1 }}
-                        >
-                            <motion.p
-                                initial={{ x: -50, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                className="font-mono text-amber mb-4"
-                            >
-                                // LICENSED ELECTRICIAN // FITZROY
-                            </motion.p>
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+                            <motion.p initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="font-mono text-amber mb-4">// LICENSED ELECTRICIAN // FITZROY</motion.p>
                             
-                            <motion.h1
-                                initial={{ y: 50, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.2 }}
-                                className="font-display text-6xl md:text-8xl font-bold leading-none mb-6"
-                            >
-                                <span className="text-amber">BOLD</span><br/>
-                                ELECTRICAL<br/>
-                                WORK
-                            </motion.h1>
+                            <motion.h1 initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }} className="font-display text-6xl md:text-8xl font-bold leading-none mb-6"><span className="text-amber">Bold</span><br/>ELECTRICAL<br/>WORK</motion.h1>
                             
-                            <motion.p
-                                initial={{ y: 30, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.4 }}
-                                className="text-xl text-gray-400 mb-8 max-w-xl"
-                            >
-                                Commercial and residential electrical services for Melbourne's inner north.
-                            </motion.p>
+                            <motion.p initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="text-xl text-gray-400 mb-8 max-w-xl">Commercial and residential electrical services for Melbourne's inner north. Licensed, insured, and on time.</p>
                             
-                            <motion.a
-                                href="#contact"
-                                initial={{ y: 30, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.6 }}
-                                whileHover={{ 
-                                    scale: 1.05, 
-                                    boxShadow: "0 0 40px rgba(245,166,35,0.4)",
-                                    backgroundColor: "#F5A623",
-                                    color: "#111"
-                                }}
-                                className="inline-block border-2 border-amber text-amber px-10 py-4 font-bold text-lg transition-colors"
-                            >
-                                GET A QUOTE
-                            </motion.a>
+                            <motion.a href="#contact" initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }} whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(245,166,35,0.4)", backgroundColor: "#F5A623", color: "#111" }} className="inline-block border-2 border-amber text-amber px-10 py-4 font-bold text-lg transition-colors">GET A QUOTE</motion.a>
                         </motion.div>
                     </div>
                 </section>
@@ -180,38 +78,20 @@
 
         const Services = () => {
             const services = [
-                { title: "Commercial Fit-outs", desc: "Wiring for offices, retail, hospitality" },
-                { title: "Switchboard Upgrades", desc: "Modern safety switches and capacity" },
-                { title: "Lighting Design", desc: "LED upgrades, feature lighting" },
-                { title: "Emergency Repairs", desc: "Power outages and urgent issues" }
+                { title: "Commercial Fit-outs", desc: "Wiring for offices, retail, hospitality. Minimal disruption." },
+                { title: "Switchboard Upgrades", desc: "Modern safety switches and capacity upgrades." },
+                { title: "Lighting Design", desc: "LED upgrades, feature lighting, smart home integration." },
+                { title: "Emergency Repairs", desc: "Power outages, faults, urgent issues. Fast response." }
             ];
             
             return (
                 <section className="py-24 px-6 bg-charcoal">
                     <div className="max-w-6xl mx-auto">
-                        <motion.h2
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="font-display text-5xl mb-16"
-                        >
-                            OUR <span className="text-amber">SERVICES</span>
-                        </motion.h2>
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-display text-5xl mb-16">Our <span className="text-amber">Services</span></motion.h2>
                         
                         <div className="grid md:grid-cols-2 gap-6">
                             {services.map((svc, i) => (
-                                <motion.div
-                                    key={svc.title}
-                                    initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 }}
-                                    whileHover={{ 
-                                        borderLeftWidth: "8px",
-                                        backgroundColor: "rgba(245,166,35,0.1)"
-                                    }}
-                                    className="p-6 border-l-4 border-amber bg-dark cursor-pointer transition-all"
-                                >
+                                <motion.div key={svc.title} initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ borderLeftWidth: "8px", backgroundColor: "rgba(245,166,35,0.1)" }} className="p-6 border-l-4 border-amber bg-dark cursor-pointer transition-all">
                                     <h3 className="font-display text-2xl mb-2">{svc.title}</h3>
                                     <p className="text-gray-400 font-mono">{svc.desc}</p>
                                 </motion.div>
@@ -222,39 +102,114 @@
             );
         };
 
-        const Contact = () => {
+        const WhyChoose = () => {
+            const reasons = [
+                { title: "Licensed & Insured", desc: "Fully qualified electricians with public liability insurance." },
+                { title: "On-Time Guarantee", desc: "We respect your time. If we're late, we discount the job." },
+                { title: "Transparent Pricing", desc: "Upfront quotes, no hidden fees, no surprises." },
+                { title: "Local Knowledge", desc: "Fitzroy based. We understand heritage buildings and modern developments." }
+            ];
+
             return (
-                <section id="contact" className="py-24 px-6">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                        >
-                            <h2 className="font-display text-5xl text-amber mb-8">GET IN TOUCH</h2>
-                            
-                            <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                className="inline-block"
-                            >
-                                <a 
-                                    href="tel:[PHONE]"
-                                    className="inline-block bg-amber text-dark px-12 py-5 font-bold text-xl hover:shadow-lg hover:shadow-amber/30 transition-shadow"
-                                >
-                                    CALL NOW
-                                </a>
-                            </motion.div>
-                            
-                            <p className="mt-8 text-gray-500 font-mono">[PHONE] · Fitzroy, Melbourne</p>
-                        </motion.div>
+                <section className="py-24 px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-display text-5xl mb-16 text-center">Why <span className="text-amber">Fitzroy Electrical?</span></motion.h2>
+                        
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {reasons.map((r, i) => (
+                                <motion.div key={r.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ y: -5 }} className="bg-charcoal p-6 text-center">
+                                    <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }} className="w-16 h-16 border-2 border-amber rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <span className="text-amber text-2xl">⚡</span>
+                                    </motion.div>
+                                    <h3 className="font-display text-xl mb-2">{r.title}</h3>
+                                    <p className="text-gray-400 text-sm">{r.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </section>
             );
         };
 
+        const RecentWork = () => {
+            const projects = [
+                { name: "Brunswick St Cafe", type: "Commercial Fit-out", desc: "Complete rewire and LED lighting design" },
+                { name: "Fitzroy Terrace", type: "Residential", desc: "Heritage-sensitive switchboard upgrade" },
+                { name: "Collingwood Office", type: "Commercial", desc: "Data and power for 40 workstations" },
+                { name: "Richmond Warehouse", type: "Industrial", desc: "Three-phase power installation" }
+            ];
+
+            return (
+                <section className="py-24 px-6 bg-charcoal">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-display text-5xl mb-16 text-center">Recent <span className="text-amber">Projects</span></motion.h2>
+                        
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {projects.map((p, i) => (
+                                <motion.div key={p.name} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ borderColor: '#F5A623' }} className="p-6 border border-gray-700">
+                                    <span className="text-amber font-mono text-sm">{p.type}</span>
+                                    <h3 className="font-display text-2xl my-2">{p.name}</h3>
+                                    <p className="text-gray-400">{p.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Testimonials = () => {
+            const testimonials = [
+                { name: "Sarah Mitchell", role: "Cafe Owner", text: "Professional, punctual, and the lighting looks incredible." },
+                { name: "David Chen", role: "Property Manager", text: "Our go-to electrician for all our Fitzroy properties." },
+                { name: "Emma Williams", role: "Homeowner", text: "Fixed our old switchboard without disrupting the heritage features." }
+            ];
+
+            return (
+                <section className="py-24 px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-display text-5xl mb-16 text-center">Client <span className="text-amber">Feedback</span></motion.h2>
+                        
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {testimonials.map((t, i) => (
+                                <motion.div key={t.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} whileHover={{ y: -5 }} className="bg-charcoal p-8 border-l-4 border-amber">
+                                    <p className="text-gray-300 mb-6 italic">"{t.text}"</p>
+                                    <p className="text-amber font-bold">{t.name}</p>
+                                    <p className="text-gray-500 text-sm">{t.role}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Emergency = () => (
+            <section className="py-16 bg-amber text-center px-6">
+                <motion.div initial={{ scale: 0.9 }} whileInView={{ scale: 1 }} viewport={{ once: true }}>
+                    <h2 className="font-display text-4xl text-dark mb-4">24/7 Emergency Service</h2>
+                    <p className="text-dark/80 mb-6">Power out? Switchboard tripping? We respond fast.</p>
+                    <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block bg-dark text-amber px-10 py-4 font-bold">CALL [PHONE]</motion.a>
+                </motion.div>
+            </section>
+        );
+
+        const Contact = () => (
+            <section id="contact" className="py-24 px-6 text-center">
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                    <h2 className="font-display text-5xl text-amber mb-8">Get in Touch</h2>
+                    <p className="text-gray-400 mb-8">Call or message for a free quote on your electrical project.</p>
+                    
+                    <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.05, backgroundColor: '#F5A623', color: '#111' }} whileTap={{ scale: 0.95 }} className="inline-block border-2 border-amber text-amber px-12 py-5 font-bold text-xl">Call Now</motion.a>
+                    
+                    <p className="mt-8 text-gray-500 font-mono">[PHONE] · Fitzroy, Melbourne</p>
+                </motion.div>
+            </section>
+        );
+
         const Footer = () => (
             <footer className="bg-charcoal py-8 text-center border-t border-gray-800">
-                <p className="text-gray-600 font-mono text-sm">© 2026 Fitzroy Electrical · Fitzroy, Melbourne</p>
+                <p className="text-gray-600 font-mono text-sm">© 2026 Fitzroy Electrical · Licensed Electrician · Fitzroy, Melbourne</p>
             </footer>
         );
 
@@ -263,6 +218,10 @@
                 <Navbar />
                 <Hero />
                 <Services />
+                <WhyChoose />
+                <RecentWork />
+                <Testimonials />
+                <Emergency />
                 <Contact />
                 <Footer />
             </div>

@@ -21,7 +21,7 @@
         }
     </script>
 </head>
-<body className="bg-gray-50">
+<body class="bg-gray-50">
     <div id="root"></div>
     <script type="text/babel">
         const { useState, useEffect } = React;
@@ -39,18 +39,7 @@
             return (
                 <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
                     <AnimatePresence>
-                        {hearts.map(heart => (
-                            <motion.div
-                                key={heart.id}
-                                initial={{ opacity: 0, y: '100vh', x: `${heart.x}%` }}
-                                animate={{ opacity: [0, 1, 0], y: '-10vh' }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 8, ease: "easeOut" }}
-                                className="absolute text-coral/20 text-4xl"
-                            >
-                                ♥
-                            </motion.div>
-                        ))}
+                        {hearts.map(heart => <motion.div key={heart.id} initial={{ opacity: 0, y: '100vh', x: `${heart.x}%` }} animate={{ opacity: [0, 1, 0], y: '-10vh' }} exit={{ opacity: 0 }} transition={{ duration: 8, ease: "easeOut" }} className="absolute text-coral/20 text-4xl">♥</motion.div>)}
                     </AnimatePresence>
                 </div>
             );
@@ -58,107 +47,55 @@
 
         const Navbar = () => {
             const [scrolled, setScrolled] = useState(false);
-            useEffect(() => {
-                window.addEventListener('scroll', () => setScrolled(window.scrollY > 50));
-            }, []);
+            useEffect(() => { window.addEventListener('scroll', () => setScrolled(window.scrollY > 50)); }, []);
             
             return (
-                <motion.nav
-                    initial={{ y: -100 }}
-                    animate={{ y: 0 }}
-                    className={`fixed top-0 left-0 right-0 z-50 transition-all ${scrolled ? 'bg-white shadow-lg py-3' : 'bg-transparent py-5'}`}
-                >
+                <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} className={`fixed top-0 left-0 right-0 z-50 transition-all ${scrolled ? 'bg-white shadow-lg py-3' : 'bg-transparent py-5'}`}>
                     <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
-                        <motion.div whileHover={{ scale: 1.1, rotate: [-5, 5, 0] }} className="font-heading text-2xl font-bold text-coral">
-                            Fitmum_abs
-                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.1, rotate: [-5, 5, 0] }} className="font-heading text-2xl font-bold text-coral">Fitmum_abs</motion.div>
                         <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.05 }} className="text-dark font-semibold">[PHONE]</motion.a>
                     </div>
                 </motion.nav>
             );
         };
 
-        const Hero = () => {
-            return (
-                <section className="min-h-screen flex items-center pt-20 relative overflow-hidden bg-gradient-to-br from-coral via-pink-400 to-teal">
-                    <FloatingHearts />
-                    
-                    <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-                        <div>
-                            <motion.div
-                                initial={{ opacity: 0, x: -50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.8 }}
-                            >
-                                <p className="text-white font-semibold mb-4">RICHMOND · 5.0★</p>                                
-                                <h1 className="font-heading text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-                                    Fitness for Mums,<br/>
-                                    <span className="text-teal">By Mums</span>
-                                </h1>
-                                
-                                <p className="text-xl text-white/90 mb-8">
-                                    A Richmond gym designed for mothers. Kid-friendly, judgment-free.
-                                </p>
-                                
-                                <motion.a
-                                    href="#contact"
-                                    whileHover={{ scale: 1.1, rotate: 2 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="inline-block bg-white text-coral px-8 py-4 rounded-full font-bold text-lg shadow-xl"
-                                >
-                                    Book a Free Session
-                                </motion.a>
-                            </motion.div>
-                        </div>
-                        
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.3 }}
-                            className="relative"
-                        >
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                className="absolute -inset-4 bg-white/20 rounded-full blur-xl"
-                            />
-                            <img src="../images/mum-fitness.jpg" className="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover" />
+        const Hero = () => (
+            <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-coral via-pink-400 to-teal pt-20">
+                <FloatingHearts />
+                
+                <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+                    <div>
+                        <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+                            <p className="text-white font-semibold mb-4">RICHMOND · 5.0★</p>                            
+                            <h1 className="font-heading text-5xl md:text-6xl font-bold text-white leading-tight mb-6">Fitness for Mums,<br/><span className="text-teal">By Mums</span></h1>
+                            <p className="text-xl text-white/90 mb-8">A Richmond gym designed for mothers. Kid-friendly, judgment-free.</p>
+                            <motion.a href="#contact" whileHover={{ scale: 1.1, rotate: 2 }} whileTap={{ scale: 0.95 }} className="inline-block bg-white text-coral px-8 py-4 rounded-full font-bold text-lg shadow-xl">Book a Free Session</motion.a>
                         </motion.div>
                     </div>
-                </section>
-            );
-        };
+                    
+                    <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.3 }} className="relative">
+                        <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute -inset-4 bg-white/20 rounded-full blur-xl" />
+                        <img src="../images/mum-fitness.jpg" className="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover" />
+                    </motion.div>
+                </div>
+            </section>
+        );
 
         const Features = () => {
             const features = [
-                { title: "Kid-Friendly", desc: "Bring the little ones" },
-                { title: "Flexible Hours", desc: "Early morning & evening" },
-                { title: "Mum Community", desc: "No judgment, just support" }
+                { title: "Kid-Friendly", desc: "Bring the little ones. We have a space for them while you train." },
+                { title: "Flexible Hours", desc: "Early morning and evening sessions that work around school runs." },
+                { title: "Mum Community", desc: "Train with women who understand. No judgment, just support." }
             ];
             
             return (
                 <section className="py-20 px-6 bg-white">
                     <div className="max-w-5xl mx-auto">
-                        <motion.h2
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="font-heading text-4xl text-center mb-16 text-dark"
-                        >
-                            Why <span className="text-coral">Fitmum_abs?</span>
-                        </motion.h2>
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl text-center mb-16 text-dark">Why <span className="text-coral">Fitmum_abs?</span></motion.h2>
                         
                         <div className="grid md:grid-cols-3 gap-8">
                             {features.map((f, i) => (
-                                <motion.div
-                                    key={f.title}
-                                    initial={{ opacity: 0, y: 50 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.2 }}
-                                    whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(255,107,107,0.2)" }}
-                                    className="bg-gray-50 p-8 rounded-2xl text-center"
-                                >
+                                <motion.div key={f.title} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2 }} whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(255,107,107,0.2)" }} className="bg-gray-50 p-8 rounded-2xl text-center">
                                     <h3 className="font-heading text-xl text-coral mb-2">{f.title}</h3>
                                     <p className="text-gray-600">{f.desc}</p>
                                 </motion.div>
@@ -169,22 +106,140 @@
             );
         };
 
+        const Classes = () => {
+            const classes = [
+                { name: "Mums & Bubs", time: "10:00 AM", desc: "Gentle workout with baby in pram" },
+                { name: "HIIT Mums", time: "6:00 PM", desc: "High intensity after the kids are sorted" },
+                { name: "Yoga Flow", time: "9:00 AM", desc: "Stretch, breathe, restore" },
+                { name: "Strength Training", time: "7:00 PM", desc: "Build strength and confidence" }
+            ];
+
+            return (
+                <section className="py-20 px-6 bg-coral">
+                    <div className="max-w-5xl mx-auto">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl text-center mb-16 text-white">Class <span className="text-teal">Schedule</span></motion.h2>
+                        
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {classes.map((c, i) => (
+                                <motion.div key={c.name} initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ scale: 1.02 }} className="bg-white p-6 rounded-xl">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <h3 className="font-heading text-xl text-dark">{c.name}</h3>
+                                        <span className="text-coral font-bold">{c.time}</span>
+                                    </div>
+                                    <p className="text-gray-600">{c.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Testimonials = () => {
+            const testimonials = [
+                { name: "Jessica M.", text: "Finally a gym where I don't feel guilty bringing my toddler!" },
+                { name: "Amanda K.", text: "The 6pm class is my sanity saver after a day with the kids." },
+                { name: "Sarah L.", text: "Lost 10kg and made friends. Best decision I made for myself." }
+            ];
+
+            return (
+                <section className="py-20 px-6 bg-white">
+                    <div className="max-w-5xl mx-auto">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl text-center mb-16 text-dark">What Mums <span className="text-coral">Say</span></motion.h2>
+                        
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {testimonials.map((t, i) => (
+                                <motion.div key={t.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} whileHover={{ y: -5 }} className="bg-gray-50 p-8 rounded-2xl">
+                                    <p className="text-gray-600 mb-4 italic">"{t.text}"</p>
+                                    <p className="text-coral font-bold">— {t.name}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Pricing = () => {
+            const plans = [
+                { name: "Casual", price: "$25", period: "/class", features: ["Single class access", "All equipment", "Creche available"], popular: false },
+                { name: "Mum Membership", price: "$45", period: "/week", features: ["Unlimited classes", "Creche included", "Private FB group", "Flexible holds"], popular: true },
+                { name: "10 Pack", price: "$200", period: "", features: ["10 classes", "Valid 3 months", "Creche available", "Shareable"], popular: false }
+            ];
+
+            return (
+                <section className="py-20 px-6 bg-gray-100">
+                    <div className="max-w-5xl mx-auto">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl text-center mb-16 text-dark">Membership <span className="text-coral">Options</span></motion.h2>
+                        
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {plans.map((plan, i) => (
+                                <motion.div key={plan.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} whileHover={{ y: -10 }} className={`p-8 rounded-2xl ${plan.popular ? 'bg-coral text-white' : 'bg-white'}`}>
+                                    {plan.popular && <span className="inline-block bg-white text-coral px-3 py-1 rounded text-sm font-bold mb-4">Most Popular</span>}
+                                    
+                                    <h3 className="font-heading text-xl mb-2">{plan.name}</h3>
+                                    <div className="flex items-baseline mb-6">
+                                        <span className="font-heading text-4xl font-bold">{plan.price}</span>
+                                        <span className={plan.popular ? 'text-white/80' : 'text-gray-500'}>{plan.period}</span>
+                                    </div>
+                                    
+                                    <ul className="space-y-2 mb-8">
+                                        {plan.features.map((f, j) => <li key={j} className="flex items-center gap-2"><span className={plan.popular ? "text-white" : "text-coral"}>✓</span> {f}</li>)}
+                                    </ul>
+                                    
+                                    <motion.a href="#contact" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={`block text-center py-3 rounded-full font-semibold ${plan.popular ? 'bg-white text-coral' : 'bg-coral text-white'}`}>Get Started</motion.a>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const FAQ = () => {
+            const [openIndex, setOpenIndex] = useState(null);
+            const faqs = [
+                { q: "Can I bring my baby?", a: "Yes! We have a creche area and mums & bubs classes." },
+                { q: "Do I need to be fit?", a: "Not at all. We have all fitness levels and modify exercises." },
+                { q: "What do I bring?", a: "Water, towel, and comfortable clothes. We have everything else." },
+                { q: "Can I pause my membership?", a: "Absolutely. We know mum life is unpredictable." }
+            ];
+
+            return (
+                <section className="py-20 px-6 bg-white">
+                    <div className="max-w-3xl mx-auto">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl text-center mb-16 text-dark">Common <span className="text-coral">Questions</span></motion.h2>
+                        
+                        <div className="space-y-4">
+                            {faqs.map((faq, i) => (
+                                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-gray-50 rounded-xl overflow-hidden">
+                                    <motion.button onClick={() => setOpenIndex(openIndex === i ? null : i)} whileHover={{ backgroundColor: 'rgba(255,107,107,0.05)' }} className="w-full p-6 flex justify-between items-center text-left">
+                                        <span className="font-semibold text-dark">{faq.q}</span>
+                                        <motion.span animate={{ rotate: openIndex === i ? 45 : 0 }} className="text-coral text-2xl">+</motion.span>
+                                    </motion.button>
+                                    
+                                    <AnimatePresence>
+                                        {openIndex === i && (
+                                            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                                                <p className="px-6 pb-6 text-gray-600">{faq.a}</p>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
         const Contact = () => (
             <section id="contact" className="py-20 bg-coral text-center">
-                <motion.div
-                    initial={{ scale: 0.9 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                >
+                <motion.div initial={{ scale: 0.9 }} whileInView={{ scale: 1 }} viewport={{ once: true }}>
                     <h2 className="font-heading text-4xl text-white mb-8">Ready to Start?</h2>
-                    <motion.a
-                        href="tel:[PHONE]"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="inline-block bg-white text-coral px-10 py-4 rounded-full font-bold text-lg"
-                    >
-                        Call Now
-                    </motion.a>
+                    <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="inline-block bg-white text-coral px-10 py-4 rounded-full font-bold text-lg">Call Now</motion.a>
+                    
+                    <p className="mt-8 text-white/80">[PHONE] · Richmond, Melbourne</p>
                 </motion.div>
             </section>
         );
@@ -194,6 +249,10 @@
                 <Navbar />
                 <Hero />
                 <Features />
+                <Classes />
+                <Testimonials />
+                <Pricing />
+                <FAQ />
                 <Contact />
             </div>
         );

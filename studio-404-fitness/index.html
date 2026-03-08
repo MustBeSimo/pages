@@ -41,43 +41,24 @@
         const ScrollProgress = () => {
             const { scrollYProgress } = useScroll();
             const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
-            return (
-                <motion.div
-                    className="fixed top-0 left-0 right-0 h-1 bg-copper z-50 origin-left"
-                    style={{ scaleX }}
-                />
-            );
+            return <motion.div className="fixed top-0 left-0 right-0 h-1 bg-copper z-50 origin-left" style={{ scaleX }} />;
         };
 
         const Navbar = () => {
             const [scrolled, setScrolled] = useState(false);
             useEffect(() => {
-                const handleScroll = () => setScrolled(window.scrollY > 50);
-                window.addEventListener('scroll', handleScroll);
-                return () => window.removeEventListener('scroll', handleScroll);
+                window.addEventListener('scroll', () => setScrolled(window.scrollY > 50));
             }, []);
             
             return (
                 <motion.nav
                     initial={{ y: -100 }}
                     animate={{ y: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
                     className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-dark/95 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}
                 >
                     <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                        <motion.div 
-                            whileHover={{ scale: 1.05 }}
-                            className="font-heading text-2xl font-bold"
-                        >
-                            Studio <span className="text-copper">404</span>
-                        </motion.div>
-                        <motion.a
-                            href="tel:[PHONE]"
-                            whileHover={{ scale: 1.05, color: '#B87333' }}
-                            className="text-sm text-gray-400 hover:text-copper transition-colors"
-                        >
-                            [PHONE]
-                        </motion.a>
+                        <motion.div whileHover={{ scale: 1.05 }} className="font-heading text-2xl font-bold">Studio <span className="text-copper">404</span></motion.div>
+                        <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.05, color: '#B87333' }} className="text-sm text-gray-400 hover:text-copper transition-colors">[PHONE]</motion.a>
                     </div>
                 </motion.nav>
             );
@@ -87,52 +68,22 @@
             return (
                 <section className="min-h-screen flex items-center relative overflow-hidden pt-20">
                     <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark to-copper/10"></div>
+                    
                     <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
                         <div className="order-2 md:order-1">
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: 0.2 }}
-                            >
+                            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
                                 <p className="text-copper font-semibold tracking-widest text-sm mb-4">CAULFIELD SOUTH · 5.0★</p>
-                                <h1 className="font-heading text-5xl md:text-7xl font-bold leading-none mb-6">
-                                    Personal Training That<br/>
-                                    <span className="gradient-text">Actually Works</span>
-                                </h1>
-                                <p className="text-xl text-gray-400 mb-8 max-w-lg">
-                                    One-on-one coaching in Caulfield South. No crowds, no guesswork, just results.
-                                </p>
-                                <motion.a
-                                    href="#contact"
-                                    whileHover={{ scale: 1.05, y: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="inline-block bg-copper text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg shadow-copper/25"
-                                >
-                                    Book a Free Consultation
-                                </motion.a>
+                                <h1 className="font-heading text-5xl md:text-7xl font-bold leading-none mb-6">Personal Training That<br/><span className="gradient-text">Actually Works</span></h1>
+                                <p className="text-xl text-gray-400 mb-8 max-w-lg">One-on-one coaching in Caulfield South. No crowds, no guesswork, just results.</p>
+                                <motion.a href="#contact" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }} className="inline-block bg-copper text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg shadow-copper/25">Book a Free Consultation</motion.a>
                             </motion.div>
                         </div>
                         
                         <div className="order-1 md:order-2">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
-                                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                                transition={{ duration: 1, delay: 0.4 }}
-                                whileHover={{ scale: 1.02, rotateY: -5 }}
-                                className="relative"
-                            >
+                            <motion.div initial={{ opacity: 0, scale: 0.9, rotateY: 15 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }} transition={{ duration: 1, delay: 0.4 }} whileHover={{ scale: 1.02, rotateY: -5 }} className="relative">
                                 <div className="absolute -inset-4 bg-copper/20 rounded-2xl blur-2xl"></div>
-                                <img 
-                                    src="../images/studio-404-hero.jpg" 
-                                    alt="Personal training"
-                                    className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover"
-                                />
-                                <motion.div
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 1, duration: 0.6 }}
-                                    className="absolute -bottom-6 -left-6 bg-white text-dark p-6 rounded-xl shadow-xl"
-                                >
+                                <img src="../images/studio-404-hero.jpg" alt="Personal training" className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover" />
+                                <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1, duration: 0.6 }} className="absolute -bottom-6 -left-6 bg-white text-dark p-6 rounded-xl shadow-xl">
                                     <p className="font-heading text-4xl font-bold text-copper">10+</p>
                                     <p className="text-sm text-gray-600">5-Star Reviews</p>
                                 </motion.div>
@@ -145,21 +96,16 @@
 
         const Services = () => {
             const services = [
-                { num: "01", title: "1-on-1 Personal Training", desc: "Custom workouts designed for your body, your goals, and your schedule." },
-                { num: "02", title: "Small Group Training", desc: "Train with 2-4 people. Same attention, lower cost, more motivation." },
-                { num: "03", title: "Online Coaching", desc: "Programs, nutrition guidance, and weekly check-ins wherever you are." },
-                { num: "04", title: "Goal-Focused Blocks", desc: "8-week transformations for weddings, events, or hitting that milestone." }
+                { num: "01", title: "1-on-1 Personal Training", desc: "Custom workouts designed for your body, your goals, and your schedule. Every session is tracked, measured, and adjusted." },
+                { num: "02", title: "Small Group Training", desc: "Train with 2-4 people. Same attention, lower cost, more motivation. Perfect for couples or friends with similar goals." },
+                { num: "03", title: "Online Coaching", desc: "Programs, nutrition guidance, and weekly check-ins wherever you are. For those who travel or prefer training solo." },
+                { num: "04", title: "Goal-Focused Blocks", desc: "8-week transformations for weddings, events, or finally hitting that milestone. Structured, accountable, results-driven." }
             ];
 
             return (
                 <section className="py-24 bg-light">
                     <div className="max-w-6xl mx-auto px-6">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="font-heading text-4xl md:text-5xl font-bold text-dark mb-16"
-                        >
+                        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="font-heading text-4xl md:text-5xl font-bold text-dark mb-16">
                             How We Train <span className="text-copper">You</span>
                         </motion.h2>
                         
@@ -187,36 +133,213 @@
             );
         };
 
+        const Process = () => {
+            const steps = [
+                { step: "1", title: "Free Consultation", desc: "We discuss your goals, history, and what you want to achieve." },
+                { step: "2", title: "Assessment", desc: "Movement screening and baseline measurements to track progress." },
+                { step: "3", title: "Custom Program", desc: "Your personalized training plan designed around your schedule." },
+                { step: "4", title: "Train & Track", desc: "Weekly sessions with progress tracking and program adjustments." }
+            ];
+
+            return (
+                <section className="py-24 bg-dark">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl md:text-5xl font-bold text-center mb-16">
+                            How It <span className="text-copper">Works</span>
+                        </motion.h2>
+
+                        <div className="grid md:grid-cols-4 gap-8">
+                            {steps.map((s, i) => (
+                                <motion.div
+                                    key={s.step}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.15 }}
+                                    className="text-center relative"
+                                >
+                                    {i < 3 && (
+                                        <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-copper/20"></div>
+                                    )}
+                                    <motion.div
+                                        whileHover={{ scale: 1.1, borderColor: '#B87333' }}
+                                        className="w-16 h-16 rounded-full border-2 border-copper flex items-center justify-center mx-auto mb-6 bg-dark relative z-10"
+                                    >
+                                        <span className="font-heading text-2xl font-bold text-copper">{s.step}</span>
+                                    </motion.div>
+                                    <h3 className="font-heading text-xl font-bold mb-3">{s.title}</h3>
+                                    <p className="text-gray-400">{s.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Testimonials = () => {
+            const testimonials = [
+                { name: "Sarah M.", text: "Lost 15kg in 6 months. The personalized approach made all the difference.", rating: 5 },
+                { name: "James K.", text: "Finally found a trainer who actually listens and adapts the program.", rating: 5 },
+                { name: "Emma L.", text: "Small group sessions are perfect - affordable but still personalized.", rating: 5 }
+            ];
+
+            return (
+                <section className="py-24 bg-light">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl md:text-5xl font-bold text-dark text-center mb-16">
+                            What Clients <span className="text-copper">Say</span>
+                        </motion.h2>
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {testimonials.map((t, i) => (
+                                <motion.div
+                                    key={t.name}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.15 }}
+                                    whileHover={{ y: -10 }}
+                                    className="bg-white p-8 rounded-2xl shadow-lg"
+                                >
+                                    <div className="flex gap-1 mb-4">
+                                        {[...Array(t.rating)].map((_, j) => <span key={j} className="text-copper">★</span>)}
+                                    </div>
+                                    <p className="text-gray-600 mb-6 italic">"{t.text}"</p>
+                                    <p className="font-bold text-dark">— {t.name}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Pricing = () => {
+            const plans = [
+                { name: "Starter", price: "$85", period: "/session", features: ["1-on-1 training", "Custom program", "Progress tracking", "Nutrition guidance"], popular: false },
+                { name: "Committed", price: "$320", period: "/4 sessions", features: ["Weekly 1-on-1", "Custom program", "Progress tracking", "Nutrition guidance", "WhatsApp support"], popular: true },
+                { name: "Small Group", price: "$45", period: "/person", features: ["2-4 people", "Shared program", "Weekly sessions", "Community vibe", "Lower cost"], popular: false }
+            ];
+
+            return (
+                <section className="py-24 bg-dark">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl md:text-5xl font-bold text-center mb-16">
+                            Investment in <span className="text-copper">Yourself</span>
+                        </motion.h2>
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {plans.map((plan, i) => (
+                                <motion.div
+                                    key={plan.name}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.15 }}
+                                    whileHover={{ y: -10 }}
+                                    className={`p-8 rounded-2xl ${plan.popular ? 'bg-copper text-white' : 'bg-gray-800'}`}
+                                >
+                                    {plan.popular && <span className="inline-block bg-white text-copper px-3 py-1 rounded text-sm font-bold mb-4">Most Popular</span>}
+                                    
+                                    <h3 className="font-heading text-2xl font-bold mb-2">{plan.name}</h3>
+                                    <div className="flex items-baseline mb-6">
+                                        <span className="font-heading text-5xl font-bold">{plan.price}</span>
+                                        <span className="text-gray-400">{plan.period}</span>
+                                    </div>
+                                    
+                                    <ul className="space-y-3 mb-8">
+                                        {plan.features.map((f, j) => (
+                                            <li key={j} className="flex items-center gap-2">
+                                                <span className="text-copper">✓</span> {f}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    
+                                    <motion.a
+                                        href="#contact"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className={`block text-center py-3 rounded-lg font-semibold ${plan.popular ? 'bg-white text-copper' : 'bg-copper text-white'}`}
+                                    >
+                                        Get Started
+                                    </motion.a>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const FAQ = () => {
+            const [openIndex, setOpenIndex] = useState(null);
+            const faqs = [
+                { q: "Do I need to be fit already?", a: "Not at all. We work with all fitness levels, from complete beginners to experienced athletes." },
+                { q: "How long are sessions?", a: "Most sessions are 45-60 minutes, depending on your program and goals." },
+                { q: "What should I bring?", a: "Just water and a towel. We have all equipment needed. Wear comfortable workout clothes." },
+                { q: "Can I reschedule?", a: "Yes, with 24 hours notice. We understand life happens." },
+                { q: "Do you offer nutrition plans?", a: "Yes, nutrition guidance is included in all packages. Full meal plans available as add-ons." }
+            ];
+
+            return (
+                <section className="py-24 bg-light">
+                    <div className="max-w-4xl mx-auto px-6">
+                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl md:text-5xl font-bold text-dark text-center mb-16">
+                            Common <span className="text-copper">Questions</span>
+                        </motion.h2>
+
+                        <div className="space-y-4">
+                            {faqs.map((faq, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.1 }}
+                                    className="bg-white rounded-xl overflow-hidden"
+                                >
+                                    <motion.button
+                                        onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                                        whileHover={{ backgroundColor: 'rgba(184,115,51,0.05)' }}
+                                        className="w-full p-6 flex justify-between items-center text-left"
+                                    >
+                                        <span className="font-semibold text-dark text-lg">{faq.q}</span>
+                                        <motion.span animate={{ rotate: openIndex === i ? 45 : 0 }} className="text-copper text-2xl">+</motion.span>
+                                    </motion.button>
+                                    
+                                    <AnimatePresence>
+                                        {openIndex === i && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                className="overflow-hidden"
+                                            >
+                                                <p className="px-6 pb-6 text-gray-600">{faq.a}</p>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
         const About = () => {
             return (
                 <section className="py-24 bg-dark relative overflow-hidden">
-                    <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-                        className="absolute -right-64 -top-64 w-[600px] h-[600px] rounded-full border border-copper/10"
-                    />
+                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 100, repeat: Infinity, ease: "linear" }} className="absolute -right-64 -top-64 w-[600px] h-[600px] rounded-full border border-copper/10" />
                     
                     <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                        >
-                            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-8">
-                                About <span className="text-copper">Studio 404</span>
-                            </h2>
-                            <p className="text-xl text-gray-400 mb-6">
-                                We're not a big gym. We're a dedicated training space in Caulfield South where you get real results without the crowds, the waiting, or the guesswork.
-                            </p>
-                            <p className="text-xl text-gray-400">
-                                Every client gets a program built for their body, their schedule, and their goals.
-                            </p>
-                            <motion.div
-                                whileHover={{ scale: 1.1 }}
-                                className="inline-flex items-center gap-2 mt-8 text-copper"
-                            >
-                                <span>📍</span> Caulfield South, Melbourne
-                            </motion.div>
+                        <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
+                            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-8">About <span className="text-copper">Studio 404</span></h2>
+                            <p className="text-xl text-gray-400 mb-6">We're not a big gym. We're a dedicated training space in Caulfield South where you get real results without the crowds, the waiting, or the guesswork.</p>
+                            <p className="text-xl text-gray-400">Every client gets a program built for their body, their schedule, and their goals.</p>
+                            
+                            <motion.div whileHover={{ scale: 1.1 }} className="inline-flex items-center gap-2 mt-8 text-copper"><span>📍</span> Caulfield South, Melbourne</motion.div>
                         </motion.div>
                     </div>
                 </section>
@@ -227,22 +350,11 @@
             return (
                 <section id="contact" className="py-24 bg-copper">
                     <div className="max-w-4xl mx-auto px-6 text-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
+                        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                             <h2 className="font-heading text-5xl font-bold text-white mb-4">Ready to Start?</h2>
                             <p className="text-xl text-white/80 mb-12">Book a free consultation. No commitment, just a conversation.</p>
                             
-                            <motion.a
-                                href="tel:[PHONE]"
-                                whileHover={{ scale: 1.05, y: -5 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="inline-block bg-white text-copper px-10 py-5 rounded-xl font-bold text-xl shadow-2xl"
-                            >
-                                Call Now
-                            </motion.a>
+                            <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.98 }} className="inline-block bg-white text-copper px-10 py-5 rounded-xl font-bold text-xl shadow-2xl">Call Now</motion.a>
                             
                             <p className="mt-8 text-white/60">[PHONE] · Caulfield South</p>
                         </motion.div>
@@ -263,6 +375,10 @@
                 <Navbar />
                 <Hero />
                 <Services />
+                <Process />
+                <Testimonials />
+                <Pricing />
+                <FAQ />
                 <About />
                 <Contact />
                 <Footer />

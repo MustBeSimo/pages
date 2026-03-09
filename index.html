@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melbourne Business Websites — Private Preview</title>
+    <meta name="description" content="Private preview of AI-generated websites for Melbourne small businesses. 10 sites across fitness, retail, and trades.">
     <style>
         :root {
             --bg: #0a0a0a;
@@ -247,7 +248,7 @@
                     <div class="site-url">pages-one-xi.vercel.app/studio-404-fitness</div>
                     <div class="site-actions">
                         <a href="studio-404-fitness/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('studio-404-fitness')">Copy</button>
+                        <button class="btn btn-secondary" onclick="copyUrl(event,'studio-404-fitness')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -260,7 +261,7 @@
                     <div class="site-url">pages-one-xi.vercel.app/fitmum-abs-gym</div>
                     <div class="site-actions">
                         <a href="fitmum-abs-gym/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('fitmum-abs-gym')">Copy</button>
+                        <button class="btn btn-secondary" onclick="copyUrl(event,'fitmum-abs-gym')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -273,7 +274,7 @@
                     <div class="site-url">pages-one-xi.vercel.app/burn-boxing-fitness</div>
                     <div class="site-actions">
                         <a href="burn-boxing-fitness/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('burn-boxing-fitness')">Copy</button>
+                        <button class="btn btn-secondary" onclick="copyUrl(event,'burn-boxing-fitness')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -286,7 +287,7 @@
                     <div class="site-url">pages-one-xi.vercel.app/hivibe-fitness</div>
                     <div class="site-actions">
                         <a href="hivibe-fitness/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('hivibe-fitness')">Copy</button>
+                        <button class="btn btn-secondary" onclick="copyUrl(event,'hivibe-fitness')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -299,7 +300,7 @@
                     <div class="site-url">pages-one-xi.vercel.app/ucebox-fitness</div>
                     <div class="site-actions">
                         <a href="ucebox-fitness/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('ucebox-fitness')">Copy</button>
+                        <button class="btn btn-secondary" onclick="copyUrl(event,'ucebox-fitness')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -316,7 +317,7 @@
                     <div class="site-url">pages-one-xi.vercel.app/lashkara-collections</div>
                     <div class="site-actions">
                         <a href="lashkara-collections/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('lashkara-collections')">Copy</button>
+                        <button class="btn btn-secondary" onclick="copyUrl(event,'lashkara-collections')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -329,7 +330,7 @@
                     <div class="site-url">pages-one-xi.vercel.app/cowboys-cash-carry</div>
                     <div class="site-actions">
                         <a href="cowboys-cash-carry/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('cowboys-cash-carry')">Copy</button>
+                        <button class="btn btn-secondary" onclick="copyUrl(event,'cowboys-cash-carry')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -342,7 +343,7 @@
                     <div class="site-url">pages-one-xi.vercel.app/brandella-uniforms</div>
                     <div class="site-actions">
                         <a href="brandella-uniforms/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('brandella-uniforms')">Copy</button>
+                        <button class="btn btn-secondary" onclick="copyUrl(event,'brandella-uniforms')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -359,7 +360,7 @@
                     <div class="site-url">pages-one-xi.vercel.app/joes-plumbing-co</div>
                     <div class="site-actions">
                         <a href="joes-plumbing-co/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('joes-plumbing-co')">Copy</button>
+                        <button class="btn btn-secondary" onclick="copyUrl(event,'joes-plumbing-co')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -372,7 +373,7 @@
                     <div class="site-url">pages-one-xi.vercel.app/fitzroy-electrical</div>
                     <div class="site-actions">
                         <a href="fitzroy-electrical/" class="btn btn-primary">View</a>
-                        <button class="btn btn-secondary" onclick="copyUrl('fitzroy-electrical')">Copy</button>
+                        <button class="btn btn-secondary" onclick="copyUrl(event,'fitzroy-electrical')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -385,10 +386,10 @@
     </div>
 
     <script>
-        function copyUrl(slug) {
+        function copyUrl(e, slug) {
             const url = `https://pages-one-xi.vercel.app/${slug}/`;
             navigator.clipboard.writeText(url);
-            const btn = event.target;
+            const btn = e.target;
             const original = btn.textContent;
             btn.textContent = 'Copied!';
             setTimeout(() => btn.textContent = original, 1500);

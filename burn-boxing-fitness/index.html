@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Burn Boxing & Fitness — Boxing Gym Craigieburn</title>
+    <meta name="description" content="Burn Boxing and Fitness in Craigieburn offers boxing classes, personal training, and group fitness. Rated 4.8 stars.">
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -27,6 +28,7 @@
         .glitch::after { animation: glitch-2 2s infinite; color: #00FFFF; z-index: -2; }
         @keyframes glitch-1 { 0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); } 20% { clip-path: inset(20% 0 30% 0); transform: translate(-2px, 2px); } 40% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); } }
         @keyframes glitch-2 { 0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); } 20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); } 40% { clip-path: inset(10% 0 60% 0); transform: translate(-2px, 2px); } }
+        @media (prefers-reduced-motion: reduce) { .glitch::before, .glitch::after { animation: none; } }
     </style>
 </head>
 <body class="bg-black text-white">
@@ -55,7 +57,7 @@
             return (
                 <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
                     <div className="absolute inset-0 z-0">
-                        <img src="../images/boxing-gym.jpg" className="w-full h-full object-cover opacity-40" />
+                        <img src="../images/boxing-gym.jpg" alt="Boxing training at Burn Boxing and Fitness gym" className="w-full h-full object-cover opacity-40" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                     </div>
                     

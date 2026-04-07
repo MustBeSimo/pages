@@ -1,176 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lashkara Collections — South Asian Fashion Craigieburn</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { burgundy: '#722F37', gold: '#D4AF37', cream: '#FFF8E7' },
-                    fontFamily: { serif: ['Cormorant Garamond', 'serif'], sans: ['Montserrat', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lashkara Collections — South Asian fashion boutique in Craigieburn, Melbourne. Bridal wear, everyday elegance, and curated cultural fashion.">
+<meta name="robots" content="noindex, nofollow">
+<title>Lashkara Collections — South Asian Fashion Craigieburn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23C2185B'/><text x='50' y='68' font-size='48' text-anchor='middle' fill='%23FAFAF7' font-family='sans-serif' font-weight='700'>L</text></svg>">
+<meta property="og:title" content="Lashkara Collections — South Asian Fashion Craigieburn">
+<meta property="og:description" content="Discover our curated collection of South Asian fashion — from bridal wear to everyday elegance.">
+<meta property="og:image" content="">
+<meta property="og:url" content="https://mustbesimo.github.io/pages/lashkara-collections/">
+<meta property="og:type" content="website">
+<style>
+:root { --bg: #FAFAF7; --dark: #1A1A1A; --accent: #C2185B; --accent-dark: #9E1148; --text: #333; --muted: #6B6B6B; --max-w: 900px; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+a { color: var(--accent); text-decoration: none; }
+.navbar { position: fixed; top: 0; width: 100%; background: rgba(250,250,247,0.97); backdrop-filter: blur(8px); z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.08); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-family: Georgia, serif; font-size: 1.25rem; font-weight: 700; color: var(--dark); }
+.nav-logo span { color: var(--accent); }
+.nav-phone { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+.hero { min-height: 85vh; background: var(--dark); display: flex; align-items: center; justify-content: center; text-align: center; padding: 6rem 1.5rem 4rem; }
+.hero-content { max-width: 700px; }
+.hero-tagline { display: block; color: var(--accent); font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+.hero h1 { font-family: Georgia, serif; font-size: clamp(2.5rem, 6vw, 4rem); color: white; line-height: 1.1; margin-bottom: 1.5rem; }
+.hero-subtitle { color: rgba(255,255,255,0.7); font-size: 1.15rem; margin-bottom: 2rem; }
+.cta-button { display: inline-block; background: var(--accent); color: white; padding: 0.9rem 2rem; border-radius: 4px; font-weight: 600; font-size: 1.05rem; transition: background 0.2s; }
+.cta-button:hover { background: var(--accent-dark); text-decoration: none; }
+.cta-phone { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-top: 1rem; }
+.section { padding: 5rem 1.5rem; }
+.section h2 { font-family: Georgia, serif; font-size: 2rem; text-align: center; margin-bottom: 0.5rem; }
+.section h2 span { color: var(--accent); }
+.section-subtitle { text-align: center; color: var(--muted); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: var(--max-w); margin: 0 auto; }
+.service-card { background: white; padding: 2rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.service-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+.service-card p { color: var(--muted); font-size: 0.95rem; }
+.service-icon { font-size: 2rem; margin-bottom: 1rem; }
+.about { background: var(--dark); color: white; text-align: center; }
+.about p { max-width: 600px; margin: 0 auto; color: rgba(255,255,255,0.8); font-size: 1.05rem; }
+.cta-section { text-align: center; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; }
+.cta-section h2 { color: white; }
+.cta-section p { color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
+.cta-section .cta-button { background: white; color: var(--accent); }
+.cta-section .cta-button:hover { background: var(--dark); }
+footer { background: var(--dark); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem 1.5rem; font-size: 0.85rem; }
+footer a { color: var(--accent); }
+.mobile-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--accent); color: white; text-align: center; padding: 0.85rem; font-weight: 700; font-size: 1rem; z-index: 200; }
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 768px) {
+  .nav-phone { display: none; }
+  .mobile-cta { display: block; }
+  footer { padding-bottom: 5rem; }
+}
+</style>
 </head>
-<body class="bg-cream">
-    <div id="root"></div>
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-        const { motion, AnimatePresence } = window.Motion;
-
-        const FloatingPetals = () => {
-            const [petals, setPetals] = useState([]);
-            useEffect(() => {
-                const interval = setInterval(() => {
-                    setPetals(prev => [...prev.slice(-8), { id: Date.now(), x: Math.random() * 100, delay: Math.random() * 2 }]);
-                }, 1500);
-                return () => clearInterval(interval);
-            }, []);
-            
-            return (
-                <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-                    <AnimatePresence>
-                        {petals.map(petal => (
-                            <motion.div
-                                key={petal.id}
-                                initial={{ opacity: 0, y: '110vh', x: `${petal.x}%`, rotate: 0 }}
-                                animate={{ opacity: [0, 0.6, 0], y: '-10vh', rotate: 360, x: `${petal.x + (Math.random() * 20 - 10)}%` }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 10, ease: "linear", delay: petal.delay }}
-                                className="absolute text-gold/30 text-3xl"
-                            >
-                                ❋
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </div>
-            );
-        };
-
-        const Navbar = () => {
-            const [scrolled, setScrolled] = useState(false);
-            useEffect(() => {
-                window.addEventListener('scroll', () => setScrolled(window.scrollY > 50));
-            }, []);
-            
-            return (
-                <motion.nav
-                    initial={{ y: -100 }}
-                    animate={{ y: 0 }}
-                    className={`fixed top-0 left-0 right-0 z-50 transition-all ${scrolled ? 'bg-burgundy shadow-lg py-4' : 'bg-burgundy py-6'}`}
-                >
-                    <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
-                        <motion.div whileHover={{ scale: 1.02 }} className="font-serif text-2xl text-gold">Lashkara Collections</motion.div>
-                        <motion.a href="tel:[PHONE]" whileHover={{ color: '#D4AF37' }} className="text-white font-medium">[PHONE]</motion.a>
-                    </div>
-                </motion.nav>
-            );
-        };
-
-        const Hero = () => {
-            return (
-                <section className="min-h-screen flex items-center bg-burgundy pt-24 relative overflow-hidden">
-                    <FloatingPetals />
-                    <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-                        <div>
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8 }}
-                            >
-                                <p className="text-gold tracking-widest text-sm mb-4">CRAIGIEBURN · 3.5★</p>
-                                <h1 className="font-serif text-5xl md:text-6xl text-gold leading-tight mb-6">South Asian Fashion in Melbourne</h1>
-                                <p className="text-xl text-white/80 mb-8">Elegant traditional and contemporary wear for women.</p>
-                                <motion.a
-                                    href="#contact"
-                                    whileHover={{ scale: 1.05, backgroundColor: '#b8941f' }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="inline-block bg-gold text-burgundy px-10 py-4 rounded font-semibold text-lg"
-                                >Visit Store</motion.a>
-                            </motion.div>
-                        </div>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
-                            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                            transition={{ duration: 0.8, delay: 0.3 }}
-                            className="relative"
-                        >
-                            <motion.div whileHover={{ scale: 1.02 }} className="overflow-hidden rounded-lg shadow-2xl">
-                                <img src="../images/lashkara-hero.jpg" className="w-full h-[450px] object-cover hover:scale-110 transition-transform duration-700" />
-                            </motion.div>
-                        </motion.div>
-                    </div>
-                </section>
-            );
-        };
-
-        const Collections = () => {
-            const collections = [
-                { name: "Salwar Suits", desc: "Traditional and modern designs" },
-                { name: "Dresses", desc: "Contemporary fusion wear" },
-                { name: "Accessories", desc: "Jewelry, scarves, finishing touches" },
-                { name: "Seasonal", desc: "Wedding and festival collections" }
-            ];
-            
-            return (
-                <section className="py-24 px-6 bg-white">
-                    <div className="max-w-6xl mx-auto">
-                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-serif text-4xl text-center mb-16 text-burgundy">Our Collections</motion.h2>
-                        <div className="grid md:grid-cols-4 gap-6">
-                            {collections.map((col, i) => (
-                                <motion.div
-                                    key={col.name}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 }}
-                                    whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(114,47,55,0.2)" }}
-                                    className="p-8 bg-cream rounded-lg text-center border-t-4 border-gold"
-                                >
-                                    <h3 className="font-serif text-xl text-burgundy mb-2">{col.name}</h3>
-                                    <p className="text-gray-600 text-sm">{col.desc}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        const Contact = () => (
-            <section id="contact" className="py-24 bg-burgundy text-center">
-                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                    <h2 className="font-serif text-4xl text-gold mb-8">Visit Us</h2>
-                    <motion.a
-                        href="tel:[PHONE]"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="inline-block bg-gold text-burgundy px-12 py-5 rounded font-semibold text-lg"
-                    >Call Now</motion.a>
-                    <p className="mt-8 text-white/60">[PHONE] · Craigieburn, Melbourne</p>
-                </motion.div>
-            </section>
-        );
-
-        const App = () => (
-            <div>
-                <Navbar />
-                <Hero />
-                <Collections />
-                <Contact />
-            </div>
-        );
-
-        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-    </script>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">Lashkara <span>Collections</span></div>
+  <a href="tel:0437098747" class="nav-phone">0437 098 747</a>
+</nav>
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tagline">South Asian Fashion — Craigieburn</span>
+    <h1>Where tradition meets elegance.</h1>
+    <p class="hero-subtitle">Discover our curated collection of South Asian fashion — from stunning bridal wear to effortless everyday looks. Every piece tells a story of craft, culture, and care.</p>
+    <a href="tel:0437098747" class="cta-button">Visit Our Boutique</a>
+    <p class="cta-phone">Or call <strong>0437 098 747</strong></p>
+  </div>
+</section>
+<section class="section fade-in">
+  <h2>Our <span>Collections</span></h2>
+  <p class="section-subtitle">Handpicked pieces for every occasion, from everyday elegance to your most special moments.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">👰</div>
+      <h3>Bridal Collection</h3>
+      <p>Stunning bridal and wedding outfits — lehengas, shararas, and more. Custom fittings available for your perfect day.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3>Everyday Elegance</h3>
+      <p>Beautiful everyday wear — kurtas, salwar suits, and ready-to-wear ensembles that blend comfort with style.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💎</div>
+      <h3>Accessories & Styling</h3>
+      <p>Complete your look with our curated selection of jewellery, dupattas, bags, and styling advice from our team.</p>
+    </div>
+  </div>
+</section>
+<section class="section about fade-in">
+  <h2>About <span>Lashkara</span></h2>
+  <p style="margin-bottom: 1.5rem;">Lashkara means celebration — and that's exactly what we bring to every outfit. Our Craigieburn boutique is a one-stop destination for South Asian fashion, carefully curated for Melbourne's vibrant community. Whether you're looking for your wedding outfit or a stunning piece for a special occasion, we're here to help you shine.</p>
+  <p>Proudly serving Melbourne's South Asian community.</p>
+</section>
+<section class="section cta-section fade-in">
+  <h2>Find Your Perfect Outfit</h2>
+  <p>Visit our Craigieburn boutique and let us help you find something beautiful.</p>
+  <a href="tel:0437098747" class="cta-button">Call 0437 098 747</a>
+</section>
+<footer>
+  <p>Lashkara Collections — Craigieburn, Melbourne VIC 3064</p>
+  <p><a href="tel:0437098747">0437 098 747</a></p>
+  <p>&copy; 2026 Lashkara Collections. All rights reserved.</p>
+</footer>
+<a href="tel:0437098747" class="mobile-cta">Call 0437 098 747</a>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ClothingStore",
+  "name": "Lashkara Collections",
+  "description": "South Asian fashion boutique in Craigieburn, Melbourne. Bridal wear, everyday elegance, and curated cultural fashion.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064", "addressCountry": "Australia" },
+  "telephone": "0437098747",
+  "url": "https://mustbesimo.github.io/pages/lashkara-collections/"
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+});
+</script>
 </body>
 </html>

@@ -1,8 +1,8 @@
-# Melbourne Business Websites
+# Website Preview Gallery
 
-AI-generated preview websites for Melbourne small businesses.
+Preview websites for Melbourne small businesses.
 
-Private deployment — not indexed.
+Private deployment - not indexed.
 
 ## Sites
 
@@ -18,10 +18,3 @@ Private deployment — not indexed.
 | Brandella Uniforms | /brandella-uniforms/ |
 | Joe's Plumbing Co | /joes-plumbing-co/ |
 | Fitzroy Electrical | /fitzroy-electrical/ |
-
-## Project
-
-Part of [T0014 - Melbourne Business Outreach](https://github.com/MustBeSimo/kneptune-bot-experiments/tree/master/T0014-melbourne-business)
-
----
-Studio W230 · 2026

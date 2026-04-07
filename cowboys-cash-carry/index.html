@@ -1,180 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cowboys Cash & Carry — Workwear Thomastown</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { rust: '#8B4513', tan: '#D2B48C', dark: '#1a1a1a' },
-                    fontFamily: { display: ['Oswald', 'sans-serif'], body: ['Roboto Condensed', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cowboys Cash & Carry — no-nonsense workwear and casual gear in Thomastown, Melbourne. Serving the working community for years.">
+<meta name="robots" content="noindex, nofollow">
+<title>Cowboys Cash & Carry — Workwear Thomastown</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%23F5A623'/><text x='50' y='72' font-size='48' text-anchor='middle' fill='%231A1A1A' font-family='sans-serif' font-weight='700'>C</text></svg>">
+<meta property="og:title" content="Cowboys Cash & Carry — Workwear Thomastown">
+<meta property="og:description" content="No-nonsense workwear and casual gear at fair prices. Serving Melbourne's working community for years.">
+<meta property="og:image" content="">
+<meta property="og:url" content="https://mustbesimo.github.io/pages/cowboys-cash-carry/">
+<meta property="og:type" content="website">
+<style>
+:root { --bg: #FAFAF7; --dark: #1A1A1A; --accent: #F5A623; --accent-dark: #D48E1A; --text: #333; --muted: #6B6B6B; --max-w: 900px; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+a { color: var(--accent); text-decoration: none; }
+.navbar { position: fixed; top: 0; width: 100%; background: rgba(250,250,247,0.97); backdrop-filter: blur(8px); z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.08); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-family: Georgia, serif; font-size: 1.25rem; font-weight: 700; color: var(--dark); }
+.nav-logo span { color: var(--accent); }
+.nav-phone { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+.hero { min-height: 85vh; background: var(--dark); display: flex; align-items: center; justify-content: center; text-align: center; padding: 6rem 1.5rem 4rem; }
+.hero-content { max-width: 700px; }
+.hero-tagline { display: block; color: var(--accent); font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+.hero h1 { font-family: Georgia, serif; font-size: clamp(2.5rem, 6vw, 4rem); color: white; line-height: 1.1; margin-bottom: 1.5rem; }
+.hero-subtitle { color: rgba(255,255,255,0.7); font-size: 1.15rem; margin-bottom: 2rem; }
+.cta-button { display: inline-block; background: var(--accent); color: var(--dark); padding: 0.9rem 2rem; border-radius: 4px; font-weight: 600; font-size: 1.05rem; transition: background 0.2s; }
+.cta-button:hover { background: #FFB84D; text-decoration: none; }
+.cta-phone { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-top: 1rem; }
+.section { padding: 5rem 1.5rem; }
+.section h2 { font-family: Georgia, serif; font-size: 2rem; text-align: center; margin-bottom: 0.5rem; }
+.section h2 span { color: var(--accent); }
+.section-subtitle { text-align: center; color: var(--muted); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: var(--max-w); margin: 0 auto; }
+.service-card { background: white; padding: 2rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.service-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+.service-card p { color: var(--muted); font-size: 0.95rem; }
+.service-icon { font-size: 2rem; margin-bottom: 1rem; }
+.about { background: var(--dark); color: white; text-align: center; }
+.about p { max-width: 600px; margin: 0 auto; color: rgba(255,255,255,0.8); font-size: 1.05rem; }
+.cta-section { text-align: center; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; }
+.cta-section h2 { color: var(--dark); }
+.cta-section p { color: rgba(26,26,26,0.8); margin-bottom: 2rem; }
+.cta-section .cta-button { background: var(--dark); color: var(--accent); }
+.cta-section .cta-button:hover { background: #333; }
+footer { background: var(--dark); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem 1.5rem; font-size: 0.85rem; }
+footer a { color: var(--accent); }
+.mobile-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--accent); color: var(--dark); text-align: center; padding: 0.85rem; font-weight: 700; font-size: 1rem; z-index: 200; }
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 768px) {
+  .nav-phone { display: none; }
+  .mobile-cta { display: block; }
+  footer { padding-bottom: 5rem; }
+}
+</style>
 </head>
-<body class="bg-stone-100">
-    <div id="root"></div>
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-        const { motion, useScroll, useTransform } = window.Motion;
-
-        const Navbar = () => {
-            const [scrolled, setScrolled] = useState(false);
-            useEffect(() => {
-                window.addEventListener('scroll', () => setScrolled(window.scrollY > 50));
-            }, []);
-            
-            return (
-                <motion.nav
-                    initial={{ y: -100 }}
-                    animate={{ y: 0 }}
-                    className={`fixed top-0 left-0 right-0 z-50 border-b-4 border-rust transition-all ${scrolled ? 'bg-dark py-3' : 'bg-dark/90 py-5'}`}
-                >
-                    <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                        <motion.div whileHover={{ scale: 1.05 }} className="font-display text-2xl text-tan tracking-wider"
-                        >COWBOYS <span className="text-rust">CASH & CARRY</span></motion.div>
-                        <motion.a href="tel:[PHONE]" whileHover={{ color: '#D2B48C' }} className="text-tan font-bold">[PHONE]</motion.a>
-                    </div>
-                </motion.nav>
-            );
-        };
-
-        const Hero = () => {
-            const { scrollY } = useScroll();
-            const y = useTransform(scrollY, [0, 500], [0, 150]);
-            
-            return (
-                <section className="min-h-screen flex items-center relative overflow-hidden pt-24">
-                    <motion.div style={{ y }} className="absolute inset-0 z-0">
-                        <img src="../images/cowboys-hero.jpg" className="w-full h-full object-cover opacity-30" />
-                        <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-transparent" />
-                    </motion.div>
-                    
-                    <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-                        <div>
-                            <motion.div
-                                initial={{ opacity: 0, x: -50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.8 }}
-                            >
-                                <p className="text-rust font-display text-xl tracking-widest mb-4">THOMASTOWN · 4.5★</p>
-                                
-                                <h1 className="font-display text-6xl md:text-7xl text-tan leading-none mb-6">WORK BOOTS<br/><span className="text-rust">THAT LAST</span></h1>
-                                
-                                <p className="text-xl text-gray-400 mb-8">Quality workwear, boots, and gear for tradies across Melbourne's north.</p>
-                                
-                                <motion.a
-                                    href="#contact"
-                                    whileHover={{ scale: 1.05, backgroundColor: '#fff' }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="inline-block bg-rust text-white px-10 py-4 font-display text-xl tracking-wider"
-                                >VISIT STORE</motion.a>
-                            </motion.div>
-                        </div>
-                        
-                        <motion.div
-                            initial={{ opacity: 0, rotateY: 45 }}
-                            animate={{ opacity: 1, rotateY: 0 }}
-                            transition={{ duration: 1, delay: 0.3 }}
-                            className="hidden md:block"
-                        >
-                            <motion.div
-                                whileHover={{ rotateY: 10, rotateX: -5 }}
-                                transition={{ type: "spring" }}
-                                className="relative"
-                            >
-                                <div className="absolute -inset-4 border-4 border-rust/30" />
-                                <img src="../images/cowboys-hero.jpg" className="relative w-full h-[500px] object-cover border-4 border-rust" />
-                            </motion.div>
-                        </motion.div>
-                    </div>
-                </section>
-            );
-        };
-
-        const Products = () => {
-            const products = [
-                { name: "Work Boots", items: ["Steel cap safety", "Composite toe", "Waterproof", "Slip-resistant"] },
-                { name: "Workwear", items: ["Hi-vis shirts", "Work shorts", "Jackets", "Trade gear"] },
-                { name: "Accessories", items: ["Hard hats", "Safety glasses", "Tool belts", "Socks"] }
-            ];
-            
-            return (
-                <section className="py-24 px-6 bg-white">
-                    <div className="max-w-6xl mx-auto">
-                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-display text-5xl text-dark mb-16 text-center"
-                        >WHAT WE <span className="text-rust">STOCK</span></motion.h2>
-                        
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {products.map((p, i) => (
-                                <motion.div
-                                    key={p.name}
-                                    initial={{ opacity: 0, y: 50 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.2 }}
-                                    whileHover={{ y: -10 }}
-                                    className="bg-stone-50 p-8 border-t-4 border-rust shadow-lg"
-                                >
-                                    <h3 className="font-display text-2xl text-rust mb-6">{p.name}</h3>
-                                    <ul className="space-y-3">
-                                        {p.items.map((item, j) => (
-                                            <motion.li
-                                                key={item}
-                                                initial={{ opacity: 0, x: -20 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ delay: i * 0.2 + j * 0.1 }}
-                                                className="text-gray-600 border-b border-gray-200 pb-2"
-                                            >
-                                                {item}
-                                            </motion.li>
-                                        ))}
-                                    </ul>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        const Contact = () => (
-            <section id="contact" className="py-24 bg-rust text-center">
-                <motion.div initial={{ scale: 0.9 }} whileInView={{ scale: 1 }} viewport={{ once: true }}>
-                    <h2 className="font-display text-5xl text-white mb-8">VISIT THE STORE</h2>
-                    
-                    <motion.a
-                        href="tel:[PHONE]"
-                        whileHover={{ scale: 1.1, backgroundColor: '#1a1a1a', color: '#fff' }}
-                        whileTap={{ scale: 0.95 }}
-                        className="inline-block bg-white text-rust px-12 py-5 font-display text-xl"
-                    >CALL NOW</motion.a>
-                    
-                    <p className="mt-8 text-white/80">[PHONE] · Thomastown, Melbourne</p>
-                </motion.div>
-            </section>
-        );
-
-        const App = () => (
-            <div>
-                <Navbar />
-                <Hero />
-                <Products />
-                <Contact />
-            </div>
-        );
-
-        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-    </script>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">Cowboys <span>Cash & Carry</span></div>
+  <a href="tel:0417326526" class="nav-phone">0417 326 526</a>
+</nav>
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tagline">Workwear & Casual Gear — Thomastown</span>
+    <h1>No-nonsense gear at fair prices.</h1>
+    <p class="hero-subtitle">We're not fancy — we're reliable. Workwear, safety gear, and casual clothing for Melbourne's working community. Real people, real prices, real gear.</p>
+    <a href="tel:0417326526" class="cta-button">Call Now — 0417 326 526</a>
+    <p class="cta-phone">Visit us in Thomastown today</p>
+  </div>
+</section>
+<section class="section fade-in">
+  <h2>What We <span>Stock</span></h2>
+  <p class="section-subtitle">Everything you need on the job and off it.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">👷</div>
+      <h3>Work Boots & Footwear</h3>
+      <p>Steel-cap boots, steel-cap sneakers, work boots and hiking shoes. Brands you trust for a hard day's work.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧥</div>
+      <h3>Workwear & Safety Gear</h3>
+      <p>Hi-vis tops, rainwear, tool pants, jackets, socks, undies and accessories. Built for the job.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👖</div>
+      <h3>Casual Clothing</h3>
+      <p>Jeans, shirts, tees, activewear and casual footwear. From the work site to the weekend.</p>
+    </div>
+  </div>
+</section>
+<section class="section about fade-in">
+  <h2>About <span>Cowboys</span></h2>
+  <p style="margin-bottom: 1.5rem;">Cowboys Cash & Carry has been serving Thomastown's working community for years. We keep things simple: quality products, honest prices, and helpful advice from people who understand what it takes to do a hard day's work. Drop in and see what we've got.</p>
+  <p>4.5 rated on Google Reviews.</p>
+</section>
+<section class="section cta-section fade-in">
+  <h2>Visit Us Today</h2>
+  <p>We're open and stocked. Come see what's new or give us a ring for availability.</p>
+  <a href="tel:0417326526" class="cta-button">Call 0417 326 526</a>
+</section>
+<footer>
+  <p>Cowboys Cash & Carry — Thomastown, Melbourne VIC 3074</p>
+  <p><a href="tel:0417326526">0417 326 526</a></p>
+  <p>&copy; 2026 Cowboys Cash & Carry. All rights reserved.</p>
+</footer>
+<a href="tel:0417326526" class="mobile-cta">Call 0417 326 526</a>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ClothingStore",
+  "name": "Cowboys Cash & Carry",
+  "description": "No-nonsense workwear and casual gear at fair prices. Serving Melbourne's working community for years.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Thomastown", "addressRegion": "VIC", "postalCode": "3074", "addressCountry": "Australia" },
+  "telephone": "0417326526",
+  "url": "https://mustbesimo.github.io/pages/cowboys-cash-carry/"
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+});
+</script>
 </body>
 </html>

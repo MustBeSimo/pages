@@ -1,266 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ucebox Fitness — Functional Training Richmond</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { neon: '#00D9FF', dark: '#0A0A0F', grey: '#1A1A24' },
-                    fontFamily: { display: ['Teko', 'sans-serif'], body: ['Rajdhani', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-    <style>body { font-family: 'Rajdhani', sans-serif; }</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ucebox Fitness — functional training gym in Richmond, Melbourne. Functional training and personalised programs to achieve your fitness goals.">
+<meta name="robots" content="noindex, nofollow">
+<title>Ucebox Fitness — Functional Training Richmond, Melbourne</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23B87333'/><text x='50' y='70' font-size='52' text-anchor='middle' fill='%23FAFAF7' font-family='sans-serif' font-weight='700'>UF</text></svg>">
+<meta property="og:title" content="Ucebox Fitness — Functional Training Richmond, Melbourne">
+<meta property="og:description" content="Functional training and personalised programs to achieve your fitness goals.">
+<meta property="og:image" content="">
+<meta property="og:url" content="https://mustbesimo.github.io/pages/ucebox-fitness/">
+<meta property="og:type" content="website">
+<style>
+:root { --bg: #FAFAF7; --dark: #1A1A1A; --copper: #B87333; --copper-dark: #9A5F2A; --text: #333; --muted: #6B6B6B; --max-w: 900px; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+a { color: var(--copper); text-decoration: none; }
+
+/* NAV */
+.navbar { position: fixed; top: 0; width: 100%; background: rgba(250,250,247,0.97); backdrop-filter: blur(8px); z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.08); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-family: Georgia, serif; font-size: 1.25rem; font-weight: 700; color: var(--dark); }
+.nav-logo span { color: var(--copper); }
+.nav-phone { color: var(--copper); font-weight: 600; font-size: 0.95rem; }
+
+/* HERO */
+.hero { min-height: 85vh; background: var(--dark); display: flex; align-items: center; justify-content: center; text-align: center; padding: 6rem 1.5rem 4rem; }
+.hero-content { max-width: 700px; }
+.hero-tagline { display: block; color: var(--copper); font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+.hero h1 { font-family: Georgia, serif; font-size: clamp(2.5rem, 6vw, 4rem); color: white; line-height: 1.1; margin-bottom: 1.5rem; }
+.hero-subtitle { color: rgba(255,255,255,0.7); font-size: 1.15rem; margin-bottom: 2rem; }
+.cta-button { display: inline-block; background: var(--copper); color: white; padding: 0.9rem 2rem; border-radius: 4px; font-weight: 600; font-size: 1.05rem; transition: background 0.2s; }
+.cta-button:hover { background: var(--copper-dark); text-decoration: none; }
+.cta-phone { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-top: 1rem; }
+
+/* SECTIONS */
+.section { padding: 5rem 1.5rem; }
+.section h2 { font-family: Georgia, serif; font-size: 2rem; text-align: center; margin-bottom: 0.5rem; }
+.section h2 span { color: var(--copper); }
+.section-subtitle { text-align: center; color: var(--muted); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+/* SERVICES GRID */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: var(--max-w); margin: 0 auto; }
+.service-card { background: white; padding: 2rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.service-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+.service-card p { color: var(--muted); font-size: 0.95rem; }
+.service-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+/* ABOUT */
+.about { background: var(--dark); color: white; text-align: center; }
+.about p { max-width: 600px; margin: 0 auto; color: rgba(255,255,255,0.8); font-size: 1.05rem; }
+
+/* CTA */
+.cta-section { text-align: center; background: linear-gradient(135deg, var(--copper), var(--copper-dark)); color: white; }
+.cta-section h2 { color: white; }
+.cta-section p { color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
+.cta-section .cta-button { background: white; color: var(--copper); }
+.cta-section .cta-button:hover { background: var(--dark); }
+
+/* FOOTER */
+footer { background: var(--dark); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem 1.5rem; font-size: 0.85rem; }
+footer a { color: var(--copper); }
+
+/* MOBILE CTA */
+.mobile-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--copper); color: white; text-align: center; padding: 0.85rem; font-weight: 700; font-size: 1rem; z-index: 200; }
+
+/* ANIMATIONS */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* STAGGER ANIMATION DELAY */
+.fade-in:nth-child(2) { transition-delay: 0.1s; }
+.fade-in:nth-child(3) { transition-delay: 0.2s; }
+.fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+@media (max-width: 768px) {
+  .nav-phone { display: none; }
+  .mobile-cta { display: block; }
+  footer { padding-bottom: 5rem; }
+}
+</style>
 </head>
-<body class="bg-dark text-white">
-    <div id="root"></div>
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-        const { motion, useMotionValue, useTransform } = window.Motion;
+<body>
 
-        const GlitchText = ({ text }) => {
-            const [display, setDisplay] = useState(text);
-            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            useEffect(() => {
-                let i = 0;
-                const interval = setInterval(() => {
-                    setDisplay(text.split("").map((char, idx) => idx < i ? char : chars[Math.floor(Math.random() * chars.length)]).join(""));
-                    i += 1/3;
-                    if (i >= text.length) clearInterval(interval);
-                }, 30);
-                return () => clearInterval(interval);
-            }, [text]);
-            return <span className="font-display">{display}</span>;
-        };
+<nav class="navbar">
+  <div class="nav-logo">Ucebox <span>Fitness</span></div>
+  <a href="tel:0400000000" class="nav-phone">0400 000 000</a>
+</nav>
 
-        const Navbar = () => {
-            const [scrolled, setScrolled] = useState(false);
-            useEffect(() => { window.addEventListener('scroll', () => setScrolled(window.scrollY > 50)); }, []);
-            
-            return (
-                <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} className={`fixed top-0 left-0 right-0 z-50 border-b-2 border-neon transition-all ${scrolled ? 'bg-dark/95 py-3' : 'bg-transparent py-5'}`}>
-                    <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                        <motion.div whileHover={{ scale: 1.05, textShadow: "0 0 20px #00D9FF" }} className="font-display text-3xl text-neon tracking-widest">UCEBOX</motion.div>
-                        <motion.a href="tel:[PHONE]" whileHover={{ color: '#00D9FF' }} className="font-bold text-xl">[PHONE]</motion.a>
-                    </div>
-                </motion.nav>
-            );
-        };
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tagline">Functional Training — Richmond, Melbourne</span>
+    <h1>Functional training and personalised programs to achieve your fitness goals.</h1>
+    <p class="hero-subtitle">A Richmond-based functional training gym where coaching, community, and purpose-built programming come together to transform the way you move.</p>
+    <a href="tel:0400000000" class="cta-button">Book Free Consultation</a>
+    <p class="cta-phone">Or call <strong>0400 000 000</strong></p>
+  </div>
+</section>
 
-        const Hero = () => {
-            const mouseX = useMotionValue(0);
-            const mouseY = useMotionValue(0);
-            const rotateX = useTransform(mouseY, [-300, 300], [10, -10]);
-            const rotateY = useTransform(mouseX, [-300, 300], [-10, 10]);
-            const handleMouseMove = (e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                mouseX.set(e.clientX - rect.left - rect.width / 2);
-                mouseY.set(e.clientY - rect.top - rect.height / 2);
-            };
+<section class="section fade-in">
+  <h2>What We <span>Offer</span></h2>
+  <p class="section-subtitle">Comprehensive training and support designed to help you reach your goals — wherever you're starting from.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏋️</div>
+      <h3>Functional Training</h3>
+      <p>Movement-based workouts that build real-world strength, mobility, and confidence for everyday life.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🥗</div>
+      <h3>Personalised Nutrition Plans</h3>
+      <p>Custom nutrition guidance tailored to your body, goals, and lifestyle — sustainable results, not fad diets.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏆</div>
+      <h3>Strength Coaching</h3>
+      <p>Progressive strength programs designed by experienced coaches to safely push your limits and build power.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👥</div>
+      <h3>Group Classes</h3>
+      <p>High-energy group sessions that combine coaching with camaraderie — the perfect blend of motivation and results.</p>
+    </div>
+  </div>
+</section>
 
-            return (
-                <section className="min-h-screen flex items-center pt-24 relative overflow-hidden" onMouseMove={handleMouseMove}>
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#1A1A24_0%,_#0A0A0F_100%)]" />
-                    {[...Array(20)].map((_, i) => <motion.div key={i} className="absolute w-1 h-1 bg-neon/30 rounded-full" style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }} animate={{ opacity: [0.2, 1, 0.2], scale: [1, 2, 1] }} transition={{ duration: 2 + Math.random() * 2, repeat: Infinity, delay: Math.random() * 2 }} />)}
-                    
-                    <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-                        <div>
-                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-                                <p className="font-display text-neon text-xl tracking-widest mb-4">RICHMOND // 5.0★</p>
-                                <h1 className="font-display text-6xl md:text-8xl leading-none mb-6"><GlitchText text="FUNCTIONAL" /><br/><span className="text-neon"><GlitchText text="FITNESS" /></span></h1>
-                                <p className="text-xl text-gray-400 mb-8">High-intensity training. Build strength, endurance, performance.</p>
-                                <motion.a href="#contact" whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,217,255,0.5)" }} whileTap={{ scale: 0.95 }} className="inline-block bg-neon text-dark px-10 py-4 font-display text-xl tracking-wider">START TRAINING</motion.a>
-                            </motion.div>
-                        </div>
-                        
-                        <motion.div style={{ rotateX, rotateY }} className="relative">
-                            <motion.div animate={{ boxShadow: ["0 0 20px rgba(0,217,255,0.3)", "0 0 60px rgba(0,217,255,0.5)", "0 0 20px rgba(0,217,255,0.3)"] }} transition={{ duration: 2, repeat: Infinity }} className="rounded-lg overflow-hidden border-2 border-neon">
-                                <img src="../images/fitness-training.jpg" className="w-full h-[400px] object-cover" />
-                            </motion.div>
-                        </motion.div>
-                    </div>
-                </section>
-            );
-        };
+<section class="section about fade-in">
+  <h2>About <span>Ucebox Fitness</span></h2>
+  <p style="margin-bottom: 1.5rem;">Based in Richmond, Melbourne, Ucebox Fitness is a functional training gym built for people who want more than a generic workout. We combine expert coaching, personalised programming, and a supportive community to help you move better, feel stronger, and reach your goals.</p>
+  <p>5.0 rated on Google Reviews.</p>
+</section>
 
-        const Stats = () => {
-            const stats = [
-                { num: "5.0", label: "Google Rating" },
-                { num: "12+", label: "Reviews" },
-                { num: "24/7", label: "Gym Access" },
-                { num: "RICHMOND", label: "Location" }
-            ];
-            
-            return (
-                <section className="py-16 bg-grey">
-                    <div className="max-w-6xl mx-auto px-6">
-                        <div className="grid md:grid-cols-4 gap-8">
-                            {stats.map((stat, i) => (
-                                <motion.div key={stat.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ scale: 1.1 }} className="text-center">
-                                    <motion.p className="font-display text-5xl text-neon mb-2">{stat.num}</motion.p>
-                                    <p className="text-gray-400 tracking-widest">{stat.label}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
+<section class="section cta-section fade-in">
+  <h2>Ready to Start Your Journey?</h2>
+  <p>Your first consultation is free. Let's talk about where you want to be and how we get you there.</p>
+  <a href="tel:0400000000" class="cta-button">Call 0400 000 000</a>
+</section>
 
-        const Training = () => {
-            const options = [
-                { name: "HIIT", desc: "Maximum results, minimum time", icon: "⚡" },
-                { name: "STRENGTH", desc: "Barbells, kettlebells, bodyweight", icon: "💪" },
-                { name: "CONDITIONING", desc: "Build engine and endurance", icon: "🔥" },
-                { name: "OLYMPIC", desc: "Technical lifts for power", icon: "🏋️" }
-            ];
-            
-            return (
-                <section className="py-24 px-6 bg-grey">
-                    <div className="max-w-6xl mx-auto">
-                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-display text-5xl text-neon mb-16 text-center tracking-wider">TRAINING OPTIONS</motion.h2>
-                        
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {options.map((opt, i) => (
-                                <motion.div key={opt.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ scale: 1.05, borderColor: '#00D9FF' }} className="p-8 border-2 border-gray-700 bg-dark cursor-pointer transition-all text-center">
-                                    <span className="text-4xl mb-4 block">{opt.icon}</span>
-                                    <h3 className="font-display text-3xl text-neon mb-3">{opt.name}</h3>
-                                    <p className="text-gray-400">{opt.desc}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
+<footer>
+  <p>Ucebox Fitness — Functional Training Gym, Richmond, Melbourne VIC</p>
+  <p><a href="tel:0400000000">0400 000 000</a></p>
+  <p>&copy; 2026 Ucebox Fitness. All rights reserved.</p>
+</footer>
 
-        const Schedule = () => {
-            const schedule = [
-                { day: "MON", classes: ["6AM HIIT", "6PM Strength", "8PM Conditioning"] },
-                { day: "TUE", classes: ["6AM Olympic", "6PM HIIT", "8PM Strength"] },
-                { day: "WED", classes: ["6AM Strength", "6PM Conditioning", "8PM HIIT"] },
-                { day: "THU", classes: ["6AM HIIT", "6PM Olympic", "8PM Strength"] },
-                { day: "FRI", classes: ["6AM Conditioning", "6PM HIIT", "7PM Open Gym"] },
-                { day: "SAT", classes: ["9AM Team WOD", "11AM Olympic"] }
-            ];
+<a href="tel:0400000000" class="mobile-cta">Call 0400 000 000</a>
 
-            return (
-                <section className="py-24 px-6">
-                    <div className="max-w-6xl mx-auto">
-                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-display text-5xl text-neon mb-16 text-center tracking-wider">WEEKLY SCHEDULE</motion.h2>
-                        
-                        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
-                            {schedule.map((s, i) => (
-                                <motion.div key={s.day} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ y: -5 }} className="bg-grey p-4">
-                                    <h3 className="font-display text-2xl text-neon mb-4 border-b border-neon/30 pb-2">{s.day}</h3>
-                                    <ul className="space-y-2">
-                                        {s.classes.map((c, j) => <li key={j} className="text-sm text-gray-400">{c}</li>)}
-                                    </ul>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "Ucebox Fitness",
+  "description": "Functional training and personalised programs to achieve your fitness goals.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Richmond", "addressRegion": "Victoria", "addressCountry": "Australia" },
+  "telephone": "0400000000",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "42",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "url": "https://mustbesimo.github.io/pages/ucebox-fitness/"
+}
+</script>
 
-        const Equipment = () => {
-            const equipment = [
-                "Rogue Barbells", "Kettlebells", "Pull-up Rigs", "Concept2 Rowers",
-                "Air Bikes", "Squat Racks", "Bumper Plates", "Climbing Ropes"
-            ];
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+});
+</script>
 
-            return (
-                <section className="py-24 px-6 bg-grey">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-display text-5xl text-neon mb-16 tracking-wider">EQUIPMENT</motion.h2>
-                        
-                        <div className="flex flex-wrap justify-center gap-4">
-                            {equipment.map((item, i) => (
-                                <motion.span key={item} initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.05, type: "spring" }} whileHover={{ scale: 1.1, borderColor: '#00D9FF' }} className="px-6 py-3 border border-gray-700 bg-dark">
-                                    {item}
-                                </motion.span>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        const Pricing = () => {
-            const plans = [
-                { name: "DROP-IN", price: "$30", period: "/session", features: ["Single class", "All equipment", "No commitment"], popular: false },
-                { name: "ATHLETE", price: "$65", period: "/week", features: ["Unlimited classes", "24/7 access", "Open gym", "Programming app"], popular: true },
-                { name: "ELITE", price: "$120", period: "/week", features: ["Everything in Athlete", "1 PT session/week", "Nutrition coaching", "Recovery tools"], popular: false }
-            ];
-
-            return (
-                <section className="py-24 px-6">
-                    <div className="max-w-6xl mx-auto">
-                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-display text-5xl text-neon mb-16 text-center tracking-wider">MEMBERSHIPS</motion.h2>
-                        
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {plans.map((plan, i) => (
-                                <motion.div key={plan.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} whileHover={{ y: -10 }} className={`p-8 border-2 ${plan.popular ? 'border-neon bg-neon/10' : 'border-gray-700 bg-grey'}`}>
-                                    {plan.popular && <span className="inline-block bg-neon text-dark px-3 py-1 text-sm font-bold mb-4">RECOMMENDED</span>}
-                                    
-                                    <h3 className="font-display text-3xl mb-2">{plan.name}</h3>
-                                    <div className="flex items-baseline mb-6">
-                                        <span className="font-display text-5xl font-bold text-neon">{plan.price}</span>
-                                        <span className="text-gray-400">{plan.period}</span>
-                                    </div>
-                                    
-                                    <ul className="space-y-3 mb-8">
-                                        {plan.features.map((f, j) => <li key={j} className="flex items-center gap-2"><span className="text-neon">✓</span> {f}</li>)}
-                                    </ul>
-                                    
-                                    <motion.a href="#contact" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={`block text-center py-4 font-display text-xl ${plan.popular ? 'bg-neon text-dark' : 'border-2 border-neon text-neon'}`}>JOIN NOW</motion.a>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        const Contact = () => (
-            <section id="contact" className="py-24 text-center relative overflow-hidden">
-                <motion.div animate={{ rotate: 360 }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-neon/20 rounded-full"></motion.div>
-                
-                <div className="relative z-10">
-                    <motion.h2 initial={{ scale: 0.8 }} whileInView={{ scale: 1 }} viewport={{ once: true }} className="font-display text-6xl text-neon mb-8 tracking-wider">START TODAY</motion.h2>
-                    
-                    <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="inline-block bg-neon text-dark px-16 py-6 font-display text-2xl">CALL NOW</motion.a>
-                    
-                    <p className="mt-8 text-gray-400">[PHONE] · Richmond, Melbourne · 24/7 Access</p>
-                </div>
-            </section>
-        );
-
-        const App = () => (
-            <div>
-                <Navbar />
-                <Hero />
-                <Stats />
-                <Training />
-                <Schedule />
-                <Equipment />
-                <Pricing />
-                <Contact />
-            </div>
-        );
-
-        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-    </script>
 </body>
 </html>

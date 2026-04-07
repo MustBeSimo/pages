@@ -1,391 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio 404 — Personal Training Caulfield South</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        copper: '#B87333',
-                        'copper-dark': '#9A6B2A',
-                        dark: '#1C1C1E',
-                        light: '#FAFAF7'
-                    },
-                    fontFamily: {
-                        heading: ['Barlow Condensed', 'sans-serif'],
-                        body: ['DM Sans', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>body { font-family: 'DM Sans', sans-serif; }
-        .gradient-text { background: linear-gradient(135deg, #B87333 0%, #D4A574 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Studio 404 Personal Training — boutique fitness coaching in Caulfield South, Melbourne. 5-star rated personal training, group sessions, nutrition coaching.">
+<meta name="robots" content="noindex, nofollow">
+<title>Studio 404 — Personal Training Caulfield South</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23B87333'/><text x='50' y='68' font-size='48' text-anchor='middle' fill='%23FAFAF7' font-family='sans-serif' font-weight='700'>404</text></svg>">
+<meta property="og:title" content="Studio 404 — Personal Training Caulfield South">
+<meta property="og:description" content="Boutique fitness coaching in Caulfield South, Melbourne. Personal training tailored to your needs.">
+<meta property="og:image" content="">
+<meta property="og:url" content="https://mustbesimo.github.io/pages/studio-404-fitness/">
+<meta property="og:type" content="website">
+<style>
+:root { --bg: #FAFAF7; --dark: #1A1A1A; --copper: #B87333; --copper-dark: #9A5F2A; --text: #333; --muted: #6B6B6B; --max-w: 900px; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+a { color: var(--copper); text-decoration: none; }
+
+/* NAV */
+.navbar { position: fixed; top: 0; width: 100%; background: rgba(250,250,247,0.97); backdrop-filter: blur(8px); z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.08); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-family: Georgia, serif; font-size: 1.25rem; font-weight: 700; color: var(--dark); }
+.nav-logo span { color: var(--copper); }
+.nav-phone { color: var(--copper); font-weight: 600; font-size: 0.95rem; }
+
+/* HERO */
+.hero { min-height: 85vh; background: var(--dark); display: flex; align-items: center; justify-content: center; text-align: center; padding: 6rem 1.5rem 4rem; }
+.hero-content { max-width: 700px; }
+.hero-tagline { display: block; color: var(--copper); font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+.hero h1 { font-family: Georgia, serif; font-size: clamp(2.5rem, 6vw, 4rem); color: white; line-height: 1.1; margin-bottom: 1.5rem; }
+.hero-subtitle { color: rgba(255,255,255,0.7); font-size: 1.15rem; margin-bottom: 2rem; }
+.cta-button { display: inline-block; background: var(--copper); color: white; padding: 0.9rem 2rem; border-radius: 4px; font-weight: 600; font-size: 1.05rem; transition: background 0.2s; }
+.cta-button:hover { background: var(--copper-dark); text-decoration: none; }
+.cta-phone { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-top: 1rem; }
+
+/* SECTIONS */
+.section { padding: 5rem 1.5rem; }
+.section h2 { font-family: Georgia, serif; font-size: 2rem; text-align: center; margin-bottom: 0.5rem; }
+.section h2 span { color: var(--copper); }
+.section-subtitle { text-align: center; color: var(--muted); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+/* SERVICES GRID */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: var(--max-w); margin: 0 auto; }
+.service-card { background: white; padding: 2rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.service-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+.service-card p { color: var(--muted); font-size: 0.95rem; }
+.service-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+/* ABOUT */
+.about { background: var(--dark); color: white; text-align: center; }
+.about p { max-width: 600px; margin: 0 auto; color: rgba(255,255,255,0.8); font-size: 1.05rem; }
+
+/* CTA */
+.cta-section { text-align: center; background: linear-gradient(135deg, var(--copper), var(--copper-dark)); color: white; }
+.cta-section h2 { color: white; }
+.cta-section p { color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
+.cta-section .cta-button { background: white; color: var(--copper); }
+.cta-section .cta-button:hover { background: var(--dark); }
+
+/* FOOTER */
+footer { background: var(--dark); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem 1.5rem; font-size: 0.85rem; }
+footer a { color: var(--copper); }
+
+/* MOBILE CTA */
+.mobile-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--copper); color: white; text-align: center; padding: 0.85rem; font-weight: 700; font-size: 1rem; z-index: 200; }
+
+/* ANIMATIONS */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .nav-phone { display: none; }
+  .mobile-cta { display: block; }
+  footer { padding-bottom: 5rem; }
+}
+</style>
 </head>
-<body class="bg-dark text-white">
-    <div id="root"></div>
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-        const { motion, useScroll, useTransform, AnimatePresence } = window.Motion;
+<body>
 
-        const ScrollProgress = () => {
-            const { scrollYProgress } = useScroll();
-            const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
-            return <motion.div className="fixed top-0 left-0 right-0 h-1 bg-copper z-50 origin-left" style={{ scaleX }} />;
-        };
+<nav class="navbar">
+  <div class="nav-logo">Studio <span>404</span></div>
+  <a href="tel:0421468980" class="nav-phone">0421 468 980</a>
+</nav>
 
-        const Navbar = () => {
-            const [scrolled, setScrolled] = useState(false);
-            useEffect(() => {
-                window.addEventListener('scroll', () => setScrolled(window.scrollY > 50));
-            }, []);
-            
-            return (
-                <motion.nav
-                    initial={{ y: -100 }}
-                    animate={{ y: 0 }}
-                    className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-dark/95 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}
-                >
-                    <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                        <motion.div whileHover={{ scale: 1.05 }} className="font-heading text-2xl font-bold">Studio <span className="text-copper">404</span></motion.div>
-                        <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.05, color: '#B87333' }} className="text-sm text-gray-400 hover:text-copper transition-colors">[PHONE]</motion.a>
-                    </div>
-                </motion.nav>
-            );
-        };
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tagline">Boutique Personal Training — Caulfield South</span>
+    <h1>Personal training that fits your life.</h1>
+    <p class="hero-subtitle">We're not a gym. We're a private training studio built for people who want thoughtful, personalised fitness coaching without the crowds.</p>
+    <a href="tel:0421468980" class="cta-button">Book Free Consultation</a>
+    <p class="cta-phone">Or call <strong>0421 468 980</strong></p>
+  </div>
+</section>
 
-        const Hero = () => {
-            return (
-                <section className="min-h-screen flex items-center relative overflow-hidden pt-20">
-                    <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark to-copper/10"></div>
-                    
-                    <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-                        <div className="order-2 md:order-1">
-                            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
-                                <p className="text-copper font-semibold tracking-widest text-sm mb-4">CAULFIELD SOUTH · 5.0★</p>
-                                <h1 className="font-heading text-5xl md:text-7xl font-bold leading-none mb-6">Personal Training That<br/><span className="gradient-text">Actually Works</span></h1>
-                                <p className="text-xl text-gray-400 mb-8 max-w-lg">One-on-one coaching in Caulfield South. No crowds, no guesswork, just results.</p>
-                                <motion.a href="#contact" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }} className="inline-block bg-copper text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg shadow-copper/25">Book a Free Consultation</motion.a>
-                            </motion.div>
-                        </div>
-                        
-                        <div className="order-1 md:order-2">
-                            <motion.div initial={{ opacity: 0, scale: 0.9, rotateY: 15 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }} transition={{ duration: 1, delay: 0.4 }} whileHover={{ scale: 1.02, rotateY: -5 }} className="relative">
-                                <div className="absolute -inset-4 bg-copper/20 rounded-2xl blur-2xl"></div>
-                                <img src="../images/studio-404-hero.jpg" alt="Personal training" className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover" />
-                                <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1, duration: 0.6 }} className="absolute -bottom-6 -left-6 bg-white text-dark p-6 rounded-xl shadow-xl">
-                                    <p className="font-heading text-4xl font-bold text-copper">10+</p>
-                                    <p className="text-sm text-gray-600">5-Star Reviews</p>
-                                </motion.div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </section>
-            );
-        };
+<section class="section fade-in">
+  <h2>What We <span>Offer</span></h2>
+  <p class="section-subtitle">Tailored programs designed around your goals, schedule, and ability level.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">💪</div>
+      <h3>1-on-1 Training</h3>
+      <p>Personalised sessions built around your body, your goals, and your pace every time.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👥</div>
+      <h3>Small Group Sessions</h3>
+      <p>Train with up to 4 people in a supportive environment. Maximum results, great energy.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🥗</div>
+      <h3>Nutrition Coaching</h3>
+      <p>Practical, sustainable nutritional guidance that works with your lifestyle, not against it.</p>
+    </div>
+  </div>
+</section>
 
-        const Services = () => {
-            const services = [
-                { num: "01", title: "1-on-1 Personal Training", desc: "Custom workouts designed for your body, your goals, and your schedule. Every session is tracked, measured, and adjusted." },
-                { num: "02", title: "Small Group Training", desc: "Train with 2-4 people. Same attention, lower cost, more motivation. Perfect for couples or friends with similar goals." },
-                { num: "03", title: "Online Coaching", desc: "Programs, nutrition guidance, and weekly check-ins wherever you are. For those who travel or prefer training solo." },
-                { num: "04", title: "Goal-Focused Blocks", desc: "8-week transformations for weddings, events, or finally hitting that milestone. Structured, accountable, results-driven." }
-            ];
+<section class="section about fade-in">
+  <h2>About <span>Studio 404</span></h2>
+  <p style="margin-bottom: 1.5rem;">We're a private training studio in the heart of Caulfield South, built for professionals who value quality over quantity. No crowded floors, no generic plans. Just thoughtful coaching that actually delivers results.</p>
+  <p>5.0 rated on Google Reviews.</p>
+</section>
 
-            return (
-                <section className="py-24 bg-light">
-                    <div className="max-w-6xl mx-auto px-6">
-                        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="font-heading text-4xl md:text-5xl font-bold text-dark mb-16">
-                            How We Train <span className="text-copper">You</span>
-                        </motion.h2>
-                        
-                        <div className="space-y-6">
-                            {services.map((service, i) => (
-                                <motion.div
-                                    key={service.num}
-                                    initial={{ opacity: 0, x: -50 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 }}
-                                    whileHover={{ x: 20, backgroundColor: 'rgba(184,115,51,0.05)' }}
-                                    className="grid md:grid-cols-[100px_1fr] gap-6 p-6 rounded-xl transition-colors cursor-pointer border-l-4 border-transparent hover:border-copper"
-                                >
-                                    <span className="font-heading text-6xl font-bold text-copper/30">{service.num}</span>
-                                    <div>
-                                        <h3 className="font-heading text-2xl font-bold text-dark mb-2">{service.title}</h3>
-                                        <p className="text-gray-600 text-lg">{service.desc}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
+<section class="section cta-section fade-in">
+  <h2>Ready to Start?</h2>
+  <p>Your first consultation is free. Let's talk about where you want to be and how we get you there.</p>
+  <a href="tel:0421468980" class="cta-button">Call 0421 468 980</a>
+</section>
 
-        const Process = () => {
-            const steps = [
-                { step: "1", title: "Free Consultation", desc: "We discuss your goals, history, and what you want to achieve." },
-                { step: "2", title: "Assessment", desc: "Movement screening and baseline measurements to track progress." },
-                { step: "3", title: "Custom Program", desc: "Your personalized training plan designed around your schedule." },
-                { step: "4", title: "Train & Track", desc: "Weekly sessions with progress tracking and program adjustments." }
-            ];
+<footer>
+  <p>Studio 404 Personal Training — Caulfield South, Melbourne VIC 3162</p>
+  <p><a href="tel:0421468980">0421 468 980</a></p>
+  <p>&copy; 2026 Studio 404. All rights reserved.</p>
+</footer>
 
-            return (
-                <section className="py-24 bg-dark">
-                    <div className="max-w-6xl mx-auto px-6">
-                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl md:text-5xl font-bold text-center mb-16">
-                            How It <span className="text-copper">Works</span>
-                        </motion.h2>
+<a href="tel:0421468980" class="mobile-cta">Call 0421 468 980</a>
 
-                        <div className="grid md:grid-cols-4 gap-8">
-                            {steps.map((s, i) => (
-                                <motion.div
-                                    key={s.step}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.15 }}
-                                    className="text-center relative"
-                                >
-                                    {i < 3 && (
-                                        <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-copper/20"></div>
-                                    )}
-                                    <motion.div
-                                        whileHover={{ scale: 1.1, borderColor: '#B87333' }}
-                                        className="w-16 h-16 rounded-full border-2 border-copper flex items-center justify-center mx-auto mb-6 bg-dark relative z-10"
-                                    >
-                                        <span className="font-heading text-2xl font-bold text-copper">{s.step}</span>
-                                    </motion.div>
-                                    <h3 className="font-heading text-xl font-bold mb-3">{s.title}</h3>
-                                    <p className="text-gray-400">{s.desc}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Studio 404 Personal Training",
+  "description": "Boutique fitness coaching in Caulfield South, Melbourne. Personal training tailored to your needs.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Caulfield South", "addressRegion": "Victoria", "postalCode": "3162", "addressCountry": "Australia" },
+  "telephone": "0421468980",
+  "url": "https://mustbesimo.github.io/pages/studio-404-fitness/"
+}
+</script>
 
-        const Testimonials = () => {
-            const testimonials = [
-                { name: "Sarah M.", text: "Lost 15kg in 6 months. The personalized approach made all the difference.", rating: 5 },
-                { name: "James K.", text: "Finally found a trainer who actually listens and adapts the program.", rating: 5 },
-                { name: "Emma L.", text: "Small group sessions are perfect - affordable but still personalized.", rating: 5 }
-            ];
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+});
+</script>
 
-            return (
-                <section className="py-24 bg-light">
-                    <div className="max-w-6xl mx-auto px-6">
-                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl md:text-5xl font-bold text-dark text-center mb-16">
-                            What Clients <span className="text-copper">Say</span>
-                        </motion.h2>
-
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {testimonials.map((t, i) => (
-                                <motion.div
-                                    key={t.name}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.15 }}
-                                    whileHover={{ y: -10 }}
-                                    className="bg-white p-8 rounded-2xl shadow-lg"
-                                >
-                                    <div className="flex gap-1 mb-4">
-                                        {[...Array(t.rating)].map((_, j) => <span key={j} className="text-copper">★</span>)}
-                                    </div>
-                                    <p className="text-gray-600 mb-6 italic">"{t.text}"</p>
-                                    <p className="font-bold text-dark">— {t.name}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        const Pricing = () => {
-            const plans = [
-                { name: "Starter", price: "$85", period: "/session", features: ["1-on-1 training", "Custom program", "Progress tracking", "Nutrition guidance"], popular: false },
-                { name: "Committed", price: "$320", period: "/4 sessions", features: ["Weekly 1-on-1", "Custom program", "Progress tracking", "Nutrition guidance", "WhatsApp support"], popular: true },
-                { name: "Small Group", price: "$45", period: "/person", features: ["2-4 people", "Shared program", "Weekly sessions", "Community vibe", "Lower cost"], popular: false }
-            ];
-
-            return (
-                <section className="py-24 bg-dark">
-                    <div className="max-w-6xl mx-auto px-6">
-                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl md:text-5xl font-bold text-center mb-16">
-                            Investment in <span className="text-copper">Yourself</span>
-                        </motion.h2>
-
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {plans.map((plan, i) => (
-                                <motion.div
-                                    key={plan.name}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.15 }}
-                                    whileHover={{ y: -10 }}
-                                    className={`p-8 rounded-2xl ${plan.popular ? 'bg-copper text-white' : 'bg-gray-800'}`}
-                                >
-                                    {plan.popular && <span className="inline-block bg-white text-copper px-3 py-1 rounded text-sm font-bold mb-4">Most Popular</span>}
-                                    
-                                    <h3 className="font-heading text-2xl font-bold mb-2">{plan.name}</h3>
-                                    <div className="flex items-baseline mb-6">
-                                        <span className="font-heading text-5xl font-bold">{plan.price}</span>
-                                        <span className="text-gray-400">{plan.period}</span>
-                                    </div>
-                                    
-                                    <ul className="space-y-3 mb-8">
-                                        {plan.features.map((f, j) => (
-                                            <li key={j} className="flex items-center gap-2">
-                                                <span className="text-copper">✓</span> {f}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    
-                                    <motion.a
-                                        href="#contact"
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className={`block text-center py-3 rounded-lg font-semibold ${plan.popular ? 'bg-white text-copper' : 'bg-copper text-white'}`}
-                                    >
-                                        Get Started
-                                    </motion.a>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        const FAQ = () => {
-            const [openIndex, setOpenIndex] = useState(null);
-            const faqs = [
-                { q: "Do I need to be fit already?", a: "Not at all. We work with all fitness levels, from complete beginners to experienced athletes." },
-                { q: "How long are sessions?", a: "Most sessions are 45-60 minutes, depending on your program and goals." },
-                { q: "What should I bring?", a: "Just water and a towel. We have all equipment needed. Wear comfortable workout clothes." },
-                { q: "Can I reschedule?", a: "Yes, with 24 hours notice. We understand life happens." },
-                { q: "Do you offer nutrition plans?", a: "Yes, nutrition guidance is included in all packages. Full meal plans available as add-ons." }
-            ];
-
-            return (
-                <section className="py-24 bg-light">
-                    <div className="max-w-4xl mx-auto px-6">
-                        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-heading text-4xl md:text-5xl font-bold text-dark text-center mb-16">
-                            Common <span className="text-copper">Questions</span>
-                        </motion.h2>
-
-                        <div className="space-y-4">
-                            {faqs.map((faq, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="bg-white rounded-xl overflow-hidden"
-                                >
-                                    <motion.button
-                                        onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                                        whileHover={{ backgroundColor: 'rgba(184,115,51,0.05)' }}
-                                        className="w-full p-6 flex justify-between items-center text-left"
-                                    >
-                                        <span className="font-semibold text-dark text-lg">{faq.q}</span>
-                                        <motion.span animate={{ rotate: openIndex === i ? 45 : 0 }} className="text-copper text-2xl">+</motion.span>
-                                    </motion.button>
-                                    
-                                    <AnimatePresence>
-                                        {openIndex === i && (
-                                            <motion.div
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                                className="overflow-hidden"
-                                            >
-                                                <p className="px-6 pb-6 text-gray-600">{faq.a}</p>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        const About = () => {
-            return (
-                <section className="py-24 bg-dark relative overflow-hidden">
-                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 100, repeat: Infinity, ease: "linear" }} className="absolute -right-64 -top-64 w-[600px] h-[600px] rounded-full border border-copper/10" />
-                    
-                    <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-                        <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
-                            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-8">About <span className="text-copper">Studio 404</span></h2>
-                            <p className="text-xl text-gray-400 mb-6">We're not a big gym. We're a dedicated training space in Caulfield South where you get real results without the crowds, the waiting, or the guesswork.</p>
-                            <p className="text-xl text-gray-400">Every client gets a program built for their body, their schedule, and their goals.</p>
-                            
-                            <motion.div whileHover={{ scale: 1.1 }} className="inline-flex items-center gap-2 mt-8 text-copper"><span>📍</span> Caulfield South, Melbourne</motion.div>
-                        </motion.div>
-                    </div>
-                </section>
-            );
-        };
-
-        const Contact = () => {
-            return (
-                <section id="contact" className="py-24 bg-copper">
-                    <div className="max-w-4xl mx-auto px-6 text-center">
-                        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                            <h2 className="font-heading text-5xl font-bold text-white mb-4">Ready to Start?</h2>
-                            <p className="text-xl text-white/80 mb-12">Book a free consultation. No commitment, just a conversation.</p>
-                            
-                            <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.98 }} className="inline-block bg-white text-copper px-10 py-5 rounded-xl font-bold text-xl shadow-2xl">Call Now</motion.a>
-                            
-                            <p className="mt-8 text-white/60">[PHONE] · Caulfield South</p>
-                        </motion.div>
-                    </div>
-                </section>
-            );
-        };
-
-        const Footer = () => (
-            <footer className="bg-dark py-8 text-center">
-                <p className="text-gray-500">© 2026 Studio 404 Personal Training · Caulfield South</p>
-            </footer>
-        );
-
-        const App = () => (
-            <div>
-                <ScrollProgress />
-                <Navbar />
-                <Hero />
-                <Services />
-                <Process />
-                <Testimonials />
-                <Pricing />
-                <FAQ />
-                <About />
-                <Contact />
-                <Footer />
-            </div>
-        );
-
-        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-    </script>
 </body>
 </html>

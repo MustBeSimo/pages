@@ -140,6 +140,29 @@ footer { background: var(--dark); color: rgba(255,255,255,0.5); padding: 3rem 1.
   .mobile-cta { display: block; }
   footer { padding-bottom: 5rem; }
 }
+
+@media (max-width: 800px) {
+  .bento { display: flex; flex-direction: column; gap: 20px; }
+  .b-card { min-height: 220px; padding: 24px; width: 100%; }
+  .b-card.wide, .b-card.accent, .b-card.half, .b-card.span4 { grid-column: auto; }
+  .hero { padding: 120px 20px 60px; min-height: auto; }
+  .hero::before { background: linear-gradient(to bottom, rgba(250,250,249,0.85), rgba(250,250,249,1)); }
+  .hero h1 { font-size: 2.2rem; margin-bottom: 12px; }
+  .hero p { font-size: 1rem; margin-bottom: 24px; }
+  .btn { padding: 14px 24px; font-size: 0.95rem; }
+  .section { padding: 60px 20px; }
+  .section h2 { font-size: 2rem; }
+  .nav-cta { display: none; }
+  .nav { padding: 10px 16px; }
+  .marquee { padding: 12px 0; }
+  .stats-grid { gap: 24px; }
+  .footer-grid { gap: 24px; }
+  footer { padding-bottom: 90px; }
+  .cta { padding: 50px 24px; margin: 0 16px 50px; }
+  .cta h2 { font-size: 2rem; }
+  .b-card.wide { height: 280px; }
+  .mobile-sticky { display: block; }
+}
 </style>
 </head>
 <body>

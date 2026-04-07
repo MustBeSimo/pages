@@ -3,64 +3,252 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Concrete Specialists Craigieburn">
+<meta name="description" content="{{seo_desc}}">
 <meta name="robots" content="noindex, nofollow">
-<title>Hume Bay Concrete — Craigieburn Concreter</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='10' fill='#4682B4'/><text x='50' y='72' font-size='48' text-anchor='middle' fill='#1A1A1A' font-family='sans-serif' font-weight='700'>HC</text></svg>">
+<title>{{title}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
-:root { --bg: #FAFAF7; --dark: #1A1A1A; --accent: #4682B4; --accent-dark: #4682B4_DARK; --muted: #6B6B6B; }
+:root {
+  --bg: #FAFAF9; --surface: #FFFFFF; --dark: #0C0A09;
+  --text: #1C1917; --text-muted: #78716C;
+  --accent: #1E3A8A; --accent-hover: #1E40AF; --accent-subtle: #DBEAFE;
+  --border: #E7E5E4; --radius: 24px;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: system-ui, sans-serif; color: var(--dark); background: var(--bg); line-height: 1.6; }
-a { color: var(--accent); text-decoration: none; }
-.nav { position: fixed; top: 0; width: 100%; background: rgba(250,250,247,0.97); backdrop-filter: blur(8px); z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.08); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-.nav-logo { font-family: Georgia, serif; font-size: 1.2rem; font-weight: 700; }
-.nav-logo span { color: var(--accent); }
-.nav-phone { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
-.hero { min-height: 85vh; background: var(--dark); display: flex; align-items: center; justify-content: center; text-align: center; padding: 6rem 1.5rem 4rem; }
-.hero-content { max-width: 700px; }
-.hero-tagline { display: block; color: var(--accent); font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
-.hero h1 { font-family: Georgia, serif; font-size: clamp(2.2rem, 5vw, 3.5rem); color: white; line-height: 1.1; margin-bottom: 1.5rem; }
-.hero-sub { color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-bottom: 2rem; }
-.btn { display: inline-block; background: var(--accent); color: white; padding: 0.9rem 2rem; border-radius: 4px; font-weight: 600; font-size: 1rem; }
-.btn:hover { opacity: 0.9; text-decoration: none; }
-.section { padding: 4rem 1.5rem; }
-.section h2 { text-align: center; font-family: Georgia, serif; font-size: 1.8rem; margin-bottom: 2rem; }
-.section h2 span { color: var(--accent); }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
-.card { background: white; padding: 1.5rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-.card p { color: var(--muted); font-size: 0.9rem; }
-.about { background: var(--dark); color: white; text-align: center; }
-.about p { max-width: 600px; margin: 0 auto; color: rgba(255,255,255,0.8); }
-.cta-section { text-align: center; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; padding: 4rem 1.5rem; }
-.cta-section h2 { color: white; }
-.cta-section p { color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
-.cta-section .btn { background: white; color: var(--dark); }
-footer { background: var(--dark); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-size: 0.85rem; }
-.mobile-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--accent); color: white; text-align: center; padding: 0.85rem; font-weight: 700; font-size: 1rem; z-index: 200; }
-@media (max-width: 768px) { .nav-phone { display: none; } .mobile-cta { display: block; } footer { padding-bottom: 4rem; } }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); line-height: 1.5; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--dark); }
+img { max-width: 100%; display: block; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(250,250,249,0.8); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border); padding: 12px 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: box-shadow 0.3s ease;
+}
+.nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+.nav-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--dark); }
+.nav-cta {
+  background: var(--accent); color: white; padding: 10px 20px; border-radius: 99px;
+  font-size: 0.85rem; font-weight: 600; transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  position: relative; min-height: 85vh; padding: 140px 24px 80px;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  background: url('https://images.unsplash.com/photo-1621256327079-1828996383e9?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat fixed;
+}
+.hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(250,250,249,0.7), rgba(250,250,249,0.95)); }
+.hero-inner { position: relative; z-index: 2; max-width: 850px; }
+.pill {
+  display: inline-flex; align-items: center; color: var(--accent); background: var(--accent-subtle);
+  font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 8px 14px; border-radius: 99px; margin-bottom: 24px;
+}
+.hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 20px; line-height: 1.05; }
+.hero p { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--text-muted); margin-bottom: 36px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 16px 32px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.2s ease;
+}
+.btn-main { background: var(--dark); color: white; }
+.btn-main:hover { background: var(--accent); }
+.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--dark); margin-left: 10px; }
+.btn-ghost:hover { border-color: var(--dark); }
+
+/* MARQUEE */
+.marquee { background: var(--dark); color: white; padding: 16px 0; overflow: hidden; position: relative; display: flex; }
+.marquee-content { display: flex; gap: 2rem; animation: slide 30s linear infinite; white-space: nowrap; }
+.marquee-item { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+.marquee-dot { color: var(--accent); font-size: 1.5rem; }
+@keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* BENTO GRID */
+.section { padding: 100px 24px; }
+.section h2 { font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 12px; }
+.section-sub { text-align: center; color: var(--text-muted); margin-bottom: 48px; font-size: 1.15rem; }
+.bento {
+  display: grid; gap: 24px; max-width: 1100px; margin: 0 auto;
+  grid-template-columns: repeat(12, 1fr); grid-auto-rows: minmax(280px, auto);
+}
+.b-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 40px; display: flex; flex-direction: column; justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.b-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.05); }
+.b-icon { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent); }
+.b-card h3 { font-family: 'Inter', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
+.b-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+
+.b-card.accent { background: var(--accent); border-color: var(--accent); color: white; }
+.b-card.accent:hover { background: var(--accent-hover); }
+.b-card.accent h3, .b-card.accent p, .b-card.accent .b-icon { color: white; }
+
+.b-card.wide { grid-column: span 8; }
+.b-card.half { grid-column: span 6; }
+.b-card.span4 { grid-column: span 4; }
+
+/* STATS */
+.stats-section { padding: 60px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #FFFFFF; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 900px; margin: 0 auto; text-align: center; }
+.stat-val { font-size: 3rem; font-weight: 800; color: var(--dark); display: block; margin-bottom: 8px; }
+.stat-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 600; }
+
+/* FAQ */
+.faq { max-width: 800px; margin: 0 auto; border: 1px solid var(--border); border-radius: var(--radius); background: #FFFFFF; overflow: hidden; }
+details { padding: 24px 30px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.2s; }
+details:last-child { border-bottom: none; }
+details:hover { background: var(--bg); }
+summary { font-weight: 600; font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--dark); }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; font-size: 1.5rem; color: var(--accent); transition: 0.3s; }
+details[open] summary::after { transform: rotate(45deg); }
+details p { margin-top: 16px; color: var(--text-muted); line-height: 1.6; }
+
+/* CTA */
+.cta {
+  max-width: 950px; margin: 0 auto 80px; padding: 80px 40px;
+  border-radius: var(--radius); text-align: center; color: white;
+  background: var(--accent); position: relative; overflow: hidden;
+}
+.cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(255,255,255,0.2), transparent 60%); }
+.cta-content { position: relative; z-index: 1; }
+.cta h2 { font-size: clamp(2rem, 4vw, 3.5rem); color: white; margin-bottom: 16px; }
+.cta p { color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-bottom: 30px; }
+.btn-white { background: white; color: var(--dark); }
+.btn-white:hover { background: #F5F5F5; transform: translateY(-2px); }
+
+/* FOOTER */
+footer { background: var(--bg); padding: 80px 24px 40px; border-top: 1px solid var(--border); }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto 60px; }
+.footer-col h4 { font-family: 'Inter', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; color: var(--text-muted); }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 12px; color: var(--dark); }
+.footer-col a:hover { color: var(--accent); }
+.footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 24px; }
+
+/* MOBILE */
+.mobile-sticky {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0;
+  background: white; border-top: 1px solid var(--border); box-shadow: 0 -4px 20px rgba(0,0,0,0.05); z-index: 101;
+  padding: 8px 16px;
+}
+.ms-row { display: flex; gap: 8px; }
+.ms-btn { flex: 1; padding: 12px; border-radius: 8px; text-align: center; font-weight: 600; font-size: 0.9rem; }
+.ms-accent { background: var(--accent); color: white; }
+.ms-out { background: var(--bg); color: var(--dark); }
+
+@media (max-width: 800px) {
+  .b-card.wide, .b-card.half, .b-card.span4 { grid-column: span 12; }
+  .b-card { min-height: 200px; padding: 24px; }
+  .hero { padding-top: 100px; min-height: auto; }
+  .nav-cta { display: none; }
+  .mobile-sticky { display: block; }
+  footer { padding-bottom: 80px; }
+  .cta { padding: 60px 20px; margin: 0 24px 60px; }
+}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-logo">Hume Bay Concrete <span>Craigieburn</span></div><a href="tel:0409884112" class="nav-phone">0409884112_NICE</a></nav>
-<section class="hero"><div class="hero-content">
-<span class="hero-tagline">Concrete Specialists Craigieburn</span>
-<h1>Built on quality concrete.</h1>
-<p class="hero-sub">Hume Bay Concrete delivers premium concrete solutions for residential, commercial, and civil projects across Craigieburn and surrounds.</p>
-<a href="tel:0409884112" class="btn">Call 0409884112_NICE</a>
-</div></section>
-<section class="section"><h2>Our <span>Our Services</span></h2>
-<div class="grid">
-<div class="card"><h3>🏘️ Residential Concrete</h3><p>🏘️ Residential Concrete_DESC</p></div>
-<div class="card"><h3>🏢 Commercial Concrete</h3><p>🏢 Commercial Concrete_DESC</p></div>
-<div class="card"><h3>🌿 Landscaping Concrete</h3><p>🌿 Landscaping Concrete_DESC</p></div>
-</div></section>
-<section class="section about"><h2>About <span>About Us</span></h2>
-<p>Hume Bay Concrete Works is your local concreting specialists in Craigieburn. We service the entire Hume City area with professional, licensed concreting for homes and businesses. Quality materials, expert installation, and honest pricing — every job.</p></section>
-<section class="cta-section"><h2>GET YOUR FREE QUOTE</h2><p>Serving Craigieburn and surrounds. Call us today for reliable, affordable service.</p>
-<a href="tel:0409884112" class="btn">Call 0409884112_NICE</a></section>
-<footer><p>Hume Bay Concrete — Craigieburn, Melbourne VIC</p><p><a href="tel:0409884112">0409884112_NICE</a></p>
-<p>© 2026 Hume Bay Concrete. All rights reserved.</p></footer>
-<a href="tel:0409884112" class="mobile-cta">Call 0409884112_NICE</a>
-</body></html>
+<nav class="nav">
+  <div class="nav-logo">Hume Bay Concrete</div>
+  <a href="tel:{{phone_clean}}" class="nav-cta">Call 0409 884 112</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="pill">📍 Serving Craigieburn & Surrounds</div>
+    <h1>Quality Concrete, Hume Built.</h1>
+    <p>Premium residential and commercial concrete. From foundations to your backyard oasis.</p>
+    <a href="tel:{{phone_clean}}" class="btn btn-main">Get a Free Quote</a>
+    <a href="#services" class="btn btn-ghost">View Services</a>
+  </div>
+</header>
+
+<div class="marquee">
+  <div class="marquee-content">
+    DRIVEWAYS • PATIOS • RETAINING WALLS • SLABS <span class="marquee-dot">●</span> DRIVEWAYS • PATIOS • RETAINING WALLS • SLABS <span class="marquee-dot">●</span> DRIVEWAYS • PATIOS • RETAINING WALLS • SLABS <span class="marquee-dot">●</span> DRIVEWAYS • PATIOS • RETAINING WALLS • SLABS <span class="marquee-dot">●</span>
+  </div>
+</div>
+
+<section id="services" class="section">
+  <h2>Services</h2>
+  <p class="section-sub">Comprehensive solutions for your home and business.</p>
+  <div class="bento">
+    <div class="b-card wide" style="background: url('https://images.unsplash.com/photo-1584622636535-998719595331?auto=format&fit=crop&w=800&q=80') center/cover;">
+      <div style="background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 20px; border-radius: 12px; color: white;">
+        <h3 style="color:white; font-family:'Playfair Display', serif; font-size:1.5rem; margin-bottom:8px;">Residential Slabs</h3>
+        <p style="color:rgba(255,255,255,0.8)">House foundations done right.</p>
+      </div>
+    </div>
+    <div class="b-card accent" style="grid-column: span 4;">
+      <div class="b-icon">🏡</div>
+      <div><h3>Decks & Patios</h3><p>Concrete entertaining areas.</p></div>
+    </div>
+    <div class="b-card" style="grid-column: span 6;">
+      <div class="b-icon">🏢</div>
+      <div><h3>Commercial Work</h3><p>Warehouses and car parks.</p></div>
+    </div>
+    <div class="b-card" style="grid-column: span 6;">
+      <div class="b-icon">🧱</div>
+      <div><h3>Retaining Walls</h3><p>Structural and decorative.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-section">
+  <div class="stats-grid">
+    <div><span class="stat-val">200+</span><span class="stat-label">Local Jobs</span></div>
+    <div><span class="stat-val">15+</span><span class="stat-label">Years Exp</span></div>
+    <div><span class="stat-val">5⭐</span><span class="stat-label">Trusted</span></div>
+  </div>
+</div>
+
+<section class="section">
+  <h2>FAQ</h2>
+  <p class="section-sub">Common questions answered.</p>
+  <div class="faq">
+    <details><summary>Do you offer free quotes?</summary><p>Yes! Give us a call and we'll come out to measure and provide a detailed quote at no cost.</p></details>
+    <details><summary>What areas do you serve?</summary><p>We service Craigieburn and all surrounding suburbs within 30km.</p></details>
+    <details><summary>Are you licensed?</summary><p>Absolutely. We are fully licensed and insured to operate in Victoria.</p></details>
+    <details><summary>How quickly can you start?</summary><p>Depending on the project size, we can usually start within 1-2 weeks of booking.</p></details>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="cta-content">
+    <h2>Ready to start your project?</h2>
+    <p>Contact us today for a chat about your Concreting needs.</p>
+    <a href="tel:{{phone_clean}}" class="btn btn-white">📞 Call Now</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><h4>Hume Bay Concrete</h4><ul style="color:var(--text-muted)"><li>Premium Concreting</li><li>Serving Craigieburn</li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Residential Slabs</a></li><li><a href="#">Decks & Patios</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li>0409 884 112</li><li>Craigieburn, VIC</li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Hume Bay Concrete. Built by W230.</div>
+  
+  <div class="mobile-sticky">
+    <div class="ms-row">
+      <a href="tel:{{phone_clean}}" class="ms-btn ms-accent">📞 Call Now</a>
+      <a href="#services" class="ms-btn ms-out">Services</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 50));
+</script>
+</body>
+</html>

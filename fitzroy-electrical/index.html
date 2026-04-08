@@ -47,7 +47,7 @@
                 <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} className={`fixed top-0 left-0 right-0 z-50 border-t-4 border-amber transition-all ${scrolled ? 'bg-dark/95 py-4' : 'bg-transparent py-6'}`}>
                     <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                         <motion.div whileHover={{ scale: 1.05 }} className="font-display text-2xl font-bold">Fitzroy <span className="text-amber">Electrical</span></motion.div>
-                        <motion.a href="tel:[PHONE]" whileHover={{ color: '#F5A623' }} className="font-mono text-amber">[PHONE]</motion.a>
+                        <motion.a href="#contact" whileHover={{ color: '#F5A623' }} className="font-mono text-amber">Get a Quote</motion.a>
                     </div>
                 </motion.nav>
             );
@@ -189,7 +189,7 @@
                 <motion.div initial={{ scale: 0.9 }} whileInView={{ scale: 1 }} viewport={{ once: true }}>
                     <h2 className="font-display text-4xl text-dark mb-4">24/7 Emergency Service</h2>
                     <p className="text-dark/80 mb-6">Power out? Switchboard tripping? We respond fast.</p>
-                    <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block bg-dark text-amber px-10 py-4 font-bold">CALL [PHONE]</motion.a>
+                    <motion.a href="#contact" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block bg-dark text-amber px-10 py-4 font-bold">CALL Get a Quote</motion.a>
                 </motion.div>
             </section>
         );
@@ -200,9 +200,9 @@
                     <h2 className="font-display text-5xl text-amber mb-8">Get in Touch</h2>
                     <p className="text-gray-400 mb-8">Call or message for a free quote on your electrical project.</p>
                     
-                    <motion.a href="tel:[PHONE]" whileHover={{ scale: 1.05, backgroundColor: '#F5A623', color: '#111' }} whileTap={{ scale: 0.95 }} className="inline-block border-2 border-amber text-amber px-12 py-5 font-bold text-xl">Call Now</motion.a>
+                    <motion.a href="#contact" whileHover={{ scale: 1.05, backgroundColor: '#F5A623', color: '#111' }} whileTap={{ scale: 0.95 }} className="inline-block border-2 border-amber text-amber px-12 py-5 font-bold text-xl">Call Now</motion.a>
                     
-                    <p className="mt-8 text-gray-500 font-mono">[PHONE] · Fitzroy, Melbourne</p>
+                    <p className="mt-8 text-gray-500 font-mono">Get a Quote · Fitzroy, Melbourne</p>
                 </motion.div>
             </section>
         );

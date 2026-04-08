@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Fitmum_abs Gym Studio — fitness for mums in Fraser Rise, Melbourne. Community classes, personal training, and postnatal fitness. Call 0400 000 000.">
+<meta name="robots" content="noindex, nofollow">
+<title>Fitmum_abs — Fitness for Mums Fraser Rise</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%23E84393'/><text x='50' y='72' font-size='48' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='700'>F</text></svg>">
+<meta property="og:title" content="Fitmum_abs — Fitness for Mums Fraser Rise">
+<meta property="og:description" content="Fitness for mums in Fraser Rise, Melbourne. 5-star rated gym with community classes, personal training, and postnatal fitness.">
+<meta property="og:image" content="">
+<meta property="og:url" content="https://mustbesimo.github.io/pages/fitmum-abs-gym/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#FAFAF9;--sf:#FFF;--dk:#0C0A09;--tx:#1C1917;--mu:#78716C;--ac:#E84393;--ah:#C7357D;--as:#E8439318;--bd:#E7E5E4;--r:20px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--tx);background:var(--bg);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* NAV */
+.nv{position:fixed;top:0;width:100%;z-index:100;background:rgba(12,10,9,.6);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(255,255,255,.06);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;transition:all .4s cubic-bezier(.4,0,.2,1)}
+.nv.sc{background:rgba(12,10,9,.95);box-shadow:0 1px 30px rgba(0,0,0,.3)}
+.nl{font-weight:800;font-size:1.15rem;letter-spacing:-.03em;color:#fff}.nl span{color:var(--ac)}
+.nc{background:var(--ac);color:#fff;padding:10px 22px;border-radius:99px;font-size:.85rem;font-weight:700;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.nc:hover{background:#fff;color:var(--dk);transform:translateY(-1px);box-shadow:0 4px 20px rgba(232,67,147,.4)}
+
+/* HERO */
+.hr{position:relative;height:100vh;min-height:650px;display:flex;align-items:center;overflow:hidden;background:var(--dk)}
+.hb{position:absolute;inset:-10%;z-index:0;will-change:transform}
+.hb img{width:100%;height:100%;object-fit:cover;opacity:.35}
+.hr::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(12,10,9,.85) 0%,rgba(12,10,9,.5) 50%,rgba(12,10,9,.8) 100%);z-index:1}
+.hr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,var(--dk),transparent);z-index:1}
+.hi{position:relative;z-index:2;max-width:900px;padding:0 40px}
+.pl{display:inline-flex;align-items:center;gap:8px;background:rgba(232,67,147,.15);color:var(--ac);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:10px 18px;border-radius:99px;margin-bottom:28px;border:1px solid rgba(232,67,147,.25);opacity:0;transform:translateY(20px);animation:fadeUp .8s .2s cubic-bezier(.4,0,.2,1) forwards}
+.hr h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);color:#fff;margin-bottom:24px;line-height:1.05;letter-spacing:-.03em;opacity:0;transform:translateY(30px);animation:fadeUp .8s .4s cubic-bezier(.4,0,.2,1) forwards}
+.hr h1 em{font-style:italic;color:var(--ac)}
+.hr p{font-size:clamp(1.05rem,2vw,1.25rem);color:rgba(255,255,255,.6);margin-bottom:40px;max-width:550px;line-height:1.7;opacity:0;transform:translateY(20px);animation:fadeUp .8s .6s cubic-bezier(.4,0,.2,1) forwards}
+.hr .btns{opacity:0;transform:translateY(20px);animation:fadeUp .8s .8s cubic-bezier(.4,0,.2,1) forwards;display:flex;gap:14px;flex-wrap:wrap}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* BUTTONS */
+.bt{display:inline-flex;align-items:center;justify-content:center;padding:16px 34px;border-radius:99px;font-weight:700;font-size:.95rem;transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer}
+.bm{background:var(--ac);color:#fff}.bm:hover{background:#fff;color:var(--dk);transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,67,147,.4)}
+.bg{background:0 0;border:1.5px solid rgba(255,255,255,.2);color:#fff;margin-left:0}.bg:hover{border-color:var(--ac);color:var(--ac)}
+
+/* MARQUEE */
+.mq{background:var(--ac);color:#fff;padding:14px 0;overflow:hidden;white-space:nowrap}
+.mc{display:inline-block;animation:sc 25s linear infinite}
+.mi{display:inline-flex;align-items:center;gap:10px;font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-right:48px}
+.md{font-size:1rem;opacity:.5}
+@keyframes sc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.sn{padding:100px 24px}.sh{text-align:center;margin-bottom:56px}
+h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:14px;letter-spacing:-.02em}
+.ss{color:var(--mu);font-size:1.1rem;max-width:550px;margin:0 auto}
+
+/* BENTO GRID */
+.bn{display:grid;gap:16px;max-width:1100px;margin:0 auto;grid-template-columns:repeat(12,1fr);grid-auto-rows:280px}
+.bc{border-radius:var(--r);overflow:hidden;position:relative;cursor:pointer;transition:all .5s cubic-bezier(.4,0,.2,1)}
+.bc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--ac);transform:scaleX(0);transition:transform .5s cubic-bezier(.4,0,.2,1);transform-origin:left;z-index:3}
+.bc:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.15)}
+.bc:hover::before{transform:scaleX(1)}
+.bc img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.bc:hover img{transform:scale(1.08)}
+.bc-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,10,9,.9) 0%,rgba(12,10,9,.3) 50%,rgba(12,10,9,.1) 100%);z-index:1;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;transition:background .4s}
+.bc:hover .bc-ov{background:linear-gradient(0deg,rgba(12,10,9,.95) 0%,rgba(12,10,9,.4) 50%,rgba(12,10,9,.15) 100%)}
+.bc-ov h3{color:#fff;font-size:1.3rem;font-weight:700;margin-bottom:6px;transform:translateY(0);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.bc:hover .bc-ov h3{transform:translateY(-4px)}
+.bc-ov p{color:rgba(255,255,255,.75);font-size:.9rem;line-height:1.5;opacity:0;max-height:0;transition:all .4s cubic-bezier(.4,0,.2,1)}
+.bc:hover .bc-ov p{opacity:1;max-height:60px;margin-top:4px}
+.bc-tag{position:absolute;top:16px;left:16px;background:var(--ac);color:#fff;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:6px 12px;border-radius:99px;z-index:2}
+.bc.w{grid-column:span 7}.bc.n{grid-column:span 5}
+.bc.accent{background:var(--dk);border:1px solid rgba(255,255,255,.08)}
+.bc.accent .bc-inner{position:relative;z-index:2;padding:36px 32px;height:100%;display:flex;flex-direction:column;justify-content:center}
+.bc.accent .bc-icon{font-size:3rem;margin-bottom:16px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.bc.accent:hover .bc-icon{transform:scale(1.15) rotate(-5deg)}
+.bc.accent h3{color:#fff;font-size:1.2rem;font-weight:700;margin-bottom:8px}
+.bc.accent p{color:rgba(255,255,255,.6);font-size:.9rem;line-height:1.5}
+.bc.accent::after{content:'';position:absolute;bottom:-30%;right:-20%;width:200px;height:200px;border-radius:50%;background:rgba(232,67,147,.08);z-index:0}
+
+/* STATS */
+.st{padding:72px 24px;background:var(--dk);position:relative;overflow:hidden}
+.st::before{content:'';position:absolute;top:-50%;left:-10%;width:400px;height:400px;border-radius:50%;background:rgba(232,67,147,.04)}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:900px;margin:0 auto;text-align:center}
+.sv{font-size:3rem;font-weight:800;color:var(--ac);display:block;margin-bottom:6px;transition:transform .3s}
+.sg>div:hover .sv{transform:scale(1.08)}
+.sl{font-size:.75rem;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:700;letter-spacing:.12em}
+
+/* TESTIMONIAL */
+.tst{padding:100px 24px;text-align:center}
+.tst-card{max-width:700px;margin:0 auto;position:relative}
+.tst-card .quote{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.8rem);font-style:italic;color:var(--tx);line-height:1.5;margin-bottom:28px}
+.tst-card .quote::before{content:'\201C';font-size:5rem;color:var(--ac);opacity:.3;position:absolute;top:-30px;left:-10px;font-family:'Playfair Display',serif;line-height:1}
+.tst-author{font-weight:700;color:var(--dk);font-size:1rem}.tst-role{color:var(--mu);font-size:.85rem;margin-top:4px}
+.tst-stars{color:var(--ac);font-size:1.1rem;margin-bottom:20px;letter-spacing:2px}
+
+/* ABOUT */
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:56px;max-width:1000px;margin:0 auto;align-items:center}
+.ai{border-radius:var(--r);overflow:hidden;height:440px;box-shadow:0 24px 60px rgba(0,0,0,.12);position:relative}
+.ai img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.ai:hover img{transform:scale(1.04)}
+.at h2{text-align:left;margin-bottom:20px}.at p{color:var(--mu);margin-bottom:16px;font-size:1.05rem;line-height:1.7}
+.tb{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.bd{display:inline-flex;align-items:center;gap:6px;background:var(--as);color:var(--ac);padding:8px 14px;border-radius:99px;font-size:.8rem;font-weight:700;transition:all .3s;border:1px solid rgba(232,67,147,.15)}
+.bd:hover{background:var(--ac);color:#fff;border-color:var(--ac)}
+
+/* FAQ */
+.fq{max-width:700px;margin:0 auto;background:#fff;border:1px solid var(--bd);border-radius:var(--r);overflow:hidden}
+details{padding:22px 28px;cursor:pointer;border-bottom:1px solid var(--bd);transition:background .3s}details:last-child{border-bottom:none}details:hover{background:var(--bg)}
+summary{font-weight:600;font-size:1.02rem;display:flex;justify-content:space-between;list-style:none;color:var(--dk)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';font-size:1.5rem;color:var(--ac);transition:all .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:14px;color:var(--mu);font-size:.95rem;line-height:1.6}
+
+/* CTA */
+.cx{max-width:1000px;margin:0 auto;background:var(--dk);color:#fff;border-radius:var(--r);padding:80px 40px;text-align:center;position:relative;overflow:hidden}
+.cx::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(232,67,147,.15),transparent 60%)}
+.cx::after{content:'';position:absolute;bottom:-40%;left:-10%;width:500px;height:500px;border-radius:50%;background:rgba(232,67,147,.04)}
+.cx h2{color:#fff;margin-bottom:16px;position:relative;z-index:1}
+.cx h2 em{font-style:italic;color:var(--ac)}
+.cx p{color:rgba(255,255,255,.6);font-size:1.15rem;margin-bottom:32px;position:relative;z-index:1}
+.bw{background:var(--ac);color:#fff;position:relative;z-index:1}.bw:hover{background:#fff;color:var(--dk);transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,67,147,.3)}
+
+/* FOOTER */
+footer{padding:80px 24px 40px;background:var(--dk);border-top:1px solid rgba(255,255,255,.06)}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px;max-width:1000px;margin:0 auto 48px}
+.fc h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;color:rgba(255,255,255,.35);font-weight:700}.fc ul{list-style:none}.fc li{margin-bottom:8px;color:rgba(255,255,255,.5);font-size:.95rem}
+.fb{text-align:center;color:rgba(255,255,255,.25);border-top:1px solid rgba(255,255,255,.06);padding-top:24px;font-size:.82rem}
+
+/* MOBILE STICKY */
+.ms{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(12,10,9,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.08);z-index:102;padding:10px 16px;box-shadow:0 -4px 24px rgba(0,0,0,.3)}
+
+/* SCROLL ANIMATIONS */
+.fx{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.fx.vs{opacity:1;transform:translateY(0)}
+.fx-d1{transition-delay:.1s}.fx-d2{transition-delay:.15s}.fx-d3{transition-delay:.2s}.fx-d4{transition-delay:.25s}
+.sl-left{opacity:0;transform:translateX(-40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.sl-right{opacity:0;transform:translateX(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.sl-left.vs,.sl-right.vs{opacity:1;transform:translateX(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hr{height:100svh;min-height:550px}
+  .hr h1{font-size:2.5rem}
+  .hi{padding:0 24px}
+  .nc{display:none}
+  .nv{padding:12px 18px}
+  .sn{padding:64px 20px}
+  .bn{display:flex;flex-direction:column;gap:12px}
+  .bc{min-height:220px}
+  .bc.accent{min-height:200px}
+  .sg{grid-template-columns:repeat(2,1fr);gap:24px}
+  .ag{grid-template-columns:1fr;gap:32px}
+  .ai{height:280px}
+  .ms{display:flex;gap:10px}
+  footer{padding-bottom:90px}
+  .cx{margin:0 20px;padding:56px 24px}
+  .bt{padding:14px 28px;font-size:.9rem}
+  .tst-card .quote{font-size:1.2rem}
+}
+@media(max-width:480px){
+  .hr h1{font-size:2rem}
+  .hr p{font-size:.95rem}
+  .sv{font-size:2.2rem}
+  .sg{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nv" id="nv">
+  <div class="nl">Fitmum<span>_abs</span></div>
+  <a href="tel:0400000000" class="nc">Book Free Trial</a>
+</nav>
+
+<header class="hr" id="tp">
+  <div class="hb" id="hb"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1600&q=80" alt="Fitmum_abs Gym Studio" loading="eager"></div>
+  <div class="hi">
+    <div class="pl">Fitness for Mums — Fraser Rise</div>
+    <h1>Fitness Designed for <em>Motherhood</em></h1>
+    <p>A judgement-free zone where you can focus on your wellbeing while connecting with other local mums who get it.</p>
+    <div class="btns">
+      <a href="tel:0400000000" class="bt bm">Book Your Free Trial</a>
+      <a href="#classes" class="bt bg">Our Classes</a>
+    </div>
+  </div>
+</header>
+
+<div class="mq"><div class="mc" id="tk"></div></div>
+
+<section id="classes" class="sn">
+  <div class="sh fx"><h2>What We Offer</h2><p class="ss">Classes and programs built for every stage of motherhood.</p></div>
+  <div class="bn">
+    <div class="bc w fx fx-d1">
+      <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=900&q=80" alt="Mum & Baby Classes" loading="lazy">
+      <span class="bc-tag">Most Popular</span>
+      <div class="bc-ov"><h3>Mum &amp; Baby Classes</h3><p>Bring baby along! Safe, fun classes designed around feeding schedules and little ones.</p></div>
+    </div>
+    <div class="bc n accent fx fx-d2">
+      <div class="bc-inner"><div class="bc-icon">💪</div><h3>Personal Training</h3><p>1-on-1 coaching tailored to your goals, your body, and your schedule. No cookie-cutter plans.</p></div>
+    </div>
+    <div class="bc n fx fx-d3">
+      <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80" alt="Postnatal Recovery" loading="lazy">
+      <div class="bc-ov"><h3>Postnatal Recovery</h3><p>Gentle, evidence-based programs to safely rebuild core strength and confidence after birth.</p></div>
+    </div>
+    <div class="bc w fx fx-d4">
+      <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80" alt="Community Classes" loading="lazy">
+      <div class="bc-ov"><h3>Community Classes</h3><p>Group sessions that are fun, supportive and designed to fit around your life as a mum.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="st">
+  <div class="sg">
+    <div class="fx fx-d1"><span class="sv">5.0★</span><span class="sl">Google Rating</span></div>
+    <div class="fx fx-d2"><span class="sv">500+</span><span class="sl">Happy Mums</span></div>
+    <div class="fx fx-d3"><span class="sv">20+</span><span class="sl">Weekly Classes</span></div>
+    <div class="fx fx-d4"><span class="sv">100%</span><span class="sl">Mum-Focused</span></div>
+  </div>
+</section>
+
+<section class="tst fx">
+  <div class="tst-card">
+    <div class="tst-stars">★★★★★</div>
+    <p class="quote">This studio changed my life after having my second baby. The trainers understand exactly what postnatal bodies need, and the community of mums is so welcoming. I actually look forward to working out now.</p>
+    <p class="tst-author">Sarah M.</p>
+    <p class="tst-role">Mum of Two — Fraser Rise</p>
+  </div>
+</section>
+
+<section class="sn">
+  <div class="ag">
+    <div class="ai sl-left"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1200&q=80" alt="Inside Fitmum_abs Studio"></div>
+    <div class="at sl-right">
+      <h2>About Fitmum_abs</h2>
+      <p>We built Fitmum_abs because mums deserve a fitness space made for them — not just a corner of a regular gym. Our Fraser Rise studio was designed with comfort, community, and convenience in mind.</p>
+      <p>Plenty of parking, a welcoming atmosphere, and trainers who understand the unique challenges of staying fit during motherhood. 5.0 rated on Google Reviews.</p>
+      <div class="tb"><span class="bd">Mum-Friendly</span><span class="bd">5-Star Rated</span><span class="bd">Expert Trainers</span><span class="bd">Free Parking</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sn">
+  <div class="sh fx"><h2>FAQ</h2><p class="ss">Everything you need to know.</p></div>
+  <div class="fq fx">
+    <details><summary>Can I bring my baby to class?</summary><p>Absolutely! Our Mum & Baby classes are designed for exactly that. Bring your little one along — we work around feeds, naps and nappy changes.</p></details>
+    <details><summary>When can I start postnatal exercise?</summary><p>We recommend getting clearance from your GP or midwife first. Our postnatal recovery program is gentle and evidence-based, suitable from around 6 weeks postpartum.</p></details>
+    <details><summary>Do I need to be fit to start?</summary><p>Not at all! Our classes cater to all fitness levels. Whether you haven't exercised in years or you're a regular gym-goer, we'll meet you where you are.</p></details>
+    <details><summary>Where are you located?</summary><p>We're in Fraser Rise, Melbourne VIC 3336. Plenty of free parking available. Give us a call on 0400 000 000 for directions or to book your free trial.</p></details>
+  </div>
+</section>
+
+<div class="cx fx">
+  <h2>Your First Week is <em>On Us</em></h2>
+  <p>Come try a class. No commitment, no judgement — just good vibes and great people.</p>
+  <a href="tel:0400000000" class="bt bw">Book Your Free Trial</a>
+</div>
+
+<footer>
+  <div class="fg">
+    <div class="fc"><h4>Fitmum_abs</h4><ul><li>Fitness for Mums</li><li>Serving Fraser Rise, VIC</li></ul></div>
+    <div class="fc"><h4>What We Offer</h4><ul><li>Mum &amp; Baby Classes</li><li>Postnatal Recovery</li><li>Personal Training</li><li>Community Classes</li></ul></div>
+    <div class="fc"><h4>Contact</h4><ul><li>0400 000 000</li><li>Fraser Rise, VIC 3336</li></ul></div>
+  </div>
+  <div class="fb">&copy; 2026 Fitmum_abs. All rights reserved. Built by W230.</div>
+  <div class="ms">
+    <a href="tel:0400000000" class="bt bm" style="flex:1;border-radius:10px">📞 Book Free Trial</a>
+    <a href="#classes" class="bt bg" style="flex:1;border-radius:10px;border-color:rgba(255,255,255,.2);color:#fff">Our Classes</a>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Gym",
+  "name": "Fitmum_abs Gym Studio",
+  "description": "Fitness for mums in Fraser Rise, Melbourne. Community classes, personal training, and postnatal fitness.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Fraser Rise", "addressRegion": "VIC", "postalCode": "3336", "addressCountry": "Australia" },
+  "telephone": "0400000000",
+  "url": "https://mustbesimo.github.io/pages/fitmum-abs-gym/"
+}
+</script>
+
+<script>
+// Parallax hero
+const hb=document.getElementById('hb');
+let ticking=false;
+window.addEventListener('scroll',()=>{
+  if(!ticking){requestAnimationFrame(()=>{hb.style.transform='translateY('+window.scrollY*.3+'px)';ticking=false});ticking=true}
+});
+
+// Marquee
+const it=['MUM & BABY','POSTNATAL','PERSONAL TRAINING','COMMUNITY','CORE STRENGTH','FRASER RISE','FREE TRIAL'];
+document.getElementById('tk').innerHTML=it.concat(it).map(x=>'<div class="mi"><span class="md">/</span>'+x+'</div>').join('');
+
+// Scroll observer
+const ob=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vs')})
+},{threshold:.1,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.fx,.sl-left,.sl-right').forEach(el=>ob.observe(el));
+
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nv').classList.toggle('sc',window.scrollY>50);
+});
+</script>
+</body>
+</html>

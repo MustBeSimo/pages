@@ -28,7 +28,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
 /* HERO */
 .hero { position: relative; min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 80px; }
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
-.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s; }
 .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(250,250,249,0.8), rgba(250,250,249,0.98)); z-index: 1; }
 .hero-inner { position: relative; z-index: 2; max-width: 850px; }
 .pill { display: inline-flex; align-items: center; color: var(--accent); background: var(--accent-subtle); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 8px 14px; border-radius: 99px; margin-bottom: 24px; }
@@ -54,7 +54,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); 
 
 /* BENTO */
 .bento { display: grid; gap: 24px; max-width: 1100px; margin: 0 auto; grid-template-columns: repeat(12, 1fr); }
-.b-card { border-radius: var(--radius); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; background: #fff; border: 1px solid var(--border); min-height: 280px; }
+.b-card { background-color: #1a1a1a;  border-radius: var(--radius); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; background: #fff; border: 1px solid var(--border); min-height: 280px; }
 .b-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); }
 .b-card img { width: 100%; height: 100%; position: absolute; inset: 0; transition: transform 0.5s ease; }
 .b-card:hover img { transform: scale(1.05); }
@@ -113,7 +113,7 @@ footer { padding: 80px 24px 40px; background: var(--bg); border-top: 1px solid v
 
 @media (max-width: 768px) {
   .bento { display: flex; flex-direction: column; }
-  .b-card { min-height: 220px; width: 100%; }
+  .b-card { background-color: #1a1a1a;  min-height: 220px; width: 100%; }
   .b-card.accent { min-height: auto; }
   .hero { min-height: auto; padding: 110px 20px 60px; }
   .hero h1 { font-size: 2.2rem; }
@@ -132,7 +132,7 @@ footer { padding: 80px 24px 40px; background: var(--bg); border-top: 1px solid v
 <body>
 <nav class="nav"><div class="nav-logo">Monarch Floors <span>.</span></div><a href="tel:0401013300" class="nav-cta">Call Now</a></nav>
 
-<header class="hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1617565387550-06c4db169468?auto=format&fit=crop&w=1200&q=80" alt="Monarch Floors" loading="eager"></div><div class="hero-inner">
+<header class="hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1581858726768-fd47913025f9?auto=format&fit=crop&w=1600&q=80" alt="Monarch Floors" loading="eager"></div><div class="hero-inner">
 <div class="pill">📍 Serving Craigieburn</div>
 <h1>Flooring Installed to Perfection.</h1>
 <p>From supply to installation, Monarch Floors handles every step.</p>
@@ -162,7 +162,7 @@ footer { padding: 80px 24px 40px; background: var(--bg); border-top: 1px solid v
 
 <section class="section">
 <div class="about-grid">
-<div class="about-img"><img src="https://images.unsplash.com/photo-1581858726768-fd47913025f9?auto=format&fit=crop&w=800&q=80" alt="About Us" style="width:100%;height:100%;"></div>
+<div class="about-img"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=1200&q=80" alt="About Us" style="width:100%;height:100%;"></div>
 <div class="about-text">
   <h2>About Us</h2>
   <p>We are Craigieburn's premier Flooring specialists. With over 15 years of experience, we pride ourselves on quality workmanship and transparent pricing.</p>

@@ -3,30 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="VED Electricals - Premium Electrical Services. Professional electrical in Craigieburn, VIC. Call 0433 885 174.">
-<meta name="robots" content="noindex,nofollow">
-<title>VED Electricals - Craigieburn Electrical</title>
+<meta name="description" content="Ved Electricals — Quality electrical solutions in Craigieburn, VIC. Switchboard upgrades, LED lighting, and home rewiring. Call 0433 885 174.">
+<meta name="robots" content="noindex, nofollow">
+<title>Ved Electricals — Craigieburn Electrician</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%23F57C00'/><text x='50' y='72' font-size='48' text-anchor='middle' fill='%231A1A1A' font-family='sans-serif' font-weight='700'>V</text></svg>">
+<meta property="og:title" content="Ved Electricals — Craigieburn Electrician">
+<meta property="og:description" content="Quality electrical solutions in Craigieburn. Switchboard upgrades, LED lighting, and home rewiring.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#FAFAF9;--sf:#FFF;--dk:#0C0A09;--tx:#1C1917;--mu:#78716C;--ac:#F57C00;--ah:#E65100;--as:#F57C0018;--bd:#E7E5E4;--r:20px}
+:root{--bg:#0C0A09;--sf:#1A1814;--dk:#0C0A09;--tx:#E7E5E4;--mu:#A8A29E;--ac:#F57C00;--ah:#E65100;--as:#F57C0018;--bd:rgba(255,255,255,.08);--r:20px}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;color:var(--tx);background:var(--bg);line-height:1.6;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
 
+/* NAV */
 .nv{position:fixed;top:0;width:100%;z-index:100;background:rgba(12,10,9,.6);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(255,255,255,.06);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;transition:all .4s cubic-bezier(.4,0,.2,1)}
 .nv.sc{background:rgba(12,10,9,.95);box-shadow:0 1px 30px rgba(0,0,0,.3)}
 .nl{font-weight:800;font-size:1.15rem;letter-spacing:-.03em;color:#fff}.nl span{color:var(--ac)}
-.nc{background:var(--ac);color:#fff;padding:10px 22px;border-radius:99px;font-size:.85rem;font-weight:700;transition:all .3s cubic-bezier(.4,0,.2,1)}
-.nc:hover{background:#fff;color:var(--dk);transform:translateY(-1px);box-shadow:0 4px 20px rgba(245,124,0,.4)}
+.nc{background:var(--ac);color:var(--dk);padding:10px 22px;border-radius:99px;font-size:.85rem;font-weight:700;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.nc:hover{background:#fff;transform:translateY(-1px);box-shadow:0 4px 20px rgba(245,124,0,.4)}
 
+/* HERO */
 .hr{position:relative;height:100vh;min-height:650px;display:flex;align-items:center;overflow:hidden;background:var(--dk)}
 .hb{position:absolute;inset:-10%;z-index:0;will-change:transform}
-.hb img{width:100%;height:100%;object-fit:cover;opacity:.3}
-.hr::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(12,10,9,.88) 0%,rgba(12,10,9,.5) 50%,rgba(12,10,9,.8) 100%);z-index:1}
+.hb img{width:100%;height:100%;object-fit:cover;opacity:.35}
+.hr::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(12,10,9,.85) 0%,rgba(12,10,9,.5) 50%,rgba(12,10,9,.8) 100%);z-index:1}
 .hr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,var(--dk),transparent);z-index:1}
 .hi{position:relative;z-index:2;max-width:900px;padding:0 40px}
 .pl{display:inline-flex;align-items:center;gap:8px;background:rgba(245,124,0,.15);color:var(--ac);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:10px 18px;border-radius:99px;margin-bottom:28px;border:1px solid rgba(245,124,0,.25);opacity:0;transform:translateY(20px);animation:fadeUp .8s .2s cubic-bezier(.4,0,.2,1) forwards}
@@ -36,20 +42,24 @@ img{max-width:100%;display:block}
 .hr .btns{opacity:0;transform:translateY(20px);animation:fadeUp .8s .8s cubic-bezier(.4,0,.2,1) forwards;display:flex;gap:14px;flex-wrap:wrap}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
+/* BUTTONS */
 .bt{display:inline-flex;align-items:center;justify-content:center;padding:16px 34px;border-radius:99px;font-weight:700;font-size:.95rem;transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer}
-.bm{background:var(--ac);color:#fff}.bm:hover{background:#fff;color:var(--dk);transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,124,0,.4)}
-.bg{background:0 0;border:1.5px solid rgba(255,255,255,.2);color:#fff}.bg:hover{border-color:var(--ac);color:var(--ac)}
+.bm{background:var(--ac);color:var(--dk)}.bm:hover{background:#fff;transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,124,0,.4)}
+.bg{background:0 0;border:1.5px solid rgba(255,255,255,.2);color:#fff;margin-left:0}.bg:hover{border-color:var(--ac);color:var(--ac)}
 
-.mq{background:var(--ac);color:#fff;padding:14px 0;overflow:hidden;white-space:nowrap}
+/* MARQUEE */
+.mq{background:var(--ac);color:var(--dk);padding:14px 0;overflow:hidden;white-space:nowrap}
 .mc{display:inline-block;animation:sc 25s linear infinite}
 .mi{display:inline-flex;align-items:center;gap:10px;font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-right:48px}
 .md{font-size:1rem;opacity:.5}
 @keyframes sc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
+/* SECTIONS */
 .sn{padding:100px 24px}.sh{text-align:center;margin-bottom:56px}
-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:14px;letter-spacing:-.02em}
+h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;margin-bottom:14px;letter-spacing:-.02em}
 .ss{color:var(--mu);font-size:1.1rem;max-width:550px;margin:0 auto}
 
+/* BENTO GRID */
 .bn{display:grid;gap:16px;max-width:1100px;margin:0 auto;grid-template-columns:repeat(12,1fr);grid-auto-rows:280px}
 .bc{border-radius:var(--r);overflow:hidden;position:relative;cursor:pointer;transition:all .5s cubic-bezier(.4,0,.2,1)}
 .bc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--ac);transform:scaleX(0);transition:transform .5s cubic-bezier(.4,0,.2,1);transform-origin:left;z-index:3}
@@ -63,9 +73,9 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bo
 .bc:hover .bc-ov h3{transform:translateY(-4px)}
 .bc-ov p{color:rgba(255,255,255,.75);font-size:.9rem;line-height:1.5;opacity:0;max-height:0;transition:all .4s cubic-bezier(.4,0,.2,1)}
 .bc:hover .bc-ov p{opacity:1;max-height:60px;margin-top:4px}
-.bc-tag{position:absolute;top:16px;left:16px;background:var(--ac);color:#fff;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:6px 12px;border-radius:99px;z-index:2}
+.bc-tag{position:absolute;top:16px;left:16px;background:var(--ac);color:var(--dk);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:6px 12px;border-radius:99px;z-index:2}
 .bc.w{grid-column:span 7}.bc.n{grid-column:span 5}
-.bc.accent{background:var(--dk);border:1px solid rgba(255,255,255,.08)}
+.bc.accent{background:var(--sf);border:1px solid rgba(255,255,255,.08)}
 .bc.accent .bc-inner{position:relative;z-index:2;padding:36px 32px;height:100%;display:flex;flex-direction:column;justify-content:center}
 .bc.accent .bc-icon{font-size:3rem;margin-bottom:16px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
 .bc.accent:hover .bc-icon{transform:scale(1.15) rotate(-5deg)}
@@ -73,20 +83,23 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bo
 .bc.accent p{color:rgba(255,255,255,.6);font-size:.9rem;line-height:1.5}
 .bc.accent::after{content:'';position:absolute;bottom:-30%;right:-20%;width:200px;height:200px;border-radius:50%;background:rgba(245,124,0,.08);z-index:0}
 
-.st{padding:72px 24px;background:var(--dk);position:relative;overflow:hidden}
+/* STATS */
+.st{padding:72px 24px;background:var(--sf);position:relative;overflow:hidden}
 .st::before{content:'';position:absolute;top:-50%;left:-10%;width:400px;height:400px;border-radius:50%;background:rgba(245,124,0,.04)}
 .sg{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:900px;margin:0 auto;text-align:center}
 .sv{font-size:3rem;font-weight:800;color:var(--ac);display:block;margin-bottom:6px;transition:transform .3s}
 .sg>div:hover .sv{transform:scale(1.08)}
 .sl{font-size:.75rem;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:700;letter-spacing:.12em}
 
+/* TESTIMONIAL */
 .tst{padding:100px 24px;text-align:center}
 .tst-card{max-width:700px;margin:0 auto;position:relative}
-.tst-card .quote{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.8rem);font-style:italic;color:var(--tx);line-height:1.5;margin-bottom:28px}
+.tst-card .quote{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.8rem);font-style:italic;color:#fff;line-height:1.5;margin-bottom:28px}
 .tst-card .quote::before{content:'\201C';font-size:5rem;color:var(--ac);opacity:.3;position:absolute;top:-30px;left:-10px;font-family:'Playfair Display',serif;line-height:1}
-.tst-author{font-weight:700;color:var(--dk);font-size:1rem}.tst-role{color:var(--mu);font-size:.85rem;margin-top:4px}
+.tst-author{font-weight:700;color:#fff;font-size:1rem}.tst-role{color:var(--mu);font-size:.85rem;margin-top:4px}
 .tst-stars{color:var(--ac);font-size:1.1rem;margin-bottom:20px;letter-spacing:2px}
 
+/* ABOUT */
 .ag{display:grid;grid-template-columns:1fr 1fr;gap:56px;max-width:1000px;margin:0 auto;align-items:center}
 .ai{border-radius:var(--r);overflow:hidden;height:440px;box-shadow:0 24px 60px rgba(0,0,0,.12);position:relative}
 .ai img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.4,0,.2,1)}
@@ -94,31 +107,36 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bo
 .at h2{text-align:left;margin-bottom:20px}.at p{color:var(--mu);margin-bottom:16px;font-size:1.05rem;line-height:1.7}
 .tb{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
 .bd{display:inline-flex;align-items:center;gap:6px;background:var(--as);color:var(--ac);padding:8px 14px;border-radius:99px;font-size:.8rem;font-weight:700;transition:all .3s;border:1px solid rgba(245,124,0,.15)}
-.bd:hover{background:var(--ac);color:#fff;border-color:var(--ac)}
+.bd:hover{background:var(--ac);color:var(--dk);border-color:var(--ac)}
 
-.fq{max-width:700px;margin:0 auto;background:#fff;border:1px solid var(--bd);border-radius:var(--r);overflow:hidden}
-details{padding:22px 28px;cursor:pointer;border-bottom:1px solid var(--bd);transition:background .3s}details:last-child{border-bottom:none}details:hover{background:var(--bg)}
-summary{font-weight:600;font-size:1.02rem;display:flex;justify-content:space-between;list-style:none;color:var(--dk)}
+/* FAQ */
+.fq{max-width:700px;margin:0 auto;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden}
+details{padding:22px 28px;cursor:pointer;border-bottom:1px solid var(--bd);transition:background .3s}details:last-child{border-bottom:none}details:hover{background:rgba(255,255,255,.03)}
+summary{font-weight:600;font-size:1.02rem;display:flex;justify-content:space-between;list-style:none;color:#fff}
 summary::-webkit-details-marker{display:none}
 summary::after{content:'+';font-size:1.5rem;color:var(--ac);transition:all .3s}
 details[open] summary::after{transform:rotate(45deg)}
 details p{margin-top:14px;color:var(--mu);font-size:.95rem;line-height:1.6}
 
-.cx{max-width:1000px;margin:0 auto;background:var(--dk);color:#fff;border-radius:var(--r);padding:80px 40px;text-align:center;position:relative;overflow:hidden}
+/* CTA */
+.cx{max-width:1000px;margin:0 auto;background:var(--sf);color:#fff;border-radius:var(--r);padding:80px 40px;text-align:center;position:relative;overflow:hidden}
 .cx::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(245,124,0,.15),transparent 60%)}
 .cx::after{content:'';position:absolute;bottom:-40%;left:-10%;width:500px;height:500px;border-radius:50%;background:rgba(245,124,0,.04)}
 .cx h2{color:#fff;margin-bottom:16px;position:relative;z-index:1}
 .cx h2 em{font-style:italic;color:var(--ac)}
 .cx p{color:rgba(255,255,255,.6);font-size:1.15rem;margin-bottom:32px;position:relative;z-index:1}
-.bw{background:var(--ac);color:#fff;position:relative;z-index:1}.bw:hover{background:#fff;color:var(--dk);transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,124,0,.3)}
+.bw{background:var(--ac);color:var(--dk);position:relative;z-index:1}.bw:hover{background:#fff;transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,124,0,.3)}
 
+/* FOOTER */
 footer{padding:80px 24px 40px;background:var(--dk);border-top:1px solid rgba(255,255,255,.06)}
 .fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px;max-width:1000px;margin:0 auto 48px}
 .fc h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;color:rgba(255,255,255,.35);font-weight:700}.fc ul{list-style:none}.fc li{margin-bottom:8px;color:rgba(255,255,255,.5);font-size:.95rem}
 .fb{text-align:center;color:rgba(255,255,255,.25);border-top:1px solid rgba(255,255,255,.06);padding-top:24px;font-size:.82rem}
 
+/* MOBILE STICKY */
 .ms{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(12,10,9,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.08);z-index:102;padding:10px 16px;box-shadow:0 -4px 24px rgba(0,0,0,.3)}
 
+/* SCROLL ANIMATIONS */
 .fx{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
 .fx.vs{opacity:1;transform:translateY(0)}
 .fx-d1{transition-delay:.1s}.fx-d2{transition-delay:.15s}.fx-d3{transition-delay:.2s}.fx-d4{transition-delay:.25s}
@@ -126,6 +144,7 @@ footer{padding:80px 24px 40px;background:var(--dk);border-top:1px solid rgba(255
 .sl-right{opacity:0;transform:translateX(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
 .sl-left.vs,.sl-right.vs{opacity:1;transform:translateX(0)}
 
+/* RESPONSIVE */
 @media(max-width:768px){
   .hr{height:100svh;min-height:550px}
   .hr h1{font-size:2.5rem}
@@ -156,16 +175,16 @@ footer{padding:80px 24px 40px;background:var(--dk);border-top:1px solid rgba(255
 <body>
 
 <nav class="nv" id="nv">
-  <div class="nl">VED <span>Electricals</span></div>
+  <div class="nl">VED Electricals <span>.</span></div>
   <a href="tel:0433885174" class="nc">Call Now</a>
 </nav>
 
 <header class="hr" id="tp">
-  <div class="hb" id="hb"><img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1600&q=80" alt="VED Electricals" loading="eager"></div>
+  <div class="hb" id="hb"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=1600&q=80" alt="Ved Electricals" loading="eager"></div>
   <div class="hi">
-    <div class="pl">Licensed Electricians — Craigieburn</div>
-    <h1>Quality <em>Electrical</em> Solutions.</h1>
-    <p>Licensed electricians for residential and commercial work. From switchboard upgrades to LED lighting across Craigieburn.</p>
+    <div class="pl">Craigieburn's Quality Electrician</div>
+    <h1>Quality <em>Electrical</em> Solutions</h1>
+    <p>Licensed electricians for switchboard upgrades, LED lighting, and complete home rewiring across Melbourne's north.</p>
     <div class="btns">
       <a href="tel:0433885174" class="bt bm">Call 0433 885 174</a>
       <a href="#services" class="bt bg">Our Services</a>
@@ -176,23 +195,24 @@ footer{padding:80px 24px 40px;background:var(--dk);border-top:1px solid rgba(255
 <div class="mq"><div class="mc" id="tk"></div></div>
 
 <section id="services" class="sn">
-  <div class="sh fx"><h2>What We Do</h2><p class="ss">Quality electrical services for every project size.</p></div>
+  <div class="sh fx"><h2>Our Services</h2><p class="ss">Reliable electrical work built to last.</p></div>
   <div class="bn">
     <div class="bc w fx fx-d1">
-      <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80" alt="Solar Installation" loading="lazy">
-      <span class="bc-tag">Essential</span>
-      <div class="bc-ov"><h3>Switchboard Upgrades</h3><p>Modernise your switchboard with safety switches and increased capacity.</p></div>
+      <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=900&q=80" alt="Switchboard Upgrades" loading="lazy">
+      <span class="bc-tag">Safety First</span>
+      <div class="bc-ov"><h3>Switchboard Upgrades</h3><p>Modernise your switchboard for improved safety, capacity, and compliance.</p></div>
     </div>
     <div class="bc n accent fx fx-d2">
-      <div class="bc-inner"><div class="bc-icon">💡</div><h3>LED Lighting</h3><p>Energy-efficient indoor and outdoor LED lighting solutions for any space.</p></div>
+      <div class="bc-inner"><div class="bc-icon">💡</div><h3>LED Lighting</h3><p>Energy-efficient indoor and outdoor LED lighting solutions that save you money.</p></div>
     </div>
     <div class="bc n fx fx-d3">
-      <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=80" alt="General Electrical" loading="lazy">
-      <div class="bc-ov"><h3>Home Rewiring</h3><p>Complete or partial rewiring for older homes needing an upgrade.</p></div>
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="Home Rewiring" loading="lazy">
+      <div class="bc-ov"><h3>Home Rewiring</h3><p>Complete or partial rewiring for older homes to meet modern standards.</p></div>
     </div>
     <div class="bc w fx fx-d4">
-      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Commercial Fit-outs" loading="lazy">
-      <div class="bc-ov"><h3>General Electrical</h3><p>All residential and commercial electrical work done right.</p></div>
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Commercial Electrical" loading="lazy">
+      <span class="bc-tag">All Sizes</span>
+      <div class="bc-ov"><h3>Commercial Electrical</h3><p>Full electrical fit-outs for offices, retail, and industrial spaces.</p></div>
     </div>
   </div>
 </section>
@@ -201,28 +221,28 @@ footer{padding:80px 24px 40px;background:var(--dk);border-top:1px solid rgba(255
   <div class="sg">
     <div class="fx fx-d1"><span class="sv">10+</span><span class="sl">Years Experience</span></div>
     <div class="fx fx-d2"><span class="sv">500+</span><span class="sl">Jobs Completed</span></div>
-    <div class="fx fx-d3"><span class="sv">100%</span><span class="sl">Licensed &amp; Insured</span></div>
-    <div class="fx fx-d4"><span class="sv">24/7</span><span class="sl">Emergency Service</span></div>
+    <div class="fx fx-d3"><span class="sv">4.8★</span><span class="sl">Google Rating</span></div>
+    <div class="fx fx-d4"><span class="sv">100%</span><span class="sl">Licensed & Insured</span></div>
   </div>
 </section>
 
 <section class="tst fx">
   <div class="tst-card">
     <div class="tst-stars">★★★★★</div>
-    <p class="quote">VED Electricals upgraded our switchboard and installed new LED downlights throughout. Clean work, great price, and very reliable. Will definitely use again.</p>
-    <p class="tst-author">Priya S.</p>
+    <p class="quote">Ved Electricals upgraded our switchboard and installed LED downlights throughout the house. Professional, affordable, and the work was spotless. Couldn't recommend them more highly.</p>
+    <p class="tst-author">Priya K.</p>
     <p class="tst-role">Homeowner — Craigieburn</p>
   </div>
 </section>
 
 <section class="sn">
   <div class="ag">
-    <div class="ai sl-left"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80" alt="VED Electricals at work"></div>
+    <div class="ai sl-left"><img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80" alt="Ved Electricals team"></div>
     <div class="at sl-right">
-      <h2>Why Choose Us</h2>
-      <p>We are Craigieburn's trusted electrical professionals. With over a decade of experience, we deliver quality workmanship at competitive prices.</p>
-      <p>Every job is backed by our guarantee. We show up on time, clean up, and treat your home like our own.</p>
-      <div class="tb"><span class="bd">Licensed</span><span class="bd">Insured</span><span class="bd">Free Quotes</span><span class="bd">24/7 Emergency</span></div>
+      <h2>About Ved Electricals</h2>
+      <p>Ved Electricals has built a strong reputation in Craigieburn for delivering quality electrical solutions. From switchboard upgrades to full rewires, we handle it all with precision and care.</p>
+      <p>We take pride in honest pricing, clean workmanship, and showing up when we say we will. Every job comes with a compliance certificate.</p>
+      <div class="tb"><span class="bd">Licensed</span><span class="bd">Insured</span><span class="bd">Free Quotes</span><span class="bd">Compliance Certs</span></div>
     </div>
   </div>
 </section>
@@ -230,26 +250,26 @@ footer{padding:80px 24px 40px;background:var(--dk);border-top:1px solid rgba(255
 <section class="sn">
   <div class="sh fx"><h2>FAQ</h2><p class="ss">Everything you need to know.</p></div>
   <div class="fq fx">
-    <details><summary>Are your electricians licensed?</summary><p>Yes, all our electricians hold current Victorian electrical licences and are fully insured.</p></details>
-    <details><summary>Do you do emergency work?</summary><p>Yes — we offer 24/7 emergency electrical services across Craigieburn and Melbourne's north.</p></details>
-    <details><summary>Can you issue safety certificates?</summary><p>Absolutely. We issue certificates of electrical safety for all completed work.</p></details>
-    <details><summary>What areas do you cover?</summary><p>We service Craigieburn, Mickleham, Kalkallo, Donnybrook and all surrounding suburbs.</p></details>
+    <details><summary>Are your electricians licensed?</summary><p>Yes, all our electricians hold current Victorian electrical licences and carry full insurance for your protection.</p></details>
+    <details><summary>How do I know if my switchboard needs upgrading?</summary><p>If your home still has ceramic fuses, frequent tripping, or you're adding new appliances, it's time for an upgrade. We offer free assessments.</p></details>
+    <details><summary>Do you offer emergency services?</summary><p>Absolutely — we provide 24/7 emergency electrical services across Craigieburn and surrounding areas.</p></details>
+    <details><summary>What areas do you service?</summary><p>We cover Craigieburn, Mickleham, Roxburgh Park, Broadmeadows, and all of Melbourne's northern suburbs.</p></details>
   </div>
 </section>
 
 <div class="cx fx">
-  <h2>Ready to Get <em>Started</em>?</h2>
-  <p>Call us today for a free, no-obligation quote on your electrical project.</p>
+  <h2>Book Your Free <em>Quote</em></h2>
+  <p>Quality electrical work at honest prices. Call today — no obligation.</p>
   <a href="tel:0433885174" class="bt bw">Call 0433 885 174</a>
 </div>
 
 <footer>
   <div class="fg">
-    <div class="fc"><h4>VED Electricals</h4><ul><li>Premium Electrical Services</li><li>Serving Craigieburn, VIC</li></ul></div>
-    <div class="fc"><h4>Services</h4><ul><li>Switchboard Upgrades</li><li>LED Lighting</li><li>Home Rewiring</li><li>General Electrical</li></ul></div>
+    <div class="fc"><h4>Ved Electricals</h4><ul><li>Quality Electrical Solutions</li><li>Serving Craigieburn, VIC</li></ul></div>
+    <div class="fc"><h4>Services</h4><ul><li>Switchboard Upgrades</li><li>LED Lighting</li><li>Home Rewiring</li><li>Commercial Electrical</li></ul></div>
     <div class="fc"><h4>Contact</h4><ul><li>0433 885 174</li><li>Craigieburn, VIC</li></ul></div>
   </div>
-  <div class="fb">&copy; 2026 VED Electricals. All rights reserved.</div>
+  <div class="fb">&copy; 2026 Ved Electricals. All rights reserved. Built by W230.</div>
   <div class="ms">
     <a href="tel:0433885174" class="bt bm" style="flex:1;border-radius:10px">📞 Call Now</a>
     <a href="#services" class="bt bg" style="flex:1;border-radius:10px;border-color:rgba(255,255,255,.2);color:#fff">Services</a>
@@ -260,26 +280,34 @@ footer{padding:80px 24px 40px;background:var(--dk);border-top:1px solid rgba(255
 {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "name": "VED Electricals",
-  "description": "Quality electrical services in Craigieburn, VIC. Switchboards, LED lighting, rewiring, and general electrical.",
-  "address": { "@type": "PostalAddress", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064", "addressCountry": "Australia" },
-  "telephone": "0412126511",
-  "url": "https://mustbesimo.github.io/pages/ved-electricals/"
+  "name": "Ved Electricals",
+  "description": "Quality electrical solutions in Craigieburn — switchboard upgrades, LED lighting, and home rewiring.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Craigieburn", "addressRegion": "VIC", "addressCountry": "Australia" },
+  "telephone": "0433885174",
+  "url": "https://mustbesimo.github.io/pages/ved-electricals/",
+  "areaServed": "Craigieburn, VIC"
 }
 </script>
 
 <script>
+// Parallax hero
 const hb=document.getElementById('hb');
 let ticking=false;
 window.addEventListener('scroll',()=>{
   if(!ticking){requestAnimationFrame(()=>{hb.style.transform='translateY('+window.scrollY*.3+'px)';ticking=false});ticking=true}
 });
-const it=['SWITCHBOARD UPGRADES','LED LIGHTING','HOME REWIRING','GENERAL ELECTRICAL','CRAIGIEBURN'];
+
+// Marquee
+const it=['SWITCHBOARD UPGRADES','LED LIGHTING','HOME REWIRING','SAFETY SWITCHES','SMOKE ALARMS','EMERGENCY 24/7','CRAIGIEBURN'];
 document.getElementById('tk').innerHTML=it.concat(it).map(x=>'<div class="mi"><span class="md">/</span>'+x+'</div>').join('');
+
+// Scroll observer
 const ob=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vs')})
 },{threshold:.1,rootMargin:'0px 0px -60px 0px'});
 document.querySelectorAll('.fx,.sl-left,.sl-right').forEach(el=>ob.observe(el));
+
+// Nav scroll
 window.addEventListener('scroll',()=>{
   document.getElementById('nv').classList.toggle('sc',window.scrollY>50);
 });

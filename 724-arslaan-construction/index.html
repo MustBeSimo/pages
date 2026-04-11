@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7/24 Arslaan Construction — Handyman in Dandenong</title>
+    <meta name="description" content="7/24 Arslaan Construction — professional handyman services in Dandenong and surrounding areas. Call now for a free quote.">
+    <meta name="robots" content="noindex,nofollow">
+    <meta property="og:title" content="7/24 Arslaan Construction — Handyman in Dandenong">
+    <meta property="og:description" content="Professional handyman services. Call 0472652563 for a free quote.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0a0a;
+            --card: #111111;
+            --border: #1a1a1a;
+            --text: #e5e5e5;
+            --muted: #888;
+            --accent: #f59e0b;
+            --accent2: #ef4444;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        /* NAV */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10,10,10,0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-logo { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.02em; }
+        .nav-logo span { color: var(--accent); }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff; padding: 0.6rem 1.4rem; border-radius: 8px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,158,11,0.3); }
+        
+        /* HERO */
+        .hero {
+            position: relative; min-height: 100vh; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+        }
+        .hero-bg {
+            position: absolute; inset: -20%; z-index: 0; will-change: transform;
+        }
+        .hero-bg img {
+            width: 100%; height: 100%; object-fit: cover;
+            transform: scale(1.1);
+        }
+        .hero-bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(10,10,10,0.95));
+        }
+        .hero-inner { position: relative; z-index: 1; max-width: 700px; padding: 2rem; }
+        .pill {
+            display: inline-block; padding: 0.4rem 1rem; border-radius: 50px;
+            background: rgba(245,158,11,0.15); color: var(--accent);
+            font-size: 0.85rem; font-weight: 500; margin-bottom: 1.5rem;
+            border: 1px solid rgba(245,158,11,0.3);
+            opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.2s forwards;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
+            opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s 0.4s forwards;
+        }
+        .hero p {
+            font-size: 1.1rem; color: var(--muted); max-width: 500px; margin: 0 auto 2rem;
+            opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.6s forwards;
+        }
+        .btns {
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.8s forwards;
+        }
+        .btn {
+            padding: 0.9rem 2rem; border-radius: 10px; font-weight: 600;
+            text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.1); color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,158,11,0.2); }
+        
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        
+        /* SECTION */
+        .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif; font-size: 2.2rem;
+            font-weight: 700; margin-bottom: 0.5rem;
+        }
+        .section-sub { color: var(--muted); font-size: 1rem; }
+        
+        /* BENTO GRID */
+        .bento {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+        }
+        .b-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .b-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 32px rgba(245,158,11,0.1);
+        }
+        .b-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .b-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .b-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+        
+        /* STATS */
+        .stats {
+            background: var(--card); border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem; text-align: center; max-width: 900px; margin: 0 auto;
+        }
+        .stat-val {
+            display: block; font-size: 2.5rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .stat-label { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
+        
+        /* FAQ */
+        .faq { max-width: 700px; margin: 0 auto; }
+        .faq-item {
+            border: 1px solid var(--border); border-radius: 12px;
+            margin-bottom: 0.8rem; overflow: hidden;
+            background: var(--card);
+        }
+        .faq-item summary {
+            padding: 1.2rem 1.5rem; cursor: pointer; font-weight: 500;
+            list-style: none; display: flex; justify-content: space-between; align-items: center;
+        }
+        .faq-item summary::after { content: '+'; font-size: 1.3rem; color: var(--accent); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item p { padding: 0 1.5rem 1.2rem; color: var(--muted); font-size: 0.9rem; }
+        
+        /* CTA */
+        .cta-box {
+            text-align: center; padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.08));
+            border-radius: 24px; border: 1px solid rgba(245,158,11,0.15);
+            max-width: 800px; margin: 0 auto;
+        }
+        .cta-box h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem; }
+        .cta-box p { color: var(--muted); margin-bottom: 2rem; }
+        
+        /* TRUST */
+        .trust-badges {
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .badge {
+            padding: 0.5rem 1rem; border-radius: 50px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            font-size: 0.8rem; color: var(--muted);
+        }
+        
+        /* FOOTER */
+        footer {
+            text-align: center; padding: 3rem 2rem;
+            color: var(--muted); font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+        
+        /* MOBILE STICKY */
+        .mobile-sticky {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
+            padding: 0.8rem 1rem; display: none;
+            border-top: 1px solid var(--border);
+        }
+        .mobile-sticky .btn { width: 100%; text-align: center; padding: 0.9rem; }
+        
+        @media (max-width: 768px) {
+            .nav { padding: 0.8rem 1rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .section { padding: 3rem 1rem; }
+            .mobile-sticky { display: block; }
+            body { padding-bottom: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <div class="nav-logo">7/24<span>ArslaanConstruction</span></div>
+    <a href="tel:0472652563" class="nav-cta">Call Now</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-bg" id="hb">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1920&q=80" alt="handyman">
+    </div>
+    <div class="hero-inner">
+        <div class="pill">📍 Dandenong & Surrounds</div>
+        <h1>7/24 Arslaan Construction</h1>
+        <p>Professional handyman services in Dandenong. Quality work, fair prices, done right the first time.</p>
+        <div class="btns">
+            <a href="tel:0472652563" class="btn btn-primary">📞 Call 0472652563</a>
+            <a href="#services" class="btn btn-secondary">Our Services</a>
+        </div>
+    </div>
+</header>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="section" style="padding-top:3rem;padding-bottom:3rem;">
+        <div class="stats-grid">
+            <div><span class="stat-val">15+</span><span class="stat-label">Years Experience</span></div>
+            <div><span class="stat-val">500+</span><span class="stat-label">Jobs Completed</span></div>
+            <div><span class="stat-val">100%</span><span class="stat-label">Licensed & Insured</span></div>
+            <div><span class="stat-val">0★</span><span class="stat-label">Google Rating</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+    <div class="section-header">
+        <h2>What We Do</h2>
+        <p class="section-sub">Quality handyman services for homes and businesses</p>
+    </div>
+    <div class="bento">
+            <div class="b-card">
+                <div class="b-icon">🔨</div>
+                <h3>General Repairs</h3>
+                <p>From squeaky doors to broken shelves — sorted</p>
+            </div>
+            <div class="b-card">
+                <div class="b-icon">📦</div>
+                <h3>Flat Pack Assembly</h3>
+                <p>IKEA, Bunnings, any brand — assembled properly</p>
+            </div>
+            <div class="b-card">
+                <div class="b-icon">🪟</div>
+                <h3>Door & Window Repairs</h3>
+                <p>Hinges, locks, handles — all fixed</p>
+            </div>
+            <div class="b-card">
+                <div class="b-icon">💡</div>
+                <h3>Fixture Installation</h3>
+                <p>Shelves, blinds, TVs — mounted securely</p>
+            </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+    <div class="section-header">
+        <h2>Common Questions</h2>
+        <p class="section-sub">Everything you need to know</p>
+    </div>
+    <div class="faq">
+            <details class="faq-item">
+                <summary>Is there a minimum charge?</summary>
+                <p>Yes — 1 hour minimum. Most small jobs fit within that.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Do you supply materials?</summary>
+                <p>We can supply or work with materials you've already purchased.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Are you insured?</summary>
+                <p>Yes — fully insured for residential and commercial work.</p>
+            </details>
+            <details class="faq-item">
+                <summary>What types of jobs do you do?</summary>
+                <p>Almost anything — repairs, assembly, installations, maintenance. Just ask!</p>
+            </details>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+    <div class="cta-box">
+        <h2>Ready to Get Started?</h2>
+        <p>Call now for a free, no-obligation quote. We're ready when you are.</p>
+        <a href="tel:0472652563" class="btn btn-primary">📞 Call 0472652563</a>
+        <div class="trust-badges">
+            <span class="badge">✓ Licensed & Insured</span>
+            <span class="badge">✓ Free Quotes</span>
+            <span class="badge">✓ Local Dandenong Business</span>
+            <span class="badge">✓ Quality Guaranteed</span>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p><strong>7/24 Arslaan Construction</strong> — Handyman in Dandenong</p>
+    <p>Dandenong VIC | <a href="tel:0472652563">0472652563</a></p>
+    <p style="margin-top:0.5rem;">© 2026 7/24 Arslaan Construction. All rights reserved.</p>
+</footer>
+
+<!-- MOBILE STICKY -->
+<div class="mobile-sticky">
+    <a href="tel:0472652563" class="btn btn-primary">📞 Call Now — Free Quote</a>
+</div>
+
+<!-- PARALLAX -->
+<script>
+const hb = document.getElementById('hb');
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            hb.style.transform = 'translateY(' + window.scrollY * 0.35 + 'px)';
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
+</script>
+
+</body>
+</html>

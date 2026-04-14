@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>ACEFIX Handyman Services — Handyman in Dandenong</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:#1a1a1a;background:#fafafa;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 0;transition:all .4s}
+.nav.scrolled{background:rgba(250,250,250,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.06);padding:.7rem 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:700;font-size:1.15rem;color:#dc2626}
+.nav-cta{background:#dc2626;color:#fff;padding:.55rem 1.3rem;border-radius:100px;font-size:.82rem;font-weight:600;transition:all .3s}
+.nav-cta:hover{opacity:.85;transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:#111;color:#fff}
+.hero-bg{position:absolute;inset:-20%;will-change:transform}
+.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.1);filter:brightness(.4)}
+.hero-inner{position:relative;z-index:2;padding:8rem 0 5rem;max-width:600px}
+.pill{display:inline-block;padding:.4rem 1rem;border-radius:100px;background:rgba(255,255,255,.12);font-size:.78rem;font-weight:500;letter-spacing:.5px;margin-bottom:1.2rem;opacity:0;transform:translateY(20px);animation:fadeUp .8s .2s forwards}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:1rem;opacity:0;transform:translateY(30px);animation:fadeUp .8s .4s forwards}
+.hero p{font-size:1.05rem;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:1.8rem;opacity:0;transform:translateY(20px);animation:fadeUp .8s .6s forwards}
+.btns{display:flex;gap:.8rem;flex-wrap:wrap;opacity:0;transform:translateY(20px);animation:fadeUp .8s .8s forwards}
+.btn-primary{display:inline-flex;align-items:center;gap:.4rem;background:#dc2626;color:#fff;padding:.85rem 1.8rem;border-radius:100px;font-weight:600;font-size:.92rem;transition:all .3s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.btn-secondary{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.1);color:#fff;padding:.85rem 1.8rem;border-radius:100px;font-weight:600;font-size:.92rem;border:1px solid rgba(255,255,255,.15);transition:all .3s}
+.btn-secondary:hover{background:rgba(255,255,255,.15)}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* STATS */
+.stats{background:#dc2626;color:#fff;padding:2.5rem 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
+.stat-val{display:block;font-size:1.8rem;font-weight:800}
+.stat-label{font-size:.78rem;opacity:.8}
+
+/* SERVICES */
+.services{padding:5rem 0}
+.section-header{text-align:center;margin-bottom:2.5rem}
+.section-header h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:#111;letter-spacing:-.5px}
+.section-sub{color:#666;margin-top:.5rem;font-size:.95rem}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.b-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:1.5rem;text-align:center;transition:all .35s}
+.b-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.07);border-color:#dc262620}
+.b-icon{width:48px;height:48px;border-radius:12px;background:#dc262612;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto .8rem}
+.b-card h3{font-size:.92rem;font-weight:600}
+
+/* ABOUT */
+.about{padding:4rem 0;background:#f5f5f5}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.about-img{border-radius:16px;overflow:hidden;aspect-ratio:4/3}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-text h2{font-size:1.6rem;font-weight:700;margin-bottom:.8rem}
+.about-text p{color:#555;line-height:1.7;font-size:.95rem}
+
+/* FAQ */
+.faq-section{padding:4rem 0}
+.faq{max-width:700px;margin:0 auto}
+.faq-item{border-bottom:1px solid #eee;padding:1rem 0}
+.faq-item summary{font-weight:600;cursor:pointer;font-size:.95rem;list-style:none}
+.faq-item summary::before{content:"+";margin-right:.8rem;color:#dc2626;font-weight:700}
+.faq-item[open] summary::before{content:"−"}
+.faq-item p{color:#666;font-size:.9rem;line-height:1.6;margin-top:.6rem;padding-left:1.6rem}
+
+/* CTA */
+.cta-box{background:linear-gradient(135deg,#dc2626,#dc2626dd);color:#fff;padding:4rem 2rem;text-align:center;border-radius:20px;margin:3rem auto;max-width:700px}
+.cta-box h2{font-size:1.8rem;font-weight:700;margin-bottom:.6rem}
+.cta-box p{opacity:.85;margin-bottom:1.5rem;font-size:1rem}
+.cta-box .btn-primary{background:#fff;color:#dc2626}
+.cta-box .btn-primary:hover{box-shadow:0 8px 24px rgba(0,0,0,.2)}
+
+/* FOOTER */
+footer{background:#111;color:#fff;padding:2.5rem 0;text-align:center}
+footer p{color:#666;font-size:.82rem}
+
+/* MOBILE STICKY */
+.mobile-sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid #eee;padding:.7rem 1rem;display:none;z-index:100}
+.mobile-sticky .btn-primary{width:100%;justify-content:center}
+@media(max-width:768px){
+  .bento{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+  .mobile-sticky{display:block}
+  body{padding-bottom:70px}
+}
+@media(max-width:480px){.bento{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <div class="nav-logo">ACEFIX</div>
+    <a href="tel:61414068568" class="nav-cta">📞 Call Now</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg" id="hb"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80" alt="" loading="eager"></div>
+  <div class="container hero-inner">
+    <div class="pill">📍 Dandenong & surrounds</div>
+    <h1>ACEFIX Handyman Services</h1>
+    <p>Fast, affordable fixes for homes and businesses in Melbourne's south-east.</p>
+    <div class="btns">
+      <a href="tel:61414068568" class="btn-primary">📞 Call +61 414 068 568</a>
+      <a href="#services" class="btn-secondary">Our Services</a>
+    </div>
+  </div>
+</header>
+
+<section class="stats">
+  <div class="container stats-grid">
+    <div><span class="stat-val">24/7</span><span class="stat-label">Availability</span></div>
+    <div><span class="stat-val">Free</span><span class="stat-label">Quotes</span></div>
+    <div><span class="stat-val">Fully</span><span class="stat-label">Insured</span></div>
+    <div><span class="stat-val">Local</span><span class="stat-label">Dandenong</span></div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header">
+      <h2>What We Do</h2>
+      <p class="section-sub">Professional handyman services across Melbourne's south-east.</p>
+    </div>
+    <div class="bento">
+      <div class="b-card">
+        <div class="b-icon">🔧</div>
+        <h3>Bathroom Repairs</h3>
+      </div>
+          <div class="b-card">
+        <div class="b-icon">🔩</div>
+        <h3>Kitchen Fixes</h3>
+      </div>
+          <div class="b-card">
+        <div class="b-icon">🪚</div>
+        <h3>Timber & Decking</h3>
+      </div>
+          <div class="b-card">
+        <div class="b-icon">🧹</div>
+        <h3>Gutter Cleaning</h3>
+      </div>
+          <div class="b-card">
+        <div class="b-icon">💧</div>
+        <h3>Power Washing</h3>
+      </div>
+          <div class="b-card">
+        <div class="b-icon">🏗️</div>
+        <h3>Property Maintenance</h3>
+      </div>
+        </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="container about-grid">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Handyman at work" loading="lazy">
+    </div>
+    <div class="about-text">
+      <h2>Why Choose ACEFIX?</h2>
+      <p>We're a local handyman team based in Dandenong. We turn up on time, quote clearly, and finish the job properly. No hidden fees, no runaround. Just quality work at fair prices.</p>
+      <p style="margin-top:1rem">Whether it's a small fix or a bigger project, we treat every job with the same care. Give us a call for a free quote.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Common Questions</h2>
+    </div>
+    <div class="faq">
+      <details class="faq-item">
+        <summary>Do you offer free quotes?</summary>
+        <p>Yes — we'll come out, assess the job, and give you a clear quote before any work starts. No obligation.</p>
+      </details>
+          <details class="faq-item">
+        <summary>Is there a minimum charge?</summary>
+        <p>Our minimum call-out is $90, which covers the first hour. After that, we charge in 30-minute blocks.</p>
+      </details>
+          <details class="faq-item">
+        <summary>Are you insured?</summary>
+        <p>Yes, fully insured for residential and commercial work. We carry public liability insurance.</p>
+      </details>
+          <details class="faq-item">
+        <summary>What areas do you cover?</summary>
+        <p>We service Dandenong, Dandenong, Noble Park, Springvale, Keysborough, and surrounding south-east suburbs.</p>
+      </details>
+        </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="cta-box">
+    <h2>Ready to Get Started?</h2>
+    <p>Call now for a free quote. No obligation.</p>
+    <a href="tel:61414068568" class="btn-primary">📞 +61 414 068 568</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 ACEFIX Handyman Services. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="mobile-sticky">
+  <a href="tel:61414068568" class="btn-primary">📞 Call Now — Free Quote</a>
+</div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+const hb=document.getElementById('hb');
+let ticking=false;
+window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{if(hb)hb.style.transform='translateY('+window.scrollY*0.35+'px)';ticking=false});ticking=true}});
+</script>
+</body>
+</html>

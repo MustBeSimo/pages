@@ -52,6 +52,16 @@ a{text-decoration:none;color:inherit}
 .hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
 .hero-card{width:100%;max-width:520px;aspect-ratio:4/3;border-radius:20px;position:relative;overflow:hidden;box-shadow:0 40px 80px rgba(10,61,42,.15)}
 .hero-card img{width:100%;height:100%;object-fit:cover}
+.hero-carousel{width:100%;max-width:520px;aspect-ratio:4/3;border-radius:20px;position:relative;overflow:hidden;box-shadow:0 40px 80px rgba(10,61,42,.18)}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease,transform 1.2s ease;transform:scale(1.08)}
+.hero-slide.active{opacity:1;transform:scale(1)}
+.hero-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+.hero-dot{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s;padding:0}
+.hero-dot.active{background:#fff;width:24px;border-radius:4px}
+.hero-dot:hover{background:rgba(255,255,255,.8)}
+.hero-progress{position:absolute;bottom:0;left:0;height:3px;background:linear-gradient(90deg,#2d8a5e,#6bc48a);width:0;z-index:3;border-radius:0 2px 0 0}
+.hero-progress.running{animation:hero-progress 5s linear forwards}
+@keyframes hero-progress{from{width:0}to{width:100%}}
 .hero-metric{position:absolute;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-radius:12px;padding:.8rem 1.2rem;box-shadow:0 8px 24px rgba(0,0,0,.08);font-size:.8rem}
 .hero-metric-1{top:10%;right:-10%}
 .hero-metric-2{bottom:15%;left:-8%}
@@ -59,8 +69,12 @@ a{text-decoration:none;color:inherit}
 .hero-metric span{color:#888;font-weight:500}
 
 /* ── TRUST BAR ────────────────────────────────────── */
-.trust-bar{padding:3rem 0;border-top:1px solid rgba(0,0,0,.05);border-bottom:1px solid rgba(0,0,0,.05)}
-.trust-bar-inner{display:flex;align-items:center;justify-content:center;gap:clamp(2rem,5vw,4rem);flex-wrap:wrap;opacity:.4;font-size:.85rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:#999}
+.trust-bar{padding:3.5rem 0;background:linear-gradient(180deg,#f5f5f0 0%,#fafaf8 100%);border-top:1px solid rgba(0,0,0,.04);border-bottom:1px solid rgba(0,0,0,.04)}
+.trust-bar-inner{display:flex;align-items:center;justify-content:center;gap:clamp(1.5rem,4vw,3rem);flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.6rem;padding:.6rem 1.2rem;background:#fff;border:1px solid rgba(45,138,94,.1);border-radius:100px;transition:all .35s;cursor:default}
+.trust-item:hover{border-color:rgba(45,138,94,.3);transform:translateY(-2px);box-shadow:0 6px 16px rgba(45,138,94,.08)}
+.trust-icon{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#e8f5ec,#d1e8da);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.trust-label{font-size:.78rem;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:#0a3d2a;white-space:nowrap}
 
 /* ── SECTIONS COMMON ──────────────────────────────── */
 .section{padding:clamp(4rem,10vh,8rem) 0}
@@ -198,16 +212,28 @@ footer{background:#111;color:#fff;padding:4rem 0 2rem}
       </div>
     </div>
     <div class="hero-visual reveal reveal-delay-3">
-      <div class="hero-card">
-        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80&auto=format&fit=crop" alt="Modern sustainable commercial furniture" loading="eager">
-        <div class="hero-metric hero-metric-1">
-          <strong>87%</strong>
-          <span>Recycled Content</span>
+      <div class="hero-carousel">
+        <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="hero-dots">
+          <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+          <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+          <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+          <button class="hero-dot" data-slide="3" aria-label="Slide 4"></button>
+          <button class="hero-dot" data-slide="4" aria-label="Slide 5"></button>
         </div>
-        <div class="hero-metric hero-metric-2">
-          <strong>12×</strong>
-          <span>Reuse Cycles</span>
-        </div>
+        <div class="hero-progress"></div>
+      </div>
+      <div class="hero-metric hero-metric-1">
+        <strong>87%</strong>
+        <span>Recycled Content</span>
+      </div>
+      <div class="hero-metric hero-metric-2">
+        <strong>12×</strong>
+        <span>Reuse Cycles</span>
       </div>
     </div>
   </div>
@@ -216,11 +242,11 @@ footer{background:#111;color:#fff;padding:4rem 0 2rem}
 <!-- ── TRUST BAR ───────────────────────────────────── -->
 <div class="trust-bar">
   <div class="container trust-bar-inner">
-    <span>ISO 9001</span>
-    <span>ISO 14001</span>
-    <span>Carbon Measured</span>
-    <span>Circular Certified</span>
-    <span>End-of-Life Verified</span>
+    <div class="trust-item reveal"><span class="trust-icon">✓</span><span class="trust-label">ISO 9001</span></div>
+    <div class="trust-item reveal reveal-delay-1"><span class="trust-icon">✓</span><span class="trust-label">ISO 14001</span></div>
+    <div class="trust-item reveal reveal-delay-2"><span class="trust-icon">🌱</span><span class="trust-label">Carbon Measured</span></div>
+    <div class="trust-item reveal reveal-delay-3"><span class="trust-icon">♻️</span><span class="trust-label">Circular Certified</span></div>
+    <div class="trust-item reveal reveal-delay-4"><span class="trust-icon">📋</span><span class="trust-label">End-of-Life Verified</span></div>
   </div>
 </div>
 
@@ -451,8 +477,50 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Hero carousel
+(function() {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  const progress = document.querySelector('.hero-progress');
+  let current = 0;
+  let timer;
+  const INTERVAL = 5000;
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    progress.classList.remove('running');
+    void progress.offsetWidth; // reflow
+    progress.classList.add('running');
+    clearTimeout(timer);
+    timer = setTimeout(() => goTo((current + 1) % slides.length), INTERVAL);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => goTo(parseInt(dot.dataset.slide)));
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  const carousel = document.querySelector('.hero-carousel');
+  carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  carousel.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) goTo((current + 1) % slides.length);
+      else goTo((current - 1 + slides.length) % slides.length);
+    }
+  }, {passive:true});
+
+  // Start
+  progress.classList.add('running');
+  timer = setTimeout(() => goTo(1), INTERVAL);
+})();
 
 // Counter animation
 const counterObserver = new IntersectionObserver((entries) => {
@@ -471,15 +539,14 @@ const counterObserver = new IntersectionObserver((entries) => {
     counterObserver.unobserve(el);
   });
 }, { threshold: 0.5 });
-
 document.querySelectorAll('.stat-num').forEach(el => counterObserver.observe(el));
 
 // Parallax on hero shapes
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
   const shapes = document.querySelectorAll('.hero-bg-shape');
-  shapes[0].style.transform = `translate(${y * 0.03}px, ${y * 0.08}px)`;
-  shapes[1].style.transform = `translate(${-y * 0.04}px, ${-y * 0.06}px)`;
+  if (shapes[0]) shapes[0].style.transform = `translate(${y * 0.03}px, ${y * 0.08}px)`;
+  if (shapes[1]) shapes[1].style.transform = `translate(${-y * 0.04}px, ${-y * 0.06}px)`;
 });
 </script>
 </body>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Loop Global — Circular Design Furniture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Inter',system-ui,sans-serif;color:#1a1a1a;background:#fafaf8;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ── UTILITY ──────────────────────────────────────── */
+.container{max-width:1280px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+
+/* ── STICKY NAV (frosted glass) ───────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .4s cubic-bezier(.22,1,.36,1);padding:1.2rem 0}
+.nav.scrolled{background:rgba(250,250,248,.82);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid rgba(0,0,0,.06);padding:.8rem 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.1rem,1.8vw,1.3rem);letter-spacing:-.5px;color:#0a3d2a;display:flex;align-items:center;gap:.6rem}
+.nav-logo .dot{width:8px;height:8px;background:#2d8a5e;border-radius:50%;animation:pulse-dot 2s ease infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.nav-links{display:flex;gap:clamp(1rem,2.5vw,2.2rem);align-items:center}
+.nav-links a{font-size:.85rem;font-weight:500;color:#555;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:#2d8a5e;transition:width .3s}
+.nav-links a:hover{color:#0a3d2a}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:#0a3d2a;color:#fff!important;padding:.55rem 1.4rem;border-radius:100px;font-size:.82rem;font-weight:600;transition:all .3s}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:#2d8a5e;transform:translateY(-1px);box-shadow:0 6px 20px rgba(10,61,42,.25)}
+
+/* ── HERO (parallax) ─────────────────────────────── */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(165deg,#f0f7f2 0%,#fafaf8 40%,#f5f0e8 100%)}
+.hero-bg-shape{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;pointer-events:none}
+.hero-bg-shape-1{width:600px;height:600px;background:radial-gradient(circle,#c8e6d0,transparent);top:-10%;right:-5%}
+.hero-bg-shape-2{width:400px;height:400px;background:radial-gradient(circle,#d4c5a0,transparent);bottom:-5%;left:-8%}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;padding:clamp(6rem,12vh,8rem) 0 clamp(4rem,8vh,6rem)}
+.hero-text h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:800;line-height:1.08;letter-spacing:-1.5px;color:#0a3d2a;margin-bottom:1.5rem}
+.hero-text h1 span{color:#2d8a5e;position:relative}
+.hero-text h1 span::after{content:'';position:absolute;bottom:4px;left:0;width:100%;height:8px;background:rgba(45,138,94,.15);border-radius:4px;z-index:-1}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.2rem);color:#666;line-height:1.7;max-width:480px;margin-bottom:2rem;font-weight:300}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:#0a3d2a;color:#fff;padding:.9rem 2rem;border-radius:100px;font-weight:600;font-size:.95rem;transition:all .35s;border:none;cursor:pointer}
+.btn-primary:hover{background:#2d8a5e;transform:translateY(-2px);box-shadow:0 12px 32px rgba(10,61,42,.2)}
+.btn-secondary{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:#0a3d2a;padding:.9rem 2rem;border-radius:100px;font-weight:600;font-size:.95rem;border:1.5px solid rgba(10,61,42,.2);transition:all .35s;cursor:pointer}
+.btn-secondary:hover{border-color:#0a3d2a;background:rgba(10,61,42,.04)}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-card{width:100%;max-width:520px;aspect-ratio:4/3;background:linear-gradient(145deg,#e8f5ec,#d1e8da);border-radius:20px;position:relative;overflow:hidden;box-shadow:0 40px 80px rgba(10,61,42,.12)}
+.hero-card-inner{position:absolute;inset:20%;background:linear-gradient(135deg,#c8e6d0 0%,#a8d5ba 50%,#88c4a0 100%);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.hero-card-label{font-family:'Space Grotesk',sans-serif;font-size:clamp(.9rem,1.5vw,1.1rem);color:#0a3d2a;font-weight:600;text-align:center;opacity:.6}
+.hero-metric{position:absolute;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-radius:12px;padding:.8rem 1.2rem;box-shadow:0 8px 24px rgba(0,0,0,.08);font-size:.8rem}
+.hero-metric-1{top:10%;right:-10%}
+.hero-metric-2{bottom:15%;left:-8%}
+.hero-metric strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.4rem;color:#0a3d2a;margin-bottom:2px}
+.hero-metric span{color:#888;font-weight:500}
+
+/* ── TRUST BAR ────────────────────────────────────── */
+.trust-bar{padding:3rem 0;border-top:1px solid rgba(0,0,0,.05);border-bottom:1px solid rgba(0,0,0,.05)}
+.trust-bar-inner{display:flex;align-items:center;justify-content:center;gap:clamp(2rem,5vw,4rem);flex-wrap:wrap;opacity:.4;font-size:.85rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:#999}
+
+/* ── SECTIONS COMMON ──────────────────────────────── */
+.section{padding:clamp(4rem,10vh,8rem) 0}
+.section-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#2d8a5e;margin-bottom:.8rem;display:inline-block}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-1px;color:#0a3d2a;line-height:1.15;margin-bottom:1rem}
+.section-desc{font-size:clamp(.95rem,1.3vw,1.1rem);color:#666;line-height:1.7;max-width:600px;font-weight:300}
+
+/* ── SOLUTIONS GRID ───────────────────────────────── */
+.solutions{background:#f5f5f0}
+.solutions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:clamp(2rem,4vh,3.5rem)}
+.sol-card{background:#fff;border-radius:16px;overflow:hidden;transition:all .4s cubic-bezier(.22,1,.36,1);position:relative;cursor:pointer;border:1px solid rgba(0,0,0,.04)}
+.sol-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.08)}
+.sol-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2d8a5e,#6bc48a);transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.sol-card:hover::before{transform:scaleX(1)}
+.sol-card-img{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#e8f0eb,#d0ddd6);position:relative;overflow:hidden}
+.sol-card-img .placeholder-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem;opacity:.25}
+.sol-card-body{padding:1.4rem 1.5rem 1.6rem}
+.sol-card-body h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;color:#1a1a1a;margin-bottom:.4rem}
+.sol-card-body p{font-size:.85rem;color:#888;line-height:1.5}
+
+/* ── WHY SECTION (3 pillars) ──────────────────────── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:clamp(2rem,4vh,3.5rem)}
+.why-card{padding:clamp(1.5rem,3vw,2.5rem);background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,.04);transition:all .4s;position:relative;overflow:hidden}
+.why-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.06)}
+.why-card::after{content:'';position:absolute;top:0;left:0;width:4px;height:0;background:linear-gradient(180deg,#2d8a5e,#6bc48a);transition:height .4s}
+.why-card:hover::after{height:100%}
+.why-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#e8f5ec,#d1e8da);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;font-size:1.3rem}
+.why-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin-bottom:.6rem;color:#0a3d2a}
+.why-card p{font-size:.9rem;color:#777;line-height:1.65;font-weight:300}
+
+/* ── STATS ────────────────────────────────────────── */
+.stats{background:#0a3d2a;color:#fff;position:relative;overflow:hidden}
+.stats::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;position:relative;z-index:1}
+.stat-item{padding:1rem}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:.3rem;background:linear-gradient(135deg,#fff,#a8d5ba);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:.85rem;opacity:.7;font-weight:400}
+
+/* ── PRODUCTS ─────────────────────────────────────── */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:clamp(2rem,4vh,3.5rem)}
+.prod-card{background:#fff;border-radius:14px;padding:1.5rem;text-align:center;border:1px solid rgba(0,0,0,.04);transition:all .35s;cursor:pointer;position:relative;overflow:hidden}
+.prod-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.07);border-color:rgba(45,138,94,.15)}
+.prod-icon{width:56px;height:56px;margin:0 auto 1rem;background:linear-gradient(135deg,#f0f7f2,#e0ede5);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;transition:all .35s}
+.prod-card:hover .prod-icon{background:linear-gradient(135deg,#2d8a5e,#6bc48a);color:#fff;transform:scale(1.05)}
+.prod-card h4{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:600;color:#1a1a1a}
+
+/* ── SYSTEM ───────────────────────────────────────── */
+.system{background:linear-gradient(165deg,#0a3d2a 0%,#0d4e35 100%);color:#fff;position:relative;overflow:hidden}
+.system::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,138,94,.2),transparent);pointer-events:none}
+.system .section-label{color:#6bc48a}
+.system .section-title{color:#fff}
+.system .section-desc{color:rgba(255,255,255,.6)}
+.system-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:clamp(2rem,4vh,3.5rem);position:relative;z-index:1}
+.sys-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:clamp(1.5rem,2.5vw,2rem);transition:all .35s;backdrop-filter:blur(8px)}
+.sys-card:hover{background:rgba(255,255,255,.1);transform:translateY(-3px);border-color:rgba(255,255,255,.15)}
+.sys-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:.5rem}
+.sys-card p{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.6;font-weight:300}
+
+/* ── CTA ──────────────────────────────────────────── */
+.cta-section{text-align:center;padding:clamp(5rem,12vh,8rem) 0}
+.cta-section .section-title{max-width:650px;margin:0 auto 1rem}
+.cta-section .section-desc{max-width:500px;margin:0 auto 2.5rem;text-align:center}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer{background:#111;color:#fff;padding:4rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand p{font-size:.85rem;color:#777;line-height:1.7;max-width:320px;margin-top:1rem}
+.footer-col h4{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#555;margin-bottom:1rem}
+.footer-col a{display:block;font-size:.85rem;color:#999;margin-bottom:.6rem;transition:color .3s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid #222;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:#555}
+.footer-social{display:flex;gap:1rem}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:#222;display:flex;align-items:center;justify-content:center;transition:all .3s;font-size:.85rem}
+.footer-social a:hover{background:#2d8a5e;transform:translateY(-2px)}
+
+/* ── SCROLL ANIMATIONS ───────────────────────────── */
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+.reveal-delay-5{transition-delay:.5s}
+
+/* ── MOBILE ───────────────────────────────────────── */
+@media(max-width:900px){
+  .hero-content{grid-template-columns:1fr;text-align:center}
+  .hero-sub{margin:0 auto 2rem}
+  .hero-actions{justify-content:center}
+  .hero-visual{margin-top:3rem}
+  .hero-metric{display:none}
+  .nav-links{display:none}
+  .why-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .system-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .solutions-grid{grid-template-columns:1fr}
+  .products-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo"><span class="dot"></span>Green Loop Global</a>
+    <div class="nav-links">
+      <a href="#solutions">Solutions</a>
+      <a href="#why">Why Us</a>
+      <a href="#products">Products</a>
+      <a href="#system">The System</a>
+      <a href="#contact" class="nav-cta">Get in Touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg-shape hero-bg-shape-1"></div>
+  <div class="hero-bg-shape hero-bg-shape-2"></div>
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1 class="reveal">Circular design furniture for <span>commercial spaces</span></h1>
+      <p class="hero-sub reveal reveal-delay-1">High impact presence. Low impact footprint. Built for repeat use across exhibitions, retail, hospitality, and workplace environments.</p>
+      <div class="hero-actions reveal reveal-delay-2">
+        <a href="#solutions" class="btn-primary">Explore Solutions →</a>
+        <a href="#contact" class="btn-secondary">Book a Consultation</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal reveal-delay-3">
+      <div class="hero-card">
+        <div class="hero-card-inner">
+          <span class="hero-card-label">Loop Solutions<br>Circular System</span>
+        </div>
+        <div class="hero-metric hero-metric-1">
+          <strong>87%</strong>
+          <span>Recycled Content</span>
+        </div>
+        <div class="hero-metric hero-metric-2">
+          <strong>12×</strong>
+          <span>Reuse Cycles</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ───────────────────────────────────── -->
+<div class="trust-bar">
+  <div class="container trust-bar-inner">
+    <span>ISO 9001</span>
+    <span>ISO 14001</span>
+    <span>Carbon Measured</span>
+    <span>Circular Certified</span>
+    <span>End-of-Life Verified</span>
+  </div>
+</div>
+
+<!-- ── SOLUTIONS ───────────────────────────────────── -->
+<section class="section solutions" id="solutions">
+  <div class="container">
+    <span class="section-label reveal">Solutions</span>
+    <h2 class="section-title reveal">One system, every space</h2>
+    <p class="section-desc reveal reveal-delay-1">Furniture and display systems designed for high-traffic commercial environments — modular, reusable, and backed by carbon data.</p>
+    <div class="solutions-grid">
+      <div class="sol-card reveal reveal-delay-1">
+        <div class="sol-card-img"><div class="placeholder-icon">🎪</div></div>
+        <div class="sol-card-body">
+          <h3>Event & Exhibition</h3>
+          <p>Modular furniture built for repeated installs, transport, and reconfiguration across trade shows and exhibitions.</p>
+        </div>
+      </div>
+      <div class="sol-card reveal reveal-delay-2">
+        <div class="sol-card-img"><div class="placeholder-icon">✨</div></div>
+        <div class="sol-card-body">
+          <h3>Pop-Ups & Activations</h3>
+          <p>Branded environments that deploy fast, leave no waste, and adapt to any venue footprint.</p>
+        </div>
+      </div>
+      <div class="sol-card reveal reveal-delay-3">
+        <div class="sol-card-img"><div class="placeholder-icon">🏬</div></div>
+        <div class="sol-card-body">
+          <h3>Retail Display</h3>
+          <p>Visual merchandising systems that evolve with seasonal campaigns without sending fixtures to landfill.</p>
+        </div>
+      </div>
+      <div class="sol-card reveal reveal-delay-1">
+        <div class="sol-card-img"><div class="placeholder-icon">🍽️</div></div>
+        <div class="sol-card-body">
+          <h3>Hospitality</h3>
+          <p>Durable, stylish furniture for hotels, restaurants, and bars — built for commercial wear with circular end-of-life.</p>
+        </div>
+      </div>
+      <div class="sol-card reveal reveal-delay-2">
+        <div class="sol-card-img"><div class="placeholder-icon">🏢</div></div>
+        <div class="sol-card-body">
+          <h3>Workplace & Reception</h3>
+          <p>Flexible office furniture that reconfigures as teams change — no desk left behind.</p>
+        </div>
+      </div>
+      <div class="sol-card reveal reveal-delay-3">
+        <div class="sol-card-img"><div class="placeholder-icon">🏛️</div></div>
+        <div class="sol-card-body">
+          <h3>Commercial & Government</h3>
+          <p>Compliant, measurable solutions for tenders requiring sustainability data and end-of-life documentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY ─────────────────────────────────────────── -->
+<section class="section" id="why">
+  <div class="container">
+    <span class="section-label reveal">Why Green Loop</span>
+    <h2 class="section-title reveal">Clear data and practical design,<br>built for repeat use</h2>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">📊</div>
+        <h3>Carbon Metrics</h3>
+        <p>CO₂e A1–A3 data and Planet Price snapshots on selected products. Know your impact before you buy — not after.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">♻️</div>
+        <h3>End-of-Life Clarity</h3>
+        <p>Every product ships with a suggested end-of-life pathway. Take-back programmes and recycling routes, documented and actionable.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">🔧</div>
+        <h3>Built to Last</h3>
+        <p>Designed for repeat install, transport, and reconfiguration. Recycled content claims backed by verified certifications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ───────────────────────────────────────── -->
+<section class="section stats">
+  <div class="container stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="87">0%</div>
+      <div class="stat-label">Average Recycled Content</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num" data-target="12">0×</div>
+      <div class="stat-label">Average Reuse Cycles</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num" data-target="340">0</div>
+      <div class="stat-label">Tonnes CO₂e Avoided</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-num" data-target="96">0%</div>
+      <div class="stat-label">Material Recovery Rate</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ────────────────────────────────────── -->
+<section class="section" id="products">
+  <div class="container">
+    <span class="section-label reveal">Products</span>
+    <h2 class="section-title reveal">Our range</h2>
+    <div class="products-grid">
+      <div class="prod-card reveal reveal-delay-1">
+        <div class="prod-icon">🪑</div>
+        <h4>Chairs & Stools</h4>
+      </div>
+      <div class="prod-card reveal reveal-delay-1">
+        <div class="prod-icon">🔲</div>
+        <h4>Tables & Bases</h4>
+      </div>
+      <div class="prod-card reveal reveal-delay-2">
+        <div class="prod-icon">🛋️</div>
+        <h4>Armchairs</h4>
+      </div>
+      <div class="prod-card reveal reveal-delay-2">
+        <div class="prod-icon">🧩</div>
+        <h4>Modular Lounges</h4>
+      </div>
+      <div class="prod-card reveal reveal-delay-3">
+        <div class="prod-icon">🗄️</div>
+        <h4>Storage Systems</h4>
+      </div>
+      <div class="prod-card reveal reveal-delay-3">
+        <div class="prod-icon">📐</div>
+        <h4>Plinths & Display</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SYSTEM ──────────────────────────────────────── -->
+<section class="section system" id="system">
+  <div class="container">
+    <span class="section-label reveal">Loop Solutions</span>
+    <h2 class="section-title reveal">One system. Endless configurations.</h2>
+    <p class="section-desc reveal reveal-delay-1">Every product works together visually, structurally, and operationally — build once, adapt often, avoid waste.</p>
+    <div class="system-grid">
+      <div class="sys-card reveal reveal-delay-1">
+        <h3>LoopFlex Displays</h3>
+        <p>Modular display systems for branded environments. Configure, reconfigure, and rebrand without replacing the structure.</p>
+      </div>
+      <div class="sys-card reveal reveal-delay-2">
+        <h3>LoopForm Furniture</h3>
+        <p>Commercial-grade seating, tables, and storage designed for repeated assembly across different venue layouts.</p>
+      </div>
+      <div class="sys-card reveal reveal-delay-3">
+        <h3>LoopPrint Graphics</h3>
+        <p>Replaceable graphic panels that snap into LoopFlex frames — update messaging without rebuilding the stand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────── -->
+<section class="section cta-section" id="contact">
+  <div class="container">
+    <span class="section-label reveal">Get Started</span>
+    <h2 class="section-title reveal">Ready to go circular?</h2>
+    <p class="section-desc reveal reveal-delay-1">Tell us about your space. We'll send a proposal with carbon metrics and a take-back plan within 48 hours.</p>
+    <div class="cta-actions reveal reveal-delay-2">
+      <a href="mailto:info@greenloopglobal.com" class="btn-primary">Start a Conversation →</a>
+      <a href="tel:+61411485757" class="btn-secondary">Call Bernie: +61 411 485 757</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:#fff"><span class="dot"></span>Green Loop Global</div>
+        <p>Circular design furniture for commercial spaces. High impact presence. Low impact footprint.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <a href="#">Events & Exhibitions</a>
+        <a href="#">Pop-Ups & Activations</a>
+        <a href="#">Retail Display</a>
+        <a href="#">Hospitality</a>
+        <a href="#">Workplace</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Circular Design</a>
+        <a href="#">Carbon Metrics</a>
+        <a href="#">FAQs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:info@greenloopglobal.com">info@greenloopglobal.com</a>
+        <a href="tel:+61411485757">+61 411 485 757</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Green Loop Global. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/greenloopglobal" aria-label="Instagram">📷</a>
+        <a href="https://www.facebook.com/greenloopglobal" aria-label="Facebook">📘</a>
+        <a href="https://www.linkedin.com/company/greenloopglobalfurniture" aria-label="LinkedIn">💼</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── SCRIPTS ─────────────────────────────────────── -->
+<script>
+// Sticky nav
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Counter animation
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.target);
+    const suffix = el.textContent.replace(/[0-9]/g, '');
+    let current = 0;
+    const step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = current + suffix;
+    }, 25);
+    counterObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-num').forEach(el => counterObserver.observe(el));
+
+// Parallax on hero shapes
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const shapes = document.querySelectorAll('.hero-bg-shape');
+  shapes[0].style.transform = `translate(${y * 0.03}px, ${y * 0.08}px)`;
+  shapes[1].style.transform = `translate(${-y * 0.04}px, ${-y * 0.06}px)`;
+});
+</script>
+</body>
+</html>

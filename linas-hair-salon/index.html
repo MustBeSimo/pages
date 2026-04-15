@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lina's Hair Salon | Footscray, Melbourne</title>
+    <meta name="description" content="Lina's Hair Salon in Footscray — expert cuts, colour, and styling. Rated 4.7 stars. Book your appointment today.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --accent: #B87333;
+            --accent-light: #d4955a;
+            --dark: #1a1a1a;
+            --light: #faf8f5;
+            --text: #333;
+            --text-light: #666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: 600;
+        }
+        nav .logo span { color: var(--accent); }
+        nav a.phone {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2319 100%);
+            color: #fff;
+            padding: 2rem;
+            position: relative;
+        }
+        .hero-content { max-width: 700px; z-index: 1; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.15;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        .hero .rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(184,115,51,0.15);
+            border: 1px solid rgba(184,115,51,0.3);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .hero .rating .stars { color: #f5c518; }
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            border: 2px solid var(--accent);
+        }
+        .cta-btn:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        /* Services */
+        .services {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+        .service-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* About */
+        .about {
+            padding: 6rem 2rem;
+            background: #fff;
+        }
+        .about-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .about p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-top: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2319 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+        .cta-section p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        /* Mobile sticky call */
+        .mobile-call {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--accent);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            z-index: 1000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-call { display: block; }
+            footer { padding-bottom: 4rem; }
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Lina's <span>Hair</span></div>
+    <a href="tel:+61406139897" class="phone">+61 406 139 897</a>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="rating">
+            <span class="stars">★★★★★</span>
+            <span>4.7 Stars on Google</span>
+        </div>
+        <h1>Your Local <span>Hair Salon</span> in Footscray</h1>
+        <p>Expert cuts, colour, and styling in the heart of Footscray. Walk in looking good, walk out looking great.</p>
+        <a href="tel:+61406139897" class="cta-btn">Book Your Appointment</a>
+    </div>
+</section>
+
+<section class="services">
+    <h2 class="section-title fade-up">What We Do</h2>
+    <p class="section-subtitle fade-up">Professional hair services tailored to you</p>
+    <div class="services-grid">
+        <div class="service-card fade-up">
+            <div class="icon">✂️</div>
+            <h3>Cuts & Styling</h3>
+            <p>From classic cuts to modern styles. We take the time to understand what works for your face shape and lifestyle.</p>
+        </div>
+        <div class="service-card fade-up">
+            <div class="icon">🎨</div>
+            <h3>Colour & Highlights</h3>
+            <p>Balayage, foils, full colour, or a fresh new look. Quality products for vibrant, long-lasting results.</p>
+        </div>
+        <div class="service-card fade-up">
+            <div class="icon">💆</div>
+            <h3>Treatments & Blow-Dry</h3>
+            <p>Deep conditioning, keratin treatments, and a perfect blow-dry to finish. Leave feeling refreshed.</p>
+        </div>
+    </div>
+</section>
+
+<section class="about">
+    <div class="about-inner fade-up">
+        <h2 class="section-title">About Lina's Hair Salon</h2>
+        <p>Lina's Hair Salon has been a trusted name in Footscray for years. With a 4.7-star rating on Google, our clients keep coming back because we genuinely care about getting it right. Whether you need a quick trim or a complete transformation, we've got you covered.</p>
+        <p style="margin-top: 1rem;">Conveniently located at Unit 1/7 Kinnear St, Footscray — easy to find and plenty of street parking nearby.</p>
+    </div>
+</section>
+
+<section class="cta-section">
+    <h2 class="fade-up">Ready for a Fresh Look?</h2>
+    <p class="fade-up">Call or visit us today. Walk-ins welcome.</p>
+    <a href="tel:+61406139897" class="cta-btn fade-up">Call +61 406 139 897</a>
+</section>
+
+<footer>
+    <p>Unit 1/7 Kinnear St, Footscray VIC 3011 &middot; <a href="tel:+61406139897">+61 406 139 897</a></p>
+    <p style="margin-top: 0.5rem;">&copy; 2026 Lina's Hair Salon. All rights reserved.</p>
+</footer>
+
+<a href="tel:+61406139897" class="mobile-call">📞 Call to Book — +61 406 139 897</a>
+
+<script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Lina's Hair Salon",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Unit 1/7 Kinnear St",
+        "addressLocality": "Footscray",
+        "addressRegion": "VIC",
+        "postalCode": "3011",
+        "addressCountry": "AU"
+    },
+    "telephone": "+61406139897",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "bestRating": "5"
+    },
+    "priceRange": "$$"
+}
+</script>
+
+</body>
+</html>

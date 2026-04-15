@@ -4,318 +4,886 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lina's Hair Salon | Footscray, Melbourne</title>
-    <meta name="description" content="Lina's Hair Salon in Footscray — expert cuts, colour, and styling. Rated 4.7 stars. Book your appointment today.">
+    <meta name="description" content="Lina's Hair Salon in Footscray — expert cuts, colour, balayage and styling. Rated 4.7 stars. Book your appointment today.">
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --accent: #B87333;
-            --accent-light: #d4955a;
-            --dark: #1a1a1a;
-            --light: #faf8f5;
-            --text: #333;
-            --text-light: #666;
+            --accent: #c4875a;
+            --accent-dark: #a06b42;
+            --cream: #faf7f2;
+            --warm-white: #fffdf9;
+            --dark: #1c1915;
+            --text: #2d2a26;
+            --text-mid: #6b6560;
+            --text-light: #9a9590;
+            --rose: #d4a0a0;
+            --gold: #c9a96e;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             color: var(--text);
-            background: var(--light);
-            line-height: 1.6;
+            background: var(--cream);
+            line-height: 1.7;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Nav */
-        nav {
+        /* ==================== NAV ==================== */
+        .nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 1rem clamp(1.5rem, 5vw, 4rem);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.4s ease;
         }
-        nav .logo {
+        .nav.scrolled {
+            background: rgba(28, 25, 21, 0.92);
+            backdrop-filter: blur(20px) saturate(1.2);
+            -webkit-backdrop-filter: blur(20px) saturate(1.2);
+            padding: 0.7rem clamp(1.5rem, 5vw, 4rem);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+        }
+        .nav-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
             color: #fff;
             font-weight: 600;
+            letter-spacing: -0.02em;
         }
-        nav .logo span { color: var(--accent); }
-        nav a.phone {
+        .nav-logo em {
             color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-style: italic;
         }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
+        .nav-right {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2319 100%);
+            gap: 1.5rem;
+        }
+        .nav-phone {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+        .nav-phone:hover { color: var(--accent); }
+        .nav-cta {
+            background: var(--accent);
             color: #fff;
-            padding: 2rem;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
             position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
         }
-        .hero-content { max-width: 700px; z-index: 1; }
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.15;
+        .hero-bg {
+            position: absolute;
+            inset: -20%;
+            will-change: transform;
         }
-        .hero h1 span { color: var(--accent); }
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 2rem;
-            font-weight: 300;
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
         }
-        .hero .rating {
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(28,25,21,0.95) 0%,
+                rgba(28,25,21,0.6) 40%,
+                rgba(28,25,21,0.2) 70%,
+                rgba(28,25,21,0.1) 100%
+            );
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 8rem);
+            max-width: 800px;
+        }
+        .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(184,115,51,0.15);
-            border: 1px solid rgba(184,115,51,0.3);
-            padding: 0.5rem 1.2rem;
+            background: rgba(196,135,90,0.15);
+            border: 1px solid rgba(196,135,90,0.3);
+            padding: 0.4rem 1rem;
             border-radius: 50px;
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 0.3s forwards;
         }
-        .hero .rating .stars { color: #f5c518; }
-        .cta-btn {
-            display: inline-block;
+        .hero-badge .stars { color: #f5c518; letter-spacing: 2px; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s 0.5s forwards;
+        }
+        .hero h1 em {
+            color: var(--accent);
+            font-style: italic;
+        }
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 550px;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 0.7s forwards;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 0.9s forwards;
+        }
+        .btn-primary {
             background: var(--accent);
             color: #fff;
-            padding: 1rem 2.5rem;
+            padding: 1rem 2.2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.05rem;
+            font-size: 1rem;
             transition: all 0.3s;
-            border: 2px solid var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .cta-btn:hover {
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(196,135,90,0.3);
+        }
+        .btn-secondary {
             background: transparent;
+            color: #fff;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            border: 1px solid rgba(255,255,255,0.25);
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent);
             color: var(--accent);
         }
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            opacity: 0;
+            animation: fadeIn 1s 1.5s forwards;
+        }
+        .scroll-hint span {
+            display: block;
+            width: 24px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            position: relative;
+        }
+        .scroll-hint span::after {
+            content: '';
+            width: 4px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 2px;
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollBounce 2s infinite;
+        }
 
-        /* Services */
-        .services {
-            padding: 6rem 2rem;
-            max-width: 1100px;
+        /* ==================== INTRO STRIP ==================== */
+        .intro {
+            padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 4rem);
+            background: var(--warm-white);
+            text-align: center;
+        }
+        .intro-inner {
+            max-width: 750px;
             margin: 0 auto;
         }
-        .section-title {
+        .intro-inner h2 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            text-align: center;
-            margin-bottom: 0.5rem;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            line-height: 1.25;
         }
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-light);
-            margin-bottom: 3rem;
+        .intro-inner p {
             font-size: 1.05rem;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .service-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(0,0,0,0.04);
-        }
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-        }
-        .service-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .service-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-        }
-        .service-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* About */
-        .about {
-            padding: 6rem 2rem;
-            background: #fff;
-        }
-        .about-inner {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .about p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-top: 1.5rem;
+            color: var(--text-mid);
             line-height: 1.8;
         }
 
-        /* CTA */
-        .cta-section {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2319 100%);
-            color: #fff;
-            text-align: center;
+        /* ==================== SERVICES BENTO ==================== */
+        .services {
+            padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 4rem);
+            background: var(--cream);
         }
-        .cta-section h2 {
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 1rem;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 600;
         }
-        .cta-section p {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: rgba(255,255,255,0.6);
-            text-align: center;
+        .b-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .b-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        .b-card.has-img {
+            grid-row: span 2;
+            min-height: 500px;
+            position: relative;
+        }
+        .b-card.has-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .b-card.has-img:hover img {
+            transform: scale(1.05);
+        }
+        .b-card.has-img .b-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             padding: 2rem;
+            background: linear-gradient(to top, rgba(28,25,21,0.9), transparent);
+        }
+        .b-card.has-img .b-overlay h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+        .b-card.has-img .b-overlay p {
+            color: rgba(255,255,255,0.7);
             font-size: 0.9rem;
         }
-        footer a { color: var(--accent); text-decoration: none; }
+        .b-card.text-card {
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .b-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+        .b-icon.rose { background: rgba(212,160,160,0.15); }
+        .b-icon.gold { background: rgba(201,169,110,0.15); }
+        .b-icon.accent { background: rgba(196,135,90,0.15); }
+        .b-card.text-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
+        }
+        .b-card.text-card p {
+            color: var(--text-mid);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
 
-        /* Mobile sticky call */
-        .mobile-call {
+        /* ==================== GALLERY ==================== */
+        .gallery {
+            padding: clamp(4rem, 8vh, 7rem) 0;
+            background: var(--warm-white);
+            overflow: hidden;
+        }
+        .gallery .section-header {
+            padding: 0 clamp(1.5rem, 5vw, 4rem);
+        }
+        .gallery-track {
+            display: flex;
+            gap: 1.5rem;
+            padding: 0 clamp(1.5rem, 5vw, 4rem);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .gallery-track::-webkit-scrollbar { display: none; }
+        .gallery-item {
+            flex: 0 0 auto;
+            width: clamp(260px, 30vw, 380px);
+            height: clamp(300px, 40vw, 450px);
+            border-radius: 16px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            position: relative;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* ==================== ABOUT ==================== */
+        .about {
+            padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);
+            background: var(--dark);
+            color: #fff;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 5vw, 5rem);
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .about-img {
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about-text .section-label { text-align: left; }
+        .about-text .section-title {
+            color: #fff;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+        .about-text p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        .about-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .about-stat strong {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        .about-stat span {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ==================== TESTIMONIALS ==================== */
+        .testimonials {
+            padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 4rem);
+            background: var(--cream);
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .test-stars {
+            color: #f5c518;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .test-card blockquote {
+            font-size: 1rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        .test-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .test-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--rose));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .test-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .test-loc {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* ==================== CTA ==================== */
+        .cta {
+            padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);
+            background: linear-gradient(135deg, var(--dark) 0%, #2a2520 100%);
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(196,135,90,0.08) 0%, transparent 50%);
+        }
+        .cta-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            line-height: 1.15;
+        }
+        .cta h2 em { color: var(--accent); font-style: italic; }
+        .cta p {
+            color: rgba(255,255,255,0.55);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: #141210;
+            color: rgba(255,255,255,0.35);
+            text-align: center;
+            padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
+            font-size: 0.85rem;
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ==================== MOBILE STICKY ==================== */
+        .mobile-sticky {
             display: none;
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--accent);
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
             z-index: 1000;
+            background: rgba(28,25,21,0.95);
+            backdrop-filter: blur(15px);
+            padding: 0.8rem;
+            display: none;
+            gap: 0.6rem;
+        }
+        .mobile-sticky a {
+            flex: 1;
+            padding: 0.85rem;
+            border-radius: 12px;
+            text-align: center;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
+        }
+        .mobile-sticky .ms-call {
+            background: var(--accent);
+            color: #fff;
+        }
+        .mobile-sticky .ms-services {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
         }
 
         @media (max-width: 768px) {
-            .mobile-call { display: block; }
-            footer { padding-bottom: 4rem; }
+            .mobile-sticky { display: flex; }
+            footer { padding-bottom: 5rem; }
+            .bento {
+                grid-template-columns: 1fr;
+            }
+            .b-card.has-img {
+                grid-row: span 1;
+                min-height: 300px;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-img { max-height: 400px; }
         }
 
-        /* Animations */
-        .fade-up {
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            50% { transform: translateX(-50%) translateY(8px); opacity: 0.3; }
+        }
+
+        .fx {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
-        .fade-up.visible {
+        .fx.visible {
             opacity: 1;
             transform: translateY(0);
         }
+        .fx-d1 { transition-delay: 0.1s; }
+        .fx-d2 { transition-delay: 0.2s; }
+        .fx-d3 { transition-delay: 0.3s; }
+        .fx-d4 { transition-delay: 0.4s; }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo">Lina's <span>Hair</span></div>
-    <a href="tel:+61406139897" class="phone">+61 406 139 897</a>
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="nav-logo">Lina's <em>Hair</em></div>
+    <div class="nav-right">
+        <a href="tel:+61406139897" class="nav-phone">+61 406 139 897</a>
+        <a href="tel:+61406139897" class="nav-cta">Book Now</a>
+    </div>
 </nav>
 
-<section class="hero">
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-bg" id="hb">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80" alt="Lina's Hair Salon interior" loading="eager">
+    </div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
-        <div class="rating">
+        <div class="hero-badge">
             <span class="stars">★★★★★</span>
-            <span>4.7 Stars on Google</span>
+            4.7 Stars — Footscray, Melbourne
         </div>
-        <h1>Your Local <span>Hair Salon</span> in Footscray</h1>
-        <p>Expert cuts, colour, and styling in the heart of Footscray. Walk in looking good, walk out looking great.</p>
-        <a href="tel:+61406139897" class="cta-btn">Book Your Appointment</a>
+        <h1>Where Every Strand <em>Tells a Story</em></h1>
+        <p class="hero-sub">Expert cuts, colour, and styling in the heart of Footscray. Walk in looking good, walk out looking unforgettable.</p>
+        <div class="hero-btns">
+            <a href="tel:+61406139897" class="btn-primary">📞 Book Appointment</a>
+            <a href="#services" class="btn-secondary">Our Services</a>
+        </div>
+    </div>
+    <div class="scroll-hint"><span></span></div>
+</header>
+
+<!-- INTRO -->
+<section class="intro">
+    <div class="intro-inner fx">
+        <h2>Your Neighbourhood Salon, Done Right</h2>
+        <p>Lina's Hair Salon has been a trusted part of the Footscray community for years. With a 4.7-star rating on Google, our clients come back because we take the time to listen and deliver results that actually suit you. No rushed appointments, no one-size-fits-all — just great hair.</p>
     </div>
 </section>
 
-<section class="services">
-    <h2 class="section-title fade-up">What We Do</h2>
-    <p class="section-subtitle fade-up">Professional hair services tailored to you</p>
-    <div class="services-grid">
-        <div class="service-card fade-up">
-            <div class="icon">✂️</div>
-            <h3>Cuts & Styling</h3>
-            <p>From classic cuts to modern styles. We take the time to understand what works for your face shape and lifestyle.</p>
+<!-- SERVICES BENTO -->
+<section class="services" id="services">
+    <div class="section-header fx">
+        <p class="section-label">What We Offer</p>
+        <h2 class="section-title">Services Tailored to You</h2>
+    </div>
+    <div class="bento">
+        <div class="b-card has-img fx">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80" alt="Hair cutting service">
+            <div class="b-overlay">
+                <h3>Precision Cuts</h3>
+                <p>From classic bobs to modern textured styles</p>
+            </div>
         </div>
-        <div class="service-card fade-up">
-            <div class="icon">🎨</div>
-            <h3>Colour & Highlights</h3>
-            <p>Balayage, foils, full colour, or a fresh new look. Quality products for vibrant, long-lasting results.</p>
+        <div class="b-card text-card fx fx-d1">
+            <div class="b-icon rose">🎨</div>
+            <h3>Colour & Balayage</h3>
+            <p>Full colour, foils, highlights, or sun-kissed balayage. Quality products for vibrant, long-lasting results that grow out beautifully.</p>
         </div>
-        <div class="service-card fade-up">
-            <div class="icon">💆</div>
+        <div class="b-card text-card fx fx-d2">
+            <div class="b-icon gold">💆</div>
             <h3>Treatments & Blow-Dry</h3>
-            <p>Deep conditioning, keratin treatments, and a perfect blow-dry to finish. Leave feeling refreshed.</p>
+            <p>Deep conditioning, keratin smoothing, and a perfect blow-dry to finish. Leave the salon feeling refreshed and looking polished.</p>
+        </div>
+        <div class="b-card has-img fx fx-d1">
+            <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=800&q=80" alt="Hair colouring service">
+            <div class="b-overlay">
+                <h3>Balayage Experts</h3>
+                <p>Natural, sun-kissed colour that grows out beautifully</p>
+            </div>
+        </div>
+        <div class="b-card text-card fx fx-d3">
+            <div class="b-icon accent">✂️</div>
+            <h3>Men's & Women's</h3>
+            <p>Cuts and styles for everyone. Whether you want a sharp fade, a flowing layered cut, or something completely new — we've got you covered.</p>
+        </div>
+        <div class="b-card text-card fx fx-d4">
+            <div class="b-icon rose">👰</div>
+            <h3>Special Occasions</h3>
+            <p>Weddings, formals, events. Updos, braiding, and styling that photographs beautifully and lasts all day (and night).</p>
         </div>
     </div>
 </section>
 
-<section class="about">
-    <div class="about-inner fade-up">
-        <h2 class="section-title">About Lina's Hair Salon</h2>
-        <p>Lina's Hair Salon has been a trusted name in Footscray for years. With a 4.7-star rating on Google, our clients keep coming back because we genuinely care about getting it right. Whether you need a quick trim or a complete transformation, we've got you covered.</p>
-        <p style="margin-top: 1rem;">Conveniently located at Unit 1/7 Kinnear St, Footscray — easy to find and plenty of street parking nearby.</p>
+<!-- GALLERY -->
+<section class="gallery">
+    <div class="section-header fx">
+        <p class="section-label">Our Work</p>
+        <h2 class="section-title">A Glimpse Inside</h2>
+    </div>
+    <div class="gallery-track">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Salon interior" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80" alt="Styled hair" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=800&q=80" alt="Styling tools" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="Client hairstyle" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?auto=format&fit=crop&w=800&q=80" alt="Modern salon" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=800&q=80" alt="Styling station" loading="lazy"></div>
     </div>
 </section>
 
-<section class="cta-section">
-    <h2 class="fade-up">Ready for a Fresh Look?</h2>
-    <p class="fade-up">Call or visit us today. Walk-ins welcome.</p>
-    <a href="tel:+61406139897" class="cta-btn fade-up">Call +61 406 139 897</a>
+<!-- ABOUT -->
+<section class="about">
+    <div class="about-grid">
+        <div class="about-img fx">
+            <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=800&q=80" alt="Lina's Hair Salon">
+        </div>
+        <div class="about-text fx fx-d2">
+            <p class="section-label">About Us</p>
+            <h2 class="section-title">A Salon That Cares</h2>
+            <p>Lina's Hair Salon is a warm, welcoming space where every client gets personal attention. We believe great hair starts with a great conversation — understanding what you want, what works for your hair type, and what suits your lifestyle.</p>
+            <p>Conveniently located at Unit 1/7 Kinnear St, Footscray, with easy street parking and just minutes from Footscray Station.</p>
+            <div class="about-stats">
+                <div class="about-stat">
+                    <strong>4.7★</strong>
+                    <span>Google Rating</span>
+                </div>
+                <div class="about-stat">
+                    <strong>100%</strong>
+                    <span>Personalised</span>
+                </div>
+                <div class="about-stat">
+                    <strong>Walk-ins</strong>
+                    <span>Welcome</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <div class="section-header fx">
+        <p class="section-label">Reviews</p>
+        <h2 class="section-title">What Clients Say</h2>
+    </div>
+    <div class="test-grid">
+        <div class="test-card fx">
+            <div class="test-stars">★★★★★</div>
+            <blockquote>"Absolutely love this salon! Lina really listens to what you want and delivers every time. My go-to hairdresser in the west."</blockquote>
+            <div class="test-author">
+                <div class="test-avatar">S</div>
+                <div>
+                    <div class="test-name">Sarah M.</div>
+                    <div class="test-loc">Footscray</div>
+                </div>
+            </div>
+        </div>
+        <div class="test-card fx fx-d1">
+            <div class="test-stars">★★★★★</div>
+            <blockquote>"Best balayage I've ever had. The colour looks so natural and it's grown out beautifully. Highly recommend!"</blockquote>
+            <div class="test-author">
+                <div class="test-avatar">J</div>
+                <div>
+                    <div class="test-name">Jessica T.</div>
+                    <div class="test-loc">Seddon</div>
+                </div>
+            </div>
+        </div>
+        <div class="test-card fx fx-d2">
+            <div class="test-stars">★★★★★</div>
+            <blockquote>"Friendly, affordable, and always leave looking great. Been coming here for years and wouldn't go anywhere else."</blockquote>
+            <div class="test-author">
+                <div class="test-avatar">M</div>
+                <div>
+                    <div class="test-name">Maria K.</div>
+                    <div class="test-loc">Yarraville</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="cta-inner fx">
+        <h2>Ready for Hair You'll <em>Actually Love</em>?</h2>
+        <p>Call or drop by today. Walk-ins welcome, or book ahead to secure your spot.</p>
+        <a href="tel:+61406139897" class="btn-primary">📞 Call +61 406 139 897</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
     <p>Unit 1/7 Kinnear St, Footscray VIC 3011 &middot; <a href="tel:+61406139897">+61 406 139 897</a></p>
-    <p style="margin-top: 0.5rem;">&copy; 2026 Lina's Hair Salon. All rights reserved.</p>
+    <p style="margin-top: 0.5rem;">© 2026 Lina's Hair Salon. All rights reserved.</p>
 </footer>
 
-<a href="tel:+61406139897" class="mobile-call">📞 Call to Book — +61 406 139 897</a>
+<!-- MOBILE STICKY -->
+<div class="mobile-sticky">
+    <a href="tel:+61406139897" class="ms-call">📞 Call Now</a>
+    <a href="#services" class="ms-services">Services</a>
+</div>
 
+<!-- PARALLAX + SCROLL ANIMATIONS -->
 <script>
-    // Scroll animations
+    // Parallax hero
+    const hb = document.getElementById('hb');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                hb.style.transform = 'translateY(' + window.scrollY * 0.35 + 'px)';
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 80);
+    });
+
+    // Scroll animations (staggered)
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
-                setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                entry.target.classList.add('visible');
                 observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
+    document.querySelectorAll('.fx').forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    // Gallery auto-scroll hint
+    const track = document.querySelector('.gallery-track');
+    if (track) {
+        setTimeout(() => {
+            track.scrollTo({ left: 200, behavior: 'smooth' });
+            setTimeout(() => track.scrollTo({ left: 0, behavior: 'smooth' }), 800);
+        }, 2000);
+    }
 </script>
 
+<!-- STRUCTURED DATA -->
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
@@ -335,7 +903,21 @@
         "ratingValue": "4.7",
         "bestRating": "5"
     },
-    "priceRange": "$$"
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+        },
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "09:00",
+            "closes": "17:00"
+        }
+    ]
 }
 </script>
 

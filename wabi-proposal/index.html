@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wabi — Explore Tab V1</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════ RESET & BASE ═══════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--bg-card:#111;--bg-card-hover:#161616;
+  --gold:#D4A853;--gold-dim:#B8923F;--gold-glow:rgba(212,168,83,.15);
+  --text:#e8e8e8;--text-dim:#888;--text-muted:#555;
+  --border:#222;--border-gold:rgba(212,168,83,.25);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+::selection{background:var(--gold);color:var(--bg)}
+
+/* ═══════════ PASSWORD GATE ═══════════ */
+#gate{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+#gate.hidden{opacity:0;pointer-events:none;transform:scale(1.02)}
+#gate h2{font-family:var(--serif);font-size:2rem;color:var(--gold);font-weight:400}
+#gate input{background:transparent;border:1px solid var(--border-gold);color:var(--text);padding:12px 24px;font-size:1rem;font-family:var(--sans);width:280px;text-align:center;border-radius:4px;outline:none;transition:border-color .3s}
+#gate input:focus{border-color:var(--gold)}
+#gate button{background:var(--gold);color:var(--bg);border:none;padding:12px 32px;font-size:.9rem;font-family:var(--sans);font-weight:600;cursor:pointer;border-radius:4px;transition:background .3s}
+#gate button:hover{background:var(--gold-dim)}
+#gate .error{color:#e55;font-size:.85rem;opacity:0;transition:opacity .3s}
+#gate .error.show{opacity:1}
+
+/* ═══════════ SCROLL ANIMATIONS ═══════════ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ═══════════ NAV ═══════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,10,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:transform .4s var(--ease)}
+nav .logo{font-family:var(--serif);font-size:1.4rem;color:var(--gold);font-style:italic}
+nav .links{display:flex;gap:32px}
+nav .links a{color:var(--text-dim);text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:color .3s}
+nav .links a:hover{color:var(--gold)}
+
+/* ═══════════ HERO ═══════════ */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 40px 80px;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);pointer-events:none}
+.hero .eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.hero h1{font-family:var(--serif);font-size:clamp(2.8rem,7vw,5.5rem);font-weight:400;line-height:1.05;max-width:900px;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero .subtitle{font-size:1.15rem;color:var(--text-dim);max-width:600px;line-height:1.7;margin-bottom:48px}
+.hero .meta{font-size:.8rem;color:var(--text-muted);letter-spacing:.05em}
+.hero .scroll-cue{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.scroll-cue .arrow{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent)}
+
+/* ═══════════ SECTIONS ═══════════ */
+section{padding:120px 40px;max-width:1100px;margin:0 auto}
+.section-label{font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.15;margin-bottom:32px;max-width:700px}
+.section-body{font-size:1.05rem;color:var(--text-dim);line-height:1.8;max-width:640px}
+.section-body p{margin-bottom:20px}
+.section-body strong{color:var(--text);font-weight:600}
+
+/* ═══════════ DIVIDER ═══════════ */
+.divider{max-width:1100px;margin:0 auto;padding:0 40px}
+.divider hr{border:none;height:1px;background:var(--border)}
+
+/* ═══════════ QUOTE ═══════════ */
+.pullquote{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);font-style:italic;color:var(--text);max-width:700px;margin:80px auto;text-align:center;line-height:1.5;padding:0 40px;position:relative}
+.pullquote::before{content:'"';position:absolute;top:-20px;left:20px;font-size:6rem;color:var(--gold);opacity:.3;font-family:var(--serif)}
+
+/* ═══════════ INFOGRAPHIC: NOT vs IS ═══════════ */
+.not-vs-is{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:60px 0;border-radius:12px;overflow:hidden}
+.not-vs-is .col{padding:48px 40px}
+.not-vs-is .col-not{background:#1a0a0a;border:1px solid #331515}
+.not-vs-is .col-is{background:#0a1a0a;border:1px solid #153315}
+.not-vs-is h3{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px}
+.not-vs-is .col-not h3{color:#e55}
+.not-vs-is .col-is h3{color:#5b5}
+.not-vs-is li{list-style:none;padding:10px 0;font-size:.95rem;color:var(--text-dim);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.not-vs-is .col-not li::before{content:'✕';color:#e55;font-size:.7rem}
+.not-vs-is .col-is li::before{content:'→';color:#5b5;font-size:.8rem}
+
+/* ═══════════ INFOGRAPHIC: SCORING ═══════════ */
+.scoring-formula{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:48px;margin:60px 0;overflow-x:auto}
+.scoring-formula .formula{font-family:'SF Mono',Monaco,'Cascadia Code',monospace;font-size:.85rem;color:var(--gold);white-space:nowrap;margin-bottom:32px;line-height:2}
+.scoring-formula .formula .op{color:var(--text-muted)}
+.scoring-terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.term{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px}
+.term .symbol{font-family:'SF Mono',Monaco,monospace;font-size:.8rem;color:var(--gold);margin-bottom:4px}
+.term .name{font-size:.85rem;font-weight:600;margin-bottom:4px}
+.term .desc{font-size:.78rem;color:var(--text-dim);line-height:1.5}
+
+/* ═══════════ INFOGRAPHIC: FIVE ROWS ═══════════ */
+.five-rows{display:flex;flex-direction:column;gap:3px;margin:60px 0}
+.row-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px 32px;display:grid;grid-template-columns:140px 1fr auto;align-items:center;gap:24px;transition:background .3s,border-color .3s}
+.row-card:hover{background:var(--bg-card-hover);border-color:var(--border-gold)}
+.row-card .row-num{font-family:var(--serif);font-size:2.5rem;color:var(--gold);opacity:.6}
+.row-card .row-name{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.row-card .row-desc{font-size:.95rem;color:var(--text-dim);line-height:1.5}
+.row-card .row-copy{font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--text-muted);text-align:right;min-width:180px}
+
+/* ═══════════ INFOGRAPHIC: WIDGET ═══════════ */
+.widget-demo{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:60px 0}
+.widget-slot{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;aspect-ratio:4/3;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .3s}
+.widget-slot:hover{border-color:var(--border-gold)}
+.widget-slot .ws-icon{width:32px;height:32px;border-radius:8px;margin-bottom:12px}
+.widget-slot .ws-name{font-size:.9rem;font-weight:600;margin-bottom:4px}
+.widget-slot .ws-tag{font-size:.75rem;color:var(--text-muted)}
+.widget-slot .ws-cta{font-size:.7rem;color:var(--gold);margin-top:12px}
+
+/* ═══════════ INFOGRAPHIC: BINDING STATES ═══════════ */
+.binding-states{display:flex;gap:4px;margin:60px 0;overflow-x:auto;padding-bottom:8px}
+.binding-state{flex:1;min-width:140px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;position:relative;transition:border-color .3s}
+.binding-state:hover{border-color:var(--border-gold)}
+.binding-state::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:.9rem}
+.binding-state:last-child::after{display:none}
+.binding-state .bs-name{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.binding-state .bs-desc{font-size:.78rem;color:var(--text-dim);line-height:1.4}
+
+/* ═══════════ INFOGRAPHIC: REFUSALS ═══════════ */
+.refusals{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:60px 0}
+.refusal{background:var(--bg-card);border:1px solid #2a1515;border-radius:10px;padding:20px 24px;display:flex;align-items:flex-start;gap:16px;transition:border-color .3s}
+.refusal:hover{border-color:#442222}
+.refusal .r-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.refusal .r-text{font-size:.88rem;color:var(--text-dim);line-height:1.5}
+.refusal .r-text strong{color:var(--text);font-weight:600}
+.refusal .r-source{font-size:.7rem;color:var(--text-muted);margin-top:4px}
+
+/* ═══════════ INFOGRAPHIC: METRICS ═══════════ */
+.metrics{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:60px 0}
+.metric{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px;text-align:center;transition:border-color .3s}
+.metric:hover{border-color:var(--border-gold)}
+.metric .m-value{font-family:var(--serif);font-size:2.2rem;color:var(--gold);margin-bottom:4px}
+.metric .m-label{font-size:.78rem;color:var(--text-dim);line-height:1.4}
+
+/* ═══════════ INFOGRAPHIC: ENGAGEMENT STATE ═══════════ */
+.eng-states{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:60px 0}
+.eng-state{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px}
+.eng-state .es-name{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.eng-state .es-order{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+
+/* ═══════════ THREE STEPS ═══════════ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:60px 0}
+.step{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;transition:border-color .3s}
+.step:hover{border-color:var(--border-gold)}
+.step .step-num{font-family:var(--serif);font-size:3rem;color:var(--gold);opacity:.4;margin-bottom:12px}
+.step h3{font-size:1.1rem;font-weight:600;margin-bottom:12px}
+.step p{font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.step .step-tag{display:inline-block;margin-top:16px;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:var(--gold-glow);padding:4px 12px;border-radius:999px}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{padding:80px 40px;text-align:center;border-top:1px solid var(--border)}
+footer .footer-name{font-family:var(--serif);font-size:1.4rem;color:var(--gold);font-style:italic;margin-bottom:8px}
+footer .footer-email{font-size:.85rem;color:var(--text-dim)}
+footer .footer-note{font-size:.75rem;color:var(--text-muted);margin-top:24px}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  nav .links{display:none}
+  section{padding:80px 20px}
+  .not-vs-is{grid-template-columns:1fr}
+  .five-rows .row-card{grid-template-columns:1fr;gap:8px}
+  .row-card .row-num{font-size:1.5rem}
+  .row-card .row-copy{text-align:left;min-width:auto}
+  .binding-states{flex-direction:column}
+  .binding-state::after{display:none}
+  .steps{grid-template-columns:1fr}
+  .widget-demo{grid-template-columns:1fr}
+  .scoring-formula .formula{font-size:.7rem}
+}
+
+/* ═══════════ COUNTER ANIMATION ═══════════ */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PASSWORD GATE ═══════════ -->
+<div id="gate">
+  <h2>Wabi Proposal</h2>
+  <input type="password" id="pw" placeholder="Enter password" autocomplete="off">
+  <button onclick="checkPw()">Enter</button>
+  <div class="error" id="pw-error">Incorrect password</div>
+</div>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+  <div class="logo">Wabi</div>
+  <div class="links">
+    <a href="#frame">The Frame</a>
+    <a href="#mechanisms">Mechanisms</a>
+    <a href="#explore">Explore V1</a>
+    <a href="#refusals">Refusals</a>
+    <a href="#validate">Validate</a>
+    <a href="#engage">Engagement</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<div class="hero">
+  <div class="eyebrow reveal">Explore Tab V1 — Proposal</div>
+  <h1 class="reveal reveal-delay-1">Wabi is <em>living software,</em><br>not a content feed</h1>
+  <p class="subtitle reveal reveal-delay-2">A tool-to-moment binding surface grounded in seven internal diagnostics. What we found, what we'd build, what we'd refuse.</p>
+  <div class="meta reveal reveal-delay-3">From Simone Leonelli — for Paul</div>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="arrow"></div>
+  </div>
+</div>
+
+<!-- ═══════════ §1 THE FRAME ═══════════ -->
+<div class="divider"><hr></div>
+<section id="frame">
+  <div class="section-label reveal">01 — The Frame</div>
+  <h2 class="section-title reveal">The thing you recommended yesterday is different today</h2>
+  <div class="section-body reveal">
+    <p>Wabi is living software. Somebody remixed it overnight. The same user opens it again tomorrow because <strong>it bent around them</strong> — not because a push caught them at the right second.</p>
+    <p>That is a different product shape from anything the recommender-systems literature is built for.</p>
+    <p>Video recsys optimizes watch-ratio over a frozen catalog. Wabi's unit of value is a <strong>return</strong> to a specific app on a different day. Catalog picking vs. catalog <em>making</em>. Session length vs. distinct-day binding.</p>
+  </div>
+</section>
+
+<div class="pullquote reveal">
+  "Serve me something" vs. "mine, and it's mine-er today than yesterday."
+</div>
+
+<!-- ═══════════ NOT vs IS ═══════════ -->
+<section>
+  <div class="section-label reveal">What Wabi Is Not</div>
+  <h2 class="section-title reveal">No direct competitor occupies this cell</h2>
+  <div class="not-vs-is reveal">
+    <div class="col col-not">
+      <h3>Not</h3>
+      <ul>
+        <li>YouTube of AI apps</li>
+        <li>Mini-app store</li>
+        <li>Feed recsys with better aesthetics</li>
+        <li>Replit but social</li>
+        <li>Raycast competitor</li>
+        <li>TikTok with tools instead of videos</li>
+      </ul>
+    </div>
+    <div class="col col-is">
+      <h3>Is</h3>
+      <ul>
+        <li>Living + ambient + taste-routed</li>
+        <li>Moment-bound mini-apps</li>
+        <li>Catalog-generative on miss</li>
+        <li>Two surfaces, one taste vector</li>
+        <li>Return-visit optimized, not dwell</li>
+        <li>Tool-to-moment binding</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §2 FIVE MECHANISMS ═══════════ -->
+<div class="divider"><hr></div>
+<section id="mechanisms">
+  <div class="section-label reveal">02 — What We Found Upstream</div>
+  <h2 class="section-title reveal">Five mechanisms that matter</h2>
+  <div class="section-body reveal">
+    <p>Six diagnostics before the redesign. Each pressure-tested from its own angle. Five mechanisms genuinely matter.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-label reveal">Mechanism 1</div>
+  <h2 class="section-title reveal">I3 is the north star, not dwell</h2>
+  <div class="section-body reveal">
+    <p><strong>I3:</strong> at least two opens of the same app on two distinct calendar days within a rolling 14-day window.</p>
+    <p>Distinct-day beats raw session count. Five frustrated opens on a Tuesday is not taste — it's the opposite.</p>
+    <p>The 14-day window is a <strong>hyperparameter, not a schema choice</strong>: a config knob against raw per-open timestamps, retunable without migration.</p>
+    <p>This implies the <strong>I3 raw-timestamp contract</strong>: raw per-open timestamps must be persisted, never rolled up to daily counts on ingestion. If production is already rolling up, the taste-embedding refit loop needs redesign.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-label reveal">Mechanism 2</div>
+  <h2 class="section-title reveal">Binding is the unit of retention</h2>
+  <div class="section-body reveal">
+    <p>A binding = <strong>(user, app, context)</strong> with ≥3 distinct-day opens in 14 days, at least one organic (not push-triggered).</p>
+    <p>Two bindings by day 14 is the activation threshold:</p>
+    <p><strong>0 bindings → churn. 1 binding → dabbler. 2 bindings → habit.</strong></p>
+    <p>Organic is non-negotiable. Three push-driven opens is <em>push-dependent</em>, not bound. Optimizing for it is the vanity-retention trap that collapses at D60.</p>
+  </div>
+</section>
+
+<!-- ═══════════ BINDING STATE MACHINE ═══════════ -->
+<section>
+  <div class="section-label reveal">Binding State Machine</div>
+  <h2 class="section-title reveal">Six states, mechanism-gated transitions</h2>
+  <div class="binding-states reveal">
+    <div class="binding-state">
+      <div class="bs-name">Seed</div>
+      <div class="bs-desc">1 open in context. Pending second within 14d.</div>
+    </div>
+    <div class="binding-state">
+      <div class="bs-name">Pending</div>
+      <div class="bs-desc">2 opens, 2 distinct days. Needs 3rd with ≥1 organic.</div>
+    </div>
+    <div class="binding-state">
+      <div class="bs-name">Bound</div>
+      <div class="bs-desc">3+ distinct-day opens. The retention unit. Decays after 21d no-event.</div>
+    </div>
+    <div class="binding-state">
+      <div class="bs-name">Cooling</div>
+      <div class="bs-desc">21d no event. Next organic open → rebound. 45d → dormant.</div>
+    </div>
+    <div class="binding-state">
+      <div class="bs-name">Dormant</div>
+      <div class="bs-desc">45d no event. Recovery path available via Explore row.</div>
+    </div>
+    <div class="binding-state">
+      <div class="bs-name">Revoked</div>
+      <div class="bs-desc">E4 hide. 90d hard exclusion. Never auto-recovers.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-label reveal">Mechanism 3</div>
+  <h2 class="section-title reveal">Gap-aware recommendation</h2>
+  <div class="section-body reveal">
+    <p>When the ranker has nothing good to offer — thin candidate union, a search + refinement that found nothing, or a cross-user cluster of unmet intent — Wabi logs the gap as a <strong>first-class event</strong>.</p>
+    <p>No consumer recsys logs its own misses. No app store offers to fill them.</p>
+    <p>Where a gap matches a human-curated template from a ~20–50 library (reminder / tracker / scheduler / counter / journaling-prompt), Wabi offers a templated proposal: <strong>"Want us to make a vet-scheduler for you?"</strong></p>
+    <p>Named template, named capability. No mystery-box. Open-ended LLM synthesis is v2.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-label reveal">Mechanism 4</div>
+  <h2 class="section-title reveal">Quality is a floor, not an average</h2>
+  <div class="section-body reveal">
+    <p>Two numbers, composing multiplicatively:</p>
+    <p><strong>Q_a</strong> — quality, user-independent. Seven-dimension rubric scored against per-category golden samples (App Store Today / Michelin / Homebrew lineage).</p>
+    <p><strong>&lt;T_u, C_a&gt;</strong> — taste fit, user-specific. Matrix factorization over I3 cells.</p>
+    <p><strong>M(a, m)</strong> — moment fit, context-specific.</p>
+    <p>Crucial rule: high-taste × low-quality apps are <strong>demoted, not shipped</strong>. A taste-matched bad app is the worst recsys outcome — user trusted us, we wasted their time.</p>
+    <p><strong>Q_a ≥ 0.35</strong> enforced at candidate generation. The ranker never sees sub-floor apps. Anti-npm stance.</p>
+  </div>
+</section>
+
+<!-- ═══════════ SCORING FORMULA ═══════════ -->
+<section>
+  <div class="section-label reveal">Scoring Function</div>
+  <h2 class="section-title reveal">How apps get ranked</h2>
+  <div class="scoring-formula reveal">
+    <div class="formula">
+      score(u, a, m) = Q_a <span class="op">×</span> [ α·<span style="color:#fff">⟨T_u, C_a⟩</span> <span class="op">+</span> β·<span style="color:#fff">friend_lift</span> <span class="op">+</span> γ·<span style="color:#fff">context_lift</span> <span class="op">+</span> δ·<span style="color:#fff">freshness</span> <span class="op">+</span> ε·<span style="color:#fff">generative</span> <span class="op">−</span> ζ·<span style="color:#fff">recency</span> <span class="op">−</span> η·<span style="color:#fff">negative</span> ] <span class="op">×</span> [1 + <span style="color:#fff">novelty_mod</span>]
+    </div>
+    <div class="scoring-terms">
+      <div class="term"><div class="symbol">Q_a</div><div class="name">Quality Gate</div><div class="desc">Multiplicative gate. Below 0.35 → excluded pre-ranking.</div></div>
+      <div class="term"><div class="symbol">α = 0.60</div><div class="name">Taste Fit</div><div class="desc">⟨T_u, C_a⟩ normalized. Largest single term.</div></div>
+      <div class="term"><div class="symbol">β = 0.20</div><div class="name">Friend Lift</div><div class="desc">Social signal. Suppressed for socially-retrieved candidates.</div></div>
+      <div class="term"><div class="symbol">γ = 0.15</div><div class="name">Context Lift</div><div class="desc">Moment-match via F3 trigger-timing profile.</div></div>
+      <div class="term"><div class="symbol">δ = 0.05</div><div class="name">Freshness</div><div class="desc">Tiebreaker. 7-day half-life from publish date.</div></div>
+      <div class="term"><div class="symbol">ε = 0.10</div><div class="name">Generative Seed</div><div class="desc">Small lift for LLM-proposed candidates with zero history.</div></div>
+      <div class="term"><div class="symbol">ζ = 0.15</div><div class="name">Recency Penalty</div><div class="desc">Dampens apps user just opened. 1h half-life.</div></div>
+      <div class="term"><div class="symbol">η = 0.30</div><div class="name">Negative Decay</div><div class="desc">E4/I11/W3 history. Scarcity-weighted at 3-5×.</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-label reveal">Mechanism 5</div>
+  <h2 class="section-title reveal">Engagement-state biases retriever mix</h2>
+  <div class="section-body reveal">
+    <p><strong>engagement_state</strong> ∈ {active, cooling, at-risk, recovered, churned} is read at candidate generation and shifts <em>quota</em>, not retriever logic.</p>
+    <p>At-risk users get a binding-recovery retriever pulling apps they had I3 with 60d ago, replacing ~30% of taste-match slots.</p>
+    <p>This composes with a presentation-layer row-order bias under a <strong>compositional cap</strong>: ≤40% recovery impressions, ≥15% discovery floor.</p>
+    <p>Without that cap, two layers of "we know you're in trouble" bias stack into pure nostalgia at precisely the moment a fresh hook would help most.</p>
+  </div>
+</section>
+
+<!-- ═══════════ §3 EXPLORE V1 ═══════════ -->
+<div class="divider"><hr></div>
+<section id="explore">
+  <div class="section-label reveal">03 — Explore Tab V1</div>
+  <h2 class="section-title reveal">Two surfaces, one ranker core</h2>
+  <div class="section-body reveal">
+    <p><strong>Mobile Explore</strong> — scrollable cards, N~20, 15% exploration floor.</p>
+    <p><strong>Desktop widget glance</strong> — 1 or 3 slots, 5% floor, daily-cohort rotation.</p>
+    <p>Both consume the same surface_recs API. Same T_u. Same Q_a ≥ 0.35 floor. Same impression-logging contract.</p>
+    <p>Mobile optimizes for <strong>I3</strong>. Widget optimizes for <strong>W8</strong> — the widget→mobile open with referrer=widget.</p>
+  </div>
+</section>
+
+<!-- ═══════════ FIVE ROWS ═══════════ -->
+<section>
+  <div class="section-label reveal">Mobile Explore</div>
+  <h2 class="section-title reveal">Five rows, engagement-state-biased order</h2>
+  <div class="five-rows reveal">
+    <div class="row-card">
+      <div class="row-num">01</div>
+      <div>
+        <div class="row-name">For You</div>
+        <div class="row-desc">Taste-match. Primary slot. Drawn from taste-match retriever. Always shown.</div>
+      </div>
+      <div class="row-copy">"Because you return to<br>Calorie Log"</div>
+    </div>
+    <div class="row-card">
+      <div class="row-num">02</div>
+      <div>
+        <div class="row-name">From Your Circle</div>
+        <div class="row-desc">Social, named-friend attribution. Gated on graph density. Hidden if median &lt;3 friends.</div>
+      </div>
+      <div class="row-copy">"Maya has been<br>using this"</div>
+    </div>
+    <div class="row-card">
+      <div class="row-num">03</div>
+      <div>
+        <div class="row-name">For This Morning</div>
+        <div class="row-desc">Moment row. Label rotates by time-bucket. Lifts to full-width strip when specific moment fires.</div>
+      </div>
+      <div class="row-copy">"Before your<br>9:30 standup"</div>
+    </div>
+    <div class="row-card">
+      <div class="row-num">04</div>
+      <div>
+        <div class="row-name">Still Interested In…</div>
+        <div class="row-desc">Binding-recovery. Only when engagement_state ∈ {at-risk, cooling} and ≥1 dormant binding. Three states: ambient, elevated (M09), dismissed.</div>
+      </div>
+      <div class="row-copy">"Last opened<br>47 days ago"</div>
+    </div>
+    <div class="row-card">
+      <div class="row-num">05</div>
+      <div>
+        <div class="row-name">Fresh</div>
+        <div class="row-desc">Exploration, 15% floor. 60% taste-adjacent-untried, 30% unexplored goldens, 10% generative seeds.</div>
+      </div>
+      <div class="row-copy">"New in<br>journaling"</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ENGAGEMENT STATE BIAS ═══════════ -->
+<section>
+  <div class="section-label reveal">Row Ordering</div>
+  <h2 class="section-title reveal">State is never a label — order is the lever</h2>
+  <div class="section-body reveal">
+    <p>The user sees different rows in different order. Never "you are at-risk."</p>
+  </div>
+  <div class="eng-states reveal">
+    <div class="eng-state">
+      <div class="es-name" style="color:#5b5">Active</div>
+      <div class="es-order">Moment → ForYou → Circle → ForThisMorning → Fresh</div>
+    </div>
+    <div class="eng-state">
+      <div class="es-name" style="color:#eb3">Cooling</div>
+      <div class="es-order">ForYou → Circle ↑ → Moment → Fresh</div>
+    </div>
+    <div class="eng-state">
+      <div class="es-name" style="color:#e85">At-Risk</div>
+      <div class="es-order">Recovery → ForYou → Circle → Fresh</div>
+    </div>
+    <div class="eng-state">
+      <div class="es-name" style="color:#5be">Recovered</div>
+      <div class="es-order">Moment (welcome back) → ForYou w/ C_a changes → Circle</div>
+    </div>
+    <div class="eng-state">
+      <div class="es-name" style="color:#888">Churned</div>
+      <div class="es-order">Raw score order. No presentation re-order.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WIDGET ═══════════ -->
+<section>
+  <div class="section-label reveal">Desktop Widget</div>
+  <h2 class="section-title reveal">Finite, earned, ignorable without punishment</h2>
+  <div class="section-body reveal">
+    <p>Apple-Calendar lineage, not Windows-Live-Tiles. Three size tiers. 2-to-4-word tag per card. Tappable → deep-link to mobile.</p>
+    <p><strong>Daily-cohort rotation is default.</strong> Per-glance rotation is a product decision — feels more alive but attention-metric-blind without W1b.</p>
+    <p>Hard invariant: no same primary app in two consecutive glance cycles unless pinned.</p>
+  </div>
+  <div class="widget-demo reveal">
+    <div class="widget-slot" style="border-color:var(--border-gold)">
+      <div>
+        <div class="ws-icon" style="background:linear-gradient(135deg,#D4A853,#B8923F)"></div>
+        <div class="ws-name">Calorie Log</div>
+        <div class="ws-tag">For morning</div>
+      </div>
+      <div class="ws-cta">Open on phone →</div>
+    </div>
+    <div class="widget-slot">
+      <div>
+        <div class="ws-icon" style="background:linear-gradient(135deg,#5B8,#3A6)"></div>
+        <div class="ws-name">Standup Timer</div>
+        <div class="ws-tag">Before 9:30</div>
+      </div>
+      <div class="ws-cta">Open on phone →</div>
+    </div>
+    <div class="widget-slot">
+      <div>
+        <div class="ws-icon" style="background:linear-gradient(135deg,#58B,#36A)"></div>
+        <div class="ws-name">Maya's Remix</div>
+        <div class="ws-tag">Friend using</div>
+      </div>
+      <div class="ws-cta">Open on phone →</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §4 REFUSALS ═══════════ -->
+<div class="divider"><hr></div>
+<section id="refusals">
+  <div class="section-label reveal">04 — What We Refuse to Build</div>
+  <h2 class="section-title reveal">Every refusal has a named anti-pattern</h2>
+  <div class="section-body reveal">
+    <p>Not "we chose not to." We rejected these specific known failure modes.</p>
+  </div>
+  <div class="refusals reveal">
+    <div class="refusal">
+      <div class="r-icon">🔥</div>
+      <div>
+        <div class="r-text"><strong>No streak counter.</strong> Converts intrinsic habit to fear-of-loss.</div>
+        <div class="r-source">Duolingo / Snap Streaks</div>
+      </div>
+    </div>
+    <div class="refusal">
+      <div class="r-icon">📧</div>
+      <div>
+        <div class="r-text"><strong>No "we miss you" drip.</strong> Push budget 1/week/user, runtime-enforced.</div>
+        <div class="r-source">Medium re-engagement</div>
+      </div>
+    </div>
+    <div class="refusal">
+      <div class="r-icon">▶️</div>
+      <div>
+        <div class="r-text"><strong>No autoplay, no auto-open-next.</strong> Unit is I3 binding, not session length.</div>
+        <div class="r-source">TikTok / Reels</div>
+      </div>
+    </div>
+    <div class="refusal">
+      <div class="r-icon">🔔</div>
+      <div>
+        <div class="r-text"><strong>No engagement pings.</strong> Manufactured anxiety from neutral events.</div>
+        <div class="r-source">LinkedIn notifications</div>
+      </div>
+    </div>
+    <div class="refusal">
+      <div class="r-icon">👥</div>
+      <div>
+        <div class="r-text"><strong>No public follower count.</strong> Creator reputation is internal signal.</div>
+        <div class="r-source">Instagram anxiety</div>
+      </div>
+    </div>
+    <div class="refusal">
+      <div class="r-icon">📈</div>
+      <div>
+        <div class="r-text"><strong>No "Trending this week."</strong> Power-user centroid dominance.</div>
+        <div class="r-source">Twitter trending</div>
+      </div>
+    </div>
+    <div class="refusal">
+      <div class="r-icon">🎯</div>
+      <div>
+        <div class="r-text"><strong>No numeric match score.</strong> Gameable and mechanical-feeling.</div>
+        <div class="r-source">Netflix "95% match"</div>
+      </div>
+    </div>
+    <div class="refusal">
+      <div class="r-icon">🤫</div>
+      <div>
+        <div class="r-text"><strong>No opaque silent rec.</strong> Wabi needs explanation — apps require trust before trial.</div>
+        <div class="r-source">TikTok FYP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §5 VALIDATE ═══════════ -->
+<div class="divider"><hr></div>
+<section id="validate">
+  <div class="section-label reveal">05 — How We Validate</div>
+  <h2 class="section-title reveal">Metrics that matter, with auto-halt guards</h2>
+  <div class="metrics reveal">
+    <div class="metric">
+      <div class="m-value">≥ 1.3×</div>
+      <div class="m-label">I3 rate vs organic search<br>(ranker must add value)</div>
+    </div>
+    <div class="metric">
+      <div class="m-value">≥ 2</div>
+      <div class="m-label">Bindings by day 14<br>(the activation threshold)</div>
+    </div>
+    <div class="metric">
+      <div class="m-value">≥ 70%</div>
+      <div class="m-label">Negative-signal recall<br>(offline eval)</div>
+    </div>
+    <div class="metric">
+      <div class="m-value">&lt; 5%</div>
+      <div class="m-label">Filter-bubble collapse rate</div>
+    </div>
+    <div class="metric">
+      <div class="m-value">≥ 15%</div>
+      <div class="m-label">W8 convert on pinned slots<br>(60d, cross-surface)</div>
+    </div>
+    <div class="metric">
+      <div class="m-value">≤ 40%</div>
+      <div class="m-label">Recovery share cap<br>(at-risk user-days)</div>
+    </div>
+  </div>
+  <div class="section-body reveal">
+    <p><strong>Auto-halt guards:</strong> I3 drop &gt;10% → halt. Sessions drop &gt;15% → halt. E4 increase &gt;50% → halt. Push ignore &gt;30% → halt. Recovery cap breach → halt.</p>
+    <p><strong>Methodology:</strong> shadow the new ranker for 14d (counterfactual, no user risk). A/B at 10% → 50% gated on primary metrics. Min 2000 users/arm.</p>
+  </div>
+</section>
+
+<!-- ═══════════ §6 ENGAGEMENT ═══════════ -->
+<div class="divider"><hr></div>
+<section id="engage">
+  <div class="section-label reveal">06 — Engagement Scope</div>
+  <h2 class="section-title reveal">Three steps, in natural order</h2>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Paid Diagnostic</h3>
+      <p>2–3 weeks, fixed scope. Resolves NDA questions. Tightens v1 spec around actual numbers. De-risks schema (raw-timestamp contract especially).</p>
+      <div class="step-tag">Cheapest first step</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Explore V1 Build-Out</h3>
+      <p>Pixel-level design against your system. Five-row mobile, three-tier widget, gap-aware card, attribution library, binding-recovery component.</p>
+      <div class="step-tag">Core deliverable</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Architecture Support</h3>
+      <p>The IRA four-layer spine. We help implement, or your team owns and consumes the Explore spec. Optional.</p>
+      <div class="step-tag">If needed</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHAT WE NEED ═══════════ -->
+<section>
+  <div class="section-label reveal">From You</div>
+  <h2 class="section-title reveal">Three load-bearing questions</h2>
+  <div class="section-body reveal">
+    <p><strong>Creator identity model.</strong> Anonymous (a) vs. handle-based (b, our default) vs. verified-identity (c). This decides M13 retention, attribution copy, npm exposure, and v2 trust moat. Build-time feature-flagged; flag must be chosen before launch copy freezes.</p>
+    <p><strong>Widget wake-up capability.</strong> Pull-only or programmatic? Determines whether M01/M10 widget variants need companion mobile push. Wake-ups budgeted at 0.5× push-cost.</p>
+    <p><strong>Current organic vs. recommendation open ratio.</strong> If "recommendation doesn't exist" as you said, nearly all opens are organic and the 1.3× lift baseline is against user-own-search. If there's already heavy curation, calibrations need retuning.</p>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-name">Simone Leonelli</div>
+  <div class="footer-email">simone@w230.net · +61 435 525 139</div>
+  <div class="footer-note">Seven diagnostics. Five mechanisms. One product.</div>
+</footer>
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<script>
+// Password gate
+function checkPw(){
+  const pw=document.getElementById('pw').value;
+  if(pw==='Simo1!'){
+    document.getElementById('gate').classList.add('hidden');
+    document.body.style.overflow='auto';
+  }else{
+    document.getElementById('pw-error').classList.add('show');
+    document.getElementById('pw').value='';
+    document.getElementById('pw').focus();
+  }
+}
+document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')checkPw()});
+document.body.style.overflow='hidden';
+
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.1,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Nav hide on scroll
+let lastScroll=0;
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('nav');
+  const st=window.pageYOffset;
+  if(st>lastScroll&&st>100){nav.style.transform='translateY(-100%)'}
+  else{nav.style.transform='translateY(0)'}
+  lastScroll=st;
+},{passive:true});
+</script>
+</body>
+</html>

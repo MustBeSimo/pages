@@ -1,0 +1,30 @@
+# Automated backups (contain credentials)
+backups/
+
+# Config files that may contain secrets
+config.yaml
+config.yml
+
+# Environment and secret files
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+
+# Key and certificate files
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Credential files
+secrets.*
+credentials.*
+*_credentials.*
+*_secrets.*
+
+# Cloud provider configs
+.aws/
+.ssh/
+.gcp/

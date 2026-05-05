@@ -4,16 +4,22 @@ import json
 import re
 
 ROOT = Path(__file__).resolve().parent
-DESIGN = ROOT / 'DESIGN.md'
-TAILWIND = ROOT / 'tailwind.theme.json'
-DTCG = ROOT / 'tokens.dtcg.json'
+PROFESSIONAL = ROOT.parent
+STYLE = PROFESSIONAL / 'styles' / 'legal-editorial'
+DESIGN = STYLE / 'DESIGN.md'
+TAILWIND = STYLE / 'tailwind.theme.json'
+DTCG = STYLE / 'tokens.dtcg.json'
 TEMPLATE = ROOT / '_template' / 'legal-firm-template.html'
 BATTEN = ROOT / 'batten-sacks' / 'index.html'
 README = ROOT / 'README.md'
 
 
 def read(path):
-    assert path.exists(), f'missing file: {path.relative_to(ROOT)}'
+    try:
+        label = path.relative_to(ROOT)
+    except ValueError:
+        label = path.relative_to(PROFESSIONAL)
+    assert path.exists(), f'missing file: {label}'
     return path.read_text()
 
 
@@ -77,8 +83,8 @@ def test_template_and_batten_reference_design_contract():
 def test_readme_documents_design_md_workflow():
     text = read(README)
     for required in [
-        'DESIGN.md',
-        'npx -y @google/design.md lint DESIGN.md',
+        '../styles/legal-editorial/DESIGN.md',
+        'npx -y @google/design.md lint professional/styles/legal-editorial/DESIGN.md',
         'tailwind.theme.json',
         'tokens.dtcg.json',
         'W230 Legal Editorial',

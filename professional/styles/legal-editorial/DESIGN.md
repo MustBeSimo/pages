@@ -133,11 +133,11 @@ components:
 
 ## Overview
 
-W230 Legal Editorial is the design contract for premium website rebuilds for boutique professional firms and the previews that sell them. It exists so agents do not rebuild taste from vibes on every law-firm page.
+W230 Legal Editorial is the design contract for premium website rebuilds for boutique professional firms and the previews that sell them. It exists so agents can apply the same calm editorial authority across different professional-service previews without copying vibes.
 
 The system should make a firm look as credible online as it is in the room. The interface is client-intake-first: stressed visitors should see their legal problem, choose the right pathway, and understand the next action without decoding a firm’s internal practice taxonomy.
 
-The commercial job is perception-gap proof. Each preview must show that W230 understands the firm’s website problem better than the current site does. That means real public proof signals, a visible matter router, mobile-first conversion, and no invented claims.
+The commercial job is perception-gap proof. Each preview should show that W230 understands the firm’s website problem better than the current site does. That means real public proof signals, a visible matter router, mobile-first conversion, and no invented claims.
 
 ## Colors
 
@@ -233,4 +233,3 @@ Don't:
 - Do not use purple AI slop, fake luxury, startup gradients, or overanimated agency design.
 - Do not lead with price or cheap-web-design positioning.
 - Do not mirror the firm’s long internal practice taxonomy as the main UX.
-- Do not remove noindex/nofollow or the independent concept disclaimer.

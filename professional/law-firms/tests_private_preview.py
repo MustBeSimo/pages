@@ -86,6 +86,29 @@ def test_private_preview_has_editorial_images_not_text_only_or_fake_people():
         assert unsafe not in html.lower(), f'avoid fake people imagery: {unsafe}'
 
 
+def test_private_preview_has_dynamic_motion_layer_with_graceful_fallback():
+    html = read(HTML_PATH)
+    for required in [
+        'motion-hero',
+        'case-motion-video',
+        '<video ',
+        'autoplay muted loop playsinline',
+        'assets/casefile-motion.mp4',
+        'data-parallax',
+        'parallax-layer',
+        'IntersectionObserver',
+        'prefers-reduced-motion: reduce',
+        'reveal-on-scroll',
+        'const prefersReducedMotion',
+    ]:
+        assert required in html, f'missing motion/parallax marker: {required}'
+    assert (PREVIEW / 'assets' / 'casefile-motion.mp4').exists(), 'missing motion video asset'
+    assert html.count('data-parallax') >= 3, 'needs layered parallax, not one decorative transform'
+    assert html.count('reveal-on-scroll') >= 4, 'needs multiple graceful scroll reveals'
+    for unsafe in ['controls autoplay', 'soundtrack', 'audio autoplay']:
+        assert unsafe not in html.lower(), f'avoid intrusive video/audio behavior: {unsafe}'
+
+
 def test_private_preview_keeps_public_facts_generic_and_no_outreach():
     lead = json.loads(read(LEAD_PATH))
     data = json.loads(read(DATA_PATH))

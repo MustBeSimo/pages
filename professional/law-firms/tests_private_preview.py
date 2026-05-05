@@ -109,6 +109,28 @@ def test_private_preview_has_dynamic_motion_layer_with_graceful_fallback():
         assert unsafe not in html.lower(), f'avoid intrusive video/audio behavior: {unsafe}'
 
 
+def test_private_preview_has_premium_media_stack_not_one_decorative_clip():
+    html = read(HTML_PATH)
+    for required in [
+        'media-stack',
+        'motion-reel',
+        'assets/intake-router-motion.mp4',
+        'assets/desktop-briefing-room.svg',
+        'assets/client-pathway-board.svg',
+        'alt="Desktop briefing room concept for a principal-led legal website"',
+        'alt="Client pathway board with legal matter routing"',
+        'data-depth="far"',
+        'data-depth="near"',
+        'kinetic-caption',
+    ]:
+        assert required in html, f'missing premium media marker: {required}'
+    assert html.count('<video ') >= 2, 'needs more than one motion asset to escape static-demo feel'
+    assert html.count('<img ') >= 4, 'needs a richer image stack, not two decorative illustrations'
+    assert (PREVIEW / 'assets' / 'intake-router-motion.mp4').exists(), 'missing second motion video asset'
+    assert (PREVIEW / 'assets' / 'desktop-briefing-room.svg').exists(), 'missing desktop image asset'
+    assert (PREVIEW / 'assets' / 'client-pathway-board.svg').exists(), 'missing pathway board image asset'
+
+
 def test_private_preview_keeps_public_facts_generic_and_no_outreach():
     lead = json.loads(read(LEAD_PATH))
     data = json.loads(read(DATA_PATH))

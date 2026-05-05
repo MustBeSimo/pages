@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 960" role="img" aria-labelledby="title desc">
+  <title id="title">Desktop briefing room concept for a principal-led legal website</title>
+  <desc id="desc">A premium abstract desktop website scene with a matter briefing panel, client questions, and legal service routing. No people or real firm details are shown.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FBF7EC"/><stop offset="1" stop-color="#ECE0C8"/></linearGradient>
+    <linearGradient id="ink" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#171C24"/><stop offset="1" stop-color="#0B1017"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#09101A" flood-opacity=".28"/></filter>
+    <pattern id="grain" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 8h9M8 0v9" stroke="#1A2431" stroke-opacity=".035"/></pattern>
+  </defs>
+  <rect width="1440" height="960" fill="#E8DFCD"/>
+  <rect width="1440" height="960" fill="url(#grain)"/>
+  <rect x="110" y="90" width="1220" height="780" rx="34" fill="url(#ink)" filter="url(#shadow)"/>
+  <rect x="142" y="130" width="1156" height="64" rx="18" fill="#F7F0DF" opacity=".96"/>
+  <circle cx="184" cy="162" r="9" fill="#B68A35"/><circle cx="216" cy="162" r="9" fill="#8FA190"/><circle cx="248" cy="162" r="9" fill="#83AFC9"/>
+  <rect x="180" y="236" width="410" height="544" rx="26" fill="#FBF7EC"/>
+  <text x="220" y="300" font-family="Georgia,serif" font-size="54" fill="#10151C">Matter brief</text>
+  <rect x="224" y="340" width="270" height="10" fill="#B68A35"/>
+  <text x="224" y="405" font-family="Arial,sans-serif" font-size="25" fill="#2B3440">What changed?</text>
+  <text x="224" y="455" font-family="Arial,sans-serif" font-size="24" fill="#46525F">The page opens with the</text>
+  <text x="224" y="492" font-family="Arial,sans-serif" font-size="24" fill="#46525F">client's decision, not the</text>
+  <text x="224" y="529" font-family="Arial,sans-serif" font-size="24" fill="#46525F">firm's internal menu.</text>
+  <rect x="224" y="610" width="300" height="72" rx="36" fill="#121923"/>
+  <text x="267" y="657" font-family="Arial,sans-serif" font-size="22" fill="#FBF7EC">Generate pathway</text>
+  <g transform="translate(660 238)">
+    <rect width="560" height="130" rx="24" fill="#F7F0DF"/>
+    <rect x="28" y="30" width="112" height="12" fill="#B68A35"/>
+    <text x="28" y="80" font-family="Arial,sans-serif" font-size="26" fill="#10151C">Buying property</text>
+    <path d="M368 70h120" stroke="#10151C" stroke-width="3"/><path d="M488 70l-18-13v26z" fill="#10151C"/>
+  </g>
+  <g transform="translate(660 410)">
+    <rect width="560" height="130" rx="24" fill="#F7F0DF" opacity=".9"/>
+    <rect x="28" y="30" width="92" height="12" fill="#83AFC9"/>
+    <text x="28" y="80" font-family="Arial,sans-serif" font-size="26" fill="#10151C">Lease issue</text>
+    <path d="M368 70h120" stroke="#10151C" stroke-width="3"/><path d="M488 70l-18-13v26z" fill="#10151C"/>
+  </g>
+  <g transform="translate(660 582)">
+    <rect width="560" height="130" rx="24" fill="#F7F0DF" opacity=".86"/>
+    <rect x="28" y="30" width="106" height="12" fill="#8FA190"/>
+    <text x="28" y="80" font-family="Arial,sans-serif" font-size="26" fill="#10151C">Will or estate</text>
+    <path d="M368 70h120" stroke="#10151C" stroke-width="3"/><path d="M488 70l-18-13v26z" fill="#10151C"/>
+  </g>
+  <path d="M623 304 C650 304 642 475 660 475 M623 647 C650 647 642 475 660 475" stroke="#B68A35" stroke-width="5" fill="none" opacity=".85"/>
+</svg>

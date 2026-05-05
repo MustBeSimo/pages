@@ -70,6 +70,22 @@ def test_private_preview_is_not_batten_sacks_reskin():
     assert 'W230 Casefile' in html
 
 
+def test_private_preview_has_editorial_images_not_text_only_or_fake_people():
+    html = read(HTML_PATH)
+    for required in [
+        'visual-evidence-wall',
+        'visual-client-journey',
+        'legal-image-card',
+        '<img ',
+        'alt="Abstract legal document stack and intake pathway"',
+        'alt="Responsive website preview on a phone beside case notes"',
+    ]:
+        assert required in html, f'missing image/visual marker: {required}'
+    assert html.count('<img ') >= 2, 'preview needs at least two real image elements, not just decorative CSS'
+    for unsafe in ['portrait', 'headshot', 'lawyer photo', 'team photo', 'stock people']:
+        assert unsafe not in html.lower(), f'avoid fake people imagery: {unsafe}'
+
+
 def test_private_preview_keeps_public_facts_generic_and_no_outreach():
     lead = json.loads(read(LEAD_PATH))
     data = json.loads(read(DATA_PATH))

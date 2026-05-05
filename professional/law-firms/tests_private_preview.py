@@ -43,6 +43,8 @@ def test_private_preview_has_required_safety_and_style_contract():
     for token in ['--w230-ink', '--w230-ivory', '--w230-paper', '--w230-gold', '--w230-muted']:
         assert token in html
     assert 'no fake testimonials' not in html.lower(), 'public page should not sound like internal checklist'
+    assert 'mobile app' not in html.lower(), 'preview must not imply W230 is selling/building an app'
+    assert 'Responsive mobile website view' in html
 
 
 def test_private_preview_uses_client_router_not_internal_taxonomy():

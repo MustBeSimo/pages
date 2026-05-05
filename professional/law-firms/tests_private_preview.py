@@ -65,9 +65,26 @@ def test_private_preview_is_not_batten_sacks_reskin():
     html = read(HTML_PATH)
     for forbidden in ['hero-grid', 'hero-card', 'class="proof"', 'mobile-demo', 'phonebar']:
         assert forbidden not in html, f'preview still uses Batten-style structural marker: {forbidden}'
-    for required in ['casefile-layout', 'triage-board', 'source-tape', 'decision-dock', 'briefing-column']:
+    for required in ['cinematic-legal-hero', 'hero-media-stage', 'hero-video-panel', 'triage-board', 'source-tape', 'decision-dock', 'briefing-column']:
         assert required in html, f'missing distinct layout marker: {required}'
     assert 'W230 Casefile' in html
+
+
+def test_private_preview_first_viewport_is_media_led_not_old_docket():
+    html = read(HTML_PATH)
+    main_start = html.index('<main>')
+    first_section = html[main_start:html.index('</section>', main_start)]
+    assert 'cinematic-legal-hero' in first_section, 'first visible section must be the new cinematic hero'
+    assert 'casefile-layout' not in first_section, 'old docket layout must not own the first viewport'
+    for required in [
+        'hero-video-panel',
+        'assets/intake-router-motion.mp4',
+        'assets/desktop-briefing-room.svg',
+        'assets/client-pathway-board.svg',
+        'hero-proof-strip',
+        'Scroll the matter path',
+    ]:
+        assert required in first_section, f'first viewport missing visible media marker: {required}'
 
 
 def test_private_preview_has_editorial_images_not_text_only_or_fake_people():

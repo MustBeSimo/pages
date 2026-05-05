@@ -14,5 +14,31 @@
     "status": "preview_built",
     "outreach_channel": "LinkedIn draft only",
     "preview_url": "https://mustbesimo.github.io/pages/professional/law-firms/batten-sacks/"
+  },
+  {
+    "slug": "eastern-suburbs-legal",
+    "display_name": "Eastern Suburbs Legal Studio",
+    "category": "Anonymised principal-led Melbourne legal practice",
+    "source_lead_rank": 1,
+    "source_identity_public": false,
+    "source_identity_note": "Exact firm name, principal name, domain, email and phone intentionally withheld from public preview.",
+    "services_seen_generic": [
+      "Conveyancing",
+      "Leases",
+      "Wills and powers of attorney",
+      "Deceased estates",
+      "Dispute resolution",
+      "Business and tax-related legal work"
+    ],
+    "poor_site_signals_generic": [
+      "SEO-stuffed page title",
+      "Homepage opens with office/admin information before client problem or value proposition",
+      "Multiple weak H1-style headings and no clear client-outcome hero",
+      "Practice areas appear as internal categories rather than a matter/intake router"
+    ],
+    "status": "private_preview_built_no_outreach",
+    "outreach_channel": "LinkedIn draft only after user approval",
+    "outreach_sent": false,
+    "preview_url": "https://mustbesimo.github.io/pages/professional/law-firms/eastern-suburbs-legal/"
   }
 ]

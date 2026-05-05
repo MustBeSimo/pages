@@ -61,6 +61,15 @@ def test_private_preview_uses_client_router_not_internal_taxonomy():
     assert re.search(r'function\s+updatePathway\s*\(', html), 'missing interactive pathway function'
 
 
+def test_private_preview_is_not_batten_sacks_reskin():
+    html = read(HTML_PATH)
+    for forbidden in ['hero-grid', 'hero-card', 'class="proof"', 'mobile-demo', 'phonebar']:
+        assert forbidden not in html, f'preview still uses Batten-style structural marker: {forbidden}'
+    for required in ['casefile-layout', 'triage-board', 'source-tape', 'decision-dock', 'briefing-column']:
+        assert required in html, f'missing distinct layout marker: {required}'
+    assert 'W230 Casefile' in html
+
+
 def test_private_preview_keeps_public_facts_generic_and_no_outreach():
     lead = json.loads(read(LEAD_PATH))
     data = json.loads(read(DATA_PATH))

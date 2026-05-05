@@ -1,0 +1,109 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#111111",
+        "secondary": "#6f6a61",
+        "tertiary": "#b68a35",
+        "ink": "#111111",
+        "ivory": "#f7f2ea",
+        "paper": "#fffdf8",
+        "stone": "#d8cec0",
+        "muted": "#6f6a61",
+        "gold": "#b68a35",
+        "goldDark": "#7a581d",
+        "sage": "#879b88",
+        "paleBlue": "#dde8ef",
+        "legalNavy": "#172232",
+        "danger": "#8f2e21"
+      },
+      "fontFamily": {
+        "display": [
+          "Instrument Serif"
+        ],
+        "h1": [
+          "Instrument Serif"
+        ],
+        "h2": [
+          "Instrument Serif"
+        ],
+        "h3": [
+          "Inter"
+        ],
+        "body": [
+          "Inter"
+        ],
+        "body-lg": [
+          "Inter"
+        ],
+        "label": [
+          "Inter"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "4.75rem",
+          {
+            "letterSpacing": "-0.045em",
+            "fontWeight": "400"
+          }
+        ],
+        "h1": [
+          "4rem",
+          {
+            "letterSpacing": "-0.04em",
+            "fontWeight": "400"
+          }
+        ],
+        "h2": [
+          "2.6rem",
+          {
+            "letterSpacing": "-0.025em",
+            "fontWeight": "400"
+          }
+        ],
+        "h3": [
+          "1.05rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "700"
+          }
+        ],
+        "body": [
+          "1rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "body-lg": [
+          "1.18rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.12em",
+            "fontWeight": "800"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "6px",
+        "md": "12px",
+        "lg": "22px",
+        "xl": "34px"
+      },
+      "spacing": {
+        "xs": "6px",
+        "sm": "10px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "36px",
+        "xxl": "56px",
+        "section": "96px"
+      }
+    }
+  }
+}

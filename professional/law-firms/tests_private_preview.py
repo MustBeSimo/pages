@@ -171,6 +171,29 @@ def test_private_preview_has_premium_media_stack_not_one_decorative_clip():
     assert (PREVIEW / 'assets' / 'client-pathway-board.svg').exists(), 'missing pathway board image asset'
 
 
+def test_private_preview_is_responsive_and_mobile_ready():
+    html = read(HTML_PATH)
+    for required in [
+        '@media(max-width:1050px)',
+        '@media(max-width:720px)',
+        'mobile-hero-summary',
+        'mobile-router-sheet',
+        'mobile-primary-action',
+        'min-height:48px',
+        'grid-template-columns:1fr',
+        'clamp(3.35rem,18vw,5.2rem)',
+        'overflow-x:hidden',
+        'touch-action:manipulation',
+        'aria-label="Mobile quick matter router"',
+    ]:
+        assert required in html, f'missing mobile readiness marker: {required}'
+    mobile_css = html[html.index('@media(max-width:720px)'):]
+    assert '.hero-media-stage{min-height:360px}' in mobile_css, 'mobile hero media should be shorter than desktop stack'
+    assert '.matter-router-console{position:relative' in mobile_css, 'router must sit in document flow on mobile'
+    assert '.dock-actions{display:flex' in mobile_css, 'mobile router should become horizontal swipe chips'
+    assert '-webkit-overflow-scrolling:touch' in mobile_css, 'router should feel native on mobile scroll'
+
+
 def test_private_preview_keeps_public_facts_generic_and_no_outreach():
     lead = json.loads(read(LEAD_PATH))
     data = json.loads(read(DATA_PATH))

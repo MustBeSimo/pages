@@ -87,6 +87,29 @@ def test_private_preview_first_viewport_is_media_led_not_old_docket():
         assert required in first_section, f'first viewport missing visible media marker: {required}'
 
 
+def test_private_preview_uses_approved_black_gold_editorial_router_direction():
+    html = read(HTML_PATH)
+    main_start = html.index('<main>')
+    first_section = html[main_start:html.index('</section>', main_start)]
+    for required in [
+        'black-gold-editorial-system',
+        'Find the right legal path before you call',
+        'matter-router-console',
+        'route-card buying-property',
+        'route-card estate-planning',
+        'route-card business-dispute',
+        'route-card migration-matter',
+        'premium legal intake system',
+        '--w230-black:#050505',
+        '--w230-warm-gold:#D6A94A',
+        '--w230-deep-sage:#7E927D',
+    ]:
+        assert required in first_section or required in html, f'missing approved UI direction marker: {required}'
+    assert 'purple' not in first_section.lower(), 'approved direction rejects purple AI styling'
+    assert 'gavel' not in first_section.lower(), 'avoid cliché legal imagery'
+    assert 'scales of justice' not in first_section.lower(), 'avoid cliché legal imagery'
+
+
 def test_private_preview_has_editorial_images_not_text_only_or_fake_people():
     html = read(HTML_PATH)
     for required in [

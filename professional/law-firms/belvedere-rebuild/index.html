@@ -345,7 +345,7 @@
   
   function handleBottomCTA() {
     if (window.innerWidth >= 768) { bottomCTA.style.display = 'none'; return; }
-    bottomCTA.style.display = 'block';
+    bottomCTA.style.display = 'flex';
     const currentScroll = window.pageYOffset;
     if (currentScroll > lastScroll && currentScroll > 100) {
       bottomCTA.style.transform = 'translateY(100%)';

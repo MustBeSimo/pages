@@ -466,15 +466,14 @@
     let ticking = false;
     
     function update() {
-      const scrollY = window.pageYOffset;
+      const viewH = window.innerHeight;
       
       parallaxEls.forEach(el => {
         const speed = parseFloat(el.dataset.speed) || 0.4;
         const rect = el.getBoundingClientRect();
-        const viewH = window.innerHeight;
         
-        // Only parallax when element is near view (perf + correctness)
-        if (rect.bottom < -viewH || rect.top > viewH * 2) return;
+        // Skip if element is very far from view (perf)
+        if (rect.bottom < -viewH * 2 || rect.top > viewH * 3) return;
         
         const offset = (rect.top - viewH / 2) * speed;
         el.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';

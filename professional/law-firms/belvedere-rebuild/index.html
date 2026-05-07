@@ -463,19 +463,29 @@
     const parallaxEls = document.querySelectorAll('.parallax-element');
     if (!parallaxEls.length) return;
     
+    // Store initial document positions (before any transforms)
+    const elData = new Map();
+    parallaxEls.forEach(el => {
+      elData.set(el, { top: el.offsetTop });
+    });
+    
     let ticking = false;
     
     function update() {
-      const viewH = window.innerHeight;
+      const scrollY = window.pageYOffset;
       
       parallaxEls.forEach(el => {
+        const data = elData.get(el);
         const speed = parseFloat(el.dataset.speed) || 0.4;
-        const rect = el.getBoundingClientRect();
         
-        // Skip if element is very far from view (perf)
-        if (rect.bottom < -viewH * 2 || rect.top > viewH * 3) return;
+        // How much we've scrolled relative to element's initial position
+        const scrolledPast = scrollY - data.top;
         
-        const offset = (rect.top - viewH / 2) * speed;
+        // Parallax: moves at 'speed' fraction of scroll, opposite direction
+        // When scrolled past element: moves UP (negative offset)
+        // When not yet reached: moves DOWN (positive offset)
+        const offset = scrolledPast * speed * -1;
+        
         el.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
       });
       

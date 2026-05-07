@@ -473,8 +473,8 @@
         const rect = el.getBoundingClientRect();
         const viewH = window.innerHeight;
         
-        // Only parallax when element is in view (perf)
-        if (rect.bottom < 0 || rect.top > viewH) return;
+        // Only parallax when element is near view (perf + correctness)
+        if (rect.bottom < -viewH || rect.top > viewH * 2) return;
         
         const offset = (rect.top - viewH / 2) * speed;
         el.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';

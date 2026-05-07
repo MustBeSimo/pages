@@ -1276,8 +1276,154 @@
     .bottom-cta .btn-ghost { padding: 0.75rem; font-size: 0.78rem; max-width: 9rem; flex: 0 0 auto; }
 
     /* ===== Reveal animation ===== */
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(.2,.8,.2,1), transform 0.8s cubic-bezier(.2,.8,.2,1); }
     .reveal.in { opacity: 1; transform: translateY(0); }
+    /* Stagger reveal for groups */
+    .reveal-stagger > * { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(.2,.8,.2,1), transform 0.7s cubic-bezier(.2,.8,.2,1); }
+    .reveal-stagger.in > * { opacity: 1; transform: translateY(0); }
+    .reveal-stagger.in > *:nth-child(1) { transition-delay: 0.04s; }
+    .reveal-stagger.in > *:nth-child(2) { transition-delay: 0.12s; }
+    .reveal-stagger.in > *:nth-child(3) { transition-delay: 0.20s; }
+    .reveal-stagger.in > *:nth-child(4) { transition-delay: 0.28s; }
+    .reveal-stagger.in > *:nth-child(5) { transition-delay: 0.36s; }
+    .reveal-stagger.in > *:nth-child(6) { transition-delay: 0.44s; }
+
+    /* Clip-path image reveal */
+    .clip-reveal { clip-path: inset(0 0 100% 0); transition: clip-path 1.1s cubic-bezier(.7,0,.2,1); }
+    .clip-reveal.in { clip-path: inset(0 0 0 0); }
+
+    /* Scroll progress bar */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 2px; z-index: 80;
+      background: rgba(201,162,74,0.08);
+      pointer-events: none;
+    }
+    .scroll-progress .bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-soft));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.08s linear;
+      box-shadow: 0 0 12px rgba(201,162,74,0.5);
+    }
+
+    /* Header shrink on scroll */
+    .site-header { transition: padding 0.3s ease, background 0.3s ease, border-color 0.3s ease; }
+    .site-header.shrunk {
+      background: rgba(8,7,4,0.92);
+      border-bottom-color: rgba(201,162,74,0.18);
+    }
+    .site-header.shrunk .nav { padding: 0.55rem 0; }
+    .site-header.shrunk .brand .eyebrow { opacity: 0; height: 0; margin: 0; transition: all 0.25s; overflow: hidden; }
+    .site-header.shrunk .brand .mark { font-size: 1.2rem; transition: font-size 0.3s; }
+    .brand .eyebrow { transition: opacity 0.25s, height 0.25s, margin 0.25s; max-height: 1rem; }
+    .brand .mark { transition: font-size 0.3s; }
+
+    /* Card tilt */
+    .tilt {
+      transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+      will-change: transform;
+    }
+    .tilt > * { transform: translateZ(0); }
+    .tilt .img img,
+    .tilt .stat,
+    .tilt h3, .tilt h4 { transform: translateZ(28px); transition: transform 0.45s cubic-bezier(.2,.8,.2,1); }
+
+    /* Magnetic button */
+    .magnetic { will-change: transform; transition: transform 0.4s cubic-bezier(.2,.8,.2,1); }
+
+    /* Tap ripple */
+    .ripple { position: relative; overflow: hidden; isolation: isolate; }
+    .ripple .rip {
+      position: absolute;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      transform: translate(-50%, -50%) scale(0);
+      animation: rip 0.7s cubic-bezier(.2,.8,.2,1) forwards;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+    @keyframes rip {
+      to { transform: translate(-50%, -50%) scale(40); opacity: 0; }
+    }
+
+    /* Pull-quote blur-to-focus */
+    .pullquote blockquote { filter: blur(10px); opacity: 0; transition: filter 1.1s ease, opacity 1.1s ease, transform 1.1s ease; transform: translateY(20px); }
+    .pullquote blockquote.in { filter: blur(0); opacity: 1; transform: translateY(0); }
+
+    /* Ken Burns slow drift on service feature images */
+    .service .img img { animation: kenburns 18s ease-in-out infinite alternate; }
+    @keyframes kenburns {
+      0%   { transform: scale(1) translate(0,0); }
+      100% { transform: scale(1.08) translate(-1.5%, -1%); }
+    }
+    .service:hover .img img { animation-play-state: paused; transform: scale(1.05); }
+
+    /* Subtle film grain overlay */
+    .grain {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 70;
+      opacity: 0.04;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: grainShift 8s steps(6) infinite;
+    }
+    @keyframes grainShift {
+      0%   { transform: translate(0,0); }
+      20%  { transform: translate(-3%, 4%); }
+      40%  { transform: translate(5%, -2%); }
+      60%  { transform: translate(-2%, -5%); }
+      80%  { transform: translate(4%, 3%); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* Mobile horizontal snap carousels */
+    @media (max-width: 639px) {
+      .snap-row {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 84%;
+        gap: 0.85rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 1rem;
+        padding-inline: 1rem;
+        margin-inline: -1rem;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-bottom: 0.5rem;
+      }
+      .snap-row::-webkit-scrollbar { display: none; }
+      .snap-row > * {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+      }
+      .snap-dots {
+        display: flex; justify-content: center; gap: 0.4rem;
+        margin-top: 1rem;
+      }
+      .snap-dots .dot {
+        width: 6px; height: 6px; border-radius: 50%;
+        background: rgba(246,236,214,0.18);
+        transition: width 0.3s, background 0.3s;
+      }
+      .snap-dots .dot.active { width: 22px; border-radius: 4px; background: var(--gold); }
+    }
+    @media (min-width: 640px) {
+      .snap-dots { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-stagger > *, .clip-reveal, .pullquote blockquote {
+        opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; transition: none !important;
+      }
+      .grain, .service .img img { animation: none !important; }
+      .scroll-progress .bar { transition: none !important; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
@@ -1362,6 +1508,9 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
+  <div class="scroll-progress" aria-hidden="true"><div class="bar" id="scrollBar"></div></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <div class="notice" role="note">
     <span>W230 rebuild concept</span>
     <span class="dot"></span>
@@ -1423,8 +1572,8 @@
               Belvederes — one consistent standard of care.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Book a consultation <span class="arr" aria-hidden="true">→</span></a>
-              <a class="btn btn-ghost" href="#services">Explore services</a>
+              <a class="btn btn-primary magnetic ripple" href="#contact">Book a consultation <span class="arr" aria-hidden="true">→</span></a>
+              <a class="btn btn-ghost ripple" href="#services">Explore services</a>
             </div>
             <div class="trust" aria-label="Firm credentials">
               <div class="trust-item">
@@ -1441,7 +1590,7 @@
               </div>
             </div>
           </div>
-          <div class="hero-visual reveal">
+          <div class="hero-visual reveal clip-reveal">
             <div class="img-wrap" id="heroImg">
               <img src="../assets/scales-of-justice.png" alt="Scales of justice in warm light" loading="eager" decoding="async" fetchpriority="high">
             </div>
@@ -1520,8 +1669,8 @@
           <h2>Practical advice on <em>the matters</em> that shape your life.</h2>
           <p>Buying a home, settling an estate, starting a business — every brief gets the same level of considered, plain-English attention.</p>
         </div>
-        <div class="services-grid">
-          <a class="service feat1 reveal" href="#contact">
+        <div class="services-grid reveal-stagger">
+          <a class="service feat1 tilt" href="#contact">
             <div class="img">
               <img src="../assets/conveyancing-property.png" alt="" loading="lazy" decoding="async">
               <span class="num">01</span>
@@ -1538,7 +1687,7 @@
               <span class="more">Enquire <span aria-hidden="true">→</span></span>
             </div>
           </a>
-          <a class="service feat2 reveal" href="#contact">
+          <a class="service feat2 tilt" href="#contact">
             <div class="img">
               <img src="../assets/wills-estate.png" alt="" loading="lazy" decoding="async">
               <span class="num">02</span>
@@ -1554,7 +1703,7 @@
               <span class="more">Enquire <span aria-hidden="true">→</span></span>
             </div>
           </a>
-          <a class="service comp1 service-compact reveal" href="#contact">
+          <a class="service comp1 service-compact" href="#contact">
             <div class="num">03</div>
             <div>
               <h3 style="font-family:var(--serif);font-weight:400;font-size:1.2rem;color:var(--paper);margin-bottom:0.35rem;">Commercial Law</h3>
@@ -1562,7 +1711,7 @@
             </div>
             <span class="arrow" aria-hidden="true">→</span>
           </a>
-          <a class="service comp2 service-compact reveal" href="#contact">
+          <a class="service comp2 service-compact" href="#contact">
             <div class="num">04</div>
             <div>
               <h3 style="font-family:var(--serif);font-weight:400;font-size:1.2rem;color:var(--paper);margin-bottom:0.35rem;">Mortgages &amp; Loan Advice</h3>
@@ -1659,8 +1808,8 @@
           <h2>The kind of work <em>we love.</em></h2>
           <p>Anonymised summaries of recent matters, chosen because they show the firm at its useful best. Names changed; facts simplified.</p>
         </div>
-        <div class="cases-grid">
-          <article class="case reveal">
+        <div class="cases-grid snap-row reveal-stagger" id="casesRow">
+          <article class="case tilt">
             <div class="label">Residential conveyancing</div>
             <div class="stat">24 <em>hrs</em></div>
             <h4>Settlement saved on a vendor default</h4>
@@ -1670,7 +1819,7 @@
               <span>Conveyancing</span>
             </div>
           </article>
-          <article class="case reveal">
+          <article class="case tilt">
             <div class="label">Cross-border estate</div>
             <div class="stat">4 <em>jurisdictions</em></div>
             <h4>Probate granted across three continents</h4>
@@ -1680,7 +1829,7 @@
               <span>Wills &amp; Estates</span>
             </div>
           </article>
-          <article class="case reveal">
+          <article class="case tilt">
             <div class="label">Off-the-plan dispute</div>
             <div class="stat">$0 <em>litigated</em></div>
             <h4>Resolved at the negotiating table</h4>
@@ -1690,6 +1839,9 @@
               <span>Property</span>
             </div>
           </article>
+        </div>
+        <div class="snap-dots" id="casesDots" aria-hidden="true">
+          <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
         </div>
       </div>
     </section>
@@ -1714,7 +1866,7 @@
     <section class="about" id="about">
       <div class="wrap">
         <div class="about-grid">
-          <div class="about-image-wrap reveal">
+          <div class="about-image-wrap reveal clip-reveal">
             <img src="../assets/legal-office-interior.png" alt="Belvedere Lawyers Rosanna office interior" loading="lazy" decoding="async">
             <span class="stamp">Est. 1983</span>
             <div class="portrait-callout">
@@ -1765,8 +1917,8 @@
           <div class="kicker">In their words</div>
           <h2>Calm hands, on <em>your hardest</em> day.</h2>
         </div>
-        <div class="testimonials-grid">
-          <figure class="quote reveal">
+        <div class="testimonials-grid snap-row reveal-stagger" id="testimonialsRow">
+          <figure class="quote">
             <div class="stars" aria-label="5 out of 5">★★★★★</div>
             <p>Livio guided my parents through their wills, then through probate, then me through buying my first home. Three generations, one phone number. That's rare.</p>
             <figcaption class="who">
@@ -1774,7 +1926,7 @@
               <span class="meta"><b>Maria O.</b>Property &amp; estate client, Heidelberg</span>
             </figcaption>
           </figure>
-          <figure class="quote feature reveal">
+          <figure class="quote feature">
             <span class="verified" aria-label="Verified client">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-11"/></svg>
               Verified client
@@ -1785,7 +1937,7 @@
               <span class="meta"><b>Daniel K.</b>Commercial client, Ivanhoe</span>
             </figcaption>
           </figure>
-          <figure class="quote reveal">
+          <figure class="quote">
             <div class="stars" aria-label="5 out of 5">★★★★★</div>
             <p>They picked up the phone on a Saturday when our settlement nearly fell over. We've sent every friend we know there since.</p>
             <figcaption class="who">
@@ -1793,6 +1945,9 @@
               <span class="meta"><b>Sam &amp; Rachel</b>Conveyancing clients, Rosanna</span>
             </figcaption>
           </figure>
+        </div>
+        <div class="snap-dots" id="testimonialsDots" aria-hidden="true">
+          <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
         </div>
       </div>
     </section>
@@ -2131,16 +2286,16 @@
       });
     });
 
-    // Reveal on scroll
+    // Reveal on scroll (incl. stagger, clip, pullquote)
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver(entries => {
         entries.forEach(e => {
           if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
         });
       }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+      document.querySelectorAll('.reveal, .reveal-stagger, .clip-reveal, .pullquote blockquote').forEach(el => io.observe(el));
     } else {
-      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+      document.querySelectorAll('.reveal, .reveal-stagger, .clip-reveal, .pullquote blockquote').forEach(el => el.classList.add('in'));
     }
 
     // Hero "in" trigger (for underline animation)
@@ -2149,7 +2304,7 @@
       if (hero) hero.classList.add('in');
     });
 
-    // Count-up stats
+    // Count-up stats with number scramble
     (function () {
       const els = document.querySelectorAll('.count');
       if (!els.length) return;
@@ -2158,14 +2313,23 @@
         const suffix = el.dataset.suffix || '';
         const prefix = el.dataset.prefix || '';
         if (reduced) { el.textContent = prefix + target.toLocaleString() + suffix; return; }
-        const dur = 1300;
+        const dur = 1500;
         const start = performance.now();
         function tick(now) {
           const t = Math.min(1, (now - start) / dur);
           const eased = 1 - Math.pow(1 - t, 3);
           const v = Math.round(target * eased);
-          el.textContent = prefix + v.toLocaleString() + suffix;
+          // Scramble: in the first 65% show jittered value, then settle
+          let display;
+          if (t < 0.65) {
+            const noise = Math.floor(Math.random() * Math.max(target, 9));
+            display = Math.min(target, v + noise % Math.max(1, Math.round((1 - t) * target * 0.4)));
+          } else {
+            display = v;
+          }
+          el.textContent = prefix + display.toLocaleString() + suffix;
           if (t < 1) requestAnimationFrame(tick);
+          else el.textContent = prefix + target.toLocaleString() + suffix;
         }
         requestAnimationFrame(tick);
       }
@@ -2201,14 +2365,14 @@
       }
     })();
 
-    // Hero parallax (desktop only, not reduced motion)
+    // Hero parallax (mobile + desktop, not reduced motion)
     (function () {
       const el = document.getElementById('heroImg');
       if (!el || reduced) return;
       let ticking = false;
       function update() {
-        if (window.innerWidth < 960) { el.style.transform = ''; ticking = false; return; }
-        const y = window.scrollY * 0.10;
+        const factor = window.innerWidth < 960 ? 0.06 : 0.12;
+        const y = window.scrollY * factor;
         el.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px, 0)';
         ticking = false;
       }
@@ -2216,6 +2380,142 @@
         if (!ticking) { requestAnimationFrame(update); ticking = true; }
       }, { passive: true });
       update();
+    })();
+
+    // Scroll progress bar
+    (function () {
+      const bar = document.getElementById('scrollBar');
+      if (!bar) return;
+      let ticking = false;
+      function update() {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        const p = max > 0 ? Math.min(1, h.scrollTop / max) : 0;
+        bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+        ticking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      update();
+    })();
+
+    // Header shrink on scroll
+    (function () {
+      const header = document.querySelector('.site-header');
+      if (!header) return;
+      let ticking = false;
+      function update() {
+        header.classList.toggle('shrunk', window.scrollY > 80);
+        ticking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      update();
+    })();
+
+    // Pointer-tracked card tilt (mouse + touch)
+    (function () {
+      if (reduced) return;
+      const tilts = document.querySelectorAll('.tilt');
+      tilts.forEach(card => {
+        let raf = null, rect = null;
+        function setT(rx, ry) {
+          card.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateZ(0)';
+        }
+        function onMove(e) {
+          if (!rect) rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          const rx = (0.5 - y) * 8;
+          const ry = (x - 0.5) * 10;
+          if (raf) cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(() => setT(rx, ry));
+        }
+        function reset() {
+          rect = null;
+          if (raf) cancelAnimationFrame(raf);
+          card.style.transform = '';
+        }
+        card.addEventListener('pointerenter', () => { rect = card.getBoundingClientRect(); });
+        card.addEventListener('pointermove', onMove);
+        card.addEventListener('pointerleave', reset);
+        card.addEventListener('pointercancel', reset);
+      });
+    })();
+
+    // Magnetic primary CTAs (desktop only)
+    (function () {
+      if (reduced) return;
+      const mags = document.querySelectorAll('.magnetic');
+      mags.forEach(el => {
+        let raf = null;
+        el.addEventListener('pointermove', e => {
+          if (window.innerWidth < 960 || e.pointerType === 'touch') return;
+          const r = el.getBoundingClientRect();
+          const dx = (e.clientX - (r.left + r.width / 2)) * 0.18;
+          const dy = (e.clientY - (r.top + r.height / 2)) * 0.28;
+          if (raf) cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(() => {
+            el.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
+          });
+        });
+        el.addEventListener('pointerleave', () => {
+          if (raf) cancelAnimationFrame(raf);
+          el.style.transform = '';
+        });
+      });
+    })();
+
+    // Tap ripple
+    (function () {
+      const els = document.querySelectorAll('.ripple');
+      els.forEach(el => {
+        el.addEventListener('pointerdown', e => {
+          const r = el.getBoundingClientRect();
+          const x = e.clientX - r.left;
+          const y = e.clientY - r.top;
+          const rip = document.createElement('span');
+          rip.className = 'rip';
+          rip.style.left = x + 'px';
+          rip.style.top = y + 'px';
+          el.appendChild(rip);
+          setTimeout(() => rip.remove(), 750);
+        });
+      });
+    })();
+
+    // Snap carousel dot indicators
+    (function () {
+      const pairs = [
+        ['casesRow', 'casesDots'],
+        ['testimonialsRow', 'testimonialsDots']
+      ];
+      pairs.forEach(([rowId, dotsId]) => {
+        const row = document.getElementById(rowId);
+        const dots = document.getElementById(dotsId);
+        if (!row || !dots) return;
+        const dotEls = dots.querySelectorAll('.dot');
+        const items = row.children;
+        let ticking = false;
+        function update() {
+          const center = row.scrollLeft + row.clientWidth / 2;
+          let active = 0;
+          let bestDist = Infinity;
+          for (let i = 0; i < items.length; i++) {
+            const c = items[i].offsetLeft + items[i].clientWidth / 2;
+            const d = Math.abs(c - center);
+            if (d < bestDist) { bestDist = d; active = i; }
+          }
+          dotEls.forEach((d, i) => d.classList.toggle('active', i === active));
+          ticking = false;
+        }
+        row.addEventListener('scroll', () => {
+          if (!ticking) { requestAnimationFrame(update); ticking = true; }
+        }, { passive: true });
+        update();
+      });
     })();
 
     // Bottom CTA hide on scroll-down

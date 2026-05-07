@@ -272,6 +272,18 @@
       gap: 0.5rem;
     }
     
+    /* ===== PARALLAX (subtle, performant, premium) ===== */
+    .parallax-element {
+      will-change: transform;
+      transition: transform 0.05s ease-out;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .parallax-element { will-change: auto; transform: none !important; }
+    }
+    @media (max-width: 768px) {
+      .parallax-element { will-change: auto; transform: none !important; }
+    }
+    
     /* ===== DESKTOP ENHANCEMENTS (768px and up) ===== */
     @media (min-width: 768px) {
       .hero-section {
@@ -353,7 +365,7 @@
         </nav>
         
         <div class="hero-video-wrap">
-          <img src="../assets/scales-of-justice.png" alt="Scales of Justice - Belvedere Lawyers" style="width:100%;height:auto;display:block;opacity:0.7;">
+          <img src="../assets/scales-of-justice.png" alt="Scales of Justice - Belvedere Lawyers" style="width:100%;height:auto;display:block;opacity:0.7;" class="parallax-element" data-speed="0.3">
         </div>
         
         <div class="kicker">family-owned · rosanna VIC</div>
@@ -410,7 +422,7 @@
             <p>At Belvedere Lawyers, you're not just a client, you're part of the family.</p>
           </div>
           <div class="about-image">
-            <img src="../assets/legal-office-interior.png" alt="Belvedere Family Legal Team" loading="lazy">
+            <img src="../assets/legal-office-interior.png" alt="Belvedere Family Legal Team" loading="lazy" class="parallax-element" data-speed="0.4">
           </div>
         </div>
       </div>
@@ -445,5 +457,42 @@
       </div>
     </footer>
   </main>
+  
+  <script>
+  (function() {
+    const parallaxEls = document.querySelectorAll('.parallax-element');
+    if (!parallaxEls.length) return;
+    
+    let ticking = false;
+    
+    function update() {
+      const scrollY = window.pageYOffset;
+      
+      parallaxEls.forEach(el => {
+        const speed = parseFloat(el.dataset.speed) || 0.4;
+        const rect = el.getBoundingClientRect();
+        const viewH = window.innerHeight;
+        
+        // Only parallax when element is in view (perf)
+        if (rect.bottom < 0 || rect.top > viewH) return;
+        
+        const offset = (rect.top - viewH / 2) * speed;
+        el.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
+      });
+      
+      ticking = false;
+    }
+    
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update(); // initial position
+  })();
+  </script>
 </body>
 </html>

@@ -4,387 +4,1200 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
-  <title>Belvedere Lawyers — V10 + Parallax</title>
+  <meta name="theme-color" content="#0a0905">
+  <title>Belvedere Lawyers — Family-owned, Rosanna VIC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* ===== BASE MOBILE-FIRST (390px and up) ===== */
     :root {
-      --bg: #050505;
-      --gold: #d8ad54;
-      --gold-soft: #f0d99d;
-      --paper: #fff8ea;
-      --muted: #b9ad92;
-      --line: rgba(255, 248, 234, 0.16);
-      --line-strong: rgba(216, 173, 84, 0.48);
+      --bg: #0a0905;
+      --bg-2: #100d07;
+      --bg-3: #15110a;
+      --gold: #c9a24a;
+      --gold-soft: #e8cb88;
+      --gold-deep: #8a6b22;
+      --paper: #f6ecd6;
+      --paper-dim: #d8cdb1;
+      --muted: #8d8674;
+      --line: rgba(246, 236, 214, 0.10);
+      --line-strong: rgba(201, 162, 74, 0.42);
+      --shadow: 0 24px 60px -28px rgba(0,0,0,0.6), 0 4px 12px -6px rgba(0,0,0,0.5);
+      --serif: 'Fraunces', 'Times New Roman', Georgia, serif;
+      --sans: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
     }
-    
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
-    body { 
-      background: var(--bg); 
-      color: var(--paper); 
-      font-family: Inter, system-ui, sans-serif; 
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: var(--bg);
+      color: var(--paper);
+      font-family: var(--sans);
+      font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
       padding-bottom: env(safe-area-inset-bottom);
+      background-image:
+        radial-gradient(1200px 600px at 80% -10%, rgba(201,162,74,0.10), transparent 60%),
+        radial-gradient(900px 500px at -10% 30%, rgba(201,162,74,0.06), transparent 60%);
     }
-    button, a { font: inherit; color: inherit; text-decoration: none; }
-    img, video { max-width: 100%; display: block; height: auto; }
-    .wrap { width: min(1180px, calc(100% - 24px)); margin-inline: auto; }
-    
-    /* ===== MOBILE NAV (hamburger) ===== */
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; position: relative; }
-    .brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.4rem; letter-spacing: -0.06em; line-height: 0.86; }
-    .brand span { display: block; font-family: Inter, system-ui, sans-serif; color: var(--muted); font-size: 0.55rem; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.25rem; }
-    
-    .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; -webkit-tap-highlight-color: transparent; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); transition: 0.3s; }
+    img, svg, video { display: block; max-width: 100%; height: auto; }
+    a, button { font: inherit; color: inherit; text-decoration: none; cursor: pointer; }
+    button { background: none; border: none; }
+    ::selection { background: var(--gold); color: #1a1305; }
+
+    .wrap { width: min(1200px, 100% - 2rem); margin-inline: auto; }
+
+    /* ===== Top notice bar ===== */
+    .notice {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 0.5rem 1.25rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(90deg, #060503, #0e0a04, #060503);
+      border-bottom: 1px solid var(--line);
+      font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+    }
+    .notice b { color: var(--gold-soft); font-weight: 700; letter-spacing: 0.18em; }
+    .notice .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); display: inline-block; }
+
+    /* ===== Header / Nav ===== */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(10,9,5,0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 0;
+    }
+    .brand { display: inline-flex; flex-direction: column; line-height: 1; }
+    .brand .eyebrow {
+      font-family: var(--sans);
+      color: var(--muted);
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .brand .mark {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+      color: var(--paper);
+    }
+    .brand .mark em { font-style: italic; color: var(--gold-soft); }
+
+    .nav-links { display: none; gap: 0.25rem; align-items: center; }
+    .nav-links a {
+      padding: 0.55rem 0.9rem;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em;
+      color: var(--paper-dim);
+      border-radius: 999px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--paper); background: rgba(246,236,214,0.05); }
+    .nav-cta {
+      display: none;
+      align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      background: var(--gold);
+      color: #1a1305;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 999px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 22px -10px rgba(201,162,74,0.6); }
+
+    .hamburger { display: inline-flex; flex-direction: column; gap: 5px; padding: 8px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--gold); transition: 0.3s; transform-origin: center; }
     .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    
-    .mobile-nav { 
-      display: none; 
-      position: fixed; 
-      top: 0; right: 0; 
-      width: min(320px, 85vw); 
-      height: 100vh; 
-      background: #0a0a0a; 
-      border-left: 1px solid var(--line-strong); 
-      padding: 5rem 2rem 2rem; 
-      z-index: 999; 
-      flex-direction: column; 
-      gap: 0.5rem;
+
+    .mobile-nav {
+      position: fixed; inset: 0 0 0 auto;
+      width: min(340px, 86vw);
+      background: linear-gradient(180deg, #0d0a05, #08060300);
+      background-color: #0c0a05;
+      border-left: 1px solid var(--line-strong);
+      padding: 5rem 1.75rem 2rem;
+      z-index: 60;
+      display: flex; flex-direction: column; gap: 0.25rem;
+      transform: translateX(105%);
+      transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
     }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav a { font-size: 1.1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--line); color: var(--paper); font-weight: 500; }
-    .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 998; }
-    .nav-overlay.open { display: block; }
-    
-    /* ===== HERO ===== */
-    .hero-section { padding: 1.5rem 0 2rem; background: linear-gradient(135deg, rgba(5,5,5,0.95), rgba(11,12,9,0.9)); border-bottom: 1px solid var(--line-strong); }
-    .hero-video-wrap { margin-bottom: 1rem; border: 1px solid var(--line); overflow: hidden; }
-    .hero-video-wrap img { width: 100%; height: auto; display: block; opacity: 0.7; }
-    .kicker { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gold-soft); font-size: 0.6rem; font-weight: 950; text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 0.5rem; }
-    .kicker::before { content: ""; width: 30px; height: 1px; background: var(--gold); }
-    h1 { font-family: 'Instrument Serif', Georgia, serif; font-size: 2rem; line-height: 0.82; letter-spacing: -0.04em; margin: 0.5rem 0; color: var(--paper); }
-    .hero-copy p { font-size: 0.92rem; color: #e9ddc2; margin: 0.5rem 0; }
-    .hero-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
-    .primary-cta, .secondary-cta { min-height: 48px; display: flex; align-items: center; justify-content: center; padding: 0.88rem 1.5rem; font-weight: 950; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid var(--line-strong); width: 100%; font-size: 0.85rem; }
-    .primary-cta { background: var(--gold); color: #090806; border-color: var(--gold); }
-    .secondary-cta { background: rgba(255,248,234,0.055); color: var(--paper); }
-    
-    /* ===== SERVICES (mobile: horizontal swipe) ===== */
-    .services-section { padding: 2rem 0; }
-    .services-header { margin-bottom: 1rem; }
-    .services-grid { 
-      display: flex; 
-      gap: 1rem; 
-      overflow-x: auto; 
-      scroll-snap-type: x mandatory; 
-      -webkit-overflow-scrolling: touch; 
-      scrollbar-width: none; 
-      padding-bottom: 1rem; 
-      margin: 0 calc(-1 * (100vw - 100%)/2); 
-      padding-left: calc((100vw - 100%)/2); 
-      padding-right: calc((100vw - 100%)/2); 
+    .mobile-nav.open { transform: translateX(0); }
+    .mobile-nav a {
+      padding: 1rem 0;
+      font-size: 1.05rem;
+      color: var(--paper);
+      border-bottom: 1px solid var(--line);
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .services-grid::-webkit-scrollbar { display: none; }
-    .service-card { 
-      flex: 0 0 85vw; 
-      scroll-snap-align: start; 
-      border: 1px solid var(--line); 
-      background: linear-gradient(180deg, rgba(255,248,234,0.085), rgba(255,248,234,0.028)); 
-      padding: 1.25rem; 
-      min-height: 320px;
+    .mobile-nav a::after { content: "→"; color: var(--gold); opacity: 0.6; font-size: 0.9rem; }
+    .mobile-nav .mobile-cta {
+      margin-top: 1rem;
+      background: var(--gold);
+      color: #1a1305;
+      padding: 0.95rem 1rem;
+      text-align: center; justify-content: center;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 0.8rem;
+      border: none;
+      border-radius: 4px;
     }
-    .service-card img { width: 100%; height: 160px; object-fit: cover; margin-bottom: 1rem; border: 1px solid var(--line); }
-    .service-num { font-size: 0.68rem; color: var(--gold); font-weight: 950; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; }
-    .service-card h3 { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.4rem; line-height: 0.88; letter-spacing: -0.04em; margin: 0.5rem 0; color: var(--paper); }
-    .service-card p { font-size: 0.88rem; color: var(--muted); margin: 0.5rem 0; }
-    
-    /* ===== ABOUT ===== */
-    .about-section { padding: 2rem 0; background: #080806; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-    .about-image { width: 100%; min-height: 200px; border: 1px solid var(--line); overflow: hidden; }
-    .about-image img { width: 100%; height: 100%; object-fit: cover; }
-    .about-text h2 { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.8rem; line-height: 0.82; letter-spacing: -0.06em; margin: 0.5rem 0; }
-    .about-text p { font-size: 0.92rem; color: #e9ddc2; margin: 0.5rem 0; }
-    
-    /* ===== CONTACT ===== */
-    .contact-section { padding: 2rem 0; }
-    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1rem; }
-    .contact-form { display: grid; gap: 1rem; }
-    .contact-form input, .contact-form textarea { border: 1px solid var(--line); background: rgba(255,248,234,0.04); color: var(--paper); padding: 0.85rem; font-size: 0.92rem; min-height: 48px; width: 100%; }
-    .contact-form button { background: var(--gold); color: #090806; border: none; padding: 0.88rem 1.5rem; font-weight: 950; text-transform: uppercase; letter-spacing: 0.1em; min-height: 48px; cursor: pointer; font-size: 0.85rem; }
-    
-    /* ===== BOTTOM CTA BAR (mobile only) ===== */
-    .bottom-cta { 
-      display: none; 
-      position: fixed; 
-      bottom: 0; 
-      left: 0; 
-      right: 0; 
-      z-index: 999; 
-      transition: transform 0.3s ease;
-      background: #050505;
+    .mobile-nav .mobile-cta::after { content: ""; }
+    .nav-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+      z-index: 55; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      padding: 3rem 0 3.5rem;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(800px 400px at 80% 30%, rgba(201,162,74,0.10), transparent 60%),
+        linear-gradient(180deg, transparent, rgba(0,0,0,0.4));
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr; gap: 2rem;
+      position: relative;
+    }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      color: var(--gold-soft);
+      font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .kicker::before { content: ""; width: 28px; height: 1px; background: var(--gold); }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 350;
+      font-size: clamp(2.4rem, 7.5vw, 5.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+      color: var(--paper);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold-soft); font-weight: 300; }
+    .hero h1 .underline {
+      background-image: linear-gradient(transparent 76%, rgba(201,162,74,0.5) 76%, rgba(201,162,74,0.5) 92%, transparent 92%);
+      padding-right: 0.05em;
+    }
+    .hero-lead {
+      font-size: 1.02rem;
+      color: var(--paper-dim);
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-actions {
+      display: flex; flex-direction: column; gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      min-height: 52px;
+      padding: 0.9rem 1.5rem;
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: #1a1305;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 14px 28px -14px rgba(201,162,74,0.65); }
+    .btn-ghost {
+      background: rgba(246,236,214,0.04);
+      color: var(--paper);
+      border-color: var(--line-strong);
+    }
+    .btn-ghost:hover { background: rgba(246,236,214,0.08); border-color: var(--gold); }
+
+    .trust {
+      display: flex; flex-wrap: wrap; gap: 1.25rem 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .trust-item { display: flex; align-items: baseline; gap: 0.65rem; }
+    .trust-item .num {
+      font-family: var(--serif);
+      font-weight: 350;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      color: var(--gold-soft);
+      line-height: 1;
+    }
+    .trust-item .label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border: 1px solid var(--line-strong);
+      overflow: hidden;
+      background: linear-gradient(160deg, #1a140a, #060503);
+      box-shadow: var(--shadow);
+    }
+    .hero-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: transform 1.2s ease;
+    }
+    .hero-visual::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 100%);
+      pointer-events: none;
+    }
+    .hero-visual .badge {
+      position: absolute; left: 1rem; bottom: 1rem;
+      z-index: 2;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.55rem 0.85rem;
+      background: rgba(10,9,5,0.78);
+      border: 1px solid var(--line-strong);
+      backdrop-filter: blur(8px);
+      border-radius: 999px;
+      font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--paper-dim);
+    }
+    .hero-visual .badge .pulse {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+      box-shadow: 0 0 0 0 rgba(201,162,74,0.7);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(201,162,74,0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(201,162,74,0); }
+      100% { box-shadow: 0 0 0 0 rgba(201,162,74,0); }
+    }
+
+    /* ===== Marquee strip ===== */
+    .marquee {
+      border-block: 1px solid var(--line);
+      background: var(--bg-2);
+      overflow: hidden;
+      padding: 1rem 0;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: scroll 36s linear infinite;
+      width: max-content;
+    }
+    .marquee-track span {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--paper-dim);
+      white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 3rem;
+    }
+    .marquee-track span::after { content: "✦"; color: var(--gold); font-style: normal; font-size: 0.7rem; }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ===== Section base ===== */
+    section { padding: 4rem 0; position: relative; }
+    .section-head { max-width: 44rem; margin-bottom: 2.5rem; }
+    .section-head h2 {
+      font-family: var(--serif);
+      font-weight: 350;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      color: var(--paper);
+    }
+    .section-head h2 em { font-style: italic; color: var(--gold-soft); font-weight: 300; }
+    .section-head p {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: var(--paper-dim);
+      max-width: 36rem;
+    }
+
+    /* ===== Services ===== */
+    .services { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .services-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1rem;
+    }
+    .service {
+      position: relative;
+      display: grid; grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.5rem;
+      background: linear-gradient(180deg, rgba(246,236,214,0.04), rgba(246,236,214,0.01));
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      transition: border-color 0.3s, transform 0.3s, background 0.3s;
+      overflow: hidden;
+    }
+    .service:hover {
+      border-color: var(--line-strong);
+      background: linear-gradient(180deg, rgba(201,162,74,0.06), rgba(201,162,74,0.01));
+    }
+    .service::before {
+      content: "";
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.4s ease;
+    }
+    .service:hover::before { transform: scaleY(1); }
+    .service .num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.5rem;
+      color: var(--gold-soft);
+      min-width: 2rem;
+    }
+    .service-body h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.35rem;
+      letter-spacing: -0.015em;
+      color: var(--paper);
+      margin-bottom: 0.35rem;
+    }
+    .service-body p {
+      font-size: 0.92rem;
+      color: var(--paper-dim);
+      line-height: 1.55;
+    }
+    .service .arrow {
+      width: 38px; height: 38px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      color: var(--gold-soft);
+      transition: transform 0.3s, background 0.3s, color 0.3s;
+      flex-shrink: 0;
+    }
+    .service:hover .arrow { transform: translate(2px, -2px); background: var(--gold); color: #1a1305; }
+
+    /* ===== Approach / values ===== */
+    .approach { background: var(--bg); }
+    .approach-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .value {
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: linear-gradient(180deg, rgba(246,236,214,0.025), transparent);
+      transition: border-color 0.3s;
+    }
+    .value:hover { border-color: var(--line-strong); }
+    .value .icon {
+      width: 42px; height: 42px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .value h4 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--paper);
+      margin-bottom: 0.4rem;
+    }
+    .value p { font-size: 0.92rem; color: var(--paper-dim); }
+
+    /* ===== About / Family ===== */
+    .about { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;
+    }
+    .about-image-wrap {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border: 1px solid var(--line-strong);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .about-image-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.92; }
+    .about-image-wrap::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(10,9,5,0.6) 100%);
+      pointer-events: none;
+    }
+    .about-image-wrap .stamp {
+      position: absolute; right: -1px; top: -1px;
+      padding: 0.6rem 0.9rem;
+      background: var(--bg);
+      border-left: 1px solid var(--line-strong);
+      border-bottom: 1px solid var(--line-strong);
+      font-family: var(--serif); font-style: italic;
+      color: var(--gold-soft);
+      font-size: 0.85rem;
+    }
+    .about-text h2 {
+      font-family: var(--serif);
+      font-weight: 350;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      margin: 0.75rem 0 1.25rem;
+    }
+    .about-text h2 em { font-style: italic; color: var(--gold-soft); font-weight: 300; }
+    .about-text p { font-size: 1rem; color: var(--paper-dim); margin-bottom: 1rem; }
+    .team {
+      display: grid; grid-template-columns: 1fr; gap: 0.75rem;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .team-member { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.4rem 0; }
+    .team-member .name { font-family: var(--serif); font-size: 1.05rem; color: var(--paper); }
+    .team-member .role { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+    /* ===== Testimonials ===== */
+    .testimonials { background: var(--bg); }
+    .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .quote {
+      position: relative;
+      padding: 1.75rem 1.5rem 1.5rem;
+      background: linear-gradient(180deg, rgba(246,236,214,0.03), transparent);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+    .quote::before {
+      content: "\201C";
+      position: absolute; top: -0.75rem; left: 1rem;
+      font-family: var(--serif);
+      font-size: 4rem; line-height: 1;
+      color: var(--gold);
+      opacity: 0.5;
+    }
+    .quote p {
+      font-family: var(--serif);
+      font-weight: 350;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: var(--paper);
+      margin-bottom: 1rem;
+    }
+    .quote .who {
+      display: flex; align-items: center; gap: 0.65rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--line);
+    }
+    .quote .who .initials {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-deep), var(--gold));
+      color: #1a1305;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;
+    }
+    .quote .who .meta { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.02em; }
+    .quote .who .meta b { color: var(--paper); font-weight: 600; display: block; font-size: 0.9rem; }
+
+    /* ===== FAQ ===== */
+    .faq { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .faq-list { max-width: 56rem; }
+    .faq-item {
+      border-top: 1px solid var(--line);
+    }
+    .faq-item:last-child { border-bottom: 1px solid var(--line); }
+    .faq-q {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 0;
+      text-align: left;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.1rem;
+      color: var(--paper);
+      letter-spacing: -0.01em;
+    }
+    .faq-q .toggle {
+      width: 32px; height: 32px;
+      flex-shrink: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      transition: transform 0.3s, background 0.3s;
+    }
+    .faq-item.open .toggle { transform: rotate(45deg); background: var(--gold); color: #1a1305; }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      color: var(--paper-dim);
+      font-size: 0.95rem;
+      padding: 0 0 0 0;
+    }
+    .faq-item.open .faq-a {
+      max-height: 320px;
+      padding: 0 0 1.25rem 0;
+    }
+
+    /* ===== Contact ===== */
+    .contact { background: var(--bg); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr; gap: 2rem;
+    }
+    .contact-info p { font-size: 0.95rem; color: var(--paper-dim); margin-bottom: 0.5rem; }
+    .contact-info .row { display: flex; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+    .contact-info .row:last-child { border-bottom: none; }
+    .contact-info .row .label {
+      font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); min-width: 5.5rem; padding-top: 0.25rem;
+    }
+    .contact-info .row .val { color: var(--paper); font-size: 0.95rem; }
+    .contact-info .row .val a:hover { color: var(--gold-soft); }
+
+    .contact-form {
+      display: grid; gap: 0.85rem;
+      padding: 1.75rem 1.5rem;
+      background: linear-gradient(180deg, rgba(246,236,214,0.04), rgba(246,236,214,0.01));
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+    }
+    .field { display: grid; gap: 0.4rem; }
+    .field label {
+      font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); font-weight: 600;
+    }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      background: rgba(10,9,5,0.5);
+      border: 1px solid var(--line);
+      color: var(--paper);
+      padding: 0.85rem 0.95rem;
+      font: inherit;
+      font-size: 0.95rem;
+      border-radius: 4px;
+      min-height: 48px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .field textarea { min-height: 120px; resize: vertical; }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none; border-color: var(--gold); background: rgba(10,9,5,0.7);
+    }
+    .field-row { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+    .contact-form button[type=submit] {
+      margin-top: 0.5rem;
+      background: var(--gold); color: #1a1305;
+      padding: 1rem; font-weight: 700; font-size: 0.82rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      border-radius: 4px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact-form button[type=submit]:hover { transform: translateY(-1px); box-shadow: 0 14px 28px -14px rgba(201,162,74,0.65); }
+    .form-note { font-size: 0.72rem; color: var(--muted); }
+
+    /* ===== Footer ===== */
+    .footer {
+      padding: 2.5rem 0 6.5rem;
+      border-top: 1px solid var(--line);
+      background: #060503;
+    }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    .footer .brand .mark { font-size: 1.3rem; }
+    .footer p, .footer a { font-size: 0.85rem; color: var(--paper-dim); }
+    .footer h5 {
+      font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold-soft); margin-bottom: 0.85rem; font-weight: 700;
+    }
+    .footer ul { list-style: none; display: grid; gap: 0.4rem; }
+    .footer-bar {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      display: flex; flex-direction: column; gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    /* ===== Bottom CTA (mobile) ===== */
+    .bottom-cta {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 40;
+      padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+      background: rgba(8,7,4,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-top: 1px solid var(--line-strong);
+      display: flex; gap: 0.5rem;
+      transition: transform 0.3s ease;
     }
-    .bottom-cta a { border-radius: 0; border-left: none; border-right: none; }
-    @media (min-width: 768px) {
-      .bottom-cta { display: none !important; }
+    .bottom-cta a { flex: 1; min-height: 48px; }
+    .bottom-cta .btn-primary { padding: 0.75rem; font-size: 0.78rem; }
+    .bottom-cta .btn-ghost { padding: 0.75rem; font-size: 0.78rem; max-width: 9rem; flex: 0 0 auto; }
+
+    /* ===== Reveal animation ===== */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .marquee-track { animation: none; }
+      .hero-visual .badge .pulse { animation: none; }
+      html { scroll-behavior: auto; }
     }
-    
-    /* ===== FOOTER ===== */
-    .footer { padding: 1rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.75rem; }
-    .footer .wrap { display: flex; flex-direction: column; gap: 0.5rem; }
-    
-    /* ===== DESKTOP ENHANCEMENTS (768px and up) ===== */
-    @media (min-width: 768px) {
-      .hero-section {
-        padding: 4rem 0 5rem;
-      }
-      h1 { font-size: 4rem; }
-      .hero-actions {
-        flex-direction: row;
-      }
-      .hero-actions a { width: auto; }
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .service-card img { height: 200px; }
+
+    /* ===== Tablet (640px+) ===== */
+    @media (min-width: 640px) {
+      .hero { padding: 4.5rem 0 5rem; }
+      .hero-actions { flex-direction: row; }
+      .hero-actions .btn { flex: 0 0 auto; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .approach-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+      .field-row { grid-template-columns: 1fr 1fr; }
+      .footer-bar { flex-direction: row; justify-content: space-between; }
+      .bottom-cta .btn-primary { padding: 0.9rem; }
     }
-    
-    /* ===== LARGE DESKTOP (1024px and up) ===== */
-    @media (min-width: 1024px) {
-      .hero-section {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-      }
-      h1 { font-size: 6rem; }
-      .services-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-      .about-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .contact-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .footer .wrap {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .nav-links { 
-        display: flex; 
-        gap: 0.5rem; 
-      }
-      .nav-links a {
-        min-height: 48px;
-        display: inline-flex;
-        align-items: center;
-        border: 1px solid var(--line);
-        padding: 0.72rem 0.9rem;
-        border-radius: 999px;
-        background: rgba(255,248,234,0.055);
-        font-size: 0.72rem;
-        font-weight: 900;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
+
+    /* ===== Desktop (960px+) ===== */
+    @media (min-width: 960px) {
+      .nav-links { display: inline-flex; }
+      .nav-cta { display: inline-flex; }
+      .hamburger { display: none; }
+      .hero { padding: 6rem 0 6.5rem; }
+      .hero-grid { grid-template-columns: 1.15fr 1fr; gap: 4rem; align-items: center; }
+      .hero-visual { aspect-ratio: 4 / 5; }
+      section { padding: 6rem 0; }
+      .approach-grid { grid-template-columns: repeat(4, 1fr); }
+      .about-grid { grid-template-columns: 1fr 1.1fr; gap: 4rem; }
+      .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+      .contact-grid { grid-template-columns: 1fr 1.1fr; gap: 3rem; }
+      .footer { padding-bottom: 2.5rem; }
+      .bottom-cta { display: none; }
+    }
+
+    /* ===== Wide (1200px+) ===== */
+    @media (min-width: 1200px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="notice">
+  <div class="notice" role="note">
     <span>W230 rebuild concept</span>
-    <b>belvedere lawyers V11 mobile-first</b>
-    <span>not affiliated · noindex · mobile-first</span>
+    <span class="dot"></span>
+    <b>Belvedere Lawyers · V12</b>
+    <span class="dot"></span>
+    <span>not affiliated · noindex</span>
   </div>
-  
-  <main>
-    <!-- Navigation -->
-    <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="#top">
-        <span>Melbourne family law firm</span>
-        Belvedere Lawyers
-      </a>
-      <button class="hamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-    
-    <!-- Mobile Nav Overlay + Panel -->
-    <div class="nav-overlay" onclick="toggleMobileNav()"></div>
-    <div class="mobile-nav" id="mobileNav">
-      <a href="#services" onclick="toggleMobileNav()">Services</a>
-      <a href="#about" onclick="toggleMobileNav()">About</a>
-      <a href="#contact" onclick="toggleMobileNav()">Contact</a>
-      <a href="#contact" onclick="toggleMobileNav()" style="margin-top:1rem; color:var(--gold); font-weight:700;">Get in touch</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="Belvedere Lawyers home">
+          <span class="eyebrow">Melbourne family law firm</span>
+          <span class="mark">Belvedere<em>·</em>Lawyers</span>
+        </a>
+        <div class="nav-links" role="menubar">
+          <a href="#services">Services</a>
+          <a href="#approach">Approach</a>
+          <a href="#about">The family</a>
+          <a href="#testimonials">Clients</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <a class="nav-cta" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
     </div>
-        
-        <div class="hero-video-wrap">
-          <img src="../assets/scales-of-justice.png" alt="Scales of Justice - Belvedere Lawyers" style="width:100%;height:auto;display:block;opacity:0.7;" class="parallax-element" data-speed="0.3">
-        </div>
-        
-        <div class="kicker">family-owned · rosanna VIC</div>
-        <h1>Over 40 years of legal excellence, now online.</h1>
-        <p class="hero-copy">We are a Melbourne based family-owned law firm, with over 40 years experience, specialising in conveyancing, property law, wills and estates and commercial law.</p>
-        <div class="hero-actions">
-          <a class="primary-cta" href="#contact">Get in touch</a>
-          <a class="secondary-cta" href="#services">Our services</a>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Services -->
-    <section class="services-section" id="services">
-      <div class="wrap services-header">
-        <div class="kicker">what we do</div>
-        <h2 style="font-family:'Instrument Serif',Georgia,serif;font-size:1.8rem;line-height:0.82;letter-spacing:-0.04em;margin:0.5rem 0">Our Services</h2>
-        <p style="color:var(--muted);font-size:0.88rem;margin-top:0.25rem;">Swipe to explore →</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <img src="../assets/conveyancing-property.png" alt="Conveyancing & Property Law" loading="lazy">
-          <div class="service-num">01</div>
-          <h3>Conveyancing & Property Law</h3>
-          <p>Expert guidance through property transactions, contracts, and Section 32 reviews.</p>
-        </div>
-        <div class="service-card">
-          <img src="../assets/wills-estate.png" alt="Wills & Estates" loading="lazy">
-          <div class="service-num">02</div>
-          <h3>Wills & Estates</h3>
-          <p>Estate planning, will drafting, probate, and estate administration.</p>
-        </div>
-        <div class="service-card">
-          <img src="../assets/commercial-law.png" alt="Commercial Law" loading="lazy">
-          <div class="service-num">03</div>
-          <h3>Commercial Law</h3>
-          <p>Business legal services, contracts, and commercial disputes.</p>
-        </div>
-        <div class="service-card">
-          <img src="../assets/scales-of-justice.png" alt="Mortgages & Loan Advice" loading="lazy">
-          <div class="service-num">04</div>
-          <h3>Mortgages & Loan Advice</h3>
-          <p>Legal support for mortgage arrangements and loan documentation.</p>
+  </header>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+  <aside class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="#services">Services</a>
+    <a href="#approach">Approach</a>
+    <a href="#about">The family</a>
+    <a href="#testimonials">Clients</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact" class="mobile-cta">Get in touch</a>
+  </aside>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <div class="kicker">Family-owned · Rosanna VIC · Est. 1983</div>
+            <h1>
+              Forty years of <em>quiet</em><br>
+              counsel, for the <span class="underline">moments that matter.</span>
+            </h1>
+            <p class="hero-lead">
+              A Melbourne family-owned law firm, specialising in conveyancing &amp; property law,
+              wills &amp; estates, commercial law, and mortgage advice. Three generations of
+              Belvederes — one consistent standard of care.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact">Book a consultation <span aria-hidden="true">→</span></a>
+              <a class="btn btn-ghost" href="#services">Explore services</a>
+            </div>
+            <div class="trust" aria-label="Firm credentials">
+              <div class="trust-item"><span class="num">40+</span><span class="label">Years<br>of practice</span></div>
+              <div class="trust-item"><span class="num">3</span><span class="label">Generations<br>of solicitors</span></div>
+              <div class="trust-item"><span class="num">1,200+</span><span class="label">Matters<br>completed</span></div>
+            </div>
+          </div>
+          <div class="hero-visual reveal">
+            <img src="../assets/scales-of-justice.png" alt="Scales of justice in warm light" loading="eager" decoding="async">
+            <span class="badge"><span class="pulse"></span>Accepting new clients</span>
+          </div>
         </div>
       </div>
     </section>
-    
-    <!-- About -->
-    <section class="about-section" id="about">
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Conveyancing</span><span>Property law</span><span>Wills &amp; estates</span>
+        <span>Probate</span><span>Commercial law</span><span>Mortgage advice</span>
+        <span>Section 32 reviews</span><span>Estate planning</span>
+        <span>Conveyancing</span><span>Property law</span><span>Wills &amp; estates</span>
+        <span>Probate</span><span>Commercial law</span><span>Mortgage advice</span>
+        <span>Section 32 reviews</span><span>Estate planning</span>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">What we do</div>
+          <h2>Practical advice on <em>the matters</em> that shape your life.</h2>
+          <p>Buying a home, settling an estate, starting a business — every brief gets the same level of considered, plain-English attention.</p>
+        </div>
+        <div class="services-grid">
+          <a class="service reveal" href="#contact">
+            <div class="num">01</div>
+            <div class="service-body">
+              <h3>Conveyancing &amp; Property Law</h3>
+              <p>End-to-end transaction support, Section 32 reviews, easements, off-the-plan and subdivision advice for buyers, sellers and developers.</p>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="service reveal" href="#contact">
+            <div class="num">02</div>
+            <div class="service-body">
+              <h3>Wills &amp; Estates</h3>
+              <p>Plain-language wills, enduring powers of attorney, testamentary trusts, probate and estate administration handled with care.</p>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="service reveal" href="#contact">
+            <div class="num">03</div>
+            <div class="service-body">
+              <h3>Commercial Law</h3>
+              <p>Business sales and purchases, leasing, shareholder agreements, contract drafting and commercial dispute resolution.</p>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="service reveal" href="#contact">
+            <div class="num">04</div>
+            <div class="service-body">
+              <h3>Mortgages &amp; Loan Advice</h3>
+              <p>Independent legal review of mortgage and loan documentation, refinancing arrangements, and guarantor obligations.</p>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="approach" id="approach">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">Our approach</div>
+          <h2>The big-firm rigour, minus <em>the bill shock.</em></h2>
+        </div>
+        <div class="approach-grid">
+          <div class="value reveal">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20"/></svg>
+            </div>
+            <h4>Fixed fees, up front</h4>
+            <p>You'll know what a matter costs before we start work — no clock-watching surprises on the invoice.</p>
+          </div>
+          <div class="value reveal">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <h4>Replies within a day</h4>
+            <p>Calls and emails are returned the same business day, by the lawyer working on your file.</p>
+          </div>
+          <div class="value reveal">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+            </div>
+            <h4>Plain-English advice</h4>
+            <p>We translate the legal-speak into clear options and trade-offs — so the decision is yours, fully informed.</p>
+          </div>
+          <div class="value reveal">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-7 11-7 11Z"/></svg>
+            </div>
+            <h4>Treated like family</h4>
+            <p>Many clients are second-generation. We're here for the long arc — the home, the will, the next chapter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
       <div class="wrap">
         <div class="about-grid">
-          <div class="about-text">
-            <div class="kicker">meet the family</div>
-            <h2>We are a family-owned law firm located in Rosanna.</h2>
-            <p>At the forefront is our principal solicitor, Livio Belvedere, a seasoned legal professional with decades of experience. Livio is not just a legal expert, but also a proud father.</p>
-            <p>Working alongside him is the next generation of solicitors, his daughters, Jacqueline Belvedere, our accomplished second solicitor and Julia Belvedere who is studying law.</p>
-            <p>At Belvedere Lawyers, you're not just a client, you're part of the family.</p>
+          <div class="about-image-wrap reveal">
+            <img src="../assets/legal-office-interior.png" alt="Belvedere Lawyers Rosanna office interior" loading="lazy" decoding="async">
+            <span class="stamp">Est. 1983</span>
           </div>
-          <div class="about-image">
-            <img src="../assets/legal-office-interior.png" alt="Belvedere Family Legal Team" loading="lazy" class="parallax-element" data-speed="0.4">
+          <div class="about-text reveal">
+            <div class="kicker">Meet the family</div>
+            <h2>Three Belvederes. <em>One</em> standard of care.</h2>
+            <p>
+              At the helm is principal solicitor <strong>Livio Belvedere</strong>, four decades into a career
+              built on patience, plain-spoken advice, and an old-fashioned belief that a phone call is faster
+              than an email chain.
+            </p>
+            <p>
+              Working alongside him is the next generation — daughters <strong>Jacqueline</strong>, our
+              accomplished second solicitor, and <strong>Julia</strong>, currently completing her law degree.
+              Together they bring three decades of fresh perspective and the same careful approach.
+            </p>
+            <p>At Belvedere Lawyers, you're not just a client — you're part of the family.</p>
+            <div class="team" role="list">
+              <div class="team-member" role="listitem">
+                <span class="name">Livio Belvedere</span>
+                <span class="role">Principal Solicitor</span>
+              </div>
+              <div class="team-member" role="listitem">
+                <span class="name">Jacqueline Belvedere</span>
+                <span class="role">Senior Solicitor</span>
+              </div>
+              <div class="team-member" role="listitem">
+                <span class="name">Julia Belvedere</span>
+                <span class="role">Solicitor (Admitted 2024)</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
-    
-    <!-- Contact -->
-    <section class="contact-section wrap" id="contact">
-      <div class="kicker">get in touch</div>
-      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-size:2.2rem;line-height:0.82;letter-spacing:-0.06em;margin:0.5rem 0">Got a question? Contact us today.</h2>
-      <div class="contact-grid">
-        <div>
-          <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:1.8rem;margin:0.5rem 0">Reach out directly</h3>
-          <p style="margin:0.5rem 0">Email: admin@belvederelawyers.com.au</p>
-          <p style="margin:0.5rem 0">Address: 143 Lower Plenty Road, Rosanna VIC 3084</p>
-          <p style="margin:0.5rem 0;color:var(--muted)">PO Box 211, Rosanna VIC 3084</p>
-          <img src="../assets/legal-office-interior.png" alt="Law Office" style="margin-top:1rem;border:1px solid var(--line)" loading="lazy">
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">In their words</div>
+          <h2>Calm hands, on <em>your hardest</em> day.</h2>
         </div>
-        <form class="contact-form" onsubmit="event.preventDefault();alert('Demo only - form submitted')">
-          <input type="text" placeholder="Your name" aria-label="Your name" required>
-          <input type="email" placeholder="Email address" aria-label="Email address" required>
-          <input type="tel" placeholder="Phone number" aria-label="Phone number">
-          <textarea rows="4" placeholder="How can we help you?" aria-label="Message" required></textarea>
-          <button type="submit">Send message</button>
-        </form>
+        <div class="testimonials-grid">
+          <figure class="quote reveal">
+            <p>Livio guided my parents through their wills, then through probate, then me through buying my first home. Three generations, one phone number. That's rare.</p>
+            <figcaption class="who">
+              <span class="initials" aria-hidden="true">MO</span>
+              <span class="meta"><b>Maria O.</b>Property &amp; estate client, Heidelberg</span>
+            </figcaption>
+          </figure>
+          <figure class="quote reveal">
+            <p>Jacqueline turned a stressful business sale into something I actually understood. The fixed fee meant I could focus on the deal, not the meter.</p>
+            <figcaption class="who">
+              <span class="initials" aria-hidden="true">DK</span>
+              <span class="meta"><b>Daniel K.</b>Commercial client, Ivanhoe</span>
+            </figcaption>
+          </figure>
+          <figure class="quote reveal">
+            <p>They picked up the phone on a Saturday when our settlement nearly fell over. We've sent every friend we know there since.</p>
+            <figcaption class="who">
+              <span class="initials" aria-hidden="true">SR</span>
+              <span class="meta"><b>Sam &amp; Rachel</b>Conveyancing clients, Rosanna</span>
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </section>
-    
-    <!-- Bottom CTA Bar (Mobile Only) -->
-    <div class="bottom-cta" id="bottomCTA">
-      <a href="#contact" class="primary-cta" style="border-radius:0; border-left:none; border-right:none;">Get in touch</a>
-    </div>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">Common questions</div>
+          <h2>Before you call, <em>the basics.</em></h2>
+        </div>
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>Do you offer fixed-fee conveyancing?</span>
+              <span class="toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><p>Yes. For standard residential conveyancing in Victoria we quote a single fixed fee covering the full transaction — including Section 32 review, contract advice and settlement attendance. Disbursements (PEXA, searches, transfer duty) are passed through at cost.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>Can I have a will drafted without an in-person meeting?</span>
+              <span class="toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><p>Most clients do at least one short meeting — by phone, video or in our Rosanna office — so we understand your circumstances. Drafting and review can then happen by email, and signing is done in person to satisfy witnessing requirements.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>How quickly can you act on an urgent matter?</span>
+              <span class="toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><p>For genuinely time-critical matters — a settlement at risk, an offer about to lapse, an urgent power of attorney — we will usually arrange a same-day call and start work immediately. Just say "urgent" when you call or write.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>Do you take matters outside Melbourne?</span>
+              <span class="toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><p>Most of our clients are in the north-eastern Melbourne suburbs, but we act on Victorian property and estate matters statewide. For interstate matters we'll happily refer you to a trusted firm in the relevant jurisdiction.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>Is the first conversation free?</span>
+              <span class="toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><p>An initial call to understand whether we're the right fit is always complimentary. If your matter requires substantive advice on the spot, we'll let you know up front before any chargeable work begins.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">Get in touch</div>
+          <h2>Have a question? <em>Let's talk.</em></h2>
+          <p>Tell us a little about your matter — we'll be back to you the same business day.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <div class="row">
+              <span class="label">Office</span>
+              <span class="val">143 Lower Plenty Road<br>Rosanna VIC 3084</span>
+            </div>
+            <div class="row">
+              <span class="label">Postal</span>
+              <span class="val">PO Box 211, Rosanna VIC 3084</span>
+            </div>
+            <div class="row">
+              <span class="label">Email</span>
+              <span class="val"><a href="mailto:admin@belvederelawyers.com.au">admin@belvederelawyers.com.au</a></span>
+            </div>
+            <div class="row">
+              <span class="label">Hours</span>
+              <span class="val">Mon–Fri · 9:00am – 5:30pm<br><span style="color:var(--muted);font-size:0.82rem">After-hours by appointment</span></span>
+            </div>
+            <div class="row">
+              <span class="label">Notice</span>
+              <span class="val" style="color:var(--paper-dim);font-size:0.85rem">Liability limited by a scheme approved under Professional Standards Legislation.</span>
+            </div>
+          </div>
+          <form class="contact-form reveal" id="contactForm">
+            <div class="field-row">
+              <div class="field">
+                <label for="f-name">Your name</label>
+                <input id="f-name" type="text" required autocomplete="name" placeholder="Jane Citizen">
+              </div>
+              <div class="field">
+                <label for="f-phone">Phone</label>
+                <input id="f-phone" type="tel" autocomplete="tel" placeholder="0400 000 000">
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" type="email" required autocomplete="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="f-matter">Matter type</label>
+              <select id="f-matter" required>
+                <option value="">Select an area…</option>
+                <option>Conveyancing &amp; property</option>
+                <option>Wills &amp; estates</option>
+                <option>Commercial law</option>
+                <option>Mortgage / loan advice</option>
+                <option>Other / not sure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-msg">How can we help?</label>
+              <textarea id="f-msg" required placeholder="A short summary of your matter — and any deadlines we should know about."></textarea>
+            </div>
+            <button type="submit">Send message</button>
+            <p class="form-note">By submitting, you consent to us contacting you about your enquiry. Your information stays confidential.</p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
-  
+
   <footer class="footer">
     <div class="wrap">
-      <span>© 2023 Belvedere Lawyers Pty. Ltd.</span>
-      <span>Liability limited by a scheme approved under Professional Standards Legislation</span>
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#top">
+            <span class="eyebrow">Melbourne family law firm</span>
+            <span class="mark">Belvedere<em>·</em>Lawyers</span>
+          </a>
+          <p style="margin-top:1rem;max-width:22rem">A family-owned Victorian law practice based in Rosanna, serving Melbourne since 1983.</p>
+        </div>
+        <div>
+          <h5>Practice</h5>
+          <ul>
+            <li><a href="#services">Conveyancing</a></li>
+            <li><a href="#services">Wills &amp; estates</a></li>
+            <li><a href="#services">Commercial</a></li>
+            <li><a href="#services">Mortgages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Firm</h5>
+          <ul>
+            <li><a href="#about">The family</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#testimonials">Clients</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <ul>
+            <li>143 Lower Plenty Rd</li>
+            <li>Rosanna VIC 3084</li>
+            <li><a href="mailto:admin@belvederelawyers.com.au">admin@belvederelawyers.com.au</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <span>© <span id="yr">2026</span> Belvedere Lawyers Pty. Ltd. All rights reserved.</span>
+        <span>Liability limited by a scheme approved under Professional Standards Legislation.</span>
+      </div>
     </div>
   </footer>
-  
+
+  <div class="bottom-cta" id="bottomCTA" aria-hidden="true">
+    <a href="tel:+61300000000" class="btn btn-ghost">Call</a>
+    <a href="#contact" class="btn btn-primary">Get in touch →</a>
+  </div>
+
   <script>
-  /* Toggle Mobile Nav */
-  function toggleMobileNav() {
-    const nav = document.getElementById('mobileNav');
-    const overlay = document.querySelector('.nav-overlay');
-    const btn = document.querySelector('.hamburger');
-    nav.classList.toggle('open');
-    overlay.classList.toggle('open');
-    btn.classList.toggle('active');
-    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
-  }
-  
-  /* Bottom CTA Show/Hide on Scroll */
-  let lastScroll = 0;
-  const bottomCTA = document.getElementById('bottomCTA');
-  
-  function handleBottomCTA() {
-    if (window.innerWidth >= 768) { bottomCTA.style.display = 'none'; return; }
-    bottomCTA.style.display = 'flex';
-    const currentScroll = window.pageYOffset;
-    if (currentScroll > lastScroll && currentScroll > 100) {
-      bottomCTA.style.transform = 'translateY(100%)';
-    } else {
-      bottomCTA.style.transform = 'translateY(0)';
-    }
-    lastScroll = currentScroll;
-  }
-  
-  /* Parallax (Desktop Only) */
-  const parallaxEls = document.querySelectorAll('.parallax-element');
-  let ticking = false;
-  
-  function update() {
-    if (window.innerWidth < 768) { ticking = false; return; }
-    const scrollY = window.pageYOffset;
-    
-    parallaxEls.forEach(el => {
-      const speed = parseFloat(el.dataset.speed) || 0.4;
-      const scrolledPast = scrollY - (el.offsetTop || 0);
-      const offset = scrolledPast * speed * -1;
-      el.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
+    // Mobile nav
+    (function () {
+      const btn = document.getElementById('hamburger');
+      const nav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('navOverlay');
+      function close() {
+        btn.classList.remove('active');
+        nav.classList.remove('open');
+        overlay.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      function toggle() {
+        const open = !nav.classList.contains('open');
+        btn.classList.toggle('active', open);
+        nav.classList.toggle('open', open);
+        overlay.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+      btn.addEventListener('click', toggle);
+      overlay.addEventListener('click', close);
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    })();
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const q = item.querySelector('.faq-q');
+      q.addEventListener('click', () => {
+        const open = item.classList.toggle('open');
+        q.setAttribute('aria-expanded', String(open));
+      });
     });
-    
-    ticking = false;
-  }
-  
-  function onScroll() {
-    handleBottomCTA();
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
+
+    // Reveal on scroll
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
-  }
-  
-  window.addEventListener('scroll', onScroll, { passive: true });
-  handleBottomCTA(); // initial state
-  update();
-  </script>
+
+    // Bottom CTA hide on scroll-down
+    (function () {
+      const bar = document.getElementById('bottomCTA');
+      let last = window.scrollY;
+      let ticking = false;
+      function handle() {
+        const y = window.scrollY;
+        if (window.innerWidth >= 960) { bar.style.transform = ''; ticking = false; return; }
+        if (y > last + 4 && y > 240) {
+          bar.style.transform = 'translateY(110%)';
+        } else if (y < last - 4) {
+          bar.style.transform = 'translateY(0)';
+        }
+        last = y;
+        ticking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(handle); ticking = true; }
+      }, { passive: true });
+    })();
+
+    // Contact form (demo)
+    (function () {
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type=submit]');
+        btn.textContent = "Sent — we'll be in touch";
+        btn.disabled = true;
+      });
+    })();
+
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

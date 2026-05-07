@@ -20,269 +20,125 @@
     }
     
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { scroll-behavior: smooth; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
     body { 
       background: var(--bg); 
       color: var(--paper); 
       font-family: Inter, system-ui, sans-serif; 
       line-height: 1.6;
       overflow-x: hidden;
+      padding-bottom: env(safe-area-inset-bottom);
     }
     button, a { font: inherit; color: inherit; text-decoration: none; }
     img, video { max-width: 100%; display: block; height: auto; }
     .wrap { width: min(1180px, calc(100% - 24px)); margin-inline: auto; }
     
-    /* ===== NOTICE BAR ===== */
-    .notice {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      gap: 0.5rem;
-      padding: 0.5rem 0.75rem;
-      background: rgba(5,5,5,0.95);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line-strong);
-      font-size: 0.6rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-    }
-    .notice b { color: var(--gold); }
+    /* ===== MOBILE NAV (hamburger) ===== */
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; position: relative; }
+    .brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.4rem; letter-spacing: -0.06em; line-height: 0.86; }
+    .brand span { display: block; font-family: Inter, system-ui, sans-serif; color: var(--muted); font-size: 0.55rem; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.25rem; }
     
-    /* ===== NAVIGATION ===== */
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 0;
-    }
-    .brand {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 1.8rem;
-      letter-spacing: -0.06em;
-      line-height: 0.86;
-    }
-    .brand span {
-      display: block;
-      font-family: Inter, system-ui, sans-serif;
-      color: var(--muted);
-      font-size: 0.6rem;
-      font-weight: 900;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
-    }
-    .nav-links { display: none; }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; -webkit-tap-highlight-color: transparent; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); transition: 0.3s; }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     
-    /* ===== HERO (mobile-first, no absolute positioning) ===== */
-    .hero-section {
-      padding: 2rem 0 3rem;
-      background: linear-gradient(135deg, rgba(5,5,5,0.95), rgba(11,12,9,0.9));
-      border-bottom: 1px solid var(--line-strong);
-    }
-    .hero-video-wrap {
-      margin-bottom: 1.5rem;
-      border: 1px solid var(--line);
-      overflow: hidden;
-    }
-    .hero-video {
-      width: 100%;
-      height: auto;
-      display: block;
-      opacity: 0.6;
-    }
-    .kicker {
-      display: inline-flex;
-      align-items: center;
+    .mobile-nav { 
+      display: none; 
+      position: fixed; 
+      top: 0; right: 0; 
+      width: min(320px, 85vw); 
+      height: 100vh; 
+      background: #0a0a0a; 
+      border-left: 1px solid var(--line-strong); 
+      padding: 5rem 2rem 2rem; 
+      z-index: 999; 
+      flex-direction: column; 
       gap: 0.5rem;
-      color: var(--gold-soft);
-      font-size: 0.68rem;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 0.75rem;
     }
-    .kicker::before {
-      content: "";
-      width: 30px;
-      height: 1px;
-      background: var(--gold);
-    }
-    h1 {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 2.8rem;
-      line-height: 0.78;
-      letter-spacing: -0.06em;
-      margin: 0.5rem 0;
-      color: var(--paper);
-    }
-    .hero-copy p {
-      font-size: 1rem;
-      color: #e9ddc2;
-      margin: 0.75rem 0;
-    }
-    .hero-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
-    }
-    .primary-cta, .secondary-cta {
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.88rem 1.5rem;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      border: 1px solid var(--line-strong);
-      width: 100%;
-    }
-    .primary-cta { background: var(--gold); color: #090806; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 1.1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--line); color: var(--paper); font-weight: 500; }
+    .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 998; }
+    .nav-overlay.open { display: block; }
+    
+    /* ===== HERO ===== */
+    .hero-section { padding: 1.5rem 0 2rem; background: linear-gradient(135deg, rgba(5,5,5,0.95), rgba(11,12,9,0.9)); border-bottom: 1px solid var(--line-strong); }
+    .hero-video-wrap { margin-bottom: 1rem; border: 1px solid var(--line); overflow: hidden; }
+    .hero-video-wrap img { width: 100%; height: auto; display: block; opacity: 0.7; }
+    .kicker { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gold-soft); font-size: 0.6rem; font-weight: 950; text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 0.5rem; }
+    .kicker::before { content: ""; width: 30px; height: 1px; background: var(--gold); }
+    h1 { font-family: 'Instrument Serif', Georgia, serif; font-size: 2rem; line-height: 0.82; letter-spacing: -0.04em; margin: 0.5rem 0; color: var(--paper); }
+    .hero-copy p { font-size: 0.92rem; color: #e9ddc2; margin: 0.5rem 0; }
+    .hero-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
+    .primary-cta, .secondary-cta { min-height: 48px; display: flex; align-items: center; justify-content: center; padding: 0.88rem 1.5rem; font-weight: 950; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid var(--line-strong); width: 100%; font-size: 0.85rem; }
+    .primary-cta { background: var(--gold); color: #090806; border-color: var(--gold); }
     .secondary-cta { background: rgba(255,248,234,0.055); color: var(--paper); }
     
-    /* ===== SERVICES (mobile-first: 1 column) ===== */
-    .services-section {
-      padding: 2.5rem 0;
+    /* ===== SERVICES (mobile: horizontal swipe) ===== */
+    .services-section { padding: 2rem 0; }
+    .services-header { margin-bottom: 1rem; }
+    .services-grid { 
+      display: flex; 
+      gap: 1rem; 
+      overflow-x: auto; 
+      scroll-snap-type: x mandatory; 
+      -webkit-overflow-scrolling: touch; 
+      scrollbar-width: none; 
+      padding-bottom: 1rem; 
+      margin: 0 calc(-1 * (100vw - 100%)/2); 
+      padding-left: calc((100vw - 100%)/2); 
+      padding-right: calc((100vw - 100%)/2); 
     }
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 1.5rem;
+    .services-grid::-webkit-scrollbar { display: none; }
+    .service-card { 
+      flex: 0 0 85vw; 
+      scroll-snap-align: start; 
+      border: 1px solid var(--line); 
+      background: linear-gradient(180deg, rgba(255,248,234,0.085), rgba(255,248,234,0.028)); 
+      padding: 1.25rem; 
+      min-height: 320px;
     }
-    .service-card {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,248,234,0.085), rgba(255,248,234,0.028));
-      padding: 1.25rem;
-    }
-    .service-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border: 1px solid var(--line);
-    }
-    .service-num {
-      font-size: 0.68rem;
-      color: var(--gold);
-      font-weight: 950;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    .service-card h3 {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 1.6rem;
-      line-height: 0.88;
-      letter-spacing: -0.04em;
-      margin: 0.5rem 0;
-      color: var(--paper);
-    }
-    .service-card p {
-      font-size: 0.92rem;
-      color: var(--muted);
-      margin: 0.5rem 0;
-    }
+    .service-card img { width: 100%; height: 160px; object-fit: cover; margin-bottom: 1rem; border: 1px solid var(--line); }
+    .service-num { font-size: 0.68rem; color: var(--gold); font-weight: 950; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .service-card h3 { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.4rem; line-height: 0.88; letter-spacing: -0.04em; margin: 0.5rem 0; color: var(--paper); }
+    .service-card p { font-size: 0.88rem; color: var(--muted); margin: 0.5rem 0; }
     
-    /* ===== ABOUT (mobile-first: stack vertically) ===== */
-    .about-section {
-      padding: 2.5rem 0;
-      background: #080806;
+    /* ===== ABOUT ===== */
+    .about-section { padding: 2rem 0; background: #080806; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    .about-image { width: 100%; min-height: 200px; border: 1px solid var(--line); overflow: hidden; }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; }
+    .about-text h2 { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.8rem; line-height: 0.82; letter-spacing: -0.06em; margin: 0.5rem 0; }
+    .about-text p { font-size: 0.92rem; color: #e9ddc2; margin: 0.5rem 0; }
+    
+    /* ===== CONTACT ===== */
+    .contact-section { padding: 2rem 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1rem; }
+    .contact-form { display: grid; gap: 1rem; }
+    .contact-form input, .contact-form textarea { border: 1px solid var(--line); background: rgba(255,248,234,0.04); color: var(--paper); padding: 0.85rem; font-size: 0.92rem; min-height: 48px; width: 100%; }
+    .contact-form button { background: var(--gold); color: #090806; border: none; padding: 0.88rem 1.5rem; font-weight: 950; text-transform: uppercase; letter-spacing: 0.1em; min-height: 48px; cursor: pointer; font-size: 0.85rem; }
+    
+    /* ===== BOTTOM CTA BAR (mobile only) ===== */
+    .bottom-cta { 
+      display: none; 
+      position: fixed; 
+      bottom: 0; 
+      left: 0; 
+      right: 0; 
+      z-index: 999; 
+      transition: transform 0.3s ease;
+      background: #050505;
       border-top: 1px solid var(--line-strong);
-      border-bottom: 1px solid var(--line-strong);
     }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    .about-image {
-      width: 100%;
-      min-height: 250px;
-      border: 1px solid var(--line);
-      overflow: hidden;
-    }
-    .about-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .about-text h2 {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 2.2rem;
-      line-height: 0.82;
-      letter-spacing: -0.06em;
-      margin: 0.5rem 0;
-    }
-    .about-text p {
-      font-size: 1rem;
-      color: #e9ddc2;
-      margin: 0.75rem 0;
-    }
-    
-    /* ===== CONTACT (mobile-first: stack vertically) ===== */
-    .contact-section {
-      padding: 2.5rem 0;
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .contact-form {
-      display: grid;
-      gap: 1rem;
-    }
-    .contact-form input, .contact-form textarea {
-      border: 1px solid var(--line);
-      background: rgba(255,248,234,0.04);
-      color: var(--paper);
-      padding: 0.85rem;
-      font-size: 1rem;
-      min-height: 48px;
-    }
-    .contact-form button {
-      background: var(--gold);
-      color: #090806;
-      border: none;
-      padding: 0.88rem 1.5rem;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      min-height: 48px;
-      cursor: pointer;
+    .bottom-cta a { border-radius: 0; border-left: none; border-right: none; }
+    @media (min-width: 768px) {
+      .bottom-cta { display: none !important; }
     }
     
     /* ===== FOOTER ===== */
-    .footer {
-      padding: 1rem 0;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.75rem;
-    }
-    .footer .wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    
-    /* ===== PARALLAX (subtle, performant, premium) ===== */
-    .parallax-element {
-      will-change: transform;
-      transition: transform 0.05s ease-out;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .parallax-element { will-change: auto; transform: none !important; }
-    }
-    @media (max-width: 768px) {
-      .parallax-element { will-change: auto; transform: none !important; }
-    }
+    .footer { padding: 1rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.75rem; }
+    .footer .wrap { display: flex; flex-direction: column; gap: 0.5rem; }
     
     /* ===== DESKTOP ENHANCEMENTS (768px and up) ===== */
     @media (min-width: 768px) {
@@ -342,27 +198,32 @@
   </style>
 </head>
 <body>
-    <div class="notice">
-      <span>W230 rebuild concept</span>
-      <b>belvedere lawyers V10 + parallax</b>
-      <span>not affiliated · noindex · mobile-first</span>
-    </div>
+  <div class="notice">
+    <span>W230 rebuild concept</span>
+    <b>belvedere lawyers V11 mobile-first</b>
+    <span>not affiliated · noindex · mobile-first</span>
+  </div>
   
   <main>
-    <!-- Hero -->
-    <section class="hero-section" id="top">
-      <div class="wrap">
-        <nav class="nav" aria-label="Main navigation">
-          <a class="brand" href="#top">
-            <span>Melbourne family law firm</span>
-            Belvedere Lawyers
-          </a>
-          <div class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </nav>
+    <!-- Navigation -->
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top">
+        <span>Melbourne family law firm</span>
+        Belvedere Lawyers
+      </a>
+      <button class="hamburger" onclick="toggleMobileNav()" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    
+    <!-- Mobile Nav Overlay + Panel -->
+    <div class="nav-overlay" onclick="toggleMobileNav()"></div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#services" onclick="toggleMobileNav()">Services</a>
+      <a href="#about" onclick="toggleMobileNav()">About</a>
+      <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+      <a href="#contact" onclick="toggleMobileNav()" style="margin-top:1rem; color:var(--gold); font-weight:700;">Get in touch</a>
+    </div>
         
         <div class="hero-video-wrap">
           <img src="../assets/scales-of-justice.png" alt="Scales of Justice - Belvedere Lawyers" style="width:100%;height:auto;display:block;opacity:0.7;" class="parallax-element" data-speed="0.3">
@@ -379,9 +240,12 @@
     </section>
     
     <!-- Services -->
-    <section class="services-section wrap" id="services">
-      <div class="kicker">what we do</div>
-      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-size:2.2rem;line-height:0.82;letter-spacing:-0.06em;margin:0.5rem 0">Our Services</h2>
+    <section class="services-section" id="services">
+      <div class="wrap services-header">
+        <div class="kicker">what we do</div>
+        <h2 style="font-family:'Instrument Serif',Georgia,serif;font-size:1.8rem;line-height:0.82;letter-spacing:-0.04em;margin:0.5rem 0">Our Services</h2>
+        <p style="color:var(--muted);font-size:0.88rem;margin-top:0.25rem;">Swipe to explore →</p>
+      </div>
       <div class="services-grid">
         <div class="service-card">
           <img src="../assets/conveyancing-property.png" alt="Conveyancing & Property Law" loading="lazy">
@@ -450,58 +314,77 @@
       </div>
     </section>
     
-    <footer class="footer">
-      <div class="wrap">
-        <span>© 2023 Belvedere Lawyers Pty. Ltd.</span>
-        <span>Liability limited by a scheme approved under Professional Standards Legislation</span>
-      </div>
-    </footer>
+    <!-- Bottom CTA Bar (Mobile Only) -->
+    <div class="bottom-cta" id="bottomCTA">
+      <a href="#contact" class="primary-cta" style="border-radius:0; border-left:none; border-right:none;">Get in touch</a>
+    </div>
   </main>
   
+  <footer class="footer">
+    <div class="wrap">
+      <span>© 2023 Belvedere Lawyers Pty. Ltd.</span>
+      <span>Liability limited by a scheme approved under Professional Standards Legislation</span>
+    </div>
+  </footer>
+  
   <script>
-  (function() {
-    const parallaxEls = document.querySelectorAll('.parallax-element');
-    if (!parallaxEls.length) return;
+  /* Toggle Mobile Nav */
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobileNav');
+    const overlay = document.querySelector('.nav-overlay');
+    const btn = document.querySelector('.hamburger');
+    nav.classList.toggle('open');
+    overlay.classList.toggle('open');
+    btn.classList.toggle('active');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+  }
+  
+  /* Bottom CTA Show/Hide on Scroll */
+  let lastScroll = 0;
+  const bottomCTA = document.getElementById('bottomCTA');
+  
+  function handleBottomCTA() {
+    if (window.innerWidth >= 768) { bottomCTA.style.display = 'none'; return; }
+    bottomCTA.style.display = 'block';
+    const currentScroll = window.pageYOffset;
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      bottomCTA.style.transform = 'translateY(100%)';
+    } else {
+      bottomCTA.style.transform = 'translateY(0)';
+    }
+    lastScroll = currentScroll;
+  }
+  
+  /* Parallax (Desktop Only) */
+  const parallaxEls = document.querySelectorAll('.parallax-element');
+  let ticking = false;
+  
+  function update() {
+    if (window.innerWidth < 768) { ticking = false; return; }
+    const scrollY = window.pageYOffset;
     
-    // Store initial document positions (before any transforms)
-    const elData = new Map();
     parallaxEls.forEach(el => {
-      elData.set(el, { top: el.offsetTop });
+      const speed = parseFloat(el.dataset.speed) || 0.4;
+      const scrolledPast = scrollY - (el.offsetTop || 0);
+      const offset = scrolledPast * speed * -1;
+      el.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
     });
     
-    let ticking = false;
-    
-    function update() {
-      const scrollY = window.pageYOffset;
-      
-      parallaxEls.forEach(el => {
-        const data = elData.get(el);
-        const speed = parseFloat(el.dataset.speed) || 0.4;
-        
-        // How much we've scrolled relative to element's initial position
-        const scrolledPast = scrollY - data.top;
-        
-        // Parallax: moves at 'speed' fraction of scroll, opposite direction
-        // When scrolled past element: moves UP (negative offset)
-        // When not yet reached: moves DOWN (positive offset)
-        const offset = scrolledPast * speed * -1;
-        
-        el.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
-      });
-      
-      ticking = false;
+    ticking = false;
+  }
+  
+  function onScroll() {
+    handleBottomCTA();
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
     }
-    
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
-    }
-    
-    window.addEventListener('scroll', onScroll, { passive: true });
-    update(); // initial position
-  })();
+  }
+  
+  window.addEventListener('scroll', onScroll, { passive: true });
+  handleBottomCTA(); // initial state
+  update();
+  </script>
   </script>
 </body>
 </html>

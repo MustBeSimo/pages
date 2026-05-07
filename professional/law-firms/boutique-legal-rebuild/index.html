@@ -9,130 +9,149 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #111111;
-      --charcoal: #24211D;
-      --muted: #6F6A61;
-      --ivory: #F7F2EA;
-      --paper: #FFFDF8;
-      --stone: #D8CEC0;
-      --stoneLight: #E8DED0;
-      --gold: #B68A35;
-      --goldDark: #7A581D;
-      --sage: #879B88;
-      --paleBlue: #DDE8EF;
-      --navy: #172232;
-      --danger: #8F2E21;
+      --ink: #111111; --charcoal: #24211D; --muted: #6F6A61;
+      --ivory: #F7F2EA; --paper: #FFFDF8; --stone: #D8CEC0;
+      --stoneLight: #E8DED0; --gold: #B68A35; --goldDark: #7A581D;
+      --sage: #879B88; --paleBlue: #DDE8EF; --navy: #172232;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
     body { background: var(--ivory); color: var(--ink); font-family: Inter, system-ui, sans-serif; line-height: 1.6; overflow-x: hidden; padding-bottom: env(safe-area-inset-bottom); }
-    button, a { font: inherit; color: inherit; text-decoration: none; }
+    button, a { font: inherit; color: inherit; text-decoration: none; cursor: pointer; }
     img { max-width: 100%; display: block; height: auto; }
     .wrap { width: min(1180px, calc(100% - 36px)); margin-inline: auto; }
 
     /* Disclaimer */
-    .disclaimer { background: var(--ink); color: var(--ivory); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; padding: 10px 16px; }
+    .disclaimer { background: var(--ink); color: var(--ivory); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; padding: 9px 16px; }
 
     /* Nav */
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--stone); }
-    .brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.3rem; letter-spacing: -0.04em; line-height: 0.88; }
-    .brand span { display: block; font-family: Inter, system-ui, sans-serif; color: var(--muted); font-size: 0.52rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.2rem; }
-    .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--stone); position: sticky; top: 0; background: var(--ivory); z-index: 100; }
+    .brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.25rem; letter-spacing: -0.04em; line-height: 0.88; }
+    .brand span { display: block; font-family: Inter, system-ui, sans-serif; color: var(--muted); font-size: 0.5rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.15rem; }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; padding: 8px; }
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); transition: 0.3s; }
     .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-nav { display: none; position: fixed; top: 0; right: 0; width: min(300px, 85vw); height: 100vh; background: var(--paper); border-left: 1px solid var(--stone); padding: 5rem 2rem 2rem; z-index: 999; flex-direction: column; gap: 0.5rem; }
+    .mobile-nav { display: none; position: fixed; top: 0; right: 0; width: min(300px, 85vw); height: 100vh; background: var(--paper); border-left: 1px solid var(--stone); padding: 5rem 2rem 2rem; z-index: 999; flex-direction: column; gap: 0.5rem; box-shadow: -8px 0 30px rgba(0,0,0,0.1); }
     .mobile-nav.open { display: flex; }
     .mobile-nav a { font-size: 1.05rem; padding: 0.7rem 0; border-bottom: 1px solid var(--stone); font-weight: 500; }
-    .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998; }
+    .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998; backdrop-filter: blur(2px); }
     .nav-overlay.open { display: block; }
 
-    /* Hero */
-    .hero { padding: 2.5rem 0 3rem; }
-    .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-    .kicker { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 0.75rem; }
+    /* ===== HERO with parallax image ===== */
+    .hero { position: relative; overflow: hidden; padding: 0; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.15; transform: scale(1.05); transition: transform 0.3s; }
+    .hero-inner { position: relative; z-index: 1; padding: 3rem 0 3.5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+    .kicker { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 0.75rem; }
     .kicker::before { content: ""; width: 28px; height: 1px; background: var(--gold); }
-    h1 { font-family: 'Instrument Serif', Georgia, serif; font-size: 2.4rem; line-height: 0.9; letter-spacing: -0.05em; margin: 0.5rem 0 1rem; }
-    .hero-sub { font-size: 1rem; color: var(--charcoal); margin-bottom: 1.5rem; max-width: 560px; }
+    h1 { font-family: 'Instrument Serif', Georgia, serif; font-size: 2.2rem; line-height: 0.9; letter-spacing: -0.05em; margin: 0.5rem 0 1rem; }
+    .hero-sub { font-size: 0.95rem; color: var(--charcoal); margin-bottom: 1.5rem; max-width: 520px; }
     .hero-actions { display: flex; flex-direction: column; gap: 0.75rem; }
-    .btn-primary { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 1.5rem; background: var(--ink); color: var(--ivory); font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; border: none; cursor: pointer; width: 100%; }
-    .btn-secondary { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 1.5rem; background: transparent; color: var(--ink); font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid var(--stone); cursor: pointer; width: 100%; }
+    .btn-primary { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 1.5rem; background: var(--ink); color: var(--ivory); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; border: none; width: 100%; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--goldDark); }
+    .btn-secondary { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 1.5rem; background: transparent; color: var(--ink); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid var(--stone); width: 100%; }
+    .hero-visual { border: 1px solid var(--stone); overflow: hidden; position: relative; }
+    .hero-visual img { width: 100%; height: auto; display: block; }
+    .hero-visual-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(transparent, rgba(17,17,17,0.85)); color: var(--ivory); }
+    .hero-visual-overlay .name { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.3rem; }
+    .hero-visual-overlay .role { font-size: 0.78rem; color: var(--stone); }
+    .hero-visual-overlay .since { font-size: 0.72rem; color: var(--gold); margin-top: 0.25rem; }
 
-    /* Proof Rail */
-    .proof-section { padding: 2rem 0; background: var(--paper); border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); }
-    .proof-label { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 1rem; }
+    /* ===== PROOF RAIL with images ===== */
+    .proof-section { padding: 2.5rem 0; background: var(--paper); border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); }
+    .proof-label { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 1.25rem; }
     .proof-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    .proof-item { padding: 1rem; border: 1px solid var(--stone); background: var(--ivory); }
-    .proof-item .fact { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.25rem; }
-    .proof-item .source { font-size: 0.72rem; color: var(--muted); }
+    .proof-card { border: 1px solid var(--stone); overflow: hidden; background: var(--ivory); transition: box-shadow 0.2s; }
+    .proof-card:hover { box-shadow: 0 8px 30px rgba(17,17,17,0.08); }
+    .proof-card img { width: 100%; height: 140px; object-fit: cover; }
+    .proof-card-body { padding: 1rem; }
+    .proof-card-body .fact { font-weight: 700; font-size: 0.88rem; margin-bottom: 0.25rem; }
+    .proof-card-body .source { font-size: 0.68rem; color: var(--muted); line-height: 1.4; }
 
-    /* Decision Cards */
+    /* ===== DECISION CARDS with images ===== */
     .decisions { padding: 2.5rem 0; }
-    .section-title { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.8rem; line-height: 0.9; letter-spacing: -0.04em; margin: 0.5rem 0 1.5rem; }
+    .section-title { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.7rem; line-height: 0.9; letter-spacing: -0.04em; margin: 0.5rem 0 1.5rem; }
     .cards-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    .card { padding: 1.25rem; border: 1px solid var(--stone); background: var(--paper); cursor: pointer; transition: background 0.2s; }
-    .card:hover { background: var(--paleBlue); }
+    .card { border: 1px solid var(--stone); overflow: hidden; background: var(--paper); cursor: pointer; transition: all 0.2s; }
+    .card:hover { box-shadow: 0 8px 30px rgba(17,17,17,0.08); transform: translateY(-2px); }
     .card.active { background: var(--paleBlue); border-color: var(--gold); }
-    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .card p { font-size: 0.85rem; color: var(--muted); }
+    .card img { width: 100%; height: 160px; object-fit: cover; }
+    .card-body { padding: 1.1rem; }
+    .card-body h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card-body p { font-size: 0.82rem; color: var(--muted); }
 
-    /* Matter Router */
+    /* ===== MATTER ROUTER ===== */
     .router-section { padding: 2.5rem 0; background: var(--paper); border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); }
     .router { border: 1px solid var(--stone); background: var(--ivory); padding: 1.5rem; }
     .router-step { display: none; }
-    .router-step.visible { display: block; }
-    .router-step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+    .router-step.visible { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .router-step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; }
     .router-options { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
-    .router-option { padding: 0.75rem 1rem; border: 1px solid var(--stone); background: var(--paper); cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: background 0.2s; text-align: left; }
-    .router-option:hover { background: var(--paleBlue); }
+    .router-option { padding: 0.75rem 1rem; border: 1px solid var(--stone); background: var(--paper); font-size: 0.88rem; font-weight: 500; transition: all 0.2s; text-align: left; }
+    .router-option:hover { background: var(--paleBlue); border-color: var(--gold); }
     .router-option.selected { background: var(--paleBlue); border-color: var(--gold); }
-    .router-result { padding: 1rem; background: var(--navy); color: var(--ivory); font-size: 0.85rem; display: none; }
-    .router-result.visible { display: block; }
-    .router-result h4 { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.5rem; }
-    .router-back { background: none; border: none; color: var(--muted); font-size: 0.78rem; cursor: pointer; padding: 0.5rem 0; text-decoration: underline; }
+    .router-result { padding: 1.25rem; background: var(--navy); color: var(--ivory); font-size: 0.85rem; display: none; }
+    .router-result.visible { display: block; animation: fadeIn 0.3s ease; }
+    .router-result h4 { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.5rem; }
+    .router-back { background: none; border: none; color: var(--muted); font-size: 0.75rem; padding: 0.5rem 0; text-decoration: underline; }
 
-    /* Before vs After */
+    /* ===== BEFORE/AFTER with visual cards ===== */
     .comparison { padding: 2.5rem 0; }
     .compare-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+    .compare-pair { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
     .compare-item { padding: 1.25rem; border: 1px solid var(--stone); }
     .compare-item.before { background: var(--stoneLight); }
     .compare-item.after { background: var(--paper); border-color: var(--gold); }
-    .compare-item h4 { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.5rem; }
+    .compare-item h4 { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.5rem; }
     .compare-item.after h4 { color: var(--gold); }
-    .compare-item p { font-size: 0.88rem; }
+    .compare-item p { font-size: 0.85rem; }
 
-    /* Contact */
+    /* ===== CONTACT ===== */
     .contact { padding: 2.5rem 0; background: var(--paper); border-top: 1px solid var(--stone); }
     .contact-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1.5rem; }
-    .contact-details p { font-size: 0.9rem; margin: 0.4rem 0; }
+    .contact-details p { font-size: 0.88rem; margin: 0.35rem 0; }
+    .contact-details strong { font-weight: 700; }
     .contact-form { display: grid; gap: 0.75rem; }
-    .contact-form input, .contact-form textarea { border: 1px solid var(--stone); background: var(--ivory); color: var(--ink); padding: 0.8rem; font-size: 0.9rem; min-height: 44px; width: 100%; font-family: inherit; }
+    .contact-form input, .contact-form textarea { border: 1px solid var(--stone); background: var(--ivory); color: var(--ink); padding: 0.8rem; font-size: 0.88rem; min-height: 44px; width: 100%; font-family: inherit; }
     .contact-form textarea { min-height: 100px; resize: vertical; }
 
-    /* Footer */
-    .footer { padding: 1.5rem 0; border-top: 1px solid var(--stone); color: var(--muted); font-size: 0.72rem; }
+    /* ===== FOOTER ===== */
+    .footer { padding: 1.5rem 0; border-top: 1px solid var(--stone); color: var(--muted); font-size: 0.7rem; }
     .footer .wrap { display: flex; flex-direction: column; gap: 0.5rem; }
 
-    /* Bottom CTA */
+    /* ===== BOTTOM CTA ===== */
     .bottom-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; transition: transform 0.3s ease; background: var(--ink); border-top: 1px solid rgba(247,242,234,0.15); }
     .bottom-cta .btn-primary { border-radius: 0; }
 
+    /* ===== PARALLAX SECTIONS ===== */
+    .parallax-section { position: relative; overflow: hidden; }
+    .parallax-bg { position: absolute; inset: 0; z-index: 0; }
+    .parallax-bg img { width: 100%; height: 120%; object-fit: cover; opacity: 0.08; }
+    .parallax-content { position: relative; z-index: 1; }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
     /* Desktop */
     @media (min-width: 768px) {
-      .hero { padding: 4rem 0 5rem; }
-      .hero-grid { grid-template-columns: 1fr 1fr; align-items: center; }
-      h1 { font-size: 4rem; }
+      .hero-inner { padding: 5rem 0; }
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+      h1 { font-size: 3.8rem; }
       .hero-actions { flex-direction: row; }
       .hero-actions .btn-primary, .hero-actions .btn-secondary { width: auto; }
       .proof-grid { grid-template-columns: repeat(4, 1fr); }
       .cards-grid { grid-template-columns: repeat(2, 1fr); }
-      .compare-grid { grid-template-columns: 1fr 1fr; }
+      .compare-pair { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr 1fr; }
       .footer .wrap { flex-direction: row; justify-content: space-between; }
     }
     @media (min-width: 1024px) {
-      h1 { font-size: 5rem; }
+      h1 { font-size: 4.8rem; }
       .cards-grid { grid-template-columns: repeat(4, 1fr); }
     }
   </style>
@@ -156,78 +175,108 @@
       <a href="#proof" onclick="toggleNav()">Why Us</a>
       <a href="#decisions" onclick="toggleNav()">Services</a>
       <a href="#router" onclick="toggleNav()">Start Here</a>
+      <a href="#comparison" onclick="toggleNav()">The Difference</a>
       <a href="#contact" onclick="toggleNav()">Contact</a>
-      <a href="#contact" onclick="toggleNav()" style="margin-top:1rem; color:var(--gold); font-weight:700;">Get in Touch</a>
+      <a href="#router" onclick="toggleNav()" style="margin-top:1rem; color:var(--gold); font-weight:700;">Start Your Enquiry</a>
     </div>
 
-    <!-- Hero -->
-    <section class="hero wrap" id="top">
-      <div class="hero-grid">
-        <div>
-          <div class="kicker">Epping · Wheelers Hill</div>
-          <h1>Legal help that starts with your matter, not our categories.</h1>
-          <p class="hero-sub">Conveyancing, wills, estates, leases, and business law — structured around what you need, not how we organise internally.</p>
-          <div class="hero-actions">
-            <button class="btn-primary" onclick="document.getElementById('router').scrollIntoView({behavior:'smooth'})">Start your enquiry</button>
-            <button class="btn-secondary" onclick="document.getElementById('decisions').scrollIntoView({behavior:'smooth'})">See what we do</button>
+    <!-- Hero with parallax background -->
+    <section class="hero" id="top">
+      <div class="hero-bg">
+        <img src="assets/hero-legal-stationery.png" alt="" class="parallax-element" data-speed="0.3">
+      </div>
+      <div class="hero-inner wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker">Epping · Wheelers Hill · Est. 2011</div>
+            <h1>Legal help that starts with your matter, not our categories.</h1>
+            <p class="hero-sub">Conveyancing, wills, estates, leases, and business law — structured around what you need, not how we organise internally.</p>
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="document.getElementById('router').scrollIntoView({behavior:'smooth'})">Start your enquiry</button>
+              <button class="btn-secondary" onclick="document.getElementById('decisions').scrollIntoView({behavior:'smooth'})">See what we do</button>
+            </div>
           </div>
-        </div>
-        <div style="border:1px solid var(--stone); background:var(--paper); padding:1.5rem; display:flex; align-items:center; justify-content:center; min-height:280px;">
-          <div style="text-align:center; color:var(--muted);">
-            <div style="font-family:'Instrument Serif',Georgia,serif; font-size:1.4rem; color:var(--ink); margin-bottom:0.5rem;">Trent Harris</div>
-            <div style="font-size:0.82rem;">Principal Solicitor</div>
-            <div style="font-size:0.75rem; margin-top:0.5rem;">15+ years · Law + Accounting</div>
-            <div style="font-size:0.72rem; margin-top:0.25rem; color:var(--gold);">Since 2011</div>
+          <div class="hero-visual">
+            <img src="assets/city-melbourne.png" alt="Melbourne cityscape" class="parallax-element" data-speed="0.2">
+            <div class="hero-visual-overlay">
+              <div class="name">Trent Harris</div>
+              <div class="role">Principal Solicitor · 15+ years</div>
+              <div class="since">Law + Accounting · Since 2011</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Proof Rail -->
+    <!-- Proof Rail with images -->
     <section class="proof-section" id="proof">
       <div class="wrap">
         <div class="proof-label">Public record</div>
         <div class="proof-grid">
-          <div class="proof-item">
-            <div class="fact">Est. 2011</div>
-            <div class="source">Source: boutique.legal — "Boutique Legal has been providing legal services since 2011"</div>
+          <div class="proof-card reveal">
+            <img src="assets/hero-legal-stationery.png" alt="Legal stationery">
+            <div class="proof-card-body">
+              <div class="fact">Est. 2011</div>
+              <div class="source">Source: boutique.legal — "Boutique Legal has been providing legal services since 2011"</div>
+            </div>
           </div>
-          <div class="proof-item">
-            <div class="fact">2 Melbourne offices</div>
-            <div class="source">Source: boutique.legal — Epping (Unit 3, 14 Longford Rd) + Wheelers Hill (Suite 126, 202 Jells Rd)</div>
+          <div class="proof-card reveal">
+            <img src="assets/city-melbourne.png" alt="Melbourne offices">
+            <div class="proof-card-body">
+              <div class="fact">2 Melbourne offices</div>
+              <div class="source">Source: boutique.legal — Epping (Unit 3, 14 Longford Rd) + Wheelers Hill (Suite 126, 202 Jells Rd)</div>
+            </div>
           </div>
-          <div class="proof-item">
-            <div class="fact">PEXA e-conveyancing</div>
-            <div class="source">Source: boutique.legal — "We utilise PEXA for all e-conveyancing matters"</div>
+          <div class="proof-card reveal">
+            <img src="assets/conveyancing.png" alt="Conveyancing">
+            <div class="proof-card-body">
+              <div class="fact">PEXA e-conveyancing</div>
+              <div class="source">Source: boutique.legal — "We utilise PEXA for all e-conveyancing matters"</div>
+            </div>
           </div>
-          <div class="proof-item">
-            <div class="fact">Multi-disciplinary</div>
-            <div class="source">Source: boutique.legal — Law + Accounting qualifications, 15+ years across conveyancing, wills, estates, litigation, commercial</div>
+          <div class="proof-card reveal">
+            <img src="assets/commercial-law.png" alt="Multi-disciplinary">
+            <div class="proof-card-body">
+              <div class="fact">Multi-disciplinary</div>
+              <div class="source">Source: boutique.legal — Law + Accounting qualifications, 15+ years across conveyancing, wills, estates, litigation, commercial</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Decision Cards -->
+    <!-- Decision Cards with images -->
     <section class="decisions wrap" id="decisions">
       <div class="kicker">What we do</div>
       <h2 class="section-title">Legal services structured around your situation.</h2>
       <div class="cards-grid">
-        <div class="card" onclick="document.getElementById('router').scrollIntoView({behavior:'smooth'})">
-          <h3>Buying or selling property</h3>
-          <p>Conveyancing for residential, commercial, off-the-plan, and subdivisions. PEXA-enabled.</p>
+        <div class="card reveal" onclick="document.getElementById('router').scrollIntoView({behavior:'smooth'})">
+          <img src="assets/conveyancing.png" alt="Buying or selling property">
+          <div class="card-body">
+            <h3>Buying or selling property</h3>
+            <p>Conveyancing for residential, commercial, off-the-plan, and subdivisions. PEXA-enabled.</p>
+          </div>
         </div>
-        <div class="card" onclick="document.getElementById('router').scrollIntoView({behavior:'smooth'})">
-          <h3>Wills & estate planning</h3>
-          <p>Standard and complex wills, powers of attorney, binding death benefit nominations, SMSF succession.</p>
+        <div class="card reveal" onclick="document.getElementById('router').scrollIntoView({behavior:'smooth'})">
+          <img src="assets/estate-planning.png" alt="Wills & estate planning">
+          <div class="card-body">
+            <h3>Wills & estate planning</h3>
+            <p>Standard and complex wills, powers of attorney, binding death benefit nominations, SMSF succession.</p>
+          </div>
         </div>
-        <div class="card" onclick="document.getElementById('router').scrollIntoView({behavior:'smooth'})">
-          <h3>Deceased estates</h3>
-          <p>Probate, letters of administration, estate administration, and family maintenance claims.</p>
+        <div class="card reveal" onclick="document.getElementById('router').scrollIntoView({behavior:'smooth'})">
+          <img src="assets/estate-planning.png" alt="Deceased estates">
+          <div class="card-body">
+            <h3>Deceased estates</h3>
+            <p>Probate, letters of administration, estate administration, and family maintenance claims.</p>
+          </div>
         </div>
-        <div class="card" onclick="document.getElementById('router').scrollIntoView({behavior:'smooth'})">
-          <h3>Business & commercial</h3>
-          <p>Business sales/purchases, franchise agreements, commercial contracts, leases, and dispute resolution.</p>
+        <div class="card reveal" onclick="document.getElementById('router').scrollIntoView({behavior:'smooth'})">
+          <img src="assets/commercial-law.png" alt="Business & commercial">
+          <div class="card-body">
+            <h3>Business & commercial</h3>
+            <p>Business sales/purchases, franchise agreements, commercial contracts, leases, and dispute resolution.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -238,7 +287,6 @@
         <div class="kicker">Start here</div>
         <h2 class="section-title">Tell us what you need. We'll guide you to the right next step.</h2>
         <div class="router">
-          <!-- Step 1: Matter selection -->
           <div class="router-step visible" id="step1">
             <h3>What do you need help with?</h3>
             <div class="router-options">
@@ -249,8 +297,6 @@
               <button class="router-option" onclick="selectMatter('other')">Something else</button>
             </div>
           </div>
-
-          <!-- Step 2: Property sub-questions -->
           <div class="router-step" id="step-property">
             <h3>Property enquiry</h3>
             <div class="router-options">
@@ -261,8 +307,6 @@
             </div>
             <button class="router-back" onclick="goBack(1)">← Back</button>
           </div>
-
-          <!-- Step 2: Wills sub-questions -->
           <div class="router-step" id="step-wills">
             <h3>Wills & estate planning</h3>
             <div class="router-options">
@@ -273,8 +317,6 @@
             </div>
             <button class="router-back" onclick="goBack(1)">← Back</button>
           </div>
-
-          <!-- Step 2: Estate sub-questions -->
           <div class="router-step" id="step-estate">
             <h3>Deceased estate</h3>
             <div class="router-options">
@@ -284,8 +326,6 @@
             </div>
             <button class="router-back" onclick="goBack(1)">← Back</button>
           </div>
-
-          <!-- Step 2: Business sub-questions -->
           <div class="router-step" id="step-business">
             <h3>Business & commercial</h3>
             <div class="router-options">
@@ -296,8 +336,6 @@
             </div>
             <button class="router-back" onclick="goBack(1)">← Back</button>
           </div>
-
-          <!-- Step 2: Other -->
           <div class="router-step" id="step-other">
             <h3>Other enquiry</h3>
             <div class="router-options">
@@ -307,8 +345,6 @@
             </div>
             <button class="router-back" onclick="goBack(1)">← Back</button>
           </div>
-
-          <!-- Result -->
           <div class="router-result" id="routerResult">
             <h4>What the firm receives</h4>
             <div id="resultContent"></div>
@@ -319,41 +355,49 @@
     </section>
 
     <!-- Before vs After -->
-    <section class="comparison wrap">
+    <section class="comparison wrap" id="comparison">
       <div class="kicker">The difference</div>
       <h2 class="section-title">What changes with a clearer website.</h2>
       <div class="compare-grid">
-        <div class="compare-item before">
-          <h4>Current pattern</h4>
-          <p>Practice areas listed as internal categories (Conveyancing, Litigation, Corporate Law). Client must decode which one matches their situation.</p>
+        <div class="compare-pair reveal">
+          <div class="compare-item before">
+            <h4>Current pattern</h4>
+            <p>Practice areas listed as internal categories (Conveyancing, Litigation, Corporate Law). Client must decode which one matches their situation.</p>
+          </div>
+          <div class="compare-item after">
+            <h4>Preview direction</h4>
+            <p>Client problems grouped by intent (Buying property, Making a will, Business dispute). Plain-language routing to the right legal pathway.</p>
+          </div>
         </div>
-        <div class="compare-item after">
-          <h4>Preview direction</h4>
-          <p>Client problems grouped by intent (Buying property, Making a will, Business dispute). Plain-language routing to the right legal pathway.</p>
+        <div class="compare-pair reveal">
+          <div class="compare-item before">
+            <h4>Current pattern</h4>
+            <p>Contact form is generic. No indication of what happens next or what to prepare.</p>
+          </div>
+          <div class="compare-item after">
+            <h4>Preview direction</h4>
+            <p>Matter-specific intake. Client sees what the firm receives. Documents and urgency captured upfront.</p>
+          </div>
         </div>
-        <div class="compare-item before">
-          <h4>Current pattern</h4>
-          <p>Contact form is generic. No indication of what happens next or what to prepare.</p>
+        <div class="compare-pair reveal">
+          <div class="compare-item before">
+            <h4>Current pattern</h4>
+            <p>Locations and credentials buried in footer or about page.</p>
+          </div>
+          <div class="compare-item after">
+            <h4>Preview direction</h4>
+            <p>Proof rail visible immediately. 2 offices, 15+ years, PEXA-enabled — all sourced from public site.</p>
+          </div>
         </div>
-        <div class="compare-item after">
-          <h4>Preview direction</h4>
-          <p>Matter-specific intake. Client sees what the firm receives. Documents and urgency captured upfront.</p>
-        </div>
-        <div class="compare-item before">
-          <h4>Current pattern</h4>
-          <p>Locations and credentials buried in footer or about page.</p>
-        </div>
-        <div class="compare-item after">
-          <h4>Preview direction</h4>
-          <p>Proof rail visible immediately. 2 offices, 15+ years, PEXA-enabled — all sourced from public site.</p>
-        </div>
-        <div class="compare-item before">
-          <h4>Current pattern</h4>
-          <p>Mobile experience is desktop compressed. No sticky contact path.</p>
-        </div>
-        <div class="compare-item after">
-          <h4>Preview direction</h4>
-          <p>Mobile-first. Sticky CTA after hero. Matter router reachable in 2 taps.</p>
+        <div class="compare-pair reveal">
+          <div class="compare-item before">
+            <h4>Current pattern</h4>
+            <p>Mobile experience is desktop compressed. No sticky contact path.</p>
+          </div>
+          <div class="compare-item after">
+            <h4>Preview direction</h4>
+            <p>Mobile-first. Sticky CTA after hero. Matter router reachable in 2 taps.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -371,7 +415,7 @@
             <p>Wheelers Hill: Suite 126, 202 Jells Rd, Wheelers Hill VIC 3150</p>
             <p style="margin-top:1rem;">Phone: (03) 9808 6396</p>
             <p>Email: boutique@boutique.legal</p>
-            <p style="margin-top:1rem; color:var(--muted); font-size:0.82rem;">Mon–Fri 9am–5pm · Appointments by arrangement · Video conference available</p>
+            <p style="margin-top:1rem; color:var(--muted); font-size:0.8rem;">Mon–Fri 9am–5pm · Appointments by arrangement · Video conference available</p>
           </div>
           <form class="contact-form" onsubmit="event.preventDefault(); alert('Demo only — form submitted')">
             <input type="text" placeholder="Your name" aria-label="Your name" required>
@@ -421,11 +465,37 @@
     window.addEventListener('scroll', handleCTA, { passive: true });
     handleCTA();
 
+    // Parallax
+    const parallaxEls = document.querySelectorAll('.parallax-element');
+    let ticking = false;
+    function updateParallax() {
+      if (window.innerWidth < 768) { ticking = false; return; }
+      const scrollY = window.pageYOffset;
+      parallaxEls.forEach(el => {
+        const speed = parseFloat(el.dataset.speed) || 0.3;
+        const offset = scrollY * speed * -0.5;
+        el.style.transform = 'translateY(' + offset.toFixed(1) + 'px) scale(1.05)';
+      });
+      ticking = false;
+    }
+    function onScroll() {
+      handleCTA();
+      if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateParallax();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => revealObserver.observe(el));
+
     // Matter Router
     function selectMatter(matter) {
       document.querySelectorAll('.router-step').forEach(s => s.classList.remove('visible'));
-      const step = document.getElementById('step-' + matter);
-      if (step) step.classList.add('visible');
+      document.getElementById('step-' + matter).classList.add('visible');
     }
     function goBack(toStep) {
       document.querySelectorAll('.router-step').forEach(s => s.classList.remove('visible'));
@@ -434,37 +504,13 @@
     }
     function showResult(matter, type) {
       const results = {
-        'property': {
-          'buying': 'Matter: Property purchase · Next: Contract review, Section 32, PEXA settlement · Documents: Contract of sale, ID',
-          'selling': 'Matter: Property sale · Next: Contract preparation, vendor statement, settlement · Documents: Title, contract',
-          'subdivision': 'Matter: Subdivision/development · Next: SPEAR lodgement, planning, titles · Documents: Plans, permits',
-          'other': 'Matter: Property (other) · Next: Initial consultation · Documents: Any relevant property documents'
-        },
-        'wills': {
-          'new': 'Matter: New will · Next: Estate planning consultation · Documents: Asset list, beneficiary details',
-          'update': 'Matter: Will update · Next: Review existing will · Documents: Current will, change details',
-          'poa': 'Matter: Power of attorney · Next: POA consultation · Documents: ID, attorney details',
-          'smsf': 'Matter: SMSF succession · Next: SMSF deed review · Documents: Trust deed, binding nominations'
-        },
-        'estate': {
-          'probate': 'Matter: Probate application · Next: Will review, death certificate · Documents: Original will, death certificate',
-          'admin': 'Matter: Letters of administration · Next: Intestacy advice · Documents: Death certificate, family details',
-          'dispute': 'Matter: Estate dispute · Next: TFM claim assessment · Documents: Will, relationship evidence'
-        },
-        'business': {
-          'sale': 'Matter: Business sale/purchase · Next: Due diligence, contract · Documents: Financials, contracts, leases',
-          'contract': 'Matter: Commercial contract · Next: Drafting/review · Documents: Current agreement, requirements',
-          'lease': 'Matter: Commercial lease · Next: Lease review/negotiation · Documents: Current lease, terms',
-          'dispute': 'Matter: Business dispute · Next: Mediation/litigation assessment · Documents: Contracts, correspondence'
-        },
-        'other': {
-          'general': 'Matter: General enquiry · Next: Initial consultation · Documents: Any relevant documents',
-          'tax': 'Matter: Tax/revenue · Next: Land tax/stamp duty advice · Documents: Notices, assessments',
-          'litigation': 'Matter: Litigation/VCAT · Next: Case assessment · Documents: Pleadings, evidence, correspondence'
-        }
+        property: { buying: 'Matter: Property purchase · Next: Contract review, Section 32, PEXA settlement · Documents: Contract of sale, ID', selling: 'Matter: Property sale · Next: Contract preparation, vendor statement, settlement · Documents: Title, contract', subdivision: 'Matter: Subdivision/development · Next: SPEAR lodgement, planning, titles · Documents: Plans, permits', other: 'Matter: Property (other) · Next: Initial consultation · Documents: Any relevant property documents' },
+        wills: { new: 'Matter: New will · Next: Estate planning consultation · Documents: Asset list, beneficiary details', update: 'Matter: Will update · Next: Review existing will · Documents: Current will, change details', poa: 'Matter: Power of attorney · Next: POA consultation · Documents: ID, attorney details', smsf: 'Matter: SMSF succession · Next: SMSF deed review · Documents: Trust deed, binding nominations' },
+        estate: { probate: 'Matter: Probate application · Next: Will review, death certificate · Documents: Original will, death certificate', admin: 'Matter: Letters of administration · Next: Intestacy advice · Documents: Death certificate, family details', dispute: 'Matter: Estate dispute · Next: TFM claim assessment · Documents: Will, relationship evidence' },
+        business: { sale: 'Matter: Business sale/purchase · Next: Due diligence, contract · Documents: Financials, contracts, leases', contract: 'Matter: Commercial contract · Next: Drafting/review · Documents: Current agreement, requirements', lease: 'Matter: Commercial lease · Next: Lease review/negotiation · Documents: Current lease, terms', dispute: 'Matter: Business dispute · Next: Mediation/litigation assessment · Documents: Contracts, correspondence' },
+        other: { general: 'Matter: General enquiry · Next: Initial consultation · Documents: Any relevant documents', tax: 'Matter: Tax/revenue · Next: Land tax/stamp duty advice · Documents: Notices, assessments', litigation: 'Matter: Litigation/VCAT · Next: Case assessment · Documents: Pleadings, evidence, correspondence' }
       };
-      const content = results[matter]?.[type] || 'Matter logged. Next: Initial consultation.';
-      document.getElementById('resultContent').textContent = content;
+      document.getElementById('resultContent').textContent = results[matter]?.[type] || 'Matter logged. Next: Initial consultation.';
       document.getElementById('routerResult').classList.add('visible');
     }
   </script>

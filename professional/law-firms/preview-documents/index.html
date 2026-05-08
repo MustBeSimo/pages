@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Legal Firm Preview — Documents Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0b0906; --charcoal: #181510; --muted: #a09888;
+      --ivory: #faf7f0; --paper: #fffef9; --stone: #ddd8cc;
+      --gold: #c49a38; --gold-dark: #7a5e1e; --gold-soft: #e0c878;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: Inter, system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+    body { background: var(--ivory); color: var(--ink); font-family: var(--sans); line-height: 1.65; overflow-x: hidden; padding-bottom: env(safe-area-inset-bottom); }
+    a, button { font: inherit; color: inherit; text-decoration: none; cursor: pointer; }
+    img, svg { max-width: 100%; display: block; height: auto; }
+    .wrap { width: min(1180px, calc(100% - 36px)); margin-inline: auto; }
+    .disclaimer { background: var(--ink); color: var(--ivory); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; padding: 9px 16px; }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--stone); position: sticky; top: 0; background: var(--ivory); z-index: 100; }
+    .brand { font-family: var(--serif); font-size: 1.4rem; letter-spacing: -0.04em; line-height: 0.88; }
+    .brand small { display: block; font-family: var(--sans); color: var(--muted); font-size: 0.5rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.2rem; }
+    .nav-links { display: none; align-items: center; gap: 1.5rem; }
+    .nav-links a { font-size: 0.85rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--gold); }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; padding: 8px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); }
+    @media (min-width: 920px) { .nav-links { display: flex; } .hamburger { display: none; } }
+    .hero { padding: 3.5rem 0; background: var(--ink); color: var(--ivory); position: relative; overflow: hidden; }
+    .hero svg.hero-icon { position: absolute; right: -30px; top: 50%; transform: translateY(-50%); opacity: 0.07; width: 500px; height: 500px; pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; position: relative; z-index: 1; }
+    .kicker { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 1rem; }
+    .kicker::before { content: ""; width: 28px; height: 1px; background: var(--gold); }
+    .hero h1 { font-family: var(--serif); font-size: 2.6rem; line-height: 0.92; letter-spacing: -0.05em; margin-bottom: 1.2rem; }
+    .hero p { font-size: 1rem; color: var(--muted); max-width: 520px; margin-bottom: 2rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-radius: 2px; transition: all 0.2s; }
+    .btn-primary { background: var(--gold); color: var(--ink); }
+    .btn-primary:hover { background: var(--gold-soft); }
+    .btn-outline { border: 1px solid rgba(196,154,56,0.4); color: var(--gold); }
+    .btn-outline:hover { border-color: var(--gold); }
+    .btn + .btn { margin-left: 0.75rem; }
+    @media (min-width: 920px) { .hero h1 { font-size: 3.4rem; } .hero { padding: 5rem 0; } }
+    .section { padding: 4rem 0; }
+    .section + .section { border-top: 1px solid var(--stone); }
+    .section-header { text-align: center; margin-bottom: 2.5rem; }
+    .section-header h2 { font-family: var(--serif); font-size: 1.8rem; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    .section-header p { color: var(--muted); font-size: 0.9rem; max-width: 480px; margin-inline: auto; }
+    .services-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
+    .service-card { background: var(--paper); border: 1px solid var(--stone); padding: 2rem; transition: border-color 0.2s; position: relative; overflow: hidden; }
+    .service-card::before { content: ""; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); opacity: 0; transition: opacity 0.2s; }
+    .service-card:hover { border-color: rgba(196,154,56,0.3); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon { width: 48px; height: 48px; margin-bottom: 1.2rem; }
+    .service-card h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .service-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+    @media (min-width: 620px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 920px) { .services-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+    .about-text h2 { font-family: var(--serif); font-size: 2rem; letter-spacing: -0.03em; margin-bottom: 1rem; }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+    @media (min-width: 920px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+    .contact { background: var(--ink); color: var(--ivory); text-align: center; padding: 4rem 0; }
+    .contact h2 { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .contact p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .contact-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; font-size: 0.8rem; }
+    .footer { background: #050505; color: var(--muted); text-align: center; padding: 2rem; font-size: 0.7rem; }
+    .footer a { color: var(--gold); }
+  </style>
+</head>
+<body>
+  <div class="disclaimer">W230 Rebuild Concept &middot; Not Affiliated with Any Firm &middot; Noindex &middot; Proof of Concept Only</div>
+  <nav class="nav wrap">
+    <div class="brand"><small>AU-MEL-WL01</small>Legal Preview &mdash; Documents Concept</div>
+    <div class="nav-links"><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- Hero: Legal Documents SVG (unique to this firm) -->
+  <section class="hero">
+    <svg class="hero-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Contract/document with pen -->
+      <rect x="40" y="30" width="120" height="150" rx="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      <line x1="55" y1="55" x2="145" y2="55" stroke="currentColor" stroke-width="1"/>
+      <line x1="55" y1="70" x2="145" y2="70" stroke="currentColor" stroke-width="0.8"/>
+      <line x1="55" y1="85" x2="130" y2="85" stroke="currentColor" stroke-width="0.8"/>
+      <line x1="55" y1="100" x2="140" y2="100" stroke="currentColor" stroke-width="0.8"/>
+      <line x1="55" y1="115" x2="120" y2="115" stroke="currentColor" stroke-width="0.8"/>
+      <!-- Signature line -->
+      <line x1="80" y1="140" x2="145" y2="140" stroke="currentColor" stroke-width="0.6" stroke-dasharray="3 2"/>
+      <path d="M85 138 Q95 130 105 138 Q115 146 125 136 Q135 126 140 138" stroke="currentColor" stroke-width="0.8" fill="none"/>
+      <!-- Pen -->
+      <line x1="130" y1="120" x2="155" y2="85" stroke="currentColor" stroke-width="2"/>
+      <polygon points="155,82 158,88 152,90" fill="currentColor" fill-opacity="0.6"/>
+      <!-- Stamp -->
+      <rect x="110" y="150" width="30" height="18" rx="2" stroke="currentColor" stroke-width="0.8" fill="none"/>
+      <text x="116" y="162" fill="currentColor" font-size="6" opacity="0.4">APPROVED</text>
+    </svg>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">Conveyancing Focus &middot; Melbourne CBD</div>
+          <h1>Property Transactions,<br>Handled Properly.</h1>
+          <p>A concept showing what a premium editorial website could look like for a conveyancing-focused practice. Same services. Clearer client pathways.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+            <a href="#services" class="btn btn-primary">View Services</a>
+            <a href="#contact" class="btn btn-outline">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <div class="wrap">
+      <div class="section-header">
+        <h2>Practice Areas</h2>
+        <p>Conveyancing expertise with comprehensive legal support</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="6" width="32" height="40" rx="2" stroke="#c49a38" stroke-width="1.5"/>
+            <line x1="14" y1="16" x2="34" y2="16" stroke="#c49a38" stroke-width="1.2"/>
+            <line x1="14" y1="22" x2="34" y2="22" stroke="#c49a38" stroke-width="1.2"/>
+            <line x1="14" y1="28" x2="28" y2="28" stroke="#c49a38" stroke-width="1.2"/>
+            <path d="M24 32 L28 36 L36 28" stroke="#c49a38" stroke-width="1.5" fill="none"/>
+          </svg>
+          <h3>Conveyancing</h3>
+          <p>Buying, selling, and transferring property. Over 45 years of experience in Melbourne property transactions.</p>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="20" width="10" height="20" rx="1" stroke="#c49a38" stroke-width="1.5"/>
+            <rect x="19" y="14" width="10" height="26" rx="1" stroke="#c49a38" stroke-width="1.5"/>
+            <rect x="32" y="8" width="10" height="32" rx="1" stroke="#c49a38" stroke-width="1.5"/>
+          </svg>
+          <h3>Commercial Law</h3>
+          <p>Business advisory, contracts, and corporate law. Protecting your commercial interests with experienced counsel.</p>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="16" stroke="#c49a38" stroke-width="1.5"/>
+            <path d="M16 24 C16 20 20 16 24 16 C28 16 32 20 32 24 C32 28 28 32 24 32" stroke="#c49a38" stroke-width="1.2"/>
+            <line x1="24" y1="16" x2="24" y2="32" stroke="#c49a38" stroke-width="1"/>
+            <line x1="16" y1="24" x2="32" y2="24" stroke="#c49a38" stroke-width="1"/>
+          </svg>
+          <h3>Family Law</h3>
+          <p>Divorce, property settlements, and family matters. Practical advice with sensitivity and discretion.</p>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="10" width="4" height="28" rx="2" stroke="#c49a38" stroke-width="1.5"/>
+            <rect x="6" y="14" width="20" height="20" rx="3" stroke="#c49a38" stroke-width="1.5" fill="none"/>
+            <line x1="30" y1="16" x2="40" y2="12" stroke="#c49a38" stroke-width="1.5"/>
+            <line x1="30" y1="24" x2="40" y2="24" stroke="#c49a38" stroke-width="1.5"/>
+            <line x1="30" y1="32" x2="40" y2="36" stroke="#c49a38" stroke-width="1.5"/>
+          </svg>
+          <h3>Litigation</h3>
+          <p>Commercial disputes, debt recovery, and court representation. Decades of litigation experience in Melbourne.</p>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 6 L40 16 L40 38 L24 44 L8 38 L8 16 Z" stroke="#c49a38" stroke-width="1.5"/>
+            <line x1="24" y1="6" x2="24" y2="44" stroke="#c49a38" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <circle cx="24" cy="26" r="5" stroke="#c49a38" stroke-width="1.2"/>
+          </svg>
+          <h3>Property Law</h3>
+          <p>Leasing, development, and property disputes. Comprehensive property law services for owners and investors.</p>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 8 C12 6 14 5 16 5 L32 5 C34 5 36 6 36 8 L36 40 C36 42 34 43 32 43 L16 43 C14 43 12 42 12 40 Z" stroke="#c49a38" stroke-width="1.5"/>
+            <line x1="18" y1="14" x2="30" y2="14" stroke="#c49a38" stroke-width="1"/>
+            <line x1="18" y1="20" x2="30" y2="20" stroke="#c49a38" stroke-width="1"/>
+            <line x1="18" y1="26" x2="26" y2="26" stroke="#c49a38" stroke-width="1"/>
+            <circle cx="30" cy="34" r="5" stroke="#c49a38" stroke-width="1.2"/>
+            <path d="M28 32 L30 34 L34 30" stroke="#c49a38" stroke-width="1.2" fill="none"/>
+          </svg>
+          <h3>Wills &amp; Estates</h3>
+          <p>Wills, probate, and estate planning. Ensuring your wishes are documented and your family is protected.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="wrap">
+      <div class="about-grid">
+        <div>
+          <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Property contract illustration (unique to this firm) -->
+            <rect x="0" y="0" width="400" height="300" fill="#0b0906"/>
+            <!-- Document -->
+            <rect x="80" y="40" width="240" height="220" rx="4" fill="#111" stroke="#c49a38" stroke-width="0.8"/>
+            <!-- Header line -->
+            <rect x="100" y="60" width="200" height="3" rx="1" fill="#c49a38" fill-opacity="0.3"/>
+            <!-- Text lines -->
+            <rect x="100" y="80" width="180" height="2" rx="1" fill="#c49a38" fill-opacity="0.15"/>
+            <rect x="100" y="92" width="160" height="2" rx="1" fill="#c49a38" fill-opacity="0.12"/>
+            <rect x="100" y="104" width="190" height="2" rx="1" fill="#c49a38" fill-opacity="0.15"/>
+            <rect x="100" y="116" width="140" height="2" rx="1" fill="#c49a38" fill-opacity="0.1"/>
+            <rect x="100" y="128" width="175" height="2" rx="1" fill="#c49a38" fill-opacity="0.12"/>
+            <rect x="100" y="140" width="155" height="2" rx="1" fill="#c49a38" fill-opacity="0.1"/>
+            <!-- Signature area -->
+            <line x1="100" y1="180" x2="200" y2="180" stroke="#c49a38" stroke-width="0.5" stroke-dasharray="4 3"/>
+            <path d="M105 178 Q120 170 135 178 Q150 186 165 176 Q180 166 190 178" stroke="#c49a38" stroke-width="0.6" fill="none" opacity="0.4"/>
+            <!-- Stamp -->
+            <circle cx="260" cy="200" r="22" stroke="#c49a38" stroke-width="0.8" fill="none" opacity="0.3"/>
+            <circle cx="260" cy="200" r="16" stroke="#c49a38" stroke-width="0.5" fill="none" opacity="0.2"/>
+            <text x="248" y="203" fill="#c49a38" font-size="7" opacity="0.3">EXECUTED</text>
+            <!-- Key icon -->
+            <circle cx="320" cy="100" r="12" stroke="#c49a38" stroke-width="1" fill="none" opacity="0.2"/>
+            <line x1="328" y1="108" x2="340" y2="120" stroke="#c49a38" stroke-width="1.5" opacity="0.2"/>
+            <!-- Gold accent -->
+            <line x1="60" y1="250" x2="340" y2="250" stroke="#c49a38" stroke-width="0.3" stroke-dasharray="8 6"/>
+          </svg>
+        </div>
+        <div class="about-text">
+          <h2>What This Shows</h2>
+          <p>This is a proof-of-concept rebuild for a conveyancing-focused practice in Melbourne's CBD. The existing site has deep expertise — this concept shows what that looks like with a document-centric editorial design.</p>
+          <p>The contract motif reinforces the conveyancing specialty. Client pathways are organised around transaction types. The aesthetic is professional, not promotional.</p>
+          <p><strong style="color:var(--gold);">Concept only.</strong> No content has been copied. All imagery is original SVG. This preview exists solely to demonstrate what's possible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Get in Touch</h2>
+      <p>This is a concept preview. No contact details are published.</p>
+      <div class="contact-row">
+        <span>Melbourne CBD</span><span>&mdash;</span>
+        <span>Melbourne VIC</span><span>&mdash;</span>
+        <span>Conveyancing &middot; Commercial &middot; Family &middot; Litigation</span>
+      </div>
+      <div style="margin-top:2rem;"><a href="#" class="btn btn-outline">Request Full Preview</a></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>W230 Rebuild Concept &middot; Not affiliated with any law firm &middot; <a href="#">View Source</a></p>
+    <p style="margin-top:0.3rem;opacity:0.5;">Code-only preview &middot; No real client data &middot; Built for demonstration</p>
+  </footer>
+</body>
+</html>

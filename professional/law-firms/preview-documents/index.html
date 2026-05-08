@@ -4,248 +4,266 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
-  <title>Legal Firm Preview — Documents Concept</title>
+  <title>Legal Preview — Documents Concept</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --ink: #0b0906; --charcoal: #181510; --muted: #a09888;
-      --ivory: #faf7f0; --paper: #fffef9; --stone: #ddd8cc;
-      --gold: #c49a38; --gold-dark: #7a5e1e; --gold-soft: #e0c878;
-      --serif: 'Instrument Serif', Georgia, serif;
-      --sans: Inter, system-ui, sans-serif;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
-    body { background: var(--ivory); color: var(--ink); font-family: var(--sans); line-height: 1.65; overflow-x: hidden; padding-bottom: env(safe-area-inset-bottom); }
-    a, button { font: inherit; color: inherit; text-decoration: none; cursor: pointer; }
-    img, svg { max-width: 100%; display: block; height: auto; }
-    .wrap { width: min(1180px, calc(100% - 36px)); margin-inline: auto; }
-    .disclaimer { background: var(--ink); color: var(--ivory); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; padding: 9px 16px; }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--stone); position: sticky; top: 0; background: var(--ivory); z-index: 100; }
-    .brand { font-family: var(--serif); font-size: 1.4rem; letter-spacing: -0.04em; line-height: 0.88; }
-    .brand small { display: block; font-family: var(--sans); color: var(--muted); font-size: 0.5rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.2rem; }
-    .nav-links { display: none; align-items: center; gap: 1.5rem; }
-    .nav-links a { font-size: 0.85rem; font-weight: 500; }
-    .nav-links a:hover { color: var(--gold); }
-    .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; padding: 8px; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); }
-    @media (min-width: 920px) { .nav-links { display: flex; } .hamburger { display: none; } }
-    .hero { padding: 3.5rem 0; background: var(--ink); color: var(--ivory); position: relative; overflow: hidden; }
-    .hero svg.hero-icon { position: absolute; right: -30px; top: 50%; transform: translateY(-50%); opacity: 0.07; width: 500px; height: 500px; pointer-events: none; }
-    .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; position: relative; z-index: 1; }
-    .kicker { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 1rem; }
-    .kicker::before { content: ""; width: 28px; height: 1px; background: var(--gold); }
-    .hero h1 { font-family: var(--serif); font-size: 2.6rem; line-height: 0.92; letter-spacing: -0.05em; margin-bottom: 1.2rem; }
-    .hero p { font-size: 1rem; color: var(--muted); max-width: 520px; margin-bottom: 2rem; }
-    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-radius: 2px; transition: all 0.2s; }
-    .btn-primary { background: var(--gold); color: var(--ink); }
-    .btn-primary:hover { background: var(--gold-soft); }
-    .btn-outline { border: 1px solid rgba(196,154,56,0.4); color: var(--gold); }
-    .btn-outline:hover { border-color: var(--gold); }
-    .btn + .btn { margin-left: 0.75rem; }
-    @media (min-width: 920px) { .hero h1 { font-size: 3.4rem; } .hero { padding: 5rem 0; } }
-    .section { padding: 4rem 0; }
-    .section + .section { border-top: 1px solid var(--stone); }
-    .section-header { text-align: center; margin-bottom: 2.5rem; }
-    .section-header h2 { font-family: var(--serif); font-size: 1.8rem; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
-    .section-header p { color: var(--muted); font-size: 0.9rem; max-width: 480px; margin-inline: auto; }
-    .services-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
-    .service-card { background: var(--paper); border: 1px solid var(--stone); padding: 2rem; transition: border-color 0.2s; position: relative; overflow: hidden; }
-    .service-card::before { content: ""; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); opacity: 0; transition: opacity 0.2s; }
-    .service-card:hover { border-color: rgba(196,154,56,0.3); }
-    .service-card:hover::before { opacity: 1; }
-    .service-icon { width: 48px; height: 48px; margin-bottom: 1.2rem; }
-    .service-card h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .service-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
-    @media (min-width: 620px) { .services-grid { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 920px) { .services-grid { grid-template-columns: 1fr 1fr 1fr; } }
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
-    .about-text h2 { font-family: var(--serif); font-size: 2rem; letter-spacing: -0.03em; margin-bottom: 1rem; }
-    .about-text p { color: var(--muted); margin-bottom: 1rem; }
-    @media (min-width: 920px) { .about-grid { grid-template-columns: 1fr 1fr; } }
-    .contact { background: var(--ink); color: var(--ivory); text-align: center; padding: 4rem 0; }
-    .contact h2 { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 0.5rem; }
-    .contact p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
-    .contact-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; font-size: 0.8rem; }
-    .footer { background: #050505; color: var(--muted); text-align: center; padding: 2rem; font-size: 0.7rem; }
-    .footer a { color: var(--gold); }
-  </style>
+:root{--bg:#080808;--bg2:#111;--bg3:#1a1a1a;--gold:#c9a24a;--gold-soft:#e0cc80;--gold-dark:#8a6b22;--paper:#faf8f2;--muted:#9a9488;--line:rgba(201,162,74,0.12);--line-strong:rgba(201,162,74,0.4);--serif:'Instrument Serif',Georgia,serif;--sans:Inter,system-ui,sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-tap-highlight-color:transparent;}
+body{background:var(--bg);color:var(--paper);font-family:var(--sans);line-height:1.65;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom);}
+a,button{font:inherit;color:inherit;text-decoration:none;cursor:pointer;}button{background:none;border:none;}
+img,svg{max-width:100%;display:block;height:auto;}
+.wrap{width:min(1180px,calc(100% - 36px));margin-inline:auto;}
+.disclaimer{background:#000;color:#777;font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:8px 16px;}
+/* Nav */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;position:sticky;top:0;z-index:100;transition:background .3s;}
+.nav.scrolled{background:rgba(8,8,8,.88);backdrop-filter:blur(20px) saturate(180%);}
+.brand{font-family:var(--serif);font-size:1.2rem;letter-spacing:-.04em;}
+.brand small{display:block;font-family:var(--sans);color:var(--muted);font-size:.45rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.15rem;}
+.nav-links{display:none;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:.8rem;font-weight:500;color:var(--muted);transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.hamburger{display:flex;flex-direction:column;gap:5px;padding:8px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--paper);transition:.3s;}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-nav{display:none;position:fixed;top:0;right:0;width:min(300px,85vw);height:100vh;background:rgba(8,8,8,.96);border-left:1px solid var(--line-strong);padding:5rem 2rem 2rem;z-index:99;flex-direction:column;gap:.5rem;backdrop-filter:blur(20px);}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{font-size:1rem;padding:.7rem 0;border-bottom:1px solid var(--line);font-weight:500;}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:98;backdrop-filter:blur(2px);}
+.nav-overlay.active{display:block;}
+@media(min-width:920px){.nav-links{display:flex;}.hamburger{display:none;}}
+/* Hero */
+.hero{position:relative;overflow:hidden;min-height:85vh;display:flex;align-items:center;}
+.hero-bg{position:absolute;inset:-20%;z-index:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.28;will-change:transform;}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,8,.2) 0%,rgba(8,8,8,.65) 55%,var(--bg) 100%);z-index:1;}
+.hero-inner{position:relative;z-index:2;padding:4rem 0 3rem;width:100%;}
+.kicker{display:inline-flex;align-items:center;gap:.5rem;color:var(--gold);font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;margin-bottom:1rem;}
+.kicker::before{content:"";width:28px;height:1px;background:var(--gold);}
+h1{font-family:var(--serif);font-size:clamp(2.2rem,5.5vw,4rem);line-height:.92;letter-spacing:-.05em;margin-bottom:1.2rem;}
+.hero-copy{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--muted);max-width:520px;margin-bottom:2rem;}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.8rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border-radius:2px;transition:all .2s;}
+.btn-primary{background:var(--gold);color:var(--bg);}
+.btn-primary:hover{background:var(--gold-soft);}
+.btn-outline{border:1px solid var(--line-strong);color:var(--gold);}
+.btn-outline:hover{border-color:var(--gold);}
+.hero-btns{display:flex;flex-wrap:wrap;gap:.75rem;}
+/* Hero stagger */
+#hero .kicker,#hero h1,#hero .hero-copy,#hero .hero-btns{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.4,0,.2,1);}
+#hero .kicker{transition-delay:.1s;}#hero h1{transition-delay:.25s;}#hero .hero-copy{transition-delay:.4s;}#hero .hero-btns{transition-delay:.55s;}
+#hero.visible .kicker,#hero.visible h1,#hero.visible .hero-copy,#hero.visible .hero-btns{opacity:1;transform:translateY(0);}
+/* Section */
+.section{padding:4rem 0;}
+.section-light{background:var(--paper);color:var(--bg);}
+.section-light .section-header h2{color:var(--bg);}
+.section-light .section-header p{color:#555;}
+.section-light .service-card{background:#fff;border-color:#e0dbd2;}
+.section-light .service-card h3{color:var(--bg);}
+.section-light .service-card p{color:#666;}
+.section-light .card-num{color:var(--gold);}
+.section-header{text-align:center;margin-bottom:2.5rem;}
+.section-header h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.03em;margin-bottom:.5rem;}
+.section-header p{color:var(--muted);font-size:.85rem;max-width:480px;margin-inline:auto;}
+/* Services */
+.services-wrap{position:relative;}
+.swipe-hint{display:none;color:var(--muted);font-size:.75rem;margin-bottom:.75rem;}
+.services-grid{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:.5rem 0 1rem;}
+.services-grid::-webkit-scrollbar{display:none;}
+.service-card{flex:0 0 85vw;scroll-snap-align:start;background:var(--bg2);border:1px solid var(--line);overflow:hidden;transition:border-color .2s,transform .2s;}
+.service-card:hover{border-color:var(--line-strong);transform:translateY(-4px);}
+.card-img{height:160px;background-size:cover;background-position:center;background-color:var(--bg3);}
+.card-body{padding:1.5rem;}
+.card-num{font-size:.65rem;font-weight:800;color:var(--gold);letter-spacing:.1em;display:block;margin-bottom:.5rem;}
+.service-card h3{font-family:var(--serif);font-size:1.1rem;margin-bottom:.4rem;}
+.service-card p{font-size:.8rem;color:var(--muted);line-height:1.5;}
+@media(min-width:620px){.service-card{flex:0 0 42vw;}.swipe-hint{display:block;}}
+@media(min-width:920px){.services-grid{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;}.service-card{flex:none;}.swipe-hint{display:none;}}
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center;}
+.about-img img{width:100%;border-radius:4px;}
+.about-text h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.03em;margin-bottom:1rem;}
+.about-text p{color:var(--muted);margin-bottom:1rem;font-size:.9rem;}
+.about-text strong{color:var(--gold);}
+@media(min-width:920px){.about-grid{grid-template-columns:1fr 1fr;}}
+/* Contact */
+#contact{text-align:center;padding:4rem 0;border-top:1px solid var(--line);}
+#contact h2{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.5rem;}
+#contact p{color:var(--muted);font-size:.85rem;margin-bottom:1.5rem;}
+.contact-row{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.8rem;color:var(--muted);margin-bottom:2rem;}
+.contact-row strong{color:var(--gold);}
+/* Bottom CTA */
+.bottom-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(8,8,8,.95);border-top:1px solid var(--line-strong);padding:.6rem 1rem;gap:.5rem;justify-content:center;backdrop-filter:blur(12px);transition:transform .3s ease;}
+@media(min-width:768px){.bottom-cta{display:none!important;}}
+/* Scroll animations */
+.fx,.fx-d1,.fx-d2,.fx-d3,.sl-left,.sl-right{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
+.fx-d1{transition-delay:.1s;}.fx-d2{transition-delay:.2s;}.fx-d3{transition-delay:.3s;}
+.sl-left{transform:translateX(-30px);}.sl-right{transform:translateX(30px);}
+.fx.visible,.fx-d1.visible,.fx-d2.visible,.fx-d3.visible,.sl-left.visible,.sl-right.visible{opacity:1;transform:translateY(0) translateX(0);}
+/* Marquee */
+.marquee-wrap{overflow:hidden;padding:1rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:2rem;}
+.marquee{display:flex;gap:2rem;animation:marquee 20s linear infinite;width:max-content;}
+.marquee span{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);opacity:.4;white-space:nowrap;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+/* Footer */
+.footer{background:#030303;color:#555;text-align:center;padding:2rem;font-size:.65rem;}
+</style>
 </head>
 <body>
-  <div class="disclaimer">W230 Rebuild Concept &middot; Not Affiliated with Any Firm &middot; Noindex &middot; Proof of Concept Only</div>
-  <nav class="nav wrap">
-    <div class="brand"><small>AU-MEL-WL01</small>Legal Preview &mdash; Documents Concept</div>
-    <div class="nav-links"><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></div>
-    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </nav>
+<div class="disclaimer">W230 Rebuild Concept &middot; Not Affiliated with Any Firm &middot; Noindex &middot; Proof of Concept Only</div>
+<nav class="nav" id="mainNav">
+  <div class="brand"><small>AU-MEL-WL01</small>Legal Preview</div>
+  <div class="nav-links"><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay"></div>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</div>
 
-  <!-- Hero: Legal Documents SVG (unique to this firm) -->
-  <section class="hero">
-    <svg class="hero-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Contract/document with pen -->
-      <rect x="40" y="30" width="120" height="150" rx="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
-      <line x1="55" y1="55" x2="145" y2="55" stroke="currentColor" stroke-width="1"/>
-      <line x1="55" y1="70" x2="145" y2="70" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="55" y1="85" x2="130" y2="85" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="55" y1="100" x2="140" y2="100" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="55" y1="115" x2="120" y2="115" stroke="currentColor" stroke-width="0.8"/>
-      <!-- Signature line -->
-      <line x1="80" y1="140" x2="145" y2="140" stroke="currentColor" stroke-width="0.6" stroke-dasharray="3 2"/>
-      <path d="M85 138 Q95 130 105 138 Q115 146 125 136 Q135 126 140 138" stroke="currentColor" stroke-width="0.8" fill="none"/>
-      <!-- Pen -->
-      <line x1="130" y1="120" x2="155" y2="85" stroke="currentColor" stroke-width="2"/>
-      <polygon points="155,82 158,88 152,90" fill="currentColor" fill-opacity="0.6"/>
-      <!-- Stamp -->
-      <rect x="110" y="150" width="30" height="18" rx="2" stroke="currentColor" stroke-width="0.8" fill="none"/>
-      <text x="116" y="162" fill="currentColor" font-size="6" opacity="0.4">APPROVED</text>
-    </svg>
-    <div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <div class="kicker">Conveyancing Focus &middot; Melbourne CBD</div>
-          <h1>Property Transactions,<br>Handled Properly.</h1>
-          <p>A concept showing what a premium editorial website could look like for a conveyancing-focused practice. Same services. Clearer client pathways.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-            <a href="#services" class="btn btn-primary">View Services</a>
-            <a href="#contact" class="btn btn-outline">Enquire</a>
-          </div>
-        </div>
-      </div>
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="assets/hero-bg.png" class="parallax-el" data-speed="0.35" alt="" loading="eager">
+  </div>
+  <div class="hero-gradient"></div>
+  <div class="hero-inner wrap">
+    <div class="kicker">Conveyancing Focus · Melbourne CBD</div>
+    <h1>Property Transactions,<br>Handled Properly.</h1>
+    <p class="hero-copy">A concept showing what a premium editorial website could look like for a conveyancing-focused practice. Same services. Clearer client pathways.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn btn-primary" style="color:var(--bg)">View Services</a>
+      <a href="#contact" class="btn btn-outline">Enquire</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="services" class="section">
-    <div class="wrap">
-      <div class="section-header">
-        <h2>Practice Areas</h2>
-        <p>Conveyancing expertise with comprehensive legal support</p>
-      </div>
+<div class="marquee-wrap"><div class="marquee"><span>Conveyancing</span><span>·</span><span>Commercial Law</span><span>·</span><span>Litigation</span><span>·</span><span>Property</span><span>·</span><span>Wills</span><span>·</span><span>Conveyancing</span><span>·</span><span>Commercial Law</span><span>·</span><span>Litigation</span><span>·</span><span>Property</span><span>·</span><span>Wills</span><span>·</span></div></div>
+
+<section id="services" class="section section-light">
+  <div class="wrap">
+    <div class="section-header fx">
+      <h2>Practice Areas</h2>
+      <p>Existing services, presented with clear hierarchy and intent-driven pathways</p>
+    </div>
+    <div class="services-wrap">
+      <p class="swipe-hint fx">Swipe to explore →</p>
       <div class="services-grid">
-        <div class="service-card">
-          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="6" width="32" height="40" rx="2" stroke="#c49a38" stroke-width="1.5"/>
-            <line x1="14" y1="16" x2="34" y2="16" stroke="#c49a38" stroke-width="1.2"/>
-            <line x1="14" y1="22" x2="34" y2="22" stroke="#c49a38" stroke-width="1.2"/>
-            <line x1="14" y1="28" x2="28" y2="28" stroke="#c49a38" stroke-width="1.2"/>
-            <path d="M24 32 L28 36 L36 28" stroke="#c49a38" stroke-width="1.5" fill="none"/>
-          </svg>
-          <h3>Conveyancing</h3>
-          <p>Buying, selling, and transferring property. Over 45 years of experience in Melbourne property transactions.</p>
-        </div>
-        <div class="service-card">
-          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="6" y="20" width="10" height="20" rx="1" stroke="#c49a38" stroke-width="1.5"/>
-            <rect x="19" y="14" width="10" height="26" rx="1" stroke="#c49a38" stroke-width="1.5"/>
-            <rect x="32" y="8" width="10" height="32" rx="1" stroke="#c49a38" stroke-width="1.5"/>
-          </svg>
-          <h3>Commercial Law</h3>
-          <p>Business advisory, contracts, and corporate law. Protecting your commercial interests with experienced counsel.</p>
-        </div>
-        <div class="service-card">
-          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="16" stroke="#c49a38" stroke-width="1.5"/>
-            <path d="M16 24 C16 20 20 16 24 16 C28 16 32 20 32 24 C32 28 28 32 24 32" stroke="#c49a38" stroke-width="1.2"/>
-            <line x1="24" y1="16" x2="24" y2="32" stroke="#c49a38" stroke-width="1"/>
-            <line x1="16" y1="24" x2="32" y2="24" stroke="#c49a38" stroke-width="1"/>
-          </svg>
-          <h3>Family Law</h3>
-          <p>Divorce, property settlements, and family matters. Practical advice with sensitivity and discretion.</p>
-        </div>
-        <div class="service-card">
-          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="14" y="10" width="4" height="28" rx="2" stroke="#c49a38" stroke-width="1.5"/>
-            <rect x="6" y="14" width="20" height="20" rx="3" stroke="#c49a38" stroke-width="1.5" fill="none"/>
-            <line x1="30" y1="16" x2="40" y2="12" stroke="#c49a38" stroke-width="1.5"/>
-            <line x1="30" y1="24" x2="40" y2="24" stroke="#c49a38" stroke-width="1.5"/>
-            <line x1="30" y1="32" x2="40" y2="36" stroke="#c49a38" stroke-width="1.5"/>
-          </svg>
-          <h3>Litigation</h3>
-          <p>Commercial disputes, debt recovery, and court representation. Decades of litigation experience in Melbourne.</p>
-        </div>
-        <div class="service-card">
-          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 6 L40 16 L40 38 L24 44 L8 38 L8 16 Z" stroke="#c49a38" stroke-width="1.5"/>
-            <line x1="24" y1="6" x2="24" y2="44" stroke="#c49a38" stroke-width="0.8" stroke-dasharray="3 3"/>
-            <circle cx="24" cy="26" r="5" stroke="#c49a38" stroke-width="1.2"/>
-          </svg>
-          <h3>Property Law</h3>
-          <p>Leasing, development, and property disputes. Comprehensive property law services for owners and investors.</p>
-        </div>
-        <div class="service-card">
-          <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 8 C12 6 14 5 16 5 L32 5 C34 5 36 6 36 8 L36 40 C36 42 34 43 32 43 L16 43 C14 43 12 42 12 40 Z" stroke="#c49a38" stroke-width="1.5"/>
-            <line x1="18" y1="14" x2="30" y2="14" stroke="#c49a38" stroke-width="1"/>
-            <line x1="18" y1="20" x2="30" y2="20" stroke="#c49a38" stroke-width="1"/>
-            <line x1="18" y1="26" x2="26" y2="26" stroke="#c49a38" stroke-width="1"/>
-            <circle cx="30" cy="34" r="5" stroke="#c49a38" stroke-width="1.2"/>
-            <path d="M28 32 L30 34 L34 30" stroke="#c49a38" stroke-width="1.2" fill="none"/>
-          </svg>
-          <h3>Wills &amp; Estates</h3>
-          <p>Wills, probate, and estate planning. Ensuring your wishes are documented and your family is protected.</p>
+      <div class="service-card fx-d1">
+        <div class="card-img" style="background-image:url('assets/img-conveyancing.png')"></div>
+        <div class="card-body"><span class="card-num">01</span>
+          <h3>Conveyancing</h3><p>Buying, selling, and transferring property. Over 45 years of experience in Melbourne property transactions.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="about" class="section">
-    <div class="wrap">
-      <div class="about-grid">
-        <div>
-          <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Property contract illustration (unique to this firm) -->
-            <rect x="0" y="0" width="400" height="300" fill="#0b0906"/>
-            <!-- Document -->
-            <rect x="80" y="40" width="240" height="220" rx="4" fill="#111" stroke="#c49a38" stroke-width="0.8"/>
-            <!-- Header line -->
-            <rect x="100" y="60" width="200" height="3" rx="1" fill="#c49a38" fill-opacity="0.3"/>
-            <!-- Text lines -->
-            <rect x="100" y="80" width="180" height="2" rx="1" fill="#c49a38" fill-opacity="0.15"/>
-            <rect x="100" y="92" width="160" height="2" rx="1" fill="#c49a38" fill-opacity="0.12"/>
-            <rect x="100" y="104" width="190" height="2" rx="1" fill="#c49a38" fill-opacity="0.15"/>
-            <rect x="100" y="116" width="140" height="2" rx="1" fill="#c49a38" fill-opacity="0.1"/>
-            <rect x="100" y="128" width="175" height="2" rx="1" fill="#c49a38" fill-opacity="0.12"/>
-            <rect x="100" y="140" width="155" height="2" rx="1" fill="#c49a38" fill-opacity="0.1"/>
-            <!-- Signature area -->
-            <line x1="100" y1="180" x2="200" y2="180" stroke="#c49a38" stroke-width="0.5" stroke-dasharray="4 3"/>
-            <path d="M105 178 Q120 170 135 178 Q150 186 165 176 Q180 166 190 178" stroke="#c49a38" stroke-width="0.6" fill="none" opacity="0.4"/>
-            <!-- Stamp -->
-            <circle cx="260" cy="200" r="22" stroke="#c49a38" stroke-width="0.8" fill="none" opacity="0.3"/>
-            <circle cx="260" cy="200" r="16" stroke="#c49a38" stroke-width="0.5" fill="none" opacity="0.2"/>
-            <text x="248" y="203" fill="#c49a38" font-size="7" opacity="0.3">EXECUTED</text>
-            <!-- Key icon -->
-            <circle cx="320" cy="100" r="12" stroke="#c49a38" stroke-width="1" fill="none" opacity="0.2"/>
-            <line x1="328" y1="108" x2="340" y2="120" stroke="#c49a38" stroke-width="1.5" opacity="0.2"/>
-            <!-- Gold accent -->
-            <line x1="60" y1="250" x2="340" y2="250" stroke="#c49a38" stroke-width="0.3" stroke-dasharray="8 6"/>
-          </svg>
-        </div>
-        <div class="about-text">
-          <h2>What This Shows</h2>
-          <p>This is a proof-of-concept rebuild for a conveyancing-focused practice in Melbourne's CBD. The existing site has deep expertise — this concept shows what that looks like with a document-centric editorial design.</p>
-          <p>The contract motif reinforces the conveyancing specialty. Client pathways are organised around transaction types. The aesthetic is professional, not promotional.</p>
-          <p><strong style="color:var(--gold);">Concept only.</strong> No content has been copied. All imagery is original SVG. This preview exists solely to demonstrate what's possible.</p>
+      <div class="service-card fx-d2">
+        <div class="card-img" style="background-image:url('assets/img-commercial-law.png')"></div>
+        <div class="card-body"><span class="card-num">02</span>
+          <h3>Commercial & Corporate</h3><p>Business advisory, contracts, and corporate law. Protecting your commercial interests.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="contact" class="contact">
-    <div class="wrap">
-      <h2>Get in Touch</h2>
-      <p>This is a concept preview. No contact details are published.</p>
-      <div class="contact-row">
-        <span>Melbourne CBD</span><span>&mdash;</span>
-        <span>Melbourne VIC</span><span>&mdash;</span>
-        <span>Conveyancing &middot; Commercial &middot; Family &middot; Litigation</span>
+      <div class="service-card fx-d3">
+        <div class="card-img" style="background-image:url('assets/img-litigation.png')"></div>
+        <div class="card-body"><span class="card-num">03</span>
+          <h3>Litigation & Disputes</h3><p>Commercial disputes, debt recovery, and court representation. Decades of litigation experience.</p>
+        </div>
       </div>
-      <div style="margin-top:2rem;"><a href="#" class="btn btn-outline">Request Full Preview</a></div>
+      <div class="service-card fx-d1">
+        <div class="card-img" style="background-image:url('assets/img-property.png')"></div>
+        <div class="card-body"><span class="card-num">04</span>
+          <h3>Property & Construction</h3><p>Leasing, development, and property disputes. Comprehensive property law services.</p>
+        </div>
+      </div>
+      <div class="service-card fx-d2">
+        <div class="card-img" style="background-image:url('assets/img-conveyancing.png')"></div>
+        <div class="card-body"><span class="card-num">05</span>
+          <h3>Wills & Estates</h3><p>Wills, probate, and estate planning. Ensuring your wishes are documented.</p>
+        </div>
+      </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <p>W230 Rebuild Concept &middot; Not affiliated with any law firm &middot; <a href="#">View Source</a></p>
-    <p style="margin-top:0.3rem;opacity:0.5;">Code-only preview &middot; No real client data &middot; Built for demonstration</p>
-  </footer>
+<section id="about" class="section">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-img sl-left">
+        <img src="assets/img-litigation.png" alt="" loading="lazy">
+      </div>
+      <div class="about-text sl-right">
+        <h2>What This Shows</h2>
+        <p>This is a proof-of-concept rebuild for a conveyancing-focused practice in Melbourne's CBD. The existing site has deep expertise — this concept shows what that looks like with a document-centric editorial design.</p><p>The contract motif reinforces the conveyancing specialty. Client pathways are organised around transaction types. The aesthetic is professional, not promotional.</p><p><strong>Concept only.</strong> No content has been copied. All imagery is original. This preview exists solely to demonstrate what's possible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Get in Touch</h2>
+    <p>This is a concept preview. No contact details are published.</p>
+    <div class="contact-row">
+      <span>Melbourne CBD, Melbourne VIC</span><strong> · </strong>
+      <span>Conveyancing · Commercial · Litigation · Property · Wills</span>
+    </div>
+    <div style="margin-top:1.5rem;"><a href="#" class="btn btn-outline">Request Full Preview</a></div>
+  </div>
+</section>
+
+<div class="bottom-cta" id="bottomCTA">
+  <a href="#contact" class="btn btn-primary">Enquire Now</a>
+  <a href="#services" class="btn btn-outline">Services</a>
+</div>
+<div class="footer"><p>W230 Rebuild Concept &middot; Not affiliated with any law firm</p></div>
+
+<script>
+(function(){
+  var btn=document.querySelector('.hamburger'),nav=document.getElementById('mobileNav'),overlay=document.querySelector('.nav-overlay');
+  function toggleNav(){
+    if(!nav)return;
+    nav.classList.toggle('open');overlay.classList.toggle('active');btn.classList.toggle('active');
+    document.body.style.overflow=nav.classList.contains('open')?'hidden':'';
+    var f=function(){toggleNav()};
+    var links=nav.querySelectorAll('a');
+    for(var i=0;i<links.length;i++){links[i].onclick=toggleNav;}
+  }
+  if(btn)btn.addEventListener('click',toggleNav);
+  if(overlay)overlay.addEventListener('click',toggleNav);
+  var lastScroll=0,cta=document.getElementById('bottomCTA');
+  function handleCTA(){
+    if(!cta)return;
+    if(window.innerWidth>=768){cta.style.display='none';return;}
+    cta.style.display='flex';
+    var s=window.pageYOffset;
+    cta.style.transform=(s>lastScroll&&s>100)?'translateY(100%)':'translateY(0)';
+    lastScroll=s;
+  }
+  var parallaxEls=document.querySelectorAll('.parallax-el'),ticking=false;
+  function updateParallax(){
+    if(window.innerWidth<768){ticking=false;return;}
+    var sy=window.pageYOffset;
+    for(var i=0;i<parallaxEls.length;i++){
+      var el=parallaxEls[i],speed=parseFloat(el.getAttribute('data-speed'))||0.4;
+      var past=sy-(el.offsetTop||0);
+      el.style.transform='translateY('+(past*speed*-1).toFixed(1)+'px)';
+    }
+    ticking=false;
+  }
+  var fxEls=document.querySelectorAll('.fx,.fx-d1,.fx-d2,.fx-d3,.sl-left,.sl-right');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  for(var i=0;i<fxEls.length;i++){obs.observe(fxEls[i]);}
+  window.addEventListener('scroll',function(){handleCTA();if(!ticking){requestAnimationFrame(updateParallax);ticking=true;}},{passive:true});
+  // Trigger hero animation
+  window.addEventListener('load',function(){
+    setTimeout(function(){var h=document.getElementById('hero');if(h)h.classList.add('visible');},100);
+  });
+  handleCTA();updateParallax();
+})();
+</script>
 </body>
 </html>

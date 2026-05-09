@@ -6,7 +6,9 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Legal Preview — Library Concept</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>html{background:#0a0a0c}body{opacity:0;transition:opacity .3s ease}body.loaded{opacity:1}</style>
   <style>
 :root{
   --bg:#0a0a0c;
@@ -29,6 +31,15 @@ a,button{font:inherit;color:inherit;text-decoration:none;cursor:pointer}
 button{background:none;border:none}
 img,svg{max-width:100%;display:block;height:auto}
 .wrap{width:min(1180px,calc(100% - 36px));margin-inline:auto}
+
+/* ── ACCESSIBILITY ── */
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.skip-link{position:fixed;top:-40px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);padding:.5rem 1rem;font-size:.8rem;font-weight:700;z-index:1001;transition:top .2s;border-radius:0 0 4px 4px}
+.skip-link:focus{top:0}
+img[src]:not([style*="opacity:0"]){background:linear-gradient(110deg,var(--bg3) 8%,var(--bg2) 18%,var(--bg3) 33%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+img[src][style*="opacity:0"]{animation:none!important}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}img[src]:not([style*="opacity:0"]){animation:none}}
 
 /* ── CURTAIN REVEAL ── */
 .curtain-wrapper{position:relative;overflow:hidden;width:100%;height:100%}
@@ -128,6 +139,9 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
 .bottom-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(10,10,12,.95);border-top:1px solid var(--line-strong);padding:.7rem 1rem;gap:.5rem;justify-content:center;backdrop-filter:blur(12px);transition:transform .3s ease}
 @media(max-width:767px){.bottom-cta{display:flex}}
 
+/* ── TOUCH TARGETS ── */
+@media(pointer:coarse){.hamburger{padding:12px}.mobile-nav a{padding:1rem 0;font-size:1.1rem}.btn{padding:1rem 2rem;min-height:44px}.nav-links a{padding:.5rem}}
+
 /* ── SCROLL PROGRESS ── */
 .scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));z-index:1000;width:0%;transition:width .1s linear}
 
@@ -135,6 +149,8 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
   </style>
 </head>
 <body>
+
+<a href="#services" class="skip-link">Skip to content</a>
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -147,7 +163,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -256,7 +272,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
     <div class="about-grid">
       <div class="about-img" data-reveal="slide-left">
         <div data-curtain="#c9a24a" data-curtain-dir="up" style="height:100%">
-          <img src="assets/img-about-library.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:4px">
+          <img src="assets/img-about-library.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:4px" onerror="this.style.display='none';this.parentElement.style.background='var(--bg3)'">
         </div>
       </div>
       <div class="about-text" data-reveal="fade-up" data-reveal-delay="0.2">
@@ -279,7 +295,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
       <span>Litigation · Property · Commercial · Family · Wills & Estates</span>
     </div>
     <div data-reveal="fade-up" data-reveal-delay="0.3">
-      <a href="#" class="btn btn-outline">Request Full Preview</a>
+      <a href="mailto:hello@w230.net?subject=Full%20Preview%20Request" class="btn btn-outline">Request Full Preview</a>
     </div>
   </div>
 </section>
@@ -405,10 +421,12 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
     const overlay = document.getElementById('navOverlay');
     if (!btn || !nav) return;
     function toggle() {
-      nav.classList.toggle('open');
+      const isOpen = nav.classList.toggle('open');
       overlay.classList.toggle('active');
       btn.classList.toggle('active');
-      document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+      btn.setAttribute('aria-expanded', isOpen);
+      btn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     }
     btn.addEventListener('click', toggle);
     overlay.addEventListener('click', toggle);
@@ -458,9 +476,9 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => setTimeout(runInit, 100));
+    document.addEventListener('DOMContentLoaded', () => { setTimeout(runInit, 100); document.body.classList.add('loaded'); });
   } else {
-    setTimeout(runInit, 100);
+    setTimeout(runInit, 100); document.body.classList.add('loaded');
   }
 })();
 </script>

@@ -8,262 +8,462 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-:root{--bg:#080808;--bg2:#111;--bg3:#1a1a1a;--gold:#c9a24a;--gold-soft:#e0cc80;--gold-dark:#8a6b22;--paper:#faf8f2;--muted:#9a9488;--line:rgba(201,162,74,0.12);--line-strong:rgba(201,162,74,0.4);--serif:'Instrument Serif',Georgia,serif;--sans:Inter,system-ui,sans-serif;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;overflow-x:hidden;-webkit-tap-highlight-color:transparent;}
-body{background:var(--bg);color:var(--paper);font-family:var(--sans);line-height:1.65;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom);}
-a,button{font:inherit;color:inherit;text-decoration:none;cursor:pointer;}button{background:none;border:none;}
-img,svg{max-width:100%;display:block;height:auto;}
-.wrap{width:min(1180px,calc(100% - 36px));margin-inline:auto;}
-.disclaimer{background:#000;color:#777;font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:8px 16px;}
-/* Nav */
-.nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;position:sticky;top:0;z-index:100;transition:background .3s;}
-.nav.scrolled{background:rgba(8,8,8,.88);backdrop-filter:blur(20px) saturate(180%);}
-.brand{font-family:var(--serif);font-size:1.2rem;letter-spacing:-.04em;}
-.brand small{display:block;font-family:var(--sans);color:var(--muted);font-size:.45rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.15rem;}
-.nav-links{display:none;align-items:center;gap:1.5rem;}
-.nav-links a{font-size:.8rem;font-weight:500;color:var(--muted);transition:color .2s;}
-.nav-links a:hover{color:var(--gold);}
-.hamburger{display:flex;flex-direction:column;gap:5px;padding:8px;}
-.hamburger span{display:block;width:22px;height:2px;background:var(--paper);transition:.3s;}
-.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.hamburger.active span:nth-child(2){opacity:0;}
-.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-nav{display:none;position:fixed;top:0;right:0;width:min(300px,85vw);height:100vh;background:rgba(8,8,8,.96);border-left:1px solid var(--line-strong);padding:5rem 2rem 2rem;z-index:99;flex-direction:column;gap:.5rem;backdrop-filter:blur(20px);}
-.mobile-nav.open{display:flex;}
-.mobile-nav a{font-size:1rem;padding:.7rem 0;border-bottom:1px solid var(--line);font-weight:500;}
-.nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:98;backdrop-filter:blur(2px);}
-.nav-overlay.active{display:block;}
-@media(min-width:920px){.nav-links{display:flex;}.hamburger{display:none;}}
-/* Hero */
-.hero{position:relative;overflow:hidden;min-height:85vh;display:flex;align-items:center;}
-.hero-bg{position:absolute;inset:-20%;z-index:0;}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.28;will-change:transform;}
-.hero-gradient{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,8,.2) 0%,rgba(8,8,8,.65) 55%,var(--bg) 100%);z-index:1;}
-.hero-inner{position:relative;z-index:2;padding:4rem 0 3rem;width:100%;}
-.kicker{display:inline-flex;align-items:center;gap:.5rem;color:var(--gold);font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;margin-bottom:1rem;}
-.kicker::before{content:"";width:28px;height:1px;background:var(--gold);}
-h1{font-family:var(--serif);font-size:clamp(2.2rem,5.5vw,4rem);line-height:.92;letter-spacing:-.05em;margin-bottom:1.2rem;}
-.hero-copy{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--muted);max-width:520px;margin-bottom:2rem;}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.8rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border-radius:2px;transition:all .2s;}
-.btn-primary{background:var(--gold);color:var(--bg);}
-.btn-primary:hover{background:var(--gold-soft);}
-.btn-outline{border:1px solid var(--line-strong);color:var(--gold);}
-.btn-outline:hover{border-color:var(--gold);}
-.hero-btns{display:flex;flex-wrap:wrap;gap:.75rem;}
-/* Hero stagger */
-#hero .kicker,#hero h1,#hero .hero-copy,#hero .hero-btns{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.4,0,.2,1);}
-#hero .kicker{transition-delay:.1s;}#hero h1{transition-delay:.25s;}#hero .hero-copy{transition-delay:.4s;}#hero .hero-btns{transition-delay:.55s;}
-#hero.visible .kicker,#hero.visible h1,#hero.visible .hero-copy,#hero.visible .hero-btns{opacity:1;transform:translateY(0);}
-/* Section */
-.section{padding:4rem 0;}
-.section-light{background:var(--paper);color:var(--bg);}
-.section-light .section-header h2{color:var(--bg);}
-.section-light .section-header p{color:#555;}
-.section-light .service-card{background:#fff;border-color:#e0dbd2;}
-.section-light .service-card h3{color:var(--bg);}
-.section-light .service-card p{color:#666;}
-.section-light .card-num{color:var(--gold);}
-.section-header{text-align:center;margin-bottom:2.5rem;}
-.section-header h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.03em;margin-bottom:.5rem;}
-.section-header p{color:var(--muted);font-size:.85rem;max-width:480px;margin-inline:auto;}
-/* Services */
-.services-wrap{position:relative;}
-.swipe-hint{display:none;color:var(--muted);font-size:.75rem;margin-bottom:.75rem;}
-.services-grid{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:.5rem 0 1rem;}
-.services-grid::-webkit-scrollbar{display:none;}
-.service-card{flex:0 0 85vw;scroll-snap-align:start;background:var(--bg2);border:1px solid var(--line);overflow:hidden;transition:border-color .2s,transform .2s;}
-.service-card:hover{border-color:var(--line-strong);transform:translateY(-4px);}
-.card-img{height:160px;background-size:cover;background-position:center;background-color:var(--bg3);}
-.card-body{padding:1.5rem;}
-.card-num{font-size:.65rem;font-weight:800;color:var(--gold);letter-spacing:.1em;display:block;margin-bottom:.5rem;}
-.service-card h3{font-family:var(--serif);font-size:1.1rem;margin-bottom:.4rem;}
-.service-card p{font-size:.8rem;color:var(--muted);line-height:1.5;}
-@media(min-width:620px){.service-card{flex:0 0 42vw;}.swipe-hint{display:block;}}
-@media(min-width:920px){.services-grid{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;}.service-card{flex:none;}.swipe-hint{display:none;}}
-/* About */
-.about-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center;}
-.about-img img{width:100%;border-radius:4px;}
-.about-text h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.03em;margin-bottom:1rem;}
-.about-text p{color:var(--muted);margin-bottom:1rem;font-size:.9rem;}
-.about-text strong{color:var(--gold);}
-@media(min-width:920px){.about-grid{grid-template-columns:1fr 1fr;}}
-/* Contact */
-#contact{text-align:center;padding:4rem 0;border-top:1px solid var(--line);}
-#contact h2{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.5rem;}
-#contact p{color:var(--muted);font-size:.85rem;margin-bottom:1.5rem;}
-.contact-row{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.8rem;color:var(--muted);margin-bottom:2rem;}
-.contact-row strong{color:var(--gold);}
-/* Bottom CTA */
-.bottom-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(8,8,8,.95);border-top:1px solid var(--line-strong);padding:.6rem 1rem;gap:.5rem;justify-content:center;backdrop-filter:blur(12px);transition:transform .3s ease;}
-@media(min-width:768px){.bottom-cta{display:none!important;}}
-/* Scroll animations */
-.fx,.fx-d1,.fx-d2,.fx-d3,.sl-left,.sl-right{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
-.fx-d1{transition-delay:.1s;}.fx-d2{transition-delay:.2s;}.fx-d3{transition-delay:.3s;}
-.sl-left{transform:translateX(-30px);}.sl-right{transform:translateX(30px);}
-.fx.visible,.fx-d1.visible,.fx-d2.visible,.fx-d3.visible,.sl-left.visible,.sl-right.visible{opacity:1;transform:translateY(0) translateX(0);}
-/* Marquee */
-.marquee-wrap{overflow:hidden;padding:1rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:2rem;}
-.marquee{display:flex;gap:2rem;animation:marquee 20s linear infinite;width:max-content;}
-.marquee span{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);opacity:.4;white-space:nowrap;}
-@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-/* Footer */
-.footer{background:#030303;color:#555;text-align:center;padding:2rem;font-size:.65rem;}
-</style>
+:root{
+  --bg:#0a0a0c;
+  --bg2:#111;
+  --bg3:#1a1a1a;
+  --gold:#c9a24a;
+  --gold-soft:#e0cc80;
+  --gold-dark:#8a6b22;
+  --paper:#faf8f2;
+  --muted:#8a9199;
+  --line:rgba(201,162,74,0.12);
+  --line-strong:rgba(201,162,74,0.4);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:Inter,system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--paper);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+a,button{font:inherit;color:inherit;text-decoration:none;cursor:pointer}
+button{background:none;border:none}
+img,svg{max-width:100%;display:block;height:auto}
+.wrap{width:min(1180px,calc(100% - 36px));margin-inline:auto}
+
+/* ── CURTAIN REVEAL ── */
+.curtain-wrapper{position:relative;overflow:hidden;width:100%;height:100%}
+.curtain-overlay{position:absolute;inset:0;z-index:2;background:var(--gold);transform-origin:right}
+
+/* ── Navigation ── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;position:sticky;top:0;z-index:100;transition:background .3s}
+.nav.scrolled{background:rgba(10,10,12,.88);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--serif);font-size:1.2rem;letter-spacing:-.04em}
+.brand small{display:block;font-family:var(--sans);color:var(--muted);font-size:.45rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.15rem}
+.nav-links{display:none;align-items:center;gap:1.5rem}
+.nav-links a{font-size:.8rem;font-weight:500;color:var(--muted);transition:color .2s;position:relative}
+.nav-links a::after{content:"";position:absolute;bottom:-2px;left:50%;width:0;height:1px;background:var(--gold);transition:width .3s,left .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%;left:0}
+.hamburger{display:flex;flex-direction:column;gap:5px;padding:8px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--paper);transition:.3s}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{display:none;position:fixed;top:0;right:0;width:min(300px,85vw);height:100vh;background:rgba(10,10,12,.96);border-left:1px solid var(--line-strong);padding:5rem 2rem 2rem;z-index:99;flex-direction:column;gap:.5rem;backdrop-filter:blur(20px)}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-size:1rem;padding:.7rem 0;border-bottom:1px solid var(--line);font-weight:500}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:98;backdrop-filter:blur(2px)}
+.nav-overlay.active{display:block}
+@media(min-width:920px){.nav-links{display:flex}.hamburger{display:none}}
+
+/* ── HERO ── */
+.hero{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.32;will-change:transform;transform:scale(1.05)}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,.3) 0%,rgba(10,10,12,.7) 50%,var(--bg) 100%);z-index:1}
+.hero-inner{position:relative;z-index:2;padding:6rem 0 4rem;width:100%}
+.kicker{display:inline-flex;align-items:center;gap:.5rem;color:var(--gold);font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;margin-bottom:1rem}
+.kicker::before{content:"";width:28px;height:1px;background:var(--gold)}
+h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;letter-spacing:-.03em;margin-bottom:1.2rem;max-width:700px}
+.hero-copy{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--muted);max-width:520px;margin-bottom:2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border-radius:2px;transition:all .2s;position:relative;overflow:hidden}
+.btn-primary{background:var(--gold);color:var(--bg)}
+.btn-primary:hover{background:var(--gold-soft);transform:scale(1.02)}
+.btn-outline{border:1px solid var(--line-strong);color:var(--gold)}
+.btn-outline:hover{border-color:var(--gold);color:var(--paper)}
+.hero-btns{display:flex;flex-wrap:wrap;gap:.75rem}
+
+/* ── MARQUEE ── */
+.marquee-wrap{overflow:hidden;padding:1.5rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.marquee{display:flex;gap:2rem;white-space:nowrap;animation:marquee 25s linear infinite}
+.marquee span{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);opacity:.6}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SERVICES ── */
+.section{padding:5rem 0}
+.section-light{background:var(--paper);color:var(--bg)}
+.section-light .section-header h2{color:var(--bg)}
+.section-light .section-header p{color:#555}
+.section-light .service-card{background:#fff;border-color:#e0dbd2}
+.section-light .service-card h3{color:var(--bg)}
+.section-light .service-card p{color:#666}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.03em;margin-bottom:.5rem}
+.section-header p{color:var(--muted);font-size:.9rem;max-width:480px;margin-inline:auto}
+.services-grid{display:grid;gap:1.5rem;grid-template-columns:1fr}
+@media(min-width:620px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:920px){.services-grid{grid-template-columns:repeat(3,1fr)}}
+.service-card{background:var(--bg2);border:1px solid var(--line);overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative}
+.service-card:hover{border-color:var(--line-strong);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.service-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .5s}
+.service-card:hover::before{transform:scaleX(1)}
+.card-img{height:200px;background-size:cover;background-position:center;background-color:var(--bg3);position:relative;overflow:hidden}
+.card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--bg2) 100%)}
+.card-body{padding:1.5rem}
+.card-num{font-size:.65rem;font-weight:800;color:var(--gold);letter-spacing:.1em;display:block;margin-bottom:.5rem}
+.service-card h3{font-family:var(--serif);font-size:1.2rem;margin-bottom:.5rem}
+.service-card p{font-size:.85rem;color:var(--muted);line-height:1.6}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center}
+.about-text h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.03em;margin-bottom:1rem}
+.about-text p{color:var(--muted);margin-bottom:1rem;font-size:.95rem}
+.about-text strong{color:var(--gold)}
+.about-img{position:relative;overflow:hidden;border-radius:4px}
+.about-img::before{content:"";position:absolute;inset:0;border:1px solid var(--line-strong);border-radius:4px;z-index:2;pointer-events:none}
+@media(min-width:920px){.about-grid{grid-template-columns:1fr 1fr}}
+
+/* ── CONTACT ── */
+#contact{text-align:center;padding:5rem 0;border-top:1px solid var(--line)}
+#contact h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:.5rem}
+#contact p{color:var(--muted);font-size:.9rem;margin-bottom:2rem}
+.contact-row{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.85rem;color:var(--muted);margin-bottom:2rem}
+.contact-row strong{color:var(--gold)}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:2rem 0;border-top:1px solid var(--line)}
+.footer p{font-size:.75rem;color:var(--muted);opacity:.5}
+
+/* ── BOTTOM CTA ── */
+.bottom-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(10,10,12,.95);border-top:1px solid var(--line-strong);padding:.7rem 1rem;gap:.5rem;justify-content:center;backdrop-filter:blur(12px);transition:transform .3s ease}
+@media(max-width:767px){.bottom-cta{display:flex}}
+
+/* ── SCROLL PROGRESS ── */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));z-index:1000;width:0%;transition:width .1s linear}
+
+
+  </style>
 </head>
 <body>
-<div class="disclaimer">W230 Rebuild Concept &middot; Not Affiliated with Any Firm &middot; Noindex &middot; Proof of Concept Only</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Navigation -->
 <nav class="nav" id="mainNav">
-  <div class="brand"><small>AU-MEL-RSA</small>Legal Preview</div>
-  <div class="nav-links"><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></div>
-  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+    <div class="brand"><small>Family-Owned · 40+ Years · Melbourne Northeast</small>Courthouse Concept</div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
-<div class="nav-overlay"></div>
+
+<div class="nav-overlay" id="navOverlay"></div>
 <div class="mobile-nav" id="mobileNav">
   <a href="#services">Services</a>
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
 </div>
 
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <img src="assets/hero-bg.png" class="parallax-el" data-speed="0.35" alt="" loading="eager">
+    <img src="assets/hero-bg.png" alt="" loading="eager" data-ken-burns="0.7">
   </div>
   <div class="hero-gradient"></div>
   <div class="hero-inner wrap">
-    <div class="kicker">Family-Owned · Rosanna VIC</div>
-    <h1>40 Years of Trust,<br>Rebuilt for Today.</h1>
-    <p class="hero-copy">A concept showing what a premium editorial website could look like for a family-owned practice in Melbourne's northeast. Same legacy. Modern execution.</p>
+    <div class="kicker">Family-Owned · 40+ Years · Melbourne Northeast</div>
+    <h1 data-text-reveal="words">Four Decades<br>of Trust.</h1>
+    <p class="hero-copy">A concept showing what a premium editorial website could look like for a family-owned practice with over 40 years of experience. Same services. Sharper presentation.</p>
     <div class="hero-btns">
-      <a href="#services" class="btn btn-primary" style="color:var(--bg)">View Services</a>
+      <a href="#services" class="btn btn-primary">View Services</a>
       <a href="#contact" class="btn btn-outline">Enquire</a>
     </div>
   </div>
+  
 </section>
 
-<div class="marquee-wrap"><div class="marquee"><span>Conveyancing</span><span>·</span><span>Property Law</span><span>·</span><span>Wills & Estates</span><span>·</span><span>Commercial</span><span>·</span><span>Conveyancing</span><span>·</span><span>Property Law</span><span>·</span><span>Wills & Estates</span><span>·</span><span>Commercial</span><span>·</span></div></div>
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>Conveyancing</span><span>·</span>
+    <span>Wills & Estates</span><span>·</span>
+    <span>Probate</span><span>·</span>
+    <span>Family</span><span>·</span>
+    <span>Litigation</span><span>·</span>
+    <span>Conveyancing</span><span>·</span>
+    <span>Wills & Estates</span><span>·</span>
+    <span>Probate</span><span>·</span>
+    <span>Family</span><span>·</span>
+    <span>Litigation</span><span>·</span>
+  </div>
+</div>
 
+<!-- SERVICES -->
 <section id="services" class="section section-light">
   <div class="wrap">
-    <div class="section-header fx">
+    <div class="section-header" data-reveal="fade-up">
       <h2>Practice Areas</h2>
-      <p>Existing services, presented with clear hierarchy and intent-driven pathways</p>
+      <p>Existing services, presented with clear hierarchy and intention-driven pathways</p>
     </div>
-    <div class="services-wrap">
-      <p class="swipe-hint fx">Swipe to explore →</p>
-      <div class="services-grid">
-      <div class="service-card fx-d1">
-        <div class="card-img" style="background-image:url('assets/img-conveyancing.png')"></div>
-        <div class="card-body"><span class="card-num">01</span>
-          <h3>Conveyancing</h3><p>Buying and selling property, subdivisions, and transfers. Simplifying complex property transactions.</p>
+    <div class="services-grid" data-stagger="0.12" data-stagger-type="fade-up" data-stagger-duration="0.7">
+      <div class="service-card">
+        <div class="card-img" data-curtain="#c9a24a" data-curtain-dir="left" data-curtain-delay="0" style="background-image:url('assets/img-conveyancing.png')">
+          <img src="assets/img-conveyancing.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0">
         </div>
-      </div>
-      <div class="service-card fx-d2">
-        <div class="card-img" style="background-image:url('assets/img-property.png')"></div>
-        <div class="card-body"><span class="card-num">02</span>
-          <h3>Property Law</h3><p>Property planning, development, and landlord-tenant matters.</p>
+        <div class="card-body">
+          <span class="card-num">01</span>
+          <h3>Conveyancing</h3>
+          <p>Property transfers, subdivisions, and all aspects of buying and selling real estate. Experienced in complex transactions.</p>
         </div>
-      </div>
-      <div class="service-card fx-d3">
-        <div class="card-img" style="background-image:url('assets/img-wills.png')"></div>
-        <div class="card-body"><span class="card-num">03</span>
-          <h3>Wills & Estates</h3><p>Wills, powers of attorney, probate, and estate planning. Protecting your family's future for over 40 years.</p>
+      </div><div class="service-card">
+        <div class="card-img" data-curtain="#c9a24a" data-curtain-dir="right" data-curtain-delay="0.15" style="background-image:url('assets/img-wills.png')">
+          <img src="assets/img-wills.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0">
         </div>
-      </div>
-      <div class="service-card fx-d1">
-        <div class="card-img" style="background-image:url('assets/img-commercial.png')"></div>
-        <div class="card-body"><span class="card-num">04</span>
-          <h3>Commercial Law</h3><p>Business advisory, contracts, and commercial matters. Practical legal solutions.</p>
+        <div class="card-body">
+          <span class="card-num">02</span>
+          <h3>Wills & Estates</h3>
+          <p>Standard wills, enduring powers of attorney, and estate planning solutions.</p>
         </div>
-      </div>
-      <div class="service-card fx-d2">
-        <div class="card-img" style="background-image:url('assets/img-conveyancing.png')"></div>
-        <div class="card-body"><span class="card-num">05</span>
-          <h3>Mortgages & Loans</h3><p>Mortgage advice and loan documentation. Guiding you through financing with legal precision.</p>
+      </div><div class="service-card">
+        <div class="card-img" data-curtain="#c9a24a" data-curtain-dir="left" data-curtain-delay="0.3" style="background-image:url('assets/img-estate.png')">
+          <img src="assets/img-estate.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0">
         </div>
-      </div>
+        <div class="card-body">
+          <span class="card-num">03</span>
+          <h3>Probate</h3>
+          <p>Applying for probate and letters of administration. Guiding executors through estate administration.</p>
+        </div>
+      </div><div class="service-card">
+        <div class="card-img" data-curtain="#c9a24a" data-curtain-dir="right" data-curtain-delay="0.45" style="background-image:url('assets/img-family.png')">
+          <img src="assets/img-family.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0">
+        </div>
+        <div class="card-body">
+          <span class="card-num">04</span>
+          <h3>Family</h3>
+          <p>Family law, mediation, and relationship property matters. Sensitive handling of personal affairs.</p>
+        </div>
+      </div><div class="service-card">
+        <div class="card-img" data-curtain="#c9a24a" data-curtain-dir="left" data-curtain-delay="0.6" style="background-image:url('assets/img-litigation.png')">
+          <img src="assets/img-litigation.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0">
+        </div>
+        <div class="card-body">
+          <span class="card-num">05</span>
+          <h3>Litigation</h3>
+          <p>Civil and commercial litigation, dispute resolution, and court representation.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about" class="section">
   <div class="wrap">
     <div class="about-grid">
-      <div class="about-img sl-left">
-        <img src="assets/img-wills.png" alt="" loading="lazy">
+      <div class="about-img" data-reveal="slide-left">
+        <div data-curtain="#c9a24a" data-curtain-dir="up" style="height:100%">
+          <img src="assets/img-about-courthouse.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:4px">
+        </div>
       </div>
-      <div class="about-text sl-right">
+      <div class="about-text" data-reveal="fade-up" data-reveal-delay="0.2">
         <h2>What This Shows</h2>
-        <p>This is a proof-of-concept rebuild for a family-owned practice in Melbourne's northeast with over 40 years of experience. The existing site has deep credibility — this concept shows what that legacy looks like with an editorial aesthetic rooted in civic architecture.</p><p>The courthouse motif signals trust and longevity. Practice areas reflect the firm's actual specialisations. The design is restrained, not salesy.</p><p><strong>Concept only.</strong> No content has been copied. All imagery is original. This preview exists solely to demonstrate what's possible.</p>
+        <p>This is a proof-of-concept rebuild for a family-owned practice in Melbourne's northeast with over 40 years of experience. The existing site has deep credibility — this concept shows what that legacy looks like with an editorial aesthetic rooted in civic architecture.</p>
+        <p>The courthouse motif signals trust and longevity. Practice areas reflect the firm's actual specialisations. The design is restrained, not salesy.</p>
+        <p><strong>Concept only.</strong> No content has been copied. All imagery is original. This preview exists solely to demonstrate what's possible.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
-    <h2>Get in Touch</h2>
-    <p>This is a concept preview. No contact details are published.</p>
-    <div class="contact-row">
-      <span>Rosanna / Northeast Melbourne, VIC</span><strong> · </strong>
-      <span>Conveyancing · Property · Wills · Commercial</span>
+    <h2 data-reveal="fade-up">Get in Touch</h2>
+    <p data-reveal="fade-up" data-reveal-delay="0.1">This is a concept preview. No contact details are published.</p>
+    <div class="contact-row" data-reveal="fade-up" data-reveal-delay="0.2">
+      <span>Melbourne Northeast, VIC</span><strong> · </strong>
+      <span>Conveyancing · Wills · Probate · Family · Litigation</span>
     </div>
-    <div style="margin-top:1.5rem;"><a href="#" class="btn btn-outline">Request Full Preview</a></div>
+    <div data-reveal="fade-up" data-reveal-delay="0.3">
+      <a href="#" class="btn btn-outline">Request Full Preview</a>
+    </div>
   </div>
 </section>
 
+<!-- BOTTOM CTA -->
 <div class="bottom-cta" id="bottomCTA">
-  <a href="#contact" class="btn btn-primary">Enquire Now</a>
-  <a href="#services" class="btn btn-outline">Services</a>
+  <a href="#contact" class="btn btn-primary" style="font-size:.7rem;padding:.6rem 1.2rem">Enquire Now</a>
+  <a href="#services" class="btn btn-outline" style="font-size:.7rem;padding:.6rem 1.2rem">Services</a>
 </div>
-<div class="footer"><p>W230 Rebuild Concept &middot; Not affiliated with any law firm</p></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <p>W230 Rebuild Concept · Not affiliated with any law firm · All rights reserved</p>
+  </div>
+</footer>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/split-type"></script>
 
 <script>
-(function(){
-  var btn=document.querySelector('.hamburger'),nav=document.getElementById('mobileNav'),overlay=document.querySelector('.nav-overlay');
-  function toggleNav(){
-    if(!nav)return;
-    nav.classList.toggle('open');overlay.classList.toggle('active');btn.classList.toggle('active');
-    document.body.style.overflow=nav.classList.contains('open')?'hidden':'';
-    var f=function(){toggleNav()};
-    var links=nav.querySelectorAll('a');
-    for(var i=0;i<links.length;i++){links[i].onclick=toggleNav;}
+/* ── CORE ANIMATION ENGINE ── */
+(function() {
+  'use strict';
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const EASE = { smooth: 'power2.out', dramatic: 'power3.inOut', bounce: 'back.out(1.4)', snap: 'power4.out', gentle: 'sine.inOut' };
+
+  function initCurtains() {
+    document.querySelectorAll('[data-curtain]').forEach(el => {
+      const color = el.dataset.curtain || '#c9a24a';
+      const dir = el.dataset.curtainDir || 'left';
+      const delay = parseFloat(el.dataset.curtainDelay) || 0;
+      const parent = el.parentElement;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'curtain-wrapper';
+      wrapper.style.cssText = 'position:relative;overflow:hidden;width:100%;height:100%;';
+      const curtain = document.createElement('div');
+      curtain.style.cssText = `position:absolute;inset:0;z-index:2;background:${color};transform-origin:${dir==='left'?'right':dir==='right'?'left':dir==='up'?'bottom':'top'};`;
+      parent.insertBefore(wrapper, el);
+      wrapper.appendChild(curtain);
+      wrapper.appendChild(el);
+      if (prefersReducedMotion) { curtain.style.opacity = '0'; return; }
+      const fromVars = {}, toVars = { duration: 1.2, ease: EASE.dramatic, delay: delay, onComplete: () => curtain.style.pointerEvents='none' };
+      if (dir === 'left' || dir === 'right') { fromVars.scaleX = 1; toVars.scaleX = 0; }
+      else { fromVars.scaleY = 1; toVars.scaleY = 0; }
+      gsap.fromTo(curtain, fromVars, { ...toVars, scrollTrigger: { trigger: wrapper, start: 'top 80%', toggleActions: 'play none none none' } });
+    });
   }
-  if(btn)btn.addEventListener('click',toggleNav);
-  if(overlay)overlay.addEventListener('click',toggleNav);
-  var lastScroll=0,cta=document.getElementById('bottomCTA');
-  function handleCTA(){
-    if(!cta)return;
-    if(window.innerWidth>=768){cta.style.display='none';return;}
-    cta.style.display='flex';
-    var s=window.pageYOffset;
-    cta.style.transform=(s>lastScroll&&s>100)?'translateY(100%)':'translateY(0)';
-    lastScroll=s;
+
+  function initKenBurns() {
+    document.querySelectorAll('[data-ken-burns]').forEach(img => {
+      if (prefersReducedMotion) return;
+      const speed = parseFloat(img.dataset.kenBurns) || 1;
+      const startScale = 1 + Math.random() * 0.03;
+      const endScale = 1.08 + Math.random() * 0.04;
+      const startX = (Math.random() - 0.5) * 3;
+      const startY = (Math.random() - 0.5) * 3;
+      gsap.fromTo(img, { scale: startScale, x: `${startX}%`, y: `${startY}%` }, {
+        scale: endScale, x: `${startX * -1.5}%`, y: `${startY * -1.5}%`, duration: 20 / speed, ease: 'none', repeat: -1, yoyo: true
+      });
+    });
   }
-  var parallaxEls=document.querySelectorAll('.parallax-el'),ticking=false;
-  function updateParallax(){
-    if(window.innerWidth<768){ticking=false;return;}
-    var sy=window.pageYOffset;
-    for(var i=0;i<parallaxEls.length;i++){
-      var el=parallaxEls[i],speed=parseFloat(el.getAttribute('data-speed'))||0.4;
-      var past=sy-(el.offsetTop||0);
-      el.style.transform='translateY('+(past*speed*-1).toFixed(1)+'px)';
+
+  function initScrollReveal() {
+    if (prefersReducedMotion) return;
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      const type = el.dataset.reveal || 'fade-up';
+      const delay = parseFloat(el.dataset.revealDelay) || 0;
+      let fromVars = { opacity: 0 };
+      if (type === 'fade-up') fromVars.y = 40;
+      else if (type === 'slide-left') fromVars.x = 60;
+      gsap.fromTo(el, fromVars, { opacity: 1, y: 0, x: 0, duration: 0.8, ease: EASE.smooth, delay: delay,
+        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+      });
+    });
+  }
+
+  function initStagger() {
+    if (prefersReducedMotion) return;
+    document.querySelectorAll('[data-stagger]').forEach(group => {
+      gsap.fromTo(group.children, { opacity: 0, y: 30 }, {
+        opacity: 1, y: 0, duration: parseFloat(group.dataset.staggerDuration) || 0.6,
+        stagger: parseFloat(group.dataset.stagger) || 0.1, ease: EASE.smooth,
+        scrollTrigger: { trigger: group, start: 'top 80%', toggleActions: 'play none none none' }
+      });
+    });
+  }
+
+  function initTextReveal() {
+    if (prefersReducedMotion || typeof SplitType === 'undefined') return;
+    document.querySelectorAll('[data-text-reveal]').forEach(el => {
+      const split = new SplitType(el, { types: 'words' });
+      gsap.fromTo(split.words, { opacity: 0, y: 20 }, {
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.05, ease: EASE.smooth,
+        scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' }
+      });
+    });
+  }
+
+  function initNav() {
+    const nav = document.getElementById('mainNav');
+    if (!nav) return;
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+  }
+
+  function initProgress() {
+    const bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (scrollTop / docHeight * 100) + '%';
+    }, { passive: true });
+  }
+
+  function initMobileMenu() {
+    const btn = document.getElementById('hamburger');
+    const nav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('navOverlay');
+    if (!btn || !nav) return;
+    function toggle() {
+      nav.classList.toggle('open');
+      overlay.classList.toggle('active');
+      btn.classList.toggle('active');
+      document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
     }
-    ticking=false;
+    btn.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', toggle));
   }
-  var fxEls=document.querySelectorAll('.fx,.fx-d1,.fx-d2,.fx-d3,.sl-left,.sl-right');
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
-  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
-  for(var i=0;i<fxEls.length;i++){obs.observe(fxEls[i]);}
-  window.addEventListener('scroll',function(){handleCTA();if(!ticking){requestAnimationFrame(updateParallax);ticking=true;}},{passive:true});
-  // Trigger hero animation
-  window.addEventListener('load',function(){
-    setTimeout(function(){var h=document.getElementById('hero');if(h)h.classList.add('visible');},100);
-  });
-  handleCTA();updateParallax();
+
+  function initBottomCTA() {
+    const cta = document.getElementById('bottomCTA');
+    if (!cta) return;
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth >= 768) return;
+      const s = window.pageYOffset;
+      cta.style.transform = (s > lastScroll && s > 100) ? 'translateY(100%)' : 'translateY(0)';
+      lastScroll = s;
+    }, { passive: true });
+  }
+
+  function initHeroEntrance() {
+    if (prefersReducedMotion) return;
+    const hero = document.getElementById('hero');
+    const kicker = hero.querySelector('.kicker');
+    const h1 = hero.querySelector('h1');
+    const copy = hero.querySelector('.hero-copy');
+    const btns = hero.querySelector('.hero-btns');
+    const tl = gsap.timeline({ delay: 0.3 });
+    tl.fromTo(kicker, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE.smooth })
+      .fromTo(h1, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE.dramatic }, '-=0.3')
+      .fromTo(copy, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE.smooth }, '-=0.4')
+      .fromTo(btns, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: EASE.bounce }, '-=0.3');
+  }
+
+  
+
+  function runInit() {
+    gsap.registerPlugin(ScrollTrigger);
+    initNav();
+    initProgress();
+    initMobileMenu();
+    initBottomCTA();
+    initHeroEntrance();
+    initCurtains();
+    initKenBurns();
+    initScrollReveal();
+    initStagger();
+    initTextReveal();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(runInit, 100));
+  } else {
+    setTimeout(runInit, 100);
+  }
 })();
 </script>
+
 </body>
 </html>

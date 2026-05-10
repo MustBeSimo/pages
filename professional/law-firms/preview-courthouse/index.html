@@ -145,6 +145,63 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
 /* ── SCROLL PROGRESS ── */
 .scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));z-index:1000;width:0%;transition:width .1s linear}
 
+/* ── RESPONSIVE FIXES ── */
+@media(max-width:767px){
+  .hero{min-height:auto;padding:4rem 0 2rem}
+  .hero-inner{padding:3rem 0 1.5rem}
+  h1{font-size:clamp(1.8rem,8vw,2.8rem)!important;line-height:1.05!important}
+  .hero-copy{font-size:.88rem!important;max-width:100%}
+  .hero-btns{flex-direction:column;width:100%}
+  .hero-btns .btn{width:100%;justify-content:center}
+  .kicker{font-size:.55rem;margin-bottom:.75rem}
+  .section{padding:2.5rem 0}
+  .section-header{margin-bottom:1.5rem}
+  .section-header h2{font-size:1.5rem}
+  .services-grid{gap:1rem}
+  .card-img{min-height:140px;height:auto;aspect-ratio:16/10}
+  .card-body{padding:1rem}
+  .service-card h3{font-size:1.05rem}
+  .service-card p{font-size:.8rem}
+  .about-grid{gap:1.5rem}
+  .about-text h2{font-size:1.4rem}
+  .about-text p{font-size:.85rem}
+  .about-img{max-height:250px;overflow:hidden}
+  #contact{padding:2.5rem 0}
+  #contact h2{font-size:1.3rem}
+  .contact-row{flex-direction:column;gap:.5rem;text-align:center}
+  .contact-row strong{display:none}
+  .footer{padding:1.5rem 0}
+  .footer p{font-size:.68rem}
+  .marquee-wrap{padding:1rem 0}
+  .marquee span{font-size:.6rem}
+}
+
+/* Small phone */
+@media(max-width:380px){
+  .wrap{width:calc(100% - 20px)!important}
+  h1{font-size:1.6rem!important}
+  .brand{font-size:1rem}
+  .btn{padding:.65rem 1.2rem;font-size:.68rem}
+  .card-body{padding:.8rem}
+  .card-img{min-height:120px}
+}
+
+/* Landscape */
+@media(max-height:500px) and (orientation:landscape){
+  .hero{min-height:auto;padding:2rem 0}
+  .hero-inner{padding:1.5rem 0}
+  h1{font-size:1.8rem!important}
+}
+
+/* Ensure images visible */
+.card-img img{opacity:1!important}
+[data-curtain]{opacity:1!important}
+
+/* Touch device */
+@media(pointer:coarse){
+  .service-card:hover{transform:none!important;box-shadow:none!important}
+  .service-card::before{display:none}
+}
 
   </style>
 </head>

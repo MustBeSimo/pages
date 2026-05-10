@@ -69,13 +69,14 @@ img[src][style*="opacity:0"]{animation:none!important}
 
 /* ── HERO ── */
 .hero{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center}
+@media(max-width:767px){.hero{min-height:auto;padding:2rem 0}.hero-inner{padding:2rem 0 1rem}h1{font-size:clamp(1.8rem,10vw,2.8rem)!important;line-height:1.05!important;margin-bottom:.8rem;word-break:break-word}.hero-copy{font-size:.85rem!important;max-width:100%;margin-bottom:1rem}.hero-btns{flex-direction:column;width:100%;gap:.5rem}.hero-btns .btn{width:100%;justify-content:center;padding:.7rem 1rem;font-size:.68rem}.kicker{font-size:.5rem;margin-bottom:.5rem}}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.32;will-change:transform;transform:scale(1.05)}
 .hero-gradient{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,.3) 0%,rgba(10,10,12,.7) 50%,var(--bg) 100%);z-index:1}
 .hero-inner{position:relative;z-index:2;padding:6rem 0 4rem;width:100%}
 .kicker{display:inline-flex;align-items:center;gap:.5rem;color:var(--gold);font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;margin-bottom:1rem}
 .kicker::before{content:"";width:28px;height:1px;background:var(--gold)}
-h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;letter-spacing:-.03em;margin-bottom:1.2rem;max-width:700px}
+h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;letter-spacing:-.03em;margin-bottom:1.2rem;max-width:700px;word-break:break-word;overflow-wrap:break-word}
 .hero-copy{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--muted);max-width:520px;margin-bottom:2rem}
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border-radius:2px;transition:all .2s;position:relative;overflow:hidden}
 .btn-primary{background:var(--gold);color:var(--bg)}
@@ -86,12 +87,14 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
 
 /* ── MARQUEE ── */
 .marquee-wrap{overflow:hidden;padding:1.5rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media(max-width:767px){.marquee-wrap{padding:.7rem 0}.marquee span{font-size:.55rem;opacity:.5}}
 .marquee{display:flex;gap:2rem;white-space:nowrap;animation:marquee 25s linear infinite}
 .marquee span{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);opacity:.6}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ── SERVICES ── */
 .section{padding:5rem 0}
+@media(max-width:767px){.section{padding:2rem 0}.section-header{margin-bottom:1.2rem}.section-header h2{font-size:1.4rem}.section-header p{font-size:.82rem}.services-grid{gap:.8rem}.service-card{min-height:auto}.card-img{min-height:140px}.card-body{padding:.8rem}.service-card h3{font-size:1rem;margin-bottom:.3rem}.service-card p{font-size:.78rem;line-height:1.5}.card-num{margin-bottom:.3rem}}
 .section-light{background:var(--paper);color:var(--bg)}
 .section-light .section-header h2{color:var(--bg)}
 .section-light .section-header p{color:#555}
@@ -108,7 +111,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
 .service-card:hover{border-color:var(--line-strong);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
 .service-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .5s}
 .service-card:hover::before{transform:scaleX(1)}
-.card-img{height:200px;background-size:cover;background-position:center;background-color:var(--bg3);position:relative;overflow:hidden}
+.card-img{min-height:160px;height:auto;aspect-ratio:16/10;background-size:cover;background-position:center;background-color:var(--bg3);position:relative;overflow:hidden}
 .card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--bg2) 100%)}
 .card-body{padding:1.5rem}
 .card-num{font-size:.65rem;font-weight:800;color:var(--gold);letter-spacing:.1em;display:block;margin-bottom:.5rem}
@@ -117,6 +120,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
 
 /* ── ABOUT ── */
 .about-grid{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center}
+@media(max-width:767px){.about-grid{gap:1.2rem}.about-text h2{font-size:1.3rem;margin-bottom:.5rem}.about-text p{font-size:.82rem;margin-bottom:.5rem;line-height:1.5}.about-img{max-height:200px;overflow:hidden;border-radius:4px}}
 .about-text h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.03em;margin-bottom:1rem}
 .about-text p{color:var(--muted);margin-bottom:1rem;font-size:.95rem}
 .about-text strong{color:var(--gold)}
@@ -126,6 +130,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
 
 /* ── CONTACT ── */
 #contact{text-align:center;padding:5rem 0;border-top:1px solid var(--line)}
+@media(max-width:767px){#contact{padding:2rem 0}#contact h2{font-size:1.2rem;margin-bottom:.4rem}#contact p{font-size:.8rem;margin-bottom:1.2rem}.contact-row{flex-direction:column;gap:.3rem;font-size:.78rem}.contact-row strong{display:none}.btn-outline{padding:.6rem 1.2rem;font-size:.65rem}}
 #contact h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:.5rem}
 #contact p{color:var(--muted);font-size:.9rem;margin-bottom:2rem}
 .contact-row{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.85rem;color:var(--muted);margin-bottom:2rem}
@@ -133,11 +138,12 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
 
 /* ── FOOTER ── */
 .footer{text-align:center;padding:2rem 0;border-top:1px solid var(--line)}
+@media(max-width:767px){.footer{padding:1rem 0}.footer p{font-size:.6rem;opacity:.4}}
 .footer p{font-size:.75rem;color:var(--muted);opacity:.5}
 
 /* ── BOTTOM CTA ── */
 .bottom-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(10,10,12,.95);border-top:1px solid var(--line-strong);padding:.7rem 1rem;gap:.5rem;justify-content:center;backdrop-filter:blur(12px);transition:transform .3s ease}
-@media(max-width:767px){.bottom-cta{display:flex}}
+@media(max-width:767px){.bottom-cta{display:flex;padding:.5rem}.bottom-cta .btn{padding:.5rem 1rem;font-size:.6rem;min-height:36px}}
 
 /* ── TOUCH TARGETS ── */
 @media(pointer:coarse){.hamburger{padding:12px}.mobile-nav a{padding:1rem 0;font-size:1.1rem}.btn{padding:1rem 2rem;min-height:44px}.nav-links a{padding:.5rem}}
@@ -195,7 +201,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
 
 /* Ensure images visible */
 .card-img img{opacity:1!important}
-[data-curtain]{opacity:1!important}
+[data-curtain]{opacity:1!important}[data-curtain] img{opacity:1!important}
 
 /* Touch device */
 @media(pointer:coarse){
@@ -275,7 +281,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
     <div class="services-grid" data-stagger="0.12" data-stagger-type="fade-up" data-stagger-duration="0.7">
       <div class="service-card">
         <div class="card-img" data-curtain="#c9a24a" data-curtain-dir="left" data-curtain-delay="0" style="background-image:url('assets/img-litigation.png')">
-          <img src="assets/img-litigation.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0">
+          <img src="assets/img-litigation.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">
         </div>
         <div class="card-body">
           <span class="card-num">01</span>
@@ -284,7 +290,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
         </div>
       </div><div class="service-card">
         <div class="card-img" data-curtain="#c9a24a" data-curtain-dir="right" data-curtain-delay="0.15" style="background-image:url('assets/img-property.png')">
-          <img src="assets/img-property.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0">
+          <img src="assets/img-property.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">
         </div>
         <div class="card-body">
           <span class="card-num">02</span>
@@ -293,7 +299,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
         </div>
       </div><div class="service-card">
         <div class="card-img" data-curtain="#c9a24a" data-curtain-dir="left" data-curtain-delay="0.3" style="background-image:url('assets/img-contract.png')">
-          <img src="assets/img-contract.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0">
+          <img src="assets/img-contract.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">
         </div>
         <div class="card-body">
           <span class="card-num">03</span>
@@ -302,7 +308,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
         </div>
       </div><div class="service-card">
         <div class="card-img" data-curtain="#c9a24a" data-curtain-dir="right" data-curtain-delay="0.45" style="background-image:url('assets/img-family.png')">
-          <img src="assets/img-family.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0">
+          <img src="assets/img-family.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">
         </div>
         <div class="card-body">
           <span class="card-num">04</span>
@@ -311,7 +317,7 @@ h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.5rem);line-height:.95;l
         </div>
       </div><div class="service-card">
         <div class="card-img" data-curtain="#c9a24a" data-curtain-dir="left" data-curtain-delay="0.6" style="background-image:url('assets/img-estate.png')">
-          <img src="assets/img-estate.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0">
+          <img src="assets/img-estate.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">
         </div>
         <div class="card-body">
           <span class="card-num">05</span>

@@ -148,7 +148,7 @@ h1{font-family:var(--display);font-size:clamp(2.7rem,5vw,4.7rem);font-weight:700
 .footer p{font-size:.75rem;color:var(--muted);opacity:.5}
 
 /* ── BOTTOM CTA ── */
-.bottom-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(10,10,12,.95);border-top:1px solid var(--line-strong);padding:.7rem 1rem;gap:.5rem;justify-content:center;backdrop-filter:blur(12px);transition:transform .3s ease}
+.bottom-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(10,10,12,.95);border-top:1px solid var(--line-strong);padding:.7rem 1rem;gap:.5rem;justify-content:center;backdrop-filter:blur(12px);transform:translateY(100%);transition:transform .3s ease}
 @media(max-width:767px){.bottom-cta{display:flex;padding:.4rem}.bottom-cta .btn{padding:.45rem .8rem;font-size:.55rem;min-height:36px}}
 
 /* ── TOUCH TARGETS ── */
@@ -478,7 +478,11 @@ h1{font-family:var(--display);font-size:clamp(2.7rem,5vw,4.7rem);font-weight:700
     window.addEventListener('scroll', () => {
       if (window.innerWidth >= 768) return;
       const s = window.pageYOffset;
-      cta.style.transform = (s > lastScroll && s > 100) ? 'translateY(100%)' : 'translateY(0)';
+      if (s < 220) {
+        cta.style.transform = 'translateY(100%)';
+      } else {
+        cta.style.transform = (s > lastScroll) ? 'translateY(100%)' : 'translateY(0)';
+      }
       lastScroll = s;
     }, { passive: true });
   }

@@ -422,7 +422,7 @@ h1{font-family:var(--serif);font-size:clamp(3rem,5.9vw,5.25rem);line-height:.94;
   }
 
   function initTextReveal() {
-    if (prefersReducedMotion || typeof SplitType === 'undefined') return;
+    if (prefersReducedMotion || window.innerWidth < 768 || typeof SplitType === 'undefined') return;
     document.querySelectorAll('[data-text-reveal]').forEach(el => {
       const split = new SplitType(el, { types: 'words' });
       gsap.fromTo(split.words, { opacity: 0, y: 20 }, {
@@ -481,7 +481,7 @@ h1{font-family:var(--serif);font-size:clamp(3rem,5.9vw,5.25rem);line-height:.94;
   }
 
   function initHeroEntrance() {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || window.innerWidth < 768) return;
     const hero = document.getElementById('hero');
     const kicker = hero.querySelector('.kicker');
     const h1 = hero.querySelector('h1');

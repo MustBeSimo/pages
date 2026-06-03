@@ -1,342 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACEFIX Handyman Services — Handyman in Dandenong</title>
-    <meta name="description" content="ACEFIX Handyman Services — professional handyman services in Dandenong and surrounding areas. Call now for a free quote.">
-    <meta name="robots" content="noindex,nofollow">
-    <meta property="og:title" content="ACEFIX Handyman Services — Handyman in Dandenong">
-    <meta property="og:description" content="Professional handyman services. Call 0435 525 139 for a free quote.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg: #0a0a0a;
-            --card: #111111;
-            --border: #1a1a1a;
-            --text: #e5e5e5;
-            --muted: #888;
-            --accent: #f59e0b;
-            --accent2: #ef4444;
-        }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-        
-        /* NAV */
-        .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 1rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(10,10,10,0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .nav-logo { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.02em; }
-        .nav-logo span { color: var(--accent); }
-        .nav-cta {
-            background: linear-gradient(135deg, var(--accent), var(--accent2));
-            color: #fff; padding: 0.6rem 1.4rem; border-radius: 8px;
-            text-decoration: none; font-weight: 600; font-size: 0.9rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,158,11,0.3); }
-        
-        /* HERO */
-        .hero {
-            position: relative; min-height: 100vh; overflow: hidden;
-            display: flex; align-items: center; justify-content: center; text-align: center;
-        }
-        .hero-bg {
-            position: absolute; inset: -20%; z-index: 0; will-change: transform;
-        }
-        .hero-bg img {
-            width: 100%; height: 100%; object-fit: cover;
-            transform: scale(1.1);
-        }
-        .hero-bg::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(10,10,10,0.95));
-        }
-        .hero-inner { position: relative; z-index: 1; max-width: 700px; padding: 2rem; }
-        .pill {
-            display: inline-block; padding: 0.4rem 1rem; border-radius: 50px;
-            background: rgba(245,158,11,0.15); color: var(--accent);
-            font-size: 0.85rem; font-weight: 500; margin-bottom: 1.5rem;
-            border: 1px solid rgba(245,158,11,0.3);
-            opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.2s forwards;
-        }
-        .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
-            opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s 0.4s forwards;
-        }
-        .hero p {
-            font-size: 1.1rem; color: var(--muted); max-width: 500px; margin: 0 auto 2rem;
-            opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.6s forwards;
-        }
-        .btns {
-            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-            opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.8s forwards;
-        }
-        .btn {
-            padding: 0.9rem 2rem; border-radius: 10px; font-weight: 600;
-            text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
-            font-size: 1rem;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent2));
-            color: #fff;
-        }
-        .btn-secondary {
-            background: rgba(255,255,255,0.1); color: #fff;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,158,11,0.2); }
-        
-        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-        
-        /* SECTION */
-        .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-header h2 {
-            font-family: 'Playfair Display', serif; font-size: 2.2rem;
-            font-weight: 700; margin-bottom: 0.5rem;
-        }
-        .section-sub { color: var(--muted); font-size: 1rem; }
-        
-        /* BENTO GRID */
-        .bento {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.2rem;
-        }
-        .b-card {
-            background: var(--card); border: 1px solid var(--border);
-            border-radius: 16px; padding: 2rem;
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-        }
-        .b-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent);
-            box-shadow: 0 12px 32px rgba(245,158,11,0.1);
-        }
-        .b-icon { font-size: 2rem; margin-bottom: 1rem; }
-        .b-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .b-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
-        
-        /* STATS */
-        .stats {
-            background: var(--card); border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-        .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem; text-align: center; max-width: 900px; margin: 0 auto;
-        }
-        .stat-val {
-            display: block; font-size: 2.5rem; font-weight: 800;
-            background: linear-gradient(135deg, var(--accent), var(--accent2));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .stat-label { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
-        
-        /* FAQ */
-        .faq { max-width: 700px; margin: 0 auto; }
-        .faq-item {
-            border: 1px solid var(--border); border-radius: 12px;
-            margin-bottom: 0.8rem; overflow: hidden;
-            background: var(--card);
-        }
-        .faq-item summary {
-            padding: 1.2rem 1.5rem; cursor: pointer; font-weight: 500;
-            list-style: none; display: flex; justify-content: space-between; align-items: center;
-        }
-        .faq-item summary::after { content: '+'; font-size: 1.3rem; color: var(--accent); }
-        .faq-item[open] summary::after { content: '−'; }
-        .faq-item p { padding: 0 1.5rem 1.2rem; color: var(--muted); font-size: 0.9rem; }
-        
-        /* CTA */
-        .cta-box {
-            text-align: center; padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.08));
-            border-radius: 24px; border: 1px solid rgba(245,158,11,0.15);
-            max-width: 800px; margin: 0 auto;
-        }
-        .cta-box h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem; }
-        .cta-box p { color: var(--muted); margin-bottom: 2rem; }
-        
-        /* TRUST */
-        .trust-badges {
-            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        .badge {
-            padding: 0.5rem 1rem; border-radius: 50px;
-            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-            font-size: 0.8rem; color: var(--muted);
-        }
-        
-        /* FOOTER */
-        footer {
-            text-align: center; padding: 3rem 2rem;
-            color: var(--muted); font-size: 0.8rem;
-            border-top: 1px solid var(--border);
-        }
-        footer a { color: var(--accent); text-decoration: none; }
-        
-        /* MOBILE STICKY */
-        .mobile-sticky {
-            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
-            padding: 0.8rem 1rem; display: none;
-            border-top: 1px solid var(--border);
-        }
-        .mobile-sticky .btn { width: 100%; text-align: center; padding: 0.9rem; }
-        
-        @media (max-width: 768px) {
-            .nav { padding: 0.8rem 1rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .section { padding: 3rem 1rem; }
-            .mobile-sticky { display: block; }
-            body { padding-bottom: 70px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="ACEFIX Handyman Services — Handyman Services in Dandenong. General repairs, Home maintenance, Fixture installs, Patch and touch-up work. Call +61 414 068 568.">
+<meta name="robots" content="noindex, nofollow">
+<title>ACEFIX Handyman Services — Dandenong Handyman Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #111111;
+  --ink: #fff8ed;
+  --muted: rgba(255,248,237,.68);
+  --faint: rgba(255,248,237,.12);
+  --line: rgba(255,248,237,.18);
+  --accent: #d2a45f;
+  --accent-2: #7b5b32;
+  --warm: #f1ddba;
+  --panel: rgba(255,248,237,.07);
+  --shadow: rgba(0,0,0,.42);
+  --radius: 28px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body { font-family: Inter, system-ui, sans-serif; color: var(--ink); background:
+  radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 30vw),
+  linear-gradient(180deg, var(--bg), #080806 55%, var(--bg)); line-height: 1.5; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+.nav { position: fixed; z-index: 20; inset: 0 0 auto; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:14px max(18px, env(safe-area-inset-left)) 14px; border-bottom:1px solid var(--line); background:rgba(12,11,9,.62); backdrop-filter: blur(18px); }
+.logo { font-weight:800; letter-spacing:-.04em; font-size:clamp(.95rem, 1.7vw, 1.12rem); }
+.logo i { color:var(--accent); font-style:normal; }
+.nav-meta { color:var(--muted); font-size:.78rem; text-transform:uppercase; letter-spacing:.16em; }
+.nav-cta,.btn { min-height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:999px; padding:12px 18px; font-weight:800; font-size:.92rem; transition: transform .25s ease, background .25s ease, border-color .25s ease; }
+.nav-cta,.btn-primary { color:#15110c; background:var(--warm); box-shadow:0 14px 34px rgba(0,0,0,.28); }
+.btn-secondary { border:1px solid var(--line); color:var(--ink); background:rgba(255,255,255,.04); }
+.btn:hover,.nav-cta:hover { transform: translateY(-2px); }
+.hero { min-height: 112vh; position:relative; isolation:isolate; display:grid; place-items:center; padding:120px 20px 90px; perspective:1200px; overflow:hidden; }
+.depth { position:absolute; inset:-12%; pointer-events:none; will-change:transform, opacity; transform:translate3d(0,0,0); }
+.depth.d1 { background: radial-gradient(circle at 74% 18%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 22vw); opacity:.72; }
+.depth.d2 { background: linear-gradient(105deg, transparent 0 45%, rgba(255,255,255,.07) 45.2% 45.7%, transparent 46% 100%); opacity:.5; }
+.depth.d3 { inset: 18% 7% auto auto; width: min(46vw, 620px); aspect-ratio: 1.25; border:1px solid var(--line); border-radius:44px; background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.02)), repeating-linear-gradient(90deg, transparent 0 18px, rgba(255,255,255,.05) 18px 19px); box-shadow:0 35px 100px var(--shadow); transform:rotateX(4deg) rotateY(-8deg); }
+.depth.d4 { inset:auto auto 6% 4%; width: min(34vw, 480px); aspect-ratio: 1; border-radius:999px; background: radial-gradient(circle, color-mix(in srgb, var(--warm) 32%, transparent), transparent 66%); filter: blur(1px); opacity:.44; }
+.depth.d5 { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 86px 86px; mask-image: radial-gradient(circle at center, black, transparent 68%); opacity:.18; }
+.hero-inner { position:relative; z-index:2; max-width:1120px; width:100%; display:grid; grid-template-columns: 1.08fr .72fr; gap:clamp(28px, 6vw, 86px); align-items:end; transform-style:preserve-3d; }
+.eyebrow { display:inline-flex; width:max-content; padding:9px 13px; border:1px solid var(--line); border-radius:999px; color:var(--warm); text-transform:uppercase; letter-spacing:.16em; font-size:.74rem; font-weight:800; margin-bottom:22px; background:rgba(255,255,255,.04); }
+h1 { font-family:'Instrument Serif', Georgia, serif; font-weight:400; font-size:clamp(3.4rem, 9vw, 9.4rem); line-height:.86; letter-spacing:-.065em; max-width:900px; }
+.hero-copy { margin-top:28px; color:var(--muted); font-size:clamp(1.05rem, 1.7vw, 1.32rem); max-width:650px; }
+.hero-actions { margin-top:34px; display:flex; gap:12px; flex-wrap:wrap; }
+.signal { border:1px solid var(--line); border-radius:var(--radius); background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.035)); padding:24px; box-shadow:0 26px 90px var(--shadow); transform:translateZ(40px); }
+.signal-label { color:var(--muted); text-transform:uppercase; font-size:.72rem; letter-spacing:.16em; font-weight:800; margin-bottom:18px; }
+.signal h2 { font-family:'Instrument Serif', Georgia, serif; font-weight:400; font-size:clamp(2rem,4vw,4.4rem); line-height:.94; letter-spacing:-.04em; }
+.signal p { margin-top:18px; color:var(--muted); }
+.scroll-hud { position:fixed; right:18px; top:86px; z-index:15; color:var(--muted); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; }
+.progress { display:inline-block; width:54px; height:1px; background:var(--line); margin-left:8px; vertical-align:middle; } .progress i { display:block; height:100%; width:0%; background:var(--warm); }
+.story { padding:clamp(70px, 10vw, 150px) 20px; position:relative; }
+.story-grid { max-width:1120px; margin:0 auto; display:grid; grid-template-columns:.72fr 1fr; gap:clamp(28px, 7vw, 92px); align-items:start; }
+.sticky-kicker { position:sticky; top:108px; }
+.kicker { color:var(--warm); text-transform:uppercase; letter-spacing:.16em; font-size:.75rem; font-weight:800; margin-bottom:16px; }
+.section-title { font-family:'Instrument Serif', Georgia, serif; font-size:clamp(2.6rem,6vw,6rem); line-height:.9; letter-spacing:-.05em; font-weight:400; }
+.section-note { color:var(--muted); margin-top:22px; max-width:420px; }
+.chapter-stack { display:grid; gap:18px; }
+.chapter-card { min-height:220px; border:1px solid var(--line); border-radius:var(--radius); padding:28px; background:linear-gradient(135deg, rgba(255,255,255,.105), rgba(255,255,255,.028)); transform:translateY(28px); opacity:.001; transition: transform .75s cubic-bezier(.2,.8,.2,1), opacity .75s ease; }
+.chapter-card.visible { transform:translateY(0); opacity:1; }
+.chapter-num { color:var(--warm); font-weight:800; font-size:.78rem; letter-spacing:.18em; margin-bottom:42px; }
+.chapter-card h3 { font-size:clamp(1.35rem,2vw,2rem); letter-spacing:-.04em; margin-bottom:12px; }
+.chapter-card p { color:var(--muted); max-width:610px; }
+.services { max-width:1120px; margin:0 auto; padding:clamp(70px, 10vw, 150px) 20px; }
+.service-panel { border:1px solid var(--line); border-radius:calc(var(--radius) + 16px); overflow:hidden; background:rgba(255,255,255,.055); }
+.service-panel header { padding:clamp(28px,5vw,58px); display:grid; grid-template-columns:1fr .7fr; gap:28px; border-bottom:1px solid var(--line); }
+.service-panel h2 { font-family:'Instrument Serif', Georgia, serif; font-size:clamp(2.4rem,5.5vw,5.8rem); font-weight:400; line-height:.92; letter-spacing:-.05em; }
+.service-panel p { color:var(--muted); align-self:end; }
+.service-list { list-style:none; display:grid; grid-template-columns:repeat(4,1fr); }
+.service-list li { min-height:170px; padding:24px; border-right:1px solid var(--line); display:flex; flex-direction:column; justify-content:space-between; font-weight:800; letter-spacing:-.03em; }
+.service-list li:last-child { border-right:0; }
+.service-list span { color:var(--warm); font-size:.75rem; letter-spacing:.15em; }
+.cta { padding:clamp(70px, 10vw, 140px) 20px 120px; }
+.cta-box { max-width:1120px; margin:0 auto; border-radius:calc(var(--radius) + 22px); background:linear-gradient(135deg, var(--warm), color-mix(in srgb, var(--accent) 70%, #fff)); color:#18130c; padding:clamp(34px,7vw,86px); display:grid; grid-template-columns:1fr auto; gap:28px; align-items:end; box-shadow:0 40px 100px var(--shadow); }
+.cta-box h2 { font-family:'Instrument Serif', Georgia, serif; font-size:clamp(2.8rem,7vw,7.4rem); font-weight:400; line-height:.86; letter-spacing:-.06em; }
+.cta-box p { margin-top:18px; max-width:620px; color:rgba(20,16,12,.72); }
+.cta-box .btn { background:#14100c; color:var(--ink); white-space:nowrap; }
+footer { border-top:1px solid var(--line); color:var(--muted); padding:24px 20px 34px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:.88rem; }
+.mobile-call { display:none; position:fixed; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom)); z-index:30; }
+.mobile-call a { width:100%; }
+@media (max-width: 820px) {
+  .nav-meta,.scroll-hud { display:none; } .nav-cta { display:none; } .mobile-call { display:block; }
+  .hero { min-height:auto; padding:104px 18px 70px; } .hero-inner,.story-grid,.service-panel header,.cta-box { grid-template-columns:1fr; }
+  .signal { transform:none; } .depth.d3 { width:70vw; inset:25% -20% auto auto; } .depth.d5 { opacity:.12; }
+  .sticky-kicker { position:relative; top:auto; } .service-list { grid-template-columns:1fr; } .service-list li { min-height:120px; border-right:0; border-bottom:1px solid var(--line); }
+  .service-list li:last-child { border-bottom:0; } footer { padding-bottom:88px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  .depth { transform:none !important; } .chapter-card { opacity:1 !important; transform:none !important; }
+}
+</style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="nav">
-    <div class="nav-logo">ACEFIX<span>Handyman Services</span></div>
-    <a href="tel:0435 525 139" class="nav-cta">Call Now</a>
+<nav class="nav" aria-label="Primary navigation">
+  <a class="logo" href="#top">ACEFIX Handyman Services<i>.</i></a>
+  <div class="nav-meta">Dandenong / handyman services</div>
+  <a class="nav-cta" href="tel:+61414068568">Call +61 414 068 568</a>
 </nav>
-
-<!-- HERO -->
-<header class="hero">
-    <div class="hero-bg" id="hb">
-        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80" alt="handyman">
+<div class="scroll-hud">Scroll scene <span class="progress"><i id="progressBar"></i></span></div>
+<header id="top" class="hero" data-scene>
+  <div class="depth d1" data-depth="0.15"></div><div class="depth d2" data-depth="0.30"></div><div class="depth d3" data-depth="0.55" aria-hidden="true"></div><div class="depth d4" data-depth="0.80"></div><div class="depth d5" data-depth="1.10"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Dandenong handyman services</div>
+      <h1>Small fixes handled with proper trade discipline.</h1>
+      <p class="hero-copy">General repairs, installs, maintenance, and punch-list work for Dandenong homes that need the loose ends closed cleanly.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="tel:+61414068568">Call +61 414 068 568</a><a class="btn btn-secondary" href="#services">View services</a></div>
     </div>
-    <div class="hero-inner">
-        <div class="pill">📍 Dandenong & Surrounds</div>
-        <h1>ACEFIX Handyman Services</h1>
-        <p>Professional handyman services in Dandenong. Quality work, fair prices, done right the first time.</p>
-        <div class="btns">
-            <a href="tel:0435 525 139" class="btn btn-primary">📞 Call 0435 525 139</a>
-            <a href="#services" class="btn btn-secondary">Our Services</a>
-        </div>
-    </div>
+    <aside class="signal" aria-label="Service summary">
+      <div class="signal-label">Proof preview</div>
+      <h2>tools / fixes / finish</h2>
+      <p>A sharper one-page presence for a local handyman services business: cinematic enough to feel premium, simple enough to convert.</p>
+    </aside>
+  </div>
 </header>
-
-<!-- STATS -->
-<section class="stats">
-    <div class="section" style="padding-top:3rem;padding-bottom:3rem;">
-        <div class="stats-grid">
-            <div><span class="stat-val">15+</span><span class="stat-label">Years Experience</span></div>
-            <div><span class="stat-val">500+</span><span class="stat-label">Jobs Completed</span></div>
-            <div><span class="stat-val">100%</span><span class="stat-label">Licensed & Insured</span></div>
-            <div><span class="stat-val">0★</span><span class="stat-label">Google Rating</span></div>
-        </div>
-    </div>
+<main>
+<section class="story" aria-labelledby="story-title">
+  <div class="story-grid">
+    <div class="sticky-kicker"><div class="kicker">How the job should feel</div><h2 id="story-title" class="section-title">Less noise. Better finish.</h2><p class="section-note">This page uses a restrained cinematic scroll treatment: depth, pacing, and chaptered copy without hiding the practical decision. Call, quote, book.</p></div>
+    <div class="chapter-stack"><article class="chapter-card reveal"><div class="chapter-num">01</div><h3>Scope the list</h3><p>Jobs are grouped by urgency, access, parts, and finish so a visit does not become a mess.</p></article><article class="chapter-card reveal"><div class="chapter-num">02</div><h3>Repair cleanly</h3><p>Patch, mount, adjust, install, replace: each task gets the right tool and a tidy close.</p></article><article class="chapter-card reveal"><div class="chapter-num">03</div><h3>Leave it resolved</h3><p>The end state is simple: working, level, sealed, aligned, and cleaned up.</p></article></div>
+  </div>
 </section>
-
-<!-- SERVICES -->
-<section class="section" id="services">
-    <div class="section-header">
-        <h2>What We Do</h2>
-        <p class="section-sub">Quality handyman services for homes and businesses</p>
-    </div>
-    <div class="bento">
-            <div class="b-card">
-                <div class="b-icon">🔨</div>
-                <h3>General Repairs</h3>
-                <p>From squeaky doors to broken shelves — sorted</p>
-            </div>
-            <div class="b-card">
-                <div class="b-icon">📦</div>
-                <h3>Flat Pack Assembly</h3>
-                <p>IKEA, Bunnings, any brand — assembled properly</p>
-            </div>
-            <div class="b-card">
-                <div class="b-icon">🪟</div>
-                <h3>Door & Window Repairs</h3>
-                <p>Hinges, locks, handles — all fixed</p>
-            </div>
-            <div class="b-card">
-                <div class="b-icon">💡</div>
-                <h3>Fixture Installation</h3>
-                <p>Shelves, blinds, TVs — mounted securely</p>
-            </div>
-    </div>
+<section id="services" class="services" aria-labelledby="services-title">
+  <div class="service-panel">
+    <header><h2 id="services-title">Services without the brochure fog.</h2><p>Clear trade categories, one phone path, and enough detail for a local homeowner to know they are in the right place.</p></header>
+    <ul class="service-list"><li><span>01</span>General repairs</li><li><span>02</span>Home maintenance</li><li><span>03</span>Fixture installs</li><li><span>04</span>Patch and touch-up work</li></ul>
+  </div>
 </section>
-
-<!-- FAQ -->
-<section class="section">
-    <div class="section-header">
-        <h2>Common Questions</h2>
-        <p class="section-sub">Everything you need to know</p>
-    </div>
-    <div class="faq">
-            <details class="faq-item">
-                <summary>Is there a minimum charge?</summary>
-                <p>Yes — 1 hour minimum. Most small jobs fit within that.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Do you supply materials?</summary>
-                <p>We can supply or work with materials you've already purchased.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Are you insured?</summary>
-                <p>Yes — fully insured for residential and commercial work.</p>
-            </details>
-            <details class="faq-item">
-                <summary>What types of jobs do you do?</summary>
-                <p>Almost anything — repairs, assembly, installations, maintenance. Just ask!</p>
-            </details>
-    </div>
+<section class="cta" aria-labelledby="cta-title">
+  <div class="cta-box"><div><h2 id="cta-title">Ready for a quote?</h2><p>Tell ACEFIX Handyman Services what needs fixing, installing, restoring, or pouring. The fastest path is a direct call.</p></div><a class="btn" href="tel:+61414068568">Call +61 414 068 568</a></div>
 </section>
-
-<!-- CTA -->
-<section class="section">
-    <div class="cta-box">
-        <h2>Ready to Get Started?</h2>
-        <p>Call now for a free, no-obligation quote. We're ready when you are.</p>
-        <a href="tel:0435 525 139" class="btn btn-primary">📞 Call 0435 525 139</a>
-        <div class="trust-badges">
-            <span class="badge">✓ Licensed & Insured</span>
-            <span class="badge">✓ Free Quotes</span>
-            <span class="badge">✓ Local Dandenong Business</span>
-            <span class="badge">✓ Quality Guaranteed</span>
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <p><strong>ACEFIX Handyman Services</strong> — Handyman in Dandenong</p>
-    <p>Dandenong VIC | <a href="tel:0435 525 139">0435 525 139</a></p>
-    <p style="margin-top:0.5rem;">© 2026 ACEFIX Handyman Services. Preview by W230.</p>
-<p style="margin-top:0.5rem;font-size:0.7rem;opacity:0.5;">Preview built by <a href="https://w230.net" target="_blank" style="color:inherit;text-decoration:none;">W230</a> — <a href="tel:0435525139" style="color:inherit;text-decoration:none;">0435 525 139</a></p></footer>
-
-<!-- MOBILE STICKY -->
-<div class="mobile-sticky">
-    <a href="tel:0435 525 139" class="btn btn-primary">📞 Call Now — Free Quote</a>
-</div>
-
-<!-- PARALLAX -->
+</main>
+<footer><span>ACEFIX Handyman Services — Dandenong handyman services</span><span>Preview rebuild by W230. Noindex.</span></footer>
+<div class="mobile-call"><a class="btn btn-primary" href="tel:+61414068568">Call +61 414 068 568</a></div>
 <script>
-const hb = document.getElementById('hb');
-let ticking = false;
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            hb.style.transform = 'translateY(' + window.scrollY * 0.35 + 'px)';
-            ticking = false;
-        });
-        ticking = true;
-    }
-});
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const layers = [...document.querySelectorAll('[data-depth]')];
+  const progress = document.getElementById('progressBar');
+  const reveals = [...document.querySelectorAll('.reveal')];
+  const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.22 });
+  reveals.forEach(el => io.observe(el));
+  if (reduce) { reveals.forEach(el => el.classList.add('visible')); return; }
+  let ticking = false;
+  function draw() {
+    const y = window.scrollY || 0;
+    const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    if (progress) progress.style.width = Math.min(100, (y / max) * 100).toFixed(2) + '%';
+    // Cinematic technique: slow crane/parallax field, transform-only hot path.
+    layers.forEach(layer => {
+      const d = parseFloat(layer.dataset.depth || '0');
+      const ty = y * d * -0.10;
+      const rz = Math.sin(y / 900) * d * 1.2;
+      layer.style.transform = `translate3d(0, ${ty}px, 0) rotate(${rz}deg)`;
+    });
+    ticking = false;
+  }
+  addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(draw); ticking = true; } }, { passive:true });
+  addEventListener('resize', draw, { passive:true });
+  draw();
+})();
 </script>
-
 </body>
 </html>

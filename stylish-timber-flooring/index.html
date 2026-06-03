@@ -2,213 +2,170 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Real Timber, Real Warmth. - Craigieburn Flooring services by Stylish Timber Flooring. Call 0435 525 139.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Stylish Timber Flooring — Timber Flooring in Craigieburn. Timber installation, Sanding and polishing, Floor restoration, Board repairs. Call 0452419733.">
 <meta name="robots" content="noindex, nofollow">
-<title>Stylish Timber Flooring - Craigieburn Flooring</title>
+<title>Stylish Timber Flooring — Craigieburn Timber Flooring</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-:root { --bg: #FAFAF9; --surface: #FFFFFF; --dark: #0C0A09; --text: #1C1917; --text-muted: #78716C; --accent: #B45309; --accent-hover: #92400E; --accent-subtle: #FEF3C7; --border: #E7E5E4; --radius: 24px; }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); line-height: 1.5; overflow-x: hidden; }
-a { text-decoration: none; color: inherit; }
-img { max-width: 100%; display: block; object-fit: cover; }
-
-/* NAV */
-.nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(250,250,249,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; transition: box-shadow 0.3s ease; }
-.nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-.nav-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
-.nav-logo span { color: var(--accent); }
-.nav-cta { background: var(--accent); color: white; padding: 10px 20px; border-radius: 99px; font-size: 0.85rem; font-weight: 600; }
-.nav-cta:hover { background: var(--accent-hover); }
-
-/* HERO */
-.hero { position: relative; min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 80px; }
-.hero-bg { position: absolute; inset: 0; z-index: 0; }
-.hero-bg img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s; }
-.hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(250,250,249,0.8), rgba(250,250,249,0.98)); z-index: 1; }
-.hero-inner { position: relative; z-index: 2; max-width: 850px; }
-.pill { display: inline-flex; align-items: center; color: var(--accent); background: var(--accent-subtle); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 8px 14px; border-radius: 99px; margin-bottom: 24px; }
-.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem); color: var(--dark); margin-bottom: 20px; line-height: 1.05; }
-.hero p { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--text-muted); margin-bottom: 36px; max-width: 600px; margin-left: auto; margin-right: auto; }
-.btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 32px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.2s ease; }
-.btn-main { background: var(--dark); color: white; }
-.btn-main:hover { background: var(--accent); transform: translateY(-2px); }
-.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--dark); margin-left: 10px; }
-.btn-ghost:hover { border-color: var(--dark); }
-
-/* MARQUEE */
-.marquee { background: var(--dark); color: white; padding: 16px 0; overflow: hidden; white-space: nowrap; }
-.marquee-content { display: inline-block; animation: scroll 25s linear infinite; }
-.marquee-item { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-right: 40px; }
-.marquee-dot { color: var(--accent); font-size: 1.5rem; }
-@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-/* SECTION */
-.section { padding: 100px 24px; }
-h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 12px; }
-.section-sub { text-align: center; color: var(--text-muted); margin-bottom: 50px; font-size: 1.15rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-/* BENTO */
-.bento { display: grid; gap: 24px; max-width: 1100px; margin: 0 auto; grid-template-columns: repeat(12, 1fr); }
-.b-card { border-radius: var(--radius); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; background: #fff; border: 1px solid var(--border); min-height: 280px; }
-.b-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); }
-.b-card img { width: 100%; height: 100%; position: absolute; inset: 0; transition: transform 0.5s ease; }
-.b-card:hover img { transform: scale(1.05); }
-.b-card-content { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.85), transparent 60%); padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; color: white; }
-.b-card-content h3 { font-family: 'Inter', sans-serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; }
-.b-card-content p { color: rgba(255,255,255,0.9); font-size: 0.9rem; }
-.b-card.wide { grid-column: span 8; }
-.b-card.half { grid-column: span 4; }
-.b-card.accent { background: var(--accent); border: none; display: flex; flex-direction: column; justify-content: center; padding: 32px; transition: background 0.3s; }
-.b-card.accent:hover { background: var(--accent-hover); }
-.b-card.accent h3, .b-card.accent p { color: white; position: relative; z-index: 2; }
-.b-icon { font-size: 2.5rem; margin-bottom: 16px; }
-
-/* STATS */
-.stats { padding: 60px 24px; background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 900px; margin: 0 auto; text-align: center; }
-.stat-val { font-size: 3rem; font-weight: 800; color: var(--dark); display: block; margin-bottom: 4px; }
-.stat-label { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; letter-spacing: 0.1em; }
-
-/* ABOUT */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1000px; margin: 0 auto; align-items: center; }
-.about-img { border-radius: var(--radius); overflow: hidden; height: 400px; box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
-.about-text h2 { text-align: left; margin-bottom: 20px; }
-.about-text p { color: var(--text-muted); margin-bottom: 20px; font-size: 1.05rem; }
-
-/* FAQ */
-.faq { max-width: 700px; margin: 0 auto; background: white; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-details { padding: 24px; cursor: pointer; border-bottom: 1px solid var(--border); }
-details:last-child { border-bottom: none; }
-details:hover { background: var(--bg); }
-summary { font-weight: 600; font-size: 1.05rem; display: flex; justify-content: space-between; list-style: none; color: var(--dark); }
-summary::-webkit-details-marker { display: none; }
-summary::after { content: '+'; font-size: 1.5rem; color: var(--accent); transition: 0.3s; }
-details[open] summary::after { transform: rotate(45deg); }
-details p { margin-top: 16px; color: var(--text-muted); }
-
-/* CTA */
-.cta-box { max-width: 900px; margin: 0 auto; background: var(--accent); color: white; border-radius: var(--radius); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
-.cta-box::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(255,255,255,0.2), transparent 60%); }
-.cta-box h2 { color: white; margin-bottom: 16px; }
-.cta-box p { color: rgba(255,255,255,0.95); font-size: 1.2rem; margin-bottom: 24px; }
-.btn-white { background: white; color: var(--dark); }
-.btn-white:hover { background: #f0f0f0; }
-
-/* FOOTER */
-footer { padding: 80px 24px 40px; background: var(--bg); border-top: 1px solid var(--border); }
-.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto 60px; }
-.foot-col h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; color: var(--text-muted); }
-.foot-col ul { list-style: none; }
-.foot-col li { margin-bottom: 10px; }
-.foot-col a:hover { color: var(--accent); }
-.footer-bottom { text-align: center; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 24px; font-size: 0.85rem; }
-
-/* MOBILE */
-.mobile-sticky { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--border); z-index: 102; padding: 8px 16px; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); }
-
-@media (max-width: 768px) {
-  .bento { display: flex; flex-direction: column; }
-  .b-card { min-height: 220px; width: 100%; }
-  .b-card.accent { min-height: auto; }
-  .hero { min-height: auto; padding: 110px 20px 60px; }
-  .hero h1 { font-size: 2.2rem; }
-  .hero::before { background: linear-gradient(to bottom, rgba(250,250,249,0.85), white); }
-  .nav-cta { display: none; }
-  .nav { padding: 10px 16px; }
-  .section { padding: 60px 20px; }
-  .about-grid { grid-template-columns: 1fr; gap: 30px; }
-  .about-img { height: 250px; }
-  .mobile-sticky { display: flex; gap: 8px; }
-  footer { padding-bottom: 90px; }
-  .cta-box { margin: 0 20px; padding: 60px 20px; }
+:root {
+  --bg: #14100c;
+  --ink: #fff8ed;
+  --muted: rgba(255,248,237,.68);
+  --faint: rgba(255,248,237,.12);
+  --line: rgba(255,248,237,.18);
+  --accent: #b7793d;
+  --accent-2: #6f4a2f;
+  --warm: #f3dfc3;
+  --panel: rgba(255,248,237,.07);
+  --shadow: rgba(0,0,0,.42);
+  --radius: 28px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body { font-family: Inter, system-ui, sans-serif; color: var(--ink); background:
+  radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 30vw),
+  linear-gradient(180deg, var(--bg), #080806 55%, var(--bg)); line-height: 1.5; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+.nav { position: fixed; z-index: 20; inset: 0 0 auto; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:14px max(18px, env(safe-area-inset-left)) 14px; border-bottom:1px solid var(--line); background:rgba(12,11,9,.62); backdrop-filter: blur(18px); }
+.logo { font-weight:800; letter-spacing:-.04em; font-size:clamp(.95rem, 1.7vw, 1.12rem); }
+.logo i { color:var(--accent); font-style:normal; }
+.nav-meta { color:var(--muted); font-size:.78rem; text-transform:uppercase; letter-spacing:.16em; }
+.nav-cta,.btn { min-height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:999px; padding:12px 18px; font-weight:800; font-size:.92rem; transition: transform .25s ease, background .25s ease, border-color .25s ease; }
+.nav-cta,.btn-primary { color:#15110c; background:var(--warm); box-shadow:0 14px 34px rgba(0,0,0,.28); }
+.btn-secondary { border:1px solid var(--line); color:var(--ink); background:rgba(255,255,255,.04); }
+.btn:hover,.nav-cta:hover { transform: translateY(-2px); }
+.hero { min-height: 112vh; position:relative; isolation:isolate; display:grid; place-items:center; padding:120px 20px 90px; perspective:1200px; overflow:hidden; }
+.depth { position:absolute; inset:-12%; pointer-events:none; will-change:transform, opacity; transform:translate3d(0,0,0); }
+.depth.d1 { background: radial-gradient(circle at 74% 18%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 22vw); opacity:.72; }
+.depth.d2 { background: linear-gradient(105deg, transparent 0 45%, rgba(255,255,255,.07) 45.2% 45.7%, transparent 46% 100%); opacity:.5; }
+.depth.d3 { inset: 18% 7% auto auto; width: min(46vw, 620px); aspect-ratio: 1.25; border:1px solid var(--line); border-radius:44px; background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.02)), repeating-linear-gradient(90deg, transparent 0 18px, rgba(255,255,255,.05) 18px 19px); box-shadow:0 35px 100px var(--shadow); transform:rotateX(4deg) rotateY(-8deg); }
+.depth.d4 { inset:auto auto 6% 4%; width: min(34vw, 480px); aspect-ratio: 1; border-radius:999px; background: radial-gradient(circle, color-mix(in srgb, var(--warm) 32%, transparent), transparent 66%); filter: blur(1px); opacity:.44; }
+.depth.d5 { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 86px 86px; mask-image: radial-gradient(circle at center, black, transparent 68%); opacity:.18; }
+.hero-inner { position:relative; z-index:2; max-width:1120px; width:100%; display:grid; grid-template-columns: 1.08fr .72fr; gap:clamp(28px, 6vw, 86px); align-items:end; transform-style:preserve-3d; }
+.eyebrow { display:inline-flex; width:max-content; padding:9px 13px; border:1px solid var(--line); border-radius:999px; color:var(--warm); text-transform:uppercase; letter-spacing:.16em; font-size:.74rem; font-weight:800; margin-bottom:22px; background:rgba(255,255,255,.04); }
+h1 { font-family:'Instrument Serif', Georgia, serif; font-weight:400; font-size:clamp(3.4rem, 9vw, 9.4rem); line-height:.86; letter-spacing:-.065em; max-width:900px; }
+.hero-copy { margin-top:28px; color:var(--muted); font-size:clamp(1.05rem, 1.7vw, 1.32rem); max-width:650px; }
+.hero-actions { margin-top:34px; display:flex; gap:12px; flex-wrap:wrap; }
+.signal { border:1px solid var(--line); border-radius:var(--radius); background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.035)); padding:24px; box-shadow:0 26px 90px var(--shadow); transform:translateZ(40px); }
+.signal-label { color:var(--muted); text-transform:uppercase; font-size:.72rem; letter-spacing:.16em; font-weight:800; margin-bottom:18px; }
+.signal h2 { font-family:'Instrument Serif', Georgia, serif; font-weight:400; font-size:clamp(2rem,4vw,4.4rem); line-height:.94; letter-spacing:-.04em; }
+.signal p { margin-top:18px; color:var(--muted); }
+.scroll-hud { position:fixed; right:18px; top:86px; z-index:15; color:var(--muted); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; }
+.progress { display:inline-block; width:54px; height:1px; background:var(--line); margin-left:8px; vertical-align:middle; } .progress i { display:block; height:100%; width:0%; background:var(--warm); }
+.story { padding:clamp(70px, 10vw, 150px) 20px; position:relative; }
+.story-grid { max-width:1120px; margin:0 auto; display:grid; grid-template-columns:.72fr 1fr; gap:clamp(28px, 7vw, 92px); align-items:start; }
+.sticky-kicker { position:sticky; top:108px; }
+.kicker { color:var(--warm); text-transform:uppercase; letter-spacing:.16em; font-size:.75rem; font-weight:800; margin-bottom:16px; }
+.section-title { font-family:'Instrument Serif', Georgia, serif; font-size:clamp(2.6rem,6vw,6rem); line-height:.9; letter-spacing:-.05em; font-weight:400; }
+.section-note { color:var(--muted); margin-top:22px; max-width:420px; }
+.chapter-stack { display:grid; gap:18px; }
+.chapter-card { min-height:220px; border:1px solid var(--line); border-radius:var(--radius); padding:28px; background:linear-gradient(135deg, rgba(255,255,255,.105), rgba(255,255,255,.028)); transform:translateY(28px); opacity:.001; transition: transform .75s cubic-bezier(.2,.8,.2,1), opacity .75s ease; }
+.chapter-card.visible { transform:translateY(0); opacity:1; }
+.chapter-num { color:var(--warm); font-weight:800; font-size:.78rem; letter-spacing:.18em; margin-bottom:42px; }
+.chapter-card h3 { font-size:clamp(1.35rem,2vw,2rem); letter-spacing:-.04em; margin-bottom:12px; }
+.chapter-card p { color:var(--muted); max-width:610px; }
+.services { max-width:1120px; margin:0 auto; padding:clamp(70px, 10vw, 150px) 20px; }
+.service-panel { border:1px solid var(--line); border-radius:calc(var(--radius) + 16px); overflow:hidden; background:rgba(255,255,255,.055); }
+.service-panel header { padding:clamp(28px,5vw,58px); display:grid; grid-template-columns:1fr .7fr; gap:28px; border-bottom:1px solid var(--line); }
+.service-panel h2 { font-family:'Instrument Serif', Georgia, serif; font-size:clamp(2.4rem,5.5vw,5.8rem); font-weight:400; line-height:.92; letter-spacing:-.05em; }
+.service-panel p { color:var(--muted); align-self:end; }
+.service-list { list-style:none; display:grid; grid-template-columns:repeat(4,1fr); }
+.service-list li { min-height:170px; padding:24px; border-right:1px solid var(--line); display:flex; flex-direction:column; justify-content:space-between; font-weight:800; letter-spacing:-.03em; }
+.service-list li:last-child { border-right:0; }
+.service-list span { color:var(--warm); font-size:.75rem; letter-spacing:.15em; }
+.cta { padding:clamp(70px, 10vw, 140px) 20px 120px; }
+.cta-box { max-width:1120px; margin:0 auto; border-radius:calc(var(--radius) + 22px); background:linear-gradient(135deg, var(--warm), color-mix(in srgb, var(--accent) 70%, #fff)); color:#18130c; padding:clamp(34px,7vw,86px); display:grid; grid-template-columns:1fr auto; gap:28px; align-items:end; box-shadow:0 40px 100px var(--shadow); }
+.cta-box h2 { font-family:'Instrument Serif', Georgia, serif; font-size:clamp(2.8rem,7vw,7.4rem); font-weight:400; line-height:.86; letter-spacing:-.06em; }
+.cta-box p { margin-top:18px; max-width:620px; color:rgba(20,16,12,.72); }
+.cta-box .btn { background:#14100c; color:var(--ink); white-space:nowrap; }
+footer { border-top:1px solid var(--line); color:var(--muted); padding:24px 20px 34px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:.88rem; }
+.mobile-call { display:none; position:fixed; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom)); z-index:30; }
+.mobile-call a { width:100%; }
+@media (max-width: 820px) {
+  .nav-meta,.scroll-hud { display:none; } .nav-cta { display:none; } .mobile-call { display:block; }
+  .hero { min-height:auto; padding:104px 18px 70px; } .hero-inner,.story-grid,.service-panel header,.cta-box { grid-template-columns:1fr; }
+  .signal { transform:none; } .depth.d3 { width:70vw; inset:25% -20% auto auto; } .depth.d5 { opacity:.12; }
+  .sticky-kicker { position:relative; top:auto; } .service-list { grid-template-columns:1fr; } .service-list li { min-height:120px; border-right:0; border-bottom:1px solid var(--line); }
+  .service-list li:last-child { border-bottom:0; } footer { padding-bottom:88px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  .depth { transform:none !important; } .chapter-card { opacity:1 !important; transform:none !important; }
 }
 </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-logo">Stylish Timber Flooring <span>.</span></div><a href="tel:0435 525 139" class="nav-cta">Call Now</a></nav>
-
-<header class="hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80" alt="Stylish Timber Flooring" loading="eager"></div><div class="hero-inner">
-<div class="pill">📍 Serving Craigieburn</div>
-<h1>Real Timber, Real Warmth.</h1>
-<p>Specialising in supply, installation, sanding, and restoration.</p>
-<a href="tel:0435 525 139" class="btn btn-main">Get Free Quote</a>
-<a href="#services" class="btn btn-ghost">View Services</a>
-</div></header>
-
-<div class="marquee"><div class="marquee-content" id="ticker"></div></div>
-
-<section id="services" class="section">
-<h2>Services</h2><p class="section-sub">Top quality work for any project size.</p>
-<div class="bento">
-  <div class="b-card wide"><img src="https://images.unsplash.com/photo-1600508774634-4e11d34730e2?auto=format&fit=crop&w=800&q=80" alt="Timber Supply" loading="lazy"><div class="b-card-content"><h3>Timber Supply</h3><p>Top species from local mills.</p></div></div>
-  <div class="b-card half accent"><div class="b-icon">💎</div><h3>Sanding & Polish</h3><p>Mirror-finish results.</p></div>
-  <div class="b-card half"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" alt="Restoration" loading="lazy"><div class="b-card-content"><h3>Restoration</h3><p>Bring old floors back to life.</p></div></div>
-  <div class="b-card half"><img src="https://images.unsplash.com/photo-1614355251394-14819c35db37?auto=format&fit=crop&w=600&q=80" alt="Repairs" loading="lazy"><div class="b-card-content"><h3>Repairs</h3><p>Replacing damaged boards.</p></div></div>
-</div>
+<nav class="nav" aria-label="Primary navigation">
+  <a class="logo" href="#top">Stylish Timber Flooring<i>.</i></a>
+  <div class="nav-meta">Craigieburn / timber flooring</div>
+  <a class="nav-cta" href="tel:0452419733">Call 0452419733</a>
+</nav>
+<div class="scroll-hud">Scroll scene <span class="progress"><i id="progressBar"></i></span></div>
+<header id="top" class="hero" data-scene>
+  <div class="depth d1" data-depth="0.15"></div><div class="depth d2" data-depth="0.30"></div><div class="depth d3" data-depth="0.55" aria-hidden="true"></div><div class="depth d4" data-depth="0.80"></div><div class="depth d5" data-depth="1.10"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Craigieburn timber flooring</div>
+      <h1>Timber floors that make the room feel finished.</h1>
+      <p class="hero-copy">Supply, installation, sanding, polishing, repairs, and restoration for Craigieburn homes that need warmer floors and cleaner workmanship.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="tel:0452419733">Call 0452419733</a><a class="btn btn-secondary" href="#services">View services</a></div>
+    </div>
+    <aside class="signal" aria-label="Service summary">
+      <div class="signal-label">Proof preview</div>
+      <h2>grain / polish / threshold</h2>
+      <p>A sharper one-page presence for a local timber flooring business: cinematic enough to feel premium, simple enough to convert.</p>
+    </aside>
+  </div>
+</header>
+<main>
+<section class="story" aria-labelledby="story-title">
+  <div class="story-grid">
+    <div class="sticky-kicker"><div class="kicker">How the job should feel</div><h2 id="story-title" class="section-title">Less noise. Better finish.</h2><p class="section-note">This page uses a restrained cinematic scroll treatment: depth, pacing, and chaptered copy without hiding the practical decision. Call, quote, book.</p></div>
+    <div class="chapter-stack"><article class="chapter-card reveal"><div class="chapter-num">01</div><h3>Surface read</h3><p>Boards, thresholds, edges, and existing wear are assessed before the job is framed.</p></article><article class="chapter-card reveal"><div class="chapter-num">02</div><h3>Material choice</h3><p>Timber tone, durability, finish, and room light are matched instead of guessed.</p></article><article class="chapter-card reveal"><div class="chapter-num">03</div><h3>Install + finish</h3><p>Clean sequencing from preparation to polish, with the final surface doing the selling.</p></article></div>
+  </div>
 </section>
-
-<section class="stats">
-<div class="stats-grid">
-  <div><span class="stat-val">15+</span><span class="stat-label">Years Exp</span></div>
-  <div><span class="stat-val">1000+</span><span class="stat-label">Jobs Done</span></div>
-  <div><span class="stat-val">100%</span><span class="stat-label">Insured</span></div>
-</div>
+<section id="services" class="services" aria-labelledby="services-title">
+  <div class="service-panel">
+    <header><h2 id="services-title">Services without the brochure fog.</h2><p>Clear trade categories, one phone path, and enough detail for a local homeowner to know they are in the right place.</p></header>
+    <ul class="service-list"><li><span>01</span>Timber installation</li><li><span>02</span>Sanding and polishing</li><li><span>03</span>Floor restoration</li><li><span>04</span>Board repairs</li></ul>
+  </div>
 </section>
-
-<section class="section">
-<div class="about-grid">
-<div class="about-img"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=1200&q=80" alt="About Us" style="width:100%;height:100%;"></div>
-<div class="about-text">
-  <h2>About Us</h2>
-  <p>We are Craigieburn's premier Flooring specialists. With over 15 years of experience, we pride ourselves on quality workmanship and transparent pricing.</p>
-  <p>Whether it's a small repair or a major renovation, our team delivers results that speak for themselves.</p>
-</div>
-</div>
+<section class="cta" aria-labelledby="cta-title">
+  <div class="cta-box"><div><h2 id="cta-title">Ready for a quote?</h2><p>Tell Stylish Timber Flooring what needs fixing, installing, restoring, or pouring. The fastest path is a direct call.</p></div><a class="btn" href="tel:0452419733">Call 0452419733</a></div>
 </section>
-
-<section class="section">
-<h2>FAQ</h2><p class="section-sub">Everything you need to know.</p>
-<div class="faq">
-<details><summary>Do you offer free quotes?</summary><p>Yes! We offer completely free, no-obligation quotes. Just give us a call.</p></details>
-<details><summary>Do you service my area?</summary><p>We service Craigieburn and all surrounding suburbs within 30km.</p></details>
-<details><summary>Are you licensed?</summary><p>Absolutely. We are fully licensed, insured, and qualified for all work.</p></details>
-<details><summary>How soon can you start?</summary><p>Typically within 1-2 weeks of booking, depending on project size.</p></details>
-</div>
-</section>
-
-<div class="cta-box">
-<h2>Ready to start?</h2>
-<p>Contact us today for a chat about your Flooring needs.</p>
-<a href="tel:0435 525 139" class="btn btn-white">Call Now</a>
-</div>
-
-<footer>
-<div class="footer-grid">
-  <div class="foot-col"><h4>Stylish Timber Flooring</h4><ul style="color:var(--text-muted)"><li>Premium Flooring</li><li>Serving Craigieburn</li></ul></div>
-  <div class="foot-col"><h4>Services</h4><ul><li>Timber Supply</li><li>Sanding & Polish</li><li>Restoration</li></ul></div>
-  <div class="foot-col"><h4>Contact</h4><ul><li>0435 525 139</li><li>Craigieburn, VIC</li></ul></div>
-</div>
-<div class="footer-bottom">© 2026 Stylish Timber Flooring. Built by W230.</div>
-
-<div class="mobile-sticky">
-  <a href="tel:0435 525 139" class="btn btn-main" style="flex:1; border-radius:8px;">📞 Call Now</a>
-  <a href="#services" class="btn btn-ghost" style="flex:1; border-radius:8px;">Services</a>
-</div>
-</footer>
-
+</main>
+<footer><span>Stylish Timber Flooring — Craigieburn timber flooring</span><span>Preview rebuild by W230. Noindex.</span></footer>
+<div class="mobile-call"><a class="btn btn-primary" href="tel:0452419733">Call 0452419733</a></div>
 <script>
-  // Marquee Generator
-  document.getElementById('ticker').innerHTML = 'SPOTTED GUM • BLACKBUTT • OAK • SANDING • POLISHING'.split('•').map(x => `<div class="marquee-item"><span class="marquee-dot">●</span>${x.trim()}</div>`).join('') + 'SPOTTED GUM • BLACKBUTT • OAK • SANDING • POLISHING'.split('•').map(x => `<div class="marquee-item"><span class="marquee-dot">●</span>${x.trim()}</div>`).join('');
-  // Scroll Observer
-  const obs = new IntersectionObserver((e)=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}), {threshold:0.1});
-  document.querySelectorAll('.about-grid').forEach(el => obs.observe(el));
-  // Nav Shadow
-  window.addEventListener('scroll', () => document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 50));
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const layers = [...document.querySelectorAll('[data-depth]')];
+  const progress = document.getElementById('progressBar');
+  const reveals = [...document.querySelectorAll('.reveal')];
+  const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.22 });
+  reveals.forEach(el => io.observe(el));
+  if (reduce) { reveals.forEach(el => el.classList.add('visible')); return; }
+  let ticking = false;
+  function draw() {
+    const y = window.scrollY || 0;
+    const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    if (progress) progress.style.width = Math.min(100, (y / max) * 100).toFixed(2) + '%';
+    // Cinematic technique: slow crane/parallax field, transform-only hot path.
+    layers.forEach(layer => {
+      const d = parseFloat(layer.dataset.depth || '0');
+      const ty = y * d * -0.10;
+      const rz = Math.sin(y / 900) * d * 1.2;
+      layer.style.transform = `translate3d(0, ${ty}px, 0) rotate(${rz}deg)`;
+    });
+    ticking = false;
+  }
+  addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(draw); ticking = true; } }, { passive:true });
+  addEventListener('resize', draw, { passive:true });
+  draw();
+})();
 </script>
 </body>
 </html>
